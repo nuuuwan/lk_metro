@@ -25,9 +25,9 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		self,
 		routes: list[Route],
 		stops: list[Stop],
-		width: int = 2400,
-		height: int = 2400,
-		padding: int = 120,
+		width: int = 1200,
+		height: int = 1200,
+		padding: int = 60,
 		parallel_route_gap: float = PARALLEL_ROUTE_GAP,
 	) -> None:
 		if parallel_route_gap <= 0:
@@ -67,8 +67,8 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" '
 			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
 			"<style>",
-			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.5; }",
-			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 1; }",
+			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
+			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
 			f".station-tick {{ stroke-linecap: round; "
 			f"stroke-width: {STATION_TICK_STROKE_WIDTH}; }}",
