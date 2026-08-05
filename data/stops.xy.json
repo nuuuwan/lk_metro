@@ -24,7 +24,7 @@
     "name": "Athurugiriya Hospital",
     "xy": [
       87,
-      60
+      58
     ]
   },
   {
@@ -239,13 +239,6 @@
   },
   {
     "name": "Jawatta Road",
-    "xy": [
-      28,
-      47
-    ]
-  },
-  {
-    "name": "Jawatta",
     "xy": [
       28,
       47
@@ -521,7 +514,7 @@
     "name": "Nisaco Mall",
     "xy": [
       86,
-      58
+      59
     ]
   },
   {
@@ -567,14 +560,7 @@
     ]
   },
   {
-    "name": "Pannipitiya 01",
-    "xy": [
-      81,
-      70
-    ]
-  },
-  {
-    "name": "Pannipitiya 02",
+    "name": "Pannipitiya",
     "xy": [
       81,
       70
@@ -654,7 +640,7 @@
     "name": "Royal Institute Bus Stop",
     "xy": [
       34,
-      59
+      60
     ]
   },
   {

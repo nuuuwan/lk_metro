@@ -213,16 +213,16 @@
 <line class="grid-major" x1="0" y1="100" x2="100" y2="100"/>
 </g>
 <polyline class="route" points="85,73 84,72 81,70 78,64 78,61 77,52 73,49 68,42 60,39 56,38 47,37 36,36 33,35 25,32 26,30 26,28 16,26 14,24" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="88,56 87,60 87,60 86,58 85,55 83,51 83,41 81,38 77,52 72,55 57,45 68,42 60,39 56,38 47,37 40,32 25,32 19,31 15,29 12,27 13,25 14,24" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="88,56 87,58 87,60 86,59 85,55 83,51 83,41 81,38 77,52 72,55 57,45 68,42 60,39 56,38 47,37 40,32 25,32 19,31 15,29 12,27 13,25 14,24" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="85,73 84,72 81,70 75,71 72,74 76,70 70,67 66,66 61,66 49,63 36,57 38,51 37,48 39,47 38,45 36,36 40,32 40,30 42,26 50,24 62,22 69,21 76,20 79,18 82,17" stroke="#8a0f45" stroke-width="0.65"/>
 <polyline class="route" points="42,26 40,30 40,32 36,36 30,43 20,46 17,49 17,62 23,64 27,68 22,74 32,76 35,77 41,78 45,79 48,80 49,81 45,83 43,83 47,84 53,85 55,85 64,86 65,87 66,87 63,88" stroke="#f57c00" stroke-width="0.65"/>
 <polyline class="route" points="74,40 71,43 68,42 60,39 56,38 47,37 40,32 40,30 42,26 44,23 43,22 46,19 54,19 51,17 58,16 60,15 59,15 55,14 53,13 52,13 67,12" stroke="#6f2dbd" stroke-width="0.65"/>
-<polyline class="route" points="13,36 15,34 18,33 25,32 24,34 29,40 30,43 28,47 28,47 32,50 37,48 38,51 34,53 31,57 22,62 17,62 17,49 13,36" stroke="#72b043" stroke-width="0.65"/>
-<polyline class="route" points="85,73 80,82 74,81 70,78 68,76 64,75 62,72 57,69 51,68 30,65 34,59 31,57 28,54 24,53 20,46 19,44 25,32 21,28 12,27 13,25 14,24 16,26" stroke="#006b3f" stroke-width="0.65"/>
+<polyline class="route" points="13,36 15,34 18,33 25,32 24,34 29,40 30,43 28,47 32,50 37,48 38,51 34,53 31,57 22,62 17,62 17,49 13,36" stroke="#72b043" stroke-width="0.65"/>
+<polyline class="route" points="85,73 80,82 74,81 70,78 68,76 64,75 62,72 57,69 51,68 30,65 34,60 31,57 28,54 24,53 20,46 19,44 25,32 21,28 12,27 13,25 14,24 16,26" stroke="#006b3f" stroke-width="0.65"/>
 <text class="label" x="34.75" y="52.25">Anderson Flat</text>
 <text class="label" x="83.75" y="50.25">Arangala Junction</text>
 <text class="label" x="38.75" y="44.25">Army Hospital Borella</text>
-<text class="label" x="87.75" y="59.25">Athurugiriya Hospital</text>
+<text class="label" x="87.75" y="57.25">Athurugiriya Hospital</text>
 <text class="label" x="87.75" y="59.25">Athurugiriya Town</text>
 <circle class="interchange" cx="17" cy="49" r="0.6"/>
 <text class="label" x="17.75" y="48.25">Bambalapitiya</text>
@@ -263,7 +263,6 @@
 <text class="label" x="77.75" y="51.25">Isurupaya</text>
 <text class="label" x="53.75" y="12.25">Ja Ela</text>
 <text class="label" x="28.75" y="46.25">Jawatta Road</text>
-<text class="label" x="28.75" y="46.25">Jawatta</text>
 <text class="label" x="55.75" y="84.25">Jayanthi Mawatha Stop</text>
 <text class="label" x="82.75" y="16.25">Kadawatha</text>
 <text class="label" x="78.75" y="63.25">Kalalgoda Junction</text>
@@ -307,15 +306,15 @@
 <text class="label" x="70.75" y="66.25">Nawinna</text>
 <text class="label" x="32.75" y="75.25">Near Lalanka Head Office</text>
 <text class="label" x="24.75" y="33.25">Nelum Pokuna</text>
-<text class="label" x="86.75" y="57.25">Nisaco Mall</text>
+<text class="label" x="86.75" y="58.25">Nisaco Mall</text>
 <text class="label" x="49.75" y="62.25">Nugegoda 01</text>
 <text class="label" x="50.75" y="23.25">Orugodawatta</text>
 <text class="label" x="64.75" y="85.25">Palam Junction</text>
 <text class="label" x="73.75" y="48.25">Palam Thuna Junction</text>
 <text class="label" x="66.75" y="86.25">Panadura Base Hospital</text>
 <text class="label" x="63.75" y="87.25">Panadura</text>
-<text class="label" x="81.75" y="69.25">Pannipitiya 01</text>
-<text class="label" x="81.75" y="69.25">Pannipitiya 02</text>
+<circle class="interchange" cx="81" cy="70" r="0.6"/>
+<text class="label" x="81.75" y="69.25">Pannipitiya</text>
 <text class="label" x="44.75" y="22.25">Peliyagoda (New Kelani Bridge)</text>
 <text class="label" x="43.75" y="21.25">Peliyagoda 02</text>
 <text class="label" x="51.75" y="67.25">Pepiliyana</text>
@@ -329,7 +328,7 @@
 <text class="label" x="57.75" y="68.25">Raththanapitiya</text>
 <circle class="interchange" cx="12" cy="27" r="0.6"/>
 <text class="label" x="12.75" y="26.25">Regal Cinema</text>
-<text class="label" x="34.75" y="58.25">Royal Institute Bus Stop</text>
+<text class="label" x="34.75" y="59.25">Royal Institute Bus Stop</text>
 <circle class="interchange" cx="68" cy="42" r="0.6"/>
 <text class="label" x="68.75" y="41.25">Sethsiripaya</text>
 <circle class="interchange" cx="36" cy="36" r="0.6"/>
