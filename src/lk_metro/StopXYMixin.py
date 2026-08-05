@@ -1,5 +1,5 @@
 import json
-import math
+from collections.abc import Iterable
 from pathlib import Path
 from typing import ClassVar
 
@@ -21,41 +21,31 @@ class StopXYMixin:
 		with stops_path.open(encoding="utf-8") as file:
 			records = json.load(file)
 
-		projected = {
-			record["name"]: (
-				math.radians(record["latlng"][1]),
-				math.log(
-					math.tan(
-						math.pi / 4 + math.radians(record["latlng"][0]) / 2
-					)
-				),
-			)
-			for record in records
-		}
-		min_x = min(point[0] for point in projected.values())
-		max_x = max(point[0] for point in projected.values())
-		min_y = min(point[1] for point in projected.values())
-		max_y = max(point[1] for point in projected.values())
-		x_range = max_x - min_x
-		y_range = max_y - min_y
-		scale = min(
-			(cls.XY_WIDTH - cls.XY_PADDING * 2) / x_range,
-			(cls.XY_HEIGHT - cls.XY_PADDING * 2) / y_range,
+		longitude_ranks = cls._dense_ranks(
+			record["latlng"][1] for record in records
 		)
-		content_width = x_range * scale
-		content_height = y_range * scale
-		x_offset = (cls.XY_WIDTH - content_width) / 2
-		y_offset = (cls.XY_HEIGHT - content_height) / 2
+		latitude_ranks = cls._dense_ranks(
+			record["latlng"][0] for record in records
+		)
 
 		xy_records = [
 			{
-				"name": name,
+				"name": record["name"],
 				"xy": [
-					int(round(x_offset + (point[0] - min_x) * scale, 0)),
-					int(round(y_offset + (max_y - point[1]) * scale, 0)),
+					cls._rank_to_coordinate(
+						longitude_ranks[record["latlng"][1]],
+						len(longitude_ranks),
+						cls.XY_WIDTH,
+					),
+					cls._rank_to_coordinate(
+						len(latitude_ranks) - 1
+						- latitude_ranks[record["latlng"][0]],
+						len(latitude_ranks),
+						cls.XY_HEIGHT,
+					),
 				],
 			}
-			for name, point in projected.items()
+			for record in records
 		]
 		xy_path.write_text(
 			json.dumps(xy_records, indent=2) + "\n",
@@ -75,3 +65,22 @@ class StopXYMixin:
 			json.dumps(overlaps, indent=2) + "\n",
 			encoding="utf-8",
 		)
+
+	@staticmethod
+	def _dense_ranks(values: Iterable[float]) -> dict[float, int]:
+		return {
+			value: rank
+			for rank, value in enumerate(sorted(set(values)))
+		}
+
+	@classmethod
+	def _rank_to_coordinate(
+		cls,
+		rank: int,
+		rank_count: int,
+		dimension: int,
+	) -> int:
+		if rank_count == 1:
+			return dimension // 2
+		usable_size = dimension - cls.XY_PADDING * 2
+		return round(cls.XY_PADDING + rank * usable_size / (rank_count - 1))
