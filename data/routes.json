@@ -3,6 +3,7 @@
     "id": "CM01",
     "name": "Makumbura to Pettah",
     "distance_km": 23.3,
+    "color": "#0070a8",
     "stops": [
       "Makumbura",
       "Kottawa",
@@ -28,6 +29,7 @@
     "id": "CM02",
     "name": "Millennium City to Colombo Fort",
     "distance_km": 22.3,
+    "color": "#ffd400",
     "stops": [
       "Millennium City",
       "Athurugiriya Hospital",
@@ -55,6 +57,7 @@
     "id": "CM03",
     "name": "Kadawatha to Makumbura",
     "distance_km": 34.8,
+    "color": "#8a0f45",
     "stops": [
       "Makumbura",
       "Kottawa",
@@ -84,6 +87,7 @@
     "id": "CM04",
     "name": "Dematagoda to Panadura",
     "distance_km": 28.7,
+    "color": "#f57c00",
     "stops": [
       "Dematagoda Railway Station",
       "Borella 02 - YMBA",
@@ -116,6 +120,7 @@
     "id": "CM05",
     "name": "Battaramulla to Ekala",
     "distance_km": 29.9,
+    "color": "#6f2dbd",
     "stops": [
       "Thalangama Depot",
       "Battaramulla Junction",
@@ -144,6 +149,7 @@
     "id": "CM06",
     "name": "Kollupitiya Circular Route",
     "distance_km": 14,
+    "color": "#72b043",
     "stops": [
       "Kollupitiya",
       "Liberty Bus Stop",
@@ -167,6 +173,7 @@
     "id": "CM08",
     "name": "Kesbewa to Pettah",
     "distance_km": 35.7,
+    "color": "#006b3f",
     "stops": [
       "Makumbura",
       "Kesbewa",

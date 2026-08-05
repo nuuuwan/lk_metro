@@ -12,3 +12,4 @@ class Route(AbstractData):
 	name: str
 	distance_km: float
 	stops: list[str]
+	color: str
