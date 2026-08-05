@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "xy": [
+      40,
+      53
+    ],
+    "stops": [
+      "Anderson Flat",
+      "Hirdaramani"
+    ]
+  },
+  {
+    "xy": [
+      40,
+      55
+    ],
+    "stops": [
+      "Havelock",
+      "Royal Institute Bus Stop"
+    ]
+  },
+  {
+    "xy": [
+      39,
+      51
+    ],
+    "stops": [
+      "Independence Arcade",
+      "Independence Square"
+    ]
+  },
+  {
+    "xy": [
+      39,
+      52
+    ],
+    "stops": [
+      "Jawatta Road",
+      "Jawatta"
+    ]
+  },
+  {
+    "xy": [
+      36,
+      49
+    ],
+    "stops": [
+      "Kollupitiya",
+      "Liberty Bus Stop"
+    ]
+  },
+  {
+    "xy": [
+      35,
+      45
+    ],
+    "stops": [
+      "Lake House Bus Stop",
+      "Regal Cinema"
+    ]
+  },
+  {
+    "xy": [
+      47,
+      86
+    ],
+    "stops": [
+      "Mahanama Junction",
+      "Panadura Base Hospital"
+    ]
+  },
+  {
+    "xy": [
+      51,
+      62
+    ],
+    "stops": [
+      "Maharagama Cargills Food City",
+      "Maharagama"
+    ]
+  },
+  {
+    "xy": [
+      41,
+      52
+    ],
+    "stops": [
+      "Narahenpita Junction",
+      "VTA / AAT"
+    ]
+  },
+  {
+    "xy": [
+      55,
+      62
+    ],
+    "stops": [
+      "Pannipitiya 01",
+      "Pannipitiya 02"
+    ]
+  }
+]

@@ -1,0 +1,807 @@
+[
+  {
+    "name": "Anderson Flat",
+    "xy": [
+      40,
+      53
+    ]
+  },
+  {
+    "name": "Arangala Junction",
+    "xy": [
+      58,
+      53
+    ]
+  },
+  {
+    "name": "Army Hospital Borella",
+    "xy": [
+      41,
+      51
+    ]
+  },
+  {
+    "name": "Athurugiriya Hospital",
+    "xy": [
+      63,
+      55
+    ]
+  },
+  {
+    "name": "Athurugiriya Town",
+    "xy": [
+      63,
+      56
+    ]
+  },
+  {
+    "name": "Bambalapitiya",
+    "xy": [
+      37,
+      52
+    ]
+  },
+  {
+    "name": "Battaramulla Junction",
+    "xy": [
+      49,
+      51
+    ]
+  },
+  {
+    "name": "Boralesgamuwa",
+    "xy": [
+      46,
+      63
+    ]
+  },
+  {
+    "name": "Borella",
+    "xy": [
+      41,
+      48
+    ]
+  },
+  {
+    "name": "BRC Junction",
+    "xy": [
+      39,
+      54
+    ]
+  },
+  {
+    "name": "Bus Stop Infront of Colombo",
+    "xy": [
+      38,
+      51
+    ]
+  },
+  {
+    "name": "Campbell Park",
+    "xy": [
+      41,
+      47
+    ]
+  },
+  {
+    "name": "Cancer Hospital Bus Stop 01",
+    "xy": [
+      49,
+      64
+    ]
+  },
+  {
+    "name": "Castle Hospital",
+    "xy": [
+      43,
+      49
+    ]
+  },
+  {
+    "name": "Colombo Fort",
+    "xy": [
+      36,
+      45
+    ]
+  },
+  {
+    "name": "CTB Junction",
+    "xy": [
+      44,
+      16
+    ]
+  },
+  {
+    "name": "Dehiwala",
+    "xy": [
+      39,
+      61
+    ]
+  },
+  {
+    "name": "Delkanda Junction",
+    "xy": [
+      46,
+      59
+    ]
+  },
+  {
+    "name": "Dematagoda",
+    "xy": [
+      42,
+      45
+    ]
+  },
+  {
+    "name": "Egoda Uyana",
+    "xy": [
+      44,
+      82
+    ]
+  },
+  {
+    "name": "Ekala",
+    "xy": [
+      47,
+      12
+    ]
+  },
+  {
+    "name": "Gamini Hall",
+    "xy": [
+      38,
+      46
+    ]
+  },
+  {
+    "name": "German Tec Angulana",
+    "xy": [
+      43,
+      70
+    ]
+  },
+  {
+    "name": "Golumadama Junction",
+    "xy": [
+      42,
+      69
+    ]
+  },
+  {
+    "name": "Havelock",
+    "xy": [
+      40,
+      55
+    ]
+  },
+  {
+    "name": "Hedges Ct",
+    "xy": [
+      39,
+      47
+    ]
+  },
+  {
+    "name": "Hekitta Junction",
+    "xy": [
+      42,
+      35
+    ]
+  },
+  {
+    "name": "Hendala",
+    "xy": [
+      44,
+      33
+    ]
+  },
+  {
+    "name": "Hirdaramani",
+    "xy": [
+      40,
+      53
+    ]
+  },
+  {
+    "name": "Hokandara Junction",
+    "xy": [
+      59,
+      54
+    ]
+  },
+  {
+    "name": "Independence Arcade",
+    "xy": [
+      39,
+      51
+    ]
+  },
+  {
+    "name": "Independence Square",
+    "xy": [
+      39,
+      51
+    ]
+  },
+  {
+    "name": "Isurupaya",
+    "xy": [
+      51,
+      53
+    ]
+  },
+  {
+    "name": "Ja Ela",
+    "xy": [
+      44,
+      17
+    ]
+  },
+  {
+    "name": "Jawatta Road",
+    "xy": [
+      39,
+      52
+    ]
+  },
+  {
+    "name": "Jawatta",
+    "xy": [
+      39,
+      52
+    ]
+  },
+  {
+    "name": "Jayanthi Mawatha Stop",
+    "xy": [
+      44,
+      83
+    ]
+  },
+  {
+    "name": "Kadawatha",
+    "xy": [
+      55,
+      31
+    ]
+  },
+  {
+    "name": "Kalalgoda Junction",
+    "xy": [
+      52,
+      58
+    ]
+  },
+  {
+    "name": "Kalubowila Hospital Stop",
+    "xy": [
+      39,
+      58
+    ]
+  },
+  {
+    "name": "Kandana",
+    "xy": [
+      45,
+      22
+    ]
+  },
+  {
+    "name": "Katubedda Junction",
+    "xy": [
+      43,
+      71
+    ]
+  },
+  {
+    "name": "Kelaniya Campus",
+    "xy": [
+      48,
+      37
+    ]
+  },
+  {
+    "name": "Kesbewa",
+    "xy": [
+      53,
+      72
+    ]
+  },
+  {
+    "name": "Kiribathgoda",
+    "xy": [
+      51,
+      36
+    ]
+  },
+  {
+    "name": "Kirulapone",
+    "xy": [
+      41,
+      55
+    ]
+  },
+  {
+    "name": "Kollupitiya",
+    "xy": [
+      36,
+      49
+    ]
+  },
+  {
+    "name": "Koralawella",
+    "xy": [
+      43,
+      79
+    ]
+  },
+  {
+    "name": "Koswaththa",
+    "xy": [
+      45,
+      51
+    ]
+  },
+  {
+    "name": "Kottawa",
+    "xy": [
+      58,
+      62
+    ]
+  },
+  {
+    "name": "Lake House Bus Stop",
+    "xy": [
+      35,
+      45
+    ]
+  },
+  {
+    "name": "Lanka Fiber Fabrica",
+    "xy": [
+      49,
+      69
+    ]
+  },
+  {
+    "name": "Liberty Bus Stop",
+    "xy": [
+      36,
+      49
+    ]
+  },
+  {
+    "name": "Mabola",
+    "xy": [
+      45,
+      31
+    ]
+  },
+  {
+    "name": "Mahabage",
+    "xy": [
+      46,
+      27
+    ]
+  },
+  {
+    "name": "Mahanama Junction",
+    "xy": [
+      47,
+      86
+    ]
+  },
+  {
+    "name": "Mahara Junction",
+    "xy": [
+      53,
+      34
+    ]
+  },
+  {
+    "name": "Maharagama Cargills Food City",
+    "xy": [
+      51,
+      62
+    ]
+  },
+  {
+    "name": "Maharagama",
+    "xy": [
+      51,
+      62
+    ]
+  },
+  {
+    "name": "Makumbura",
+    "xy": [
+      60,
+      63
+    ]
+  },
+  {
+    "name": "Malabe Bus Stand",
+    "xy": [
+      56,
+      51
+    ]
+  },
+  {
+    "name": "Maliban Junction",
+    "xy": [
+      40,
+      67
+    ]
+  },
+  {
+    "name": "Maradana",
+    "xy": [
+      39,
+      46
+    ]
+  },
+  {
+    "name": "Mendis Lane Rawathawatta",
+    "xy": [
+      42,
+      74
+    ]
+  },
+  {
+    "name": "Millennium City",
+    "xy": [
+      65,
+      55
+    ]
+  },
+  {
+    "name": "Moratuwa",
+    "xy": [
+      42,
+      76
+    ]
+  },
+  {
+    "name": "Mount Lavinia",
+    "xy": [
+      38,
+      65
+    ]
+  },
+  {
+    "name": "NAITA",
+    "xy": [
+      45,
+      50
+    ]
+  },
+  {
+    "name": "Narahenpita Junction",
+    "xy": [
+      41,
+      52
+    ]
+  },
+  {
+    "name": "Narahenpita",
+    "xy": [
+      41,
+      53
+    ]
+  },
+  {
+    "name": "Nawaloka Bus Stop",
+    "xy": [
+      36,
+      47
+    ]
+  },
+  {
+    "name": "Nawinna",
+    "xy": [
+      49,
+      60
+    ]
+  },
+  {
+    "name": "Near Lalanka Head Office",
+    "xy": [
+      40,
+      66
+    ]
+  },
+  {
+    "name": "Nelum Pokuna",
+    "xy": [
+      38,
+      49
+    ]
+  },
+  {
+    "name": "Nisaco Mall",
+    "xy": [
+      62,
+      55
+    ]
+  },
+  {
+    "name": "Nugegoda 01",
+    "xy": [
+      43,
+      57
+    ]
+  },
+  {
+    "name": "Orugodawatta",
+    "xy": [
+      43,
+      42
+    ]
+  },
+  {
+    "name": "Palam Junction",
+    "xy": [
+      47,
+      85
+    ]
+  },
+  {
+    "name": "Palam Thuna Junction",
+    "xy": [
+      50,
+      52
+    ]
+  },
+  {
+    "name": "Panadura Base Hospital",
+    "xy": [
+      47,
+      86
+    ]
+  },
+  {
+    "name": "Panadura",
+    "xy": [
+      46,
+      88
+    ]
+  },
+  {
+    "name": "Pannipitiya 01",
+    "xy": [
+      55,
+      62
+    ]
+  },
+  {
+    "name": "Pannipitiya 02",
+    "xy": [
+      55,
+      62
+    ]
+  },
+  {
+    "name": "Peliyagoda (New Kelani Bridge)",
+    "xy": [
+      42,
+      41
+    ]
+  },
+  {
+    "name": "Peliyagoda 02",
+    "xy": [
+      42,
+      39
+    ]
+  },
+  {
+    "name": "Pepiliyana",
+    "xy": [
+      44,
+      60
+    ]
+  },
+  {
+    "name": "Pettah",
+    "xy": [
+      37,
+      45
+    ]
+  },
+  {
+    "name": "Piliyandala Bus Stand Stop",
+    "xy": [
+      50,
+      70
+    ]
+  },
+  {
+    "name": "Public Library",
+    "xy": [
+      37,
+      49
+    ]
+  },
+  {
+    "name": "Rajagiriya",
+    "xy": [
+      45,
+      49
+    ]
+  },
+  {
+    "name": "Rathmalana Tec",
+    "xy": [
+      41,
+      68
+    ]
+  },
+  {
+    "name": "Raththanapitiya",
+    "xy": [
+      45,
+      61
+    ]
+  },
+  {
+    "name": "Regal Cinema",
+    "xy": [
+      35,
+      45
+    ]
+  },
+  {
+    "name": "Royal Institute Bus Stop",
+    "xy": [
+      40,
+      55
+    ]
+  },
+  {
+    "name": "Sethsiripaya",
+    "xy": [
+      48,
+      51
+    ]
+  },
+  {
+    "name": "Singer Mega - Colombo 8",
+    "xy": [
+      41,
+      49
+    ]
+  },
+  {
+    "name": "Thalahena Junction",
+    "xy": [
+      54,
+      50
+    ]
+  },
+  {
+    "name": "Thalangama Depot",
+    "xy": [
+      51,
+      50
+    ]
+  },
+  {
+    "name": "Thalangama Junction",
+    "xy": [
+      50,
+      54
+    ]
+  },
+  {
+    "name": "Thalawathugoda",
+    "xy": [
+      52,
+      56
+    ]
+  },
+  {
+    "name": "Thimbirigasyaya",
+    "xy": [
+      38,
+      53
+    ]
+  },
+  {
+    "name": "Thorana Junction",
+    "xy": [
+      46,
+      38
+    ]
+  },
+  {
+    "name": "Thummulla",
+    "xy": [
+      38,
+      52
+    ]
+  },
+  {
+    "name": "Town Hall",
+    "xy": [
+      39,
+      48
+    ]
+  },
+  {
+    "name": "Union Place",
+    "xy": [
+      38,
+      48
+    ]
+  },
+  {
+    "name": "VTA / AAT",
+    "xy": [
+      41,
+      52
+    ]
+  },
+  {
+    "name": "W.A. Silva Mawatha",
+    "xy": [
+      38,
+      56
+    ]
+  },
+  {
+    "name": "Wattala",
+    "xy": [
+      44,
+      34
+    ]
+  },
+  {
+    "name": "Weerasinghe Mawatha",
+    "xy": [
+      48,
+      67
+    ]
+  },
+  {
+    "name": "Weligampitiya",
+    "xy": [
+      44,
+      18
+    ]
+  },
+  {
+    "name": "Wellawatta",
+    "xy": [
+      37,
+      56
+    ]
+  },
+  {
+    "name": "Werahera",
+    "xy": [
+      47,
+      66
+    ]
+  },
+  {
+    "name": "Wijerama Junction",
+    "xy": [
+      47,
+      60
+    ]
+  },
+  {
+    "name": "Wijerama",
+    "xy": [
+      40,
+      49
+    ]
+  },
+  {
+    "name": "William Junction",
+    "xy": [
+      38,
+      58
+    ]
+  }
+]

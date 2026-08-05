@@ -23,9 +23,9 @@ class GeographicDiagram:
 		self,
 		routes: list[Route],
 		stops: list[Stop],
-		width: int = 1200,
-		height: int = 1200,
-		padding: int = 60,
+		width: int = 100,
+		height: int = 100,
+		padding: int = 6,
 	) -> None:
 		if width <= padding * 2 or height <= padding * 2:
 			raise ValueError("width and height must be larger than twice the padding")
@@ -163,10 +163,11 @@ class GeographicDiagram:
 			if not -85.0 < latitude < 85.0 or not -180.0 <= longitude <= 180.0:
 				raise ValueError(f"Stop {stop.name!r} has invalid latitude or longitude")
 			if len(stop.xy) != 2 or any(
-				type(coordinate) is not int for coordinate in stop.xy
+				type(coordinate) not in (int, float) or not math.isfinite(coordinate)
+				for coordinate in stop.xy
 			):
 				raise ValueError(
-					f"Stop {stop.name!r} must have integer x and y coordinates"
+					f"Stop {stop.name!r} must have finite x and y coordinates"
 				)
 
 	def _route_memberships(

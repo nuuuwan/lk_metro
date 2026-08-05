@@ -25,9 +25,9 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		self,
 		routes: list[Route],
 		stops: list[Stop],
-		width: int = 1200,
-		height: int = 1200,
-		padding: int = 60,
+		width: int = 200,
+		height: int = 200,
+		padding: int = 6,
 		parallel_route_gap: float = PARALLEL_ROUTE_GAP,
 	) -> None:
 		if parallel_route_gap <= 0:
@@ -39,6 +39,24 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		}
 		self._edge_directions: dict[Edge, tuple[str, str]] = {}
 		self._edge_routes = self._build_edge_routes()
+
+	def layout(self) -> dict[str, Point]:
+		positions = super().layout()
+		min_x = min(point[0] for point in positions.values())
+		max_x = max(point[0] for point in positions.values())
+		min_y = min(point[1] for point in positions.values())
+		max_y = max(point[1] for point in positions.values())
+		x_range = max_x - min_x
+		y_range = max_y - min_y
+		x_scale = (self.width - self.padding * 2) / x_range
+		y_scale = (self.height - self.padding * 2) / y_range
+		return {
+			name: (
+				self.padding + (point[0] - min_x) * x_scale,
+				self.padding + (point[1] - min_y) * y_scale,
+			)
+			for name, point in positions.items()
+		}
 
 	def route_segments(
 		self,
@@ -152,11 +170,9 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			route = routes_by_id[route_id]
 			stop_index = route.stops.index(stop.name)
 			candidate_segments = []
-			if stop_index < len(route.stops) - 1:
-				path = segments[route_id][stop_index]
+			for path in segments[route_id][stop_index:]:
 				candidate_segments.extend(zip(path, path[1:]))
-			if stop_index > 0:
-				path = segments[route_id][stop_index - 1]
+			for path in reversed(segments[route_id][:stop_index]):
 				candidate_segments.extend(
 					zip(reversed(path), reversed(path[:-1]))
 				)
@@ -275,6 +291,8 @@ class ParallelGeographicDiagram(GeographicDiagram):
 	@staticmethod
 	def _offset_path(path: list[Point], offset: float) -> list[Point]:
 		if math.isclose(offset, 0.0):
+			return path
+		if all(first == second for first, second in zip(path, path[1:])):
 			return path
 
 		normals = []

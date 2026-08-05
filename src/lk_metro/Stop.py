@@ -1,13 +1,56 @@
+import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import ClassVar
 
 from .AbstractData import AbstractData
+from .StopXYMixin import StopXYMixin
 
 
 @dataclass
-class Stop(AbstractData):
+class Stop(StopXYMixin, AbstractData):
 	DATA_FILE: ClassVar[str] = "stops.json"
 
 	name: str
 	latlng: list[float]
-	xy: list[int]
+	xy: list[float]
+
+	@classmethod
+	def read_all(cls) -> list["Stop"]:
+		data_dir = Path(__file__).resolve().parents[2] / "data"
+		stops_path = data_dir / cls.DATA_FILE
+		xy_path = data_dir / cls.XY_DATA_FILE
+
+		with stops_path.open(encoding="utf-8") as file:
+			stop_records = json.load(file)
+		with xy_path.open(encoding="utf-8") as file:
+			xy_records = json.load(file)
+
+		if not isinstance(stop_records, list):
+			raise ValueError(f"Expected a JSON list in {stops_path}")
+		if not isinstance(xy_records, list):
+			raise ValueError(f"Expected a JSON list in {xy_path}")
+
+		coordinates_by_name: dict[str, list[float]] = {}
+		for index, record in enumerate(xy_records):
+			if not isinstance(record, dict) or set(record) != {"name", "xy"}:
+				raise ValueError(f"Invalid coordinate record at index {index} in {xy_path}")
+			name = record["name"]
+			if not isinstance(name, str) or name in coordinates_by_name:
+				raise ValueError(f"Invalid or duplicate stop name at index {index} in {xy_path}")
+			coordinates_by_name[name] = record["xy"]
+
+		stops = []
+		for index, record in enumerate(stop_records):
+			if not isinstance(record, dict) or set(record) != {"name", "latlng"}:
+				raise ValueError(f"Invalid stop record at index {index} in {stops_path}")
+			name = record["name"]
+			if name not in coordinates_by_name:
+				raise ValueError(f"Missing coordinates for stop {name!r}")
+			stops.append(cls(**record, xy=coordinates_by_name.pop(name)))
+
+		if coordinates_by_name:
+			unknown_names = ", ".join(sorted(coordinates_by_name))
+			raise ValueError(f"Coordinates reference unknown stops: {unknown_names}")
+
+		return stops
