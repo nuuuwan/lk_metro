@@ -46,7 +46,15 @@ def main() -> None:
 	routes = Route.read_all()
 	stops = Stop.read_all()
 	outputs = (
-		(HarryBeck(routes, stops), "lk_metro"),
+		(
+			HarryBeck(
+				routes,
+				stops,
+				design_path=ROOT_DIR / "data" / "harry_beck.json",
+				regenerate_design=True,
+			),
+			"lk_metro.harry_beck",
+		),
 		(GeographicDiagram(routes, stops), "lk_metro_geographic"),
 	)
 
