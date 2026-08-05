@@ -66,13 +66,6 @@
           ]
         },
         {
-          "orientation": "NW",
-          "stations": [
-            "Wijerama",
-            "Town Hall"
-          ]
-        },
-        {
           "orientation": "N",
           "stations": [
             "Town Hall",
@@ -85,6 +78,13 @@
           "stations": [
             "Maradana",
             "Pettah"
+          ]
+        },
+        {
+          "orientation": "W",
+          "stations": [
+            "Pettah",
+            "Colombo Fort"
           ]
         }
       ]
@@ -134,7 +134,7 @@
           "orientation": "NW",
           "stations": [
             "Castle Hospital",
-            "Borella 02 - YMBA"
+            "Borella"
           ]
         },
         {
@@ -147,8 +147,8 @@
         {
           "orientation": "W",
           "stations": [
-            "Borella 02 - YMBA",
-            "Town Hall - Vision Care"
+            "Borella",
+            "Town Hall"
           ]
         },
         {
@@ -162,10 +162,16 @@
         {
           "orientation": "NW",
           "stations": [
-            "Town Hall - Vision Care",
+            "Town Hall",
             "Union Place",
-            "Nawaloka Bus Stop",
-            "Regal Cinema"
+            "Nawaloka Bus Stop"
+          ]
+        },
+        {
+          "orientation": "N",
+          "stations": [
+            "Regal Cinema",
+            "Lake House Bus Stop"
           ]
         }
       ]
@@ -229,21 +235,24 @@
           "orientation": "N",
           "stations": [
             "Kirulapone",
-            "Narahenpita Junction"
+            "Narahenpita",
+            "VTA / AAT"
           ]
         },
         {
           "orientation": "S",
           "stations": [
-            "Borella 02 - YMBA",
-            "Army Hospital Borella"
+            "Singer Mega - Colombo 8",
+            "Army Hospital Borella",
+            "Narahenpita Junction"
           ]
         },
         {
           "orientation": "N",
           "stations": [
-            "Borella 02 - YMBA",
-            "Campbell Park"
+            "Borella",
+            "Campbell Park",
+            "Dematagoda"
           ]
         },
         {
@@ -277,31 +286,11 @@
       "name": "Dematagoda to Panadura",
       "segments": [
         {
-          "orientation": "NW",
-          "stations": [
-            "Borella 02 - YMBA",
-            "Dematagoda"
-          ]
-        },
-        {
-          "orientation": "NE",
-          "stations": [
-            "Borella 02 - YMBA",
-            "Borella"
-          ]
-        },
-        {
-          "orientation": "S",
+          "orientation": "SW",
           "stations": [
             "Borella",
             "Independence Arcade",
-            "Thummulla Junction"
-          ]
-        },
-        {
-          "orientation": "N",
-          "stations": [
-            "Wellawatta",
+            "Thummulla",
             "Bambalapitiya"
           ]
         },
@@ -446,9 +435,9 @@
       "name": "Kollupitiya Circular Route",
       "segments": [
         {
-          "orientation": "N",
+          "orientation": "SW",
           "stations": [
-            "Havelock",
+            "Narahenpita",
             "Anderson Flat"
           ]
         },
@@ -457,20 +446,6 @@
           "stations": [
             "Havelock",
             "W.A. Silva Mawatha"
-          ]
-        },
-        {
-          "orientation": "NE",
-          "stations": [
-            "Anderson Flat",
-            "Narahenpita"
-          ]
-        },
-        {
-          "orientation": "W",
-          "stations": [
-            "W.A. Silva Mawatha",
-            "Wellawatta"
           ]
         },
         {
@@ -488,24 +463,17 @@
           ]
         },
         {
-          "orientation": "N",
+          "orientation": "NW",
           "stations": [
-            "Narahenpita",
-            "VTA / AAT"
-          ]
-        },
-        {
-          "orientation": "W",
-          "stations": [
-            "Public Library",
-            "Liberty Bus Stop"
-          ]
-        },
-        {
-          "orientation": "SE",
-          "stations": [
-            "Nelum Pokuna",
+            "Independence Arcade",
             "Independence Square"
+          ]
+        },
+        {
+          "orientation": "S",
+          "stations": [
+            "Independence Arcade",
+            "Jawatta Road"
           ]
         },
         {
@@ -516,23 +484,24 @@
           ]
         },
         {
-          "orientation": "NW",
+          "orientation": "W",
           "stations": [
-            "Bambalapitiya",
+            "W.A. Silva Mawatha",
+            "Wellawatta"
+          ]
+        },
+        {
+          "orientation": "W",
+          "stations": [
+            "Public Library",
+            "Liberty Bus Stop",
             "Kollupitiya"
           ]
         },
         {
-          "orientation": "S",
+          "orientation": "E",
           "stations": [
-            "Independence Square",
-            "Jawatta Road"
-          ]
-        },
-        {
-          "orientation": "NW",
-          "stations": [
-            "Hirdaramani",
+            "Jawatta Road",
             "Jawatta"
           ]
         }
@@ -617,31 +586,17 @@
           ]
         },
         {
-          "orientation": "NW",
+          "orientation": "NE",
           "stations": [
             "Town Hall",
             "Gamini Hall"
           ]
         },
         {
-          "orientation": "N",
-          "stations": [
-            "Thimbirigasyaya",
-            "Thummulla"
-          ]
-        },
-        {
           "orientation": "W",
           "stations": [
             "Gamini Hall",
-            "Lake House Bus Stop"
-          ]
-        },
-        {
-          "orientation": "NE",
-          "stations": [
-            "Lake House Bus Stop",
-            "Colombo Fort"
+            "Regal Cinema"
           ]
         }
       ]

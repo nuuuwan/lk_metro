@@ -2,6 +2,13 @@ import html
 import math
 from pathlib import Path
 
+from .DiagramStyle import (
+	INTERCHANGE_RADIUS,
+	INTERCHANGE_STROKE_WIDTH,
+	LABEL_FONT_SIZE,
+	LABEL_OFFSET,
+	ROUTE_STROKE_WIDTH,
+)
 from .Route import Route
 from .Stop import Stop
 
@@ -84,10 +91,10 @@ class GeographicDiagram:
 			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
 			"<style>",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
-			".station { fill: white; stroke: #111; stroke-width: 3; }",
-			".interchange { fill: white; stroke: #111; stroke-width: 5; }",
-			".label { font: 7px sans-serif; fill: #111; dominant-baseline: middle; "
-			"paint-order: stroke; stroke: #f7f5ef; stroke-width: 4px; }",
+			f".interchange {{ fill: white; stroke: #111; "
+			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
+			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
+			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
 		]
@@ -97,7 +104,7 @@ class GeographicDiagram:
 			points = " ".join(f"{x},{y}" for x, y in paths[route.id])
 			lines.append(
 				f'<polyline class="route" points="{points}" '
-				f'stroke="{route.color}" stroke-width="10"/>'
+				f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}"/>'
 			)
 
 		visible_stop_names = {
@@ -110,14 +117,14 @@ class GeographicDiagram:
 			if stop.name not in visible_stop_names:
 				continue
 			x, y = positions[stop.name]
-			is_interchange = len(memberships[stop.name]) > 1
-			css_class = "interchange" if is_interchange else "station"
-			radius = 8 if is_interchange else 5
+			if len(memberships[stop.name]) > 1:
+				lines.append(
+					f'<circle class="interchange" cx="{x}" cy="{y}" '
+					f'r="{INTERCHANGE_RADIUS}"/>'
+				)
 			lines.append(
-				f'<circle class="{css_class}" cx="{x}" cy="{y}" r="{radius}"/>'
-			)
-			lines.append(
-				f'<text class="label" x="{x + 11}" y="{y - 11}">'
+				f'<text class="label" x="{x + LABEL_OFFSET}" '
+				f'y="{y - LABEL_OFFSET}">'
 				f"{html.escape(stop.name)}</text>"
 			)
 

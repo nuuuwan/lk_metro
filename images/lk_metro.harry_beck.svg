@@ -1,384 +1,291 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1478.822509952" height="2618.23376492" viewBox="0 0 1478.822509952 2618.23376492">
+<svg xmlns="http://www.w3.org/2000/svg" width="1478.822509952" height="2721.6652224239997" viewBox="0 0 1478.822509952 2721.6652224239997">
 <style>
 .route { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.station { fill: white; stroke: #111; stroke-width: 3; }
-.interchange { fill: white; stroke: #111; stroke-width: 5; }
-.label { font: 14px sans-serif; fill: #111; dominant-baseline: middle; }
+.interchange { fill: white; stroke: #111; stroke-width: 1.25; }
+.label { font: 3.5px sans-serif; fill: #111; dominant-baseline: middle; }
 </style>
-<rect width="1478.822509952" height="2618.23376492" fill="#f7f5ef"/>
-<polyline class="route" points="1035.979797472,1558.822509952 979.411254976,1502.2539674559998" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="979.411254976,1502.2539674559998 899.411254976,1502.2539674559998" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="899.411254976,1502.2539674559998 842.8427124799999,1445.6854249599999" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="842.8427124799999,1445.6854249599999 842.8427124799999,1365.6854249599999" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="842.8427124799999,1365.6854249599999 842.8427124799999,1285.6854249599999" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="842.8427124799999,1285.6854249599999 786.274169984,1229.116882464" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="786.274169984,1229.116882464 729.705627488,1172.548339968" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="729.705627488,1172.548339968 649.705627488,1172.548339968" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="649.705627488,1172.548339968 593.1370849919999,1115.979797472" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="593.1370849919999,1115.979797472 513.1370849919999,1115.979797472" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1115.979797472 433.137084992,1115.979797472" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="433.137084992,1115.979797472 353.13708499200004,1115.979797472" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="353.13708499200004,1115.979797472 296.568542496,1059.411254976" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="296.568542496,1059.411254976 296.568542496,979.411254976" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="296.568542496,979.411254976 296.568542496,899.411254976" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="296.568542496,899.411254976 240.0,842.8427124799999" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="240.0,842.8427124799999 216.56854249600002,866.274169984 216.56854249600002,946.274169984" stroke="#0070a8" stroke-width="12"/>
-<polyline class="route" points="1318.822509952,1342.2539674559998 1262.2539674559998,1398.822509952" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1262.2539674559998,1398.822509952 1205.6854249599999,1455.391052448" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1205.6854249599999,1455.391052448 1149.116882464,1398.822509952" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1149.116882464,1398.822509952 1069.116882464,1398.822509952" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1069.116882464,1398.822509952 1012.548339968,1342.2539674559998" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1012.548339968,1342.2539674559998 955.979797472,1285.6854249599999" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="955.979797472,1285.6854249599999 899.411254976,1229.116882464" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="899.411254976,1229.116882464 842.8427124799999,1285.6854249599999" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="842.8427124799999,1285.6854249599999 786.274169984,1342.2539674559998" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="786.274169984,1342.2539674559998 729.705627488,1285.6854249599999" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="729.705627488,1285.6854249599999 729.705627488,1172.548339968" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="729.705627488,1172.548339968 649.705627488,1172.548339968" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="649.705627488,1172.548339968 593.1370849919999,1115.979797472" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="593.1370849919999,1115.979797472 513.1370849919999,1115.979797472" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1115.979797472 456.568542496,1059.411254976" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1059.411254976 376.568542496,1059.411254976" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="376.568542496,1059.411254976 320.0,1002.8427124799999" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="320.0,1002.8427124799999 263.431457504,946.274169984" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="263.431457504,946.274169984 206.86291500799996,889.7056274879999" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="206.86291500799996,889.7056274879999 216.56854249600002,899.411254976 216.56854249600002,946.274169984" stroke="#ffd400" stroke-width="12"/>
-<polyline class="route" points="1035.979797472,1558.822509952 979.411254976,1502.2539674559998" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="979.411254976,1502.2539674559998 922.8427124799999,1558.822509952" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="922.8427124799999,1558.822509952 842.8427124799999,1558.822509952" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="842.8427124799999,1558.822509952 786.274169984,1615.391052448" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="786.274169984,1615.391052448 866.2741699840001,1615.391052448" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="866.2741699840001,1615.391052448 809.7056274880001,1558.822509952" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="809.7056274880001,1558.822509952 729.705627488,1558.822509952" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="729.705627488,1558.822509952 673.1370849919999,1502.2539674559998" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="673.1370849919999,1502.2539674559998 616.568542496,1445.6854249599999" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="616.568542496,1445.6854249599999 560.0,1389.116882464" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="560.0,1389.116882464 560.0,1309.116882464" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="560.0,1309.116882464 456.568542496,1205.6854249599999 456.568542496,1139.411254976" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1139.411254976 456.568542496,1059.411254976" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1059.411254976 456.568542496,979.411254976" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="456.568542496,979.411254976 433.13708499200004,1002.8427124799999 400.0,1002.8427124799999" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="400.0,1002.8427124799999 456.568542496,946.274169984" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="456.568542496,946.274169984 513.1370849919999,889.7056274879999" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,889.7056274879999 569.705627488,833.1370849919999" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="569.705627488,833.1370849919999 649.705627488,833.1370849919999" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="649.705627488,833.1370849919999 706.274169984,776.568542496" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="706.274169984,776.568542496 762.8427124799999,720.0" stroke="#8a0f45" stroke-width="12"/>
-<polyline class="route" points="400.0,1002.8427124799999 456.568542496,1059.411254976" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1059.411254976 513.1370849919999,1002.8427124799999" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1002.8427124799999 513.1370849919999,1082.84271248" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1082.84271248 513.1370849919999,1162.84271248" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1162.84271248 475.979797472,1125.6854249599999 376.568542496,1125.6854249599999" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="376.568542496,1125.6854249599999 376.568542496,1205.6854249599999" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="376.568542496,1205.6854249599999 433.137084992,1262.2539674559998" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="433.137084992,1262.2539674559998 433.137084992,1342.2539674559998" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="433.137084992,1342.2539674559998 433.137084992,1422.2539674559998" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="433.137084992,1422.2539674559998 489.705627488,1478.822509952" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="489.705627488,1478.822509952 546.2741699840001,1535.391052448" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="546.2741699840001,1535.391052448 602.84271248,1591.959594944" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="602.84271248,1591.959594944 659.411254968,1648.5281374319998" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="659.411254968,1648.5281374319998 715.9797974640001,1705.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,1705.096679928 715.9797974640001,1785.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,1785.096679928 715.9797974640001,1865.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,1865.096679928 715.9797974640001,1945.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,1945.096679928 715.9797974640001,2025.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,2025.096679928 715.9797974640001,2105.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,2105.096679928 715.9797974640001,2185.096679928" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="715.9797974640001,2185.096679928 772.54833996,2241.6652224239997" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="772.54833996,2241.6652224239997 829.116882456,2298.23376492" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="829.116882456,2298.23376492 829.116882456,2378.23376492" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="829.116882456,2378.23376492 829.116882456,2458.23376492" stroke="#f57c00" stroke-width="12"/>
-<polyline class="route" points="866.2741699840001,1115.979797472 809.7056274880001,1172.548339968" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="809.7056274880001,1172.548339968 729.705627488,1172.548339968" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="729.705627488,1172.548339968 649.705627488,1172.548339968" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="649.705627488,1172.548339968 593.1370849919999,1115.979797472" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="593.1370849919999,1115.979797472 513.1370849919999,1115.979797472" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1115.979797472 456.568542496,1059.411254976" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1059.411254976 456.568542496,979.411254976" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,979.411254976 433.13708499200004,1002.8427124799999 400.0,1002.8427124799999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,1002.8427124799999 400.0,922.8427124799999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,922.8427124799999 400.0,842.8427124799999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,842.8427124799999 400.0,762.8427124799999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,762.8427124799999 456.568542496,706.274169984" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,706.274169984 400.0,649.7056274879999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,649.7056274879999 456.568542496,593.1370849919999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,593.1370849919999 456.568542496,513.1370849919999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,513.1370849919999 456.568542496,433.1370849919999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,433.1370849919999 456.568542496,353.1370849919999" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="456.568542496,353.1370849919999 400.0,296.568542496" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,296.568542496 400.0,216.56854249600002" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="400.0,216.56854249600002 456.568542496,160.0" stroke="#6f2dbd" stroke-width="12"/>
-<polyline class="route" points="320.0,1069.116882464 273.13708499200004,1115.979797472 160.0,1115.979797472" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="160.0,1115.979797472 240.0,1115.979797472" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="240.0,1115.979797472 296.568542496,1059.411254976" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="296.568542496,1059.411254976 296.568542496,1139.411254976" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="296.568542496,1139.411254976 353.13708499200004,1195.979797472" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="353.13708499200004,1195.979797472 353.13708499200004,1275.979797472" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="353.13708499200004,1275.979797472 456.568542496,1172.5483399680002 456.568542496,932.5483399679999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="456.568542496,932.5483399679999 513.1370849919999,989.1168824639999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,989.1168824639999 569.705627488,932.5483399679999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="569.705627488,932.5483399679999 569.705627488,1012.5483399679999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="569.705627488,1012.5483399679999 513.1370849919999,1069.116882464" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1069.116882464 513.1370849919999,1149.116882464" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1149.116882464 456.568542496,1205.6854249599999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1205.6854249599999 376.568542496,1205.6854249599999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="376.568542496,1205.6854249599999 376.568542496,1125.6854249599999" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="376.568542496,1125.6854249599999 320.0,1069.116882464" stroke="#72b043" stroke-width="12"/>
-<polyline class="route" points="1035.979797472,1558.822509952 979.411254976,1615.391052448" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="979.411254976,1615.391052448 899.411254976,1615.391052448" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="899.411254976,1615.391052448 819.411254976,1615.391052448" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="819.411254976,1615.391052448 819.411254976,1535.391052448" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="819.411254976,1535.391052448 762.8427124799999,1478.822509952" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="762.8427124799999,1478.822509952 762.8427124799999,1398.822509952" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="762.8427124799999,1398.822509952 706.274169984,1342.2539674559998" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="706.274169984,1342.2539674559998 649.705627488,1285.6854249599999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="649.705627488,1285.6854249599999 569.705627488,1285.6854249599999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="569.705627488,1285.6854249599999 569.705627488,1205.6854249599999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="569.705627488,1205.6854249599999 513.1370849919999,1149.116882464" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="513.1370849919999,1149.116882464 456.568542496,1092.548339968" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="456.568542496,1092.548339968 400.0,1035.979797472" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="400.0,1035.979797472 400.0,955.9797974719999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="400.0,955.9797974719999 296.56854249599985,1059.411254976 216.56854249600002,1059.411254976" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="216.56854249600002,1059.411254976 296.568542496,1059.411254976" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="296.568542496,1059.411254976 240.0,1002.8427124799999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="240.0,1002.8427124799999 160.0,1002.8427124799999" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="160.0,1002.8427124799999 216.56854249600002,946.274169984" stroke="#006b3f" stroke-width="12"/>
-<polyline class="route" points="216.56854249600002,946.274169984 240.0,922.8427124799999 240.0,842.8427124799999" stroke="#006b3f" stroke-width="12"/>
-<circle class="interchange" cx="1035.979797472" cy="1558.822509952" r="9"/>
-<text class="label" x="1048.979797472" y="1545.822509952">Makumbura</text>
-<circle class="interchange" cx="979.411254976" cy="1502.2539674559998" r="9"/>
-<text class="label" x="992.411254976" y="1489.2539674559998">Kottawa</text>
-<circle class="station" cx="899.411254976" cy="1502.2539674559998" r="6"/>
-<text class="label" x="912.411254976" y="1489.2539674559998">Pannipitiya 02</text>
-<circle class="station" cx="842.8427124799999" cy="1445.6854249599999" r="6"/>
-<text class="label" x="855.8427124799999" y="1432.6854249599999">Kalalgoda Junction</text>
-<circle class="station" cx="842.8427124799999" cy="1365.6854249599999" r="6"/>
-<text class="label" x="855.8427124799999" y="1352.6854249599999">Thalawathugoda</text>
-<circle class="interchange" cx="842.8427124799999" cy="1285.6854249599999" r="9"/>
-<text class="label" x="855.8427124799999" y="1272.6854249599999">Isurupaya</text>
-<circle class="station" cx="786.274169984" cy="1229.116882464" r="6"/>
-<text class="label" x="799.274169984" y="1216.116882464">Palam Thuna Junction</text>
-<circle class="interchange" cx="729.705627488" cy="1172.548339968" r="9"/>
-<text class="label" x="742.705627488" y="1159.548339968">Sethsiripaya</text>
-<circle class="interchange" cx="649.705627488" cy="1172.548339968" r="9"/>
-<text class="label" x="662.705627488" y="1159.548339968">NAITA</text>
-<circle class="interchange" cx="593.1370849919999" cy="1115.979797472" r="9"/>
-<text class="label" x="606.1370849919999" y="1102.979797472">Rajagiriya</text>
-<circle class="interchange" cx="513.1370849919999" cy="1115.979797472" r="9"/>
-<text class="label" x="526.1370849919999" y="1102.979797472">Castle Hospital</text>
-<circle class="station" cx="433.137084992" cy="1115.979797472" r="6"/>
-<text class="label" x="446.137084992" y="1102.979797472">Singer Mega - Colombo 8</text>
-<circle class="station" cx="353.13708499200004" cy="1115.979797472" r="6"/>
-<text class="label" x="366.13708499200004" y="1102.979797472">Wijerama</text>
-<circle class="interchange" cx="296.568542496" cy="1059.411254976" r="9"/>
-<text class="label" x="309.568542496" y="1046.411254976">Town Hall</text>
-<circle class="station" cx="296.568542496" cy="979.411254976" r="6"/>
-<text class="label" x="309.568542496" y="966.411254976">Hedges Ct</text>
-<circle class="station" cx="296.568542496" cy="899.411254976" r="6"/>
-<text class="label" x="309.568542496" y="886.411254976">Maradana</text>
-<circle class="interchange" cx="240.0" cy="842.8427124799999" r="9"/>
-<text class="label" x="253.0" y="829.8427124799999">Pettah</text>
-<circle class="station" cx="899.411254976" cy="1229.116882464" r="6"/>
-<text class="label" x="912.411254976" y="1216.116882464">Thalahena Junction</text>
-<circle class="station" cx="786.274169984" cy="1342.2539674559998" r="6"/>
-<text class="label" x="799.274169984" y="1329.2539674559998">Thalangama Junction</text>
-<circle class="station" cx="955.979797472" cy="1285.6854249599999" r="6"/>
-<text class="label" x="968.979797472" y="1272.6854249599999">Malabe Bus Stand</text>
-<circle class="station" cx="1012.548339968" cy="1342.2539674559998" r="6"/>
-<text class="label" x="1025.5483399680002" y="1329.2539674559998">Arangala Junction</text>
-<circle class="station" cx="1069.116882464" cy="1398.822509952" r="6"/>
-<text class="label" x="1082.116882464" y="1385.822509952">Hokandara Junction</text>
-<circle class="station" cx="729.705627488" cy="1285.6854249599999" r="6"/>
-<text class="label" x="742.705627488" y="1272.6854249599999">Koswaththa</text>
-<circle class="station" cx="1149.116882464" cy="1398.822509952" r="6"/>
-<text class="label" x="1162.116882464" y="1385.822509952">Nisaco Mall</text>
-<circle class="interchange" cx="456.568542496" cy="1059.411254976" r="9"/>
-<text class="label" x="469.568542496" y="1046.411254976">Borella 02 - YMBA</text>
-<circle class="station" cx="1205.6854249599999" cy="1455.391052448" r="6"/>
-<text class="label" x="1218.6854249599999" y="1442.391052448">Athurugiriya Town</text>
-<circle class="station" cx="376.568542496" cy="1059.411254976" r="6"/>
-<text class="label" x="389.568542496" y="1046.411254976">Town Hall - Vision Care</text>
-<circle class="station" cx="1262.2539674559998" cy="1398.822509952" r="6"/>
-<text class="label" x="1275.2539674559998" y="1385.822509952">Athurugiriya Hospital</text>
-<circle class="station" cx="1318.822509952" cy="1342.2539674559998" r="6"/>
-<text class="label" x="1331.822509952" y="1329.2539674559998">Millennium City</text>
-<circle class="station" cx="320.0" cy="1002.8427124799999" r="6"/>
-<text class="label" x="333.0" y="989.8427124799999">Union Place</text>
-<circle class="station" cx="263.431457504" cy="946.274169984" r="6"/>
-<text class="label" x="276.431457504" y="933.274169984">Nawaloka Bus Stop</text>
-<circle class="station" cx="206.86291500799996" cy="889.7056274879999" r="6"/>
-<text class="label" x="219.86291500799996" y="876.7056274879999">Regal Cinema</text>
-<circle class="station" cx="922.8427124799999" cy="1558.822509952" r="6"/>
-<text class="label" x="935.8427124799999" y="1545.822509952">Pannipitiya 01</text>
-<circle class="station" cx="842.8427124799999" cy="1558.822509952" r="6"/>
-<text class="label" x="855.8427124799999" y="1545.822509952">Maharagama Cargills Food City</text>
-<circle class="station" cx="786.274169984" cy="1615.391052448" r="6"/>
-<text class="label" x="799.274169984" y="1602.391052448">Cancer Hospital Bus Stop 01</text>
-<circle class="station" cx="866.2741699840001" cy="1615.391052448" r="6"/>
-<text class="label" x="879.2741699840001" y="1602.391052448">Maharagama</text>
-<circle class="station" cx="809.7056274880001" cy="1558.822509952" r="6"/>
-<text class="label" x="822.7056274880001" y="1545.822509952">Nawinna</text>
-<circle class="station" cx="729.705627488" cy="1558.822509952" r="6"/>
-<text class="label" x="742.705627488" y="1545.822509952">Wijerama Junction</text>
-<circle class="station" cx="673.1370849919999" cy="1502.2539674559998" r="6"/>
-<text class="label" x="686.1370849919999" y="1489.2539674559998">Delkanda Junction</text>
-<circle class="station" cx="616.568542496" cy="1445.6854249599999" r="6"/>
-<text class="label" x="629.568542496" y="1432.6854249599999">Nugegoda 01</text>
-<circle class="station" cx="560.0" cy="1389.116882464" r="6"/>
-<text class="label" x="573.0" y="1376.116882464">Kirulapone</text>
-<circle class="station" cx="560.0" cy="1309.116882464" r="6"/>
-<text class="label" x="573.0" y="1296.116882464">Narahenpita Junction</text>
-<circle class="station" cx="456.568542496" cy="1139.411254976" r="6"/>
-<text class="label" x="469.568542496" y="1126.411254976">Army Hospital Borella</text>
-<circle class="interchange" cx="456.568542496" cy="979.411254976" r="9"/>
-<text class="label" x="469.568542496" y="966.411254976">Campbell Park</text>
-<circle class="interchange" cx="400.0" cy="1002.8427124799999" r="9"/>
-<text class="label" x="413.0" y="989.8427124799999">Dematagoda</text>
-<circle class="station" cx="513.1370849919999" cy="1002.8427124799999" r="6"/>
-<text class="label" x="526.1370849919999" y="989.8427124799999">Borella</text>
-<circle class="station" cx="513.1370849919999" cy="1082.84271248" r="6"/>
-<text class="label" x="526.1370849919999" y="1069.84271248">Independence Arcade</text>
-<circle class="station" cx="513.1370849919999" cy="1162.84271248" r="6"/>
-<text class="label" x="526.1370849919999" y="1149.84271248">Thummulla Junction</text>
-<circle class="station" cx="809.7056274880001" cy="1172.548339968" r="6"/>
-<text class="label" x="822.7056274880001" y="1159.548339968">Battaramulla Junction</text>
-<circle class="station" cx="866.2741699840001" cy="1115.979797472" r="6"/>
-<text class="label" x="879.2741699840001" y="1102.979797472">Thalangama Depot</text>
-<circle class="station" cx="400.0" cy="922.8427124799999" r="6"/>
-<text class="label" x="413.0" y="909.8427124799999">Peliyagoda (New Kelani Bridge)</text>
-<circle class="station" cx="400.0" cy="842.8427124799999" r="6"/>
-<text class="label" x="413.0" y="829.8427124799999">Peliyagoda 02</text>
-<circle class="station" cx="400.0" cy="762.8427124799999" r="6"/>
-<text class="label" x="413.0" y="749.8427124799999">Hekitta Junction</text>
-<circle class="station" cx="456.568542496" cy="706.274169984" r="6"/>
-<text class="label" x="469.568542496" y="693.274169984">Wattala</text>
-<circle class="station" cx="400.0" cy="649.7056274879999" r="6"/>
-<text class="label" x="413.0" y="636.7056274879999">Hendala</text>
-<circle class="station" cx="456.568542496" cy="593.1370849919999" r="6"/>
-<text class="label" x="469.568542496" y="580.1370849919999">Mabola</text>
-<circle class="station" cx="456.568542496" cy="513.1370849919999" r="6"/>
-<text class="label" x="469.568542496" y="500.1370849919999">Mahabage</text>
-<circle class="station" cx="456.568542496" cy="433.1370849919999" r="6"/>
-<text class="label" x="469.568542496" y="420.1370849919999">Kandana</text>
-<circle class="station" cx="456.568542496" cy="353.1370849919999" r="6"/>
-<text class="label" x="469.568542496" y="340.1370849919999">Weligampitiya</text>
-<circle class="station" cx="400.0" cy="296.568542496" r="6"/>
-<text class="label" x="413.0" y="283.568542496">Ja Ela</text>
-<circle class="station" cx="400.0" cy="216.56854249600002" r="6"/>
-<text class="label" x="413.0" y="203.56854249600002">CTB Junction</text>
-<circle class="station" cx="456.568542496" cy="160.0" r="6"/>
-<text class="label" x="469.568542496" y="147.0">Ekala</text>
-<circle class="station" cx="240.0" cy="1115.979797472" r="6"/>
-<text class="label" x="253.0" y="1102.979797472">Public Library</text>
-<circle class="station" cx="296.568542496" cy="1139.411254976" r="6"/>
-<text class="label" x="309.568542496" y="1126.411254976">Nelum Pokuna</text>
-<circle class="station" cx="160.0" cy="1115.979797472" r="6"/>
-<text class="label" x="173.0" y="1102.979797472">Liberty Bus Stop</text>
-<circle class="station" cx="353.13708499200004" cy="1195.979797472" r="6"/>
-<text class="label" x="366.13708499200004" y="1182.979797472">Independence Square</text>
-<circle class="station" cx="353.13708499200004" cy="1275.979797472" r="6"/>
-<text class="label" x="366.13708499200004" y="1262.979797472">Jawatta Road</text>
-<circle class="station" cx="979.411254976" cy="1615.391052448" r="6"/>
-<text class="label" x="992.411254976" y="1602.391052448">Kesbewa</text>
-<circle class="station" cx="899.411254976" cy="1615.391052448" r="6"/>
-<text class="label" x="912.411254976" y="1602.391052448">Piliyandala Bus Stand Stop</text>
-<circle class="station" cx="819.411254976" cy="1615.391052448" r="6"/>
-<text class="label" x="832.411254976" y="1602.391052448">Lanka Fiber Fabrica</text>
-<circle class="station" cx="819.411254976" cy="1535.391052448" r="6"/>
-<text class="label" x="832.411254976" y="1522.391052448">Weerasinghe Mawatha</text>
-<circle class="station" cx="762.8427124799999" cy="1478.822509952" r="6"/>
-<text class="label" x="775.8427124799999" y="1465.822509952">Werahera</text>
-<circle class="station" cx="762.8427124799999" cy="1398.822509952" r="6"/>
-<text class="label" x="775.8427124799999" y="1385.822509952">Boralesgamuwa</text>
-<circle class="station" cx="706.274169984" cy="1342.2539674559998" r="6"/>
-<text class="label" x="719.274169984" y="1329.2539674559998">Raththanapitiya</text>
-<circle class="station" cx="649.705627488" cy="1285.6854249599999" r="6"/>
-<text class="label" x="662.705627488" y="1272.6854249599999">Pepiliyana</text>
-<circle class="station" cx="569.705627488" cy="1285.6854249599999" r="6"/>
-<text class="label" x="582.705627488" y="1272.6854249599999">Kalubowila Hospital Stop</text>
-<circle class="station" cx="569.705627488" cy="1205.6854249599999" r="6"/>
-<text class="label" x="582.705627488" y="1192.6854249599999">Royal Institute Bus Stop</text>
-<circle class="interchange" cx="513.1370849919999" cy="1149.116882464" r="9"/>
-<text class="label" x="526.1370849919999" y="1136.116882464">Havelock</text>
-<circle class="station" cx="456.568542496" cy="1092.548339968" r="6"/>
-<text class="label" x="469.568542496" y="1079.548339968">BRC Junction</text>
-<circle class="station" cx="400.0" cy="1035.979797472" r="6"/>
-<text class="label" x="413.0" y="1022.979797472">Thimbirigasyaya</text>
-<circle class="station" cx="216.56854249600002" cy="1059.411254976" r="6"/>
-<text class="label" x="229.56854249600002" y="1046.411254976">Bus Stop Infront of Colombo</text>
-<circle class="station" cx="240.0" cy="1002.8427124799999" r="6"/>
-<text class="label" x="253.0" y="989.8427124799999">Gamini Hall</text>
-<circle class="station" cx="400.0" cy="955.9797974719999" r="6"/>
-<text class="label" x="413.0" y="942.9797974719999">Thummulla</text>
-<circle class="station" cx="160.0" cy="1002.8427124799999" r="6"/>
-<text class="label" x="173.0" y="989.8427124799999">Lake House Bus Stop</text>
-<circle class="interchange" cx="216.56854249600002" cy="946.274169984" r="9"/>
-<text class="label" x="229.56854249600002" y="933.274169984">Colombo Fort</text>
-<circle class="station" cx="456.568542496" cy="946.274169984" r="6"/>
-<text class="label" x="469.568542496" y="933.274169984">Orugodawatta</text>
-<circle class="station" cx="513.1370849919999" cy="889.7056274879999" r="6"/>
-<text class="label" x="526.1370849919999" y="876.7056274879999">Thorana Junction</text>
-<circle class="station" cx="569.705627488" cy="833.1370849919999" r="6"/>
-<text class="label" x="582.705627488" y="820.1370849919999">Kelaniya Campus</text>
-<circle class="station" cx="649.705627488" cy="833.1370849919999" r="6"/>
-<text class="label" x="662.705627488" y="820.1370849919999">Kiribathgoda</text>
-<circle class="station" cx="706.274169984" cy="776.568542496" r="6"/>
-<text class="label" x="719.274169984" y="763.568542496">Mahara Junction</text>
-<circle class="station" cx="762.8427124799999" cy="720.0" r="6"/>
-<text class="label" x="775.8427124799999" y="707.0">Kadawatha</text>
-<circle class="station" cx="513.1370849919999" cy="1069.116882464" r="6"/>
-<text class="label" x="526.1370849919999" y="1056.116882464">Anderson Flat</text>
-<circle class="station" cx="456.568542496" cy="1205.6854249599999" r="6"/>
-<text class="label" x="469.568542496" y="1192.6854249599999">W.A. Silva Mawatha</text>
-<circle class="station" cx="569.705627488" cy="1012.5483399679999" r="6"/>
-<text class="label" x="582.705627488" y="999.5483399679999">Narahenpita</text>
-<circle class="interchange" cx="376.568542496" cy="1205.6854249599999" r="9"/>
-<text class="label" x="389.568542496" y="1192.6854249599999">Wellawatta</text>
-<circle class="station" cx="569.705627488" cy="932.5483399679999" r="6"/>
-<text class="label" x="582.705627488" y="919.5483399679999">VTA / AAT</text>
-<circle class="station" cx="513.1370849919999" cy="989.1168824639999" r="6"/>
-<text class="label" x="526.1370849919999" y="976.1168824639999">Hirdaramani</text>
-<circle class="station" cx="456.568542496" cy="932.5483399679999" r="6"/>
-<text class="label" x="469.568542496" y="919.5483399679999">Jawatta</text>
-<circle class="interchange" cx="376.568542496" cy="1125.6854249599999" r="9"/>
-<text class="label" x="389.568542496" y="1112.6854249599999">Bambalapitiya</text>
-<circle class="station" cx="433.137084992" cy="1262.2539674559998" r="6"/>
-<text class="label" x="446.137084992" y="1249.2539674559998">William Junction</text>
-<circle class="station" cx="433.137084992" cy="1342.2539674559998" r="6"/>
-<text class="label" x="446.137084992" y="1329.2539674559998">Dehiwala</text>
-<circle class="station" cx="433.137084992" cy="1422.2539674559998" r="6"/>
-<text class="label" x="446.137084992" y="1409.2539674559998">Mount Lavinia</text>
-<circle class="station" cx="489.705627488" cy="1478.822509952" r="6"/>
-<text class="label" x="502.705627488" y="1465.822509952">Near Lalanka Head Office</text>
-<circle class="station" cx="546.2741699840001" cy="1535.391052448" r="6"/>
-<text class="label" x="559.2741699840001" y="1522.391052448">Maliban Junction</text>
-<circle class="station" cx="602.84271248" cy="1591.959594944" r="6"/>
-<text class="label" x="615.84271248" y="1578.959594944">Rathmalana Tec</text>
-<circle class="station" cx="659.411254968" cy="1648.5281374319998" r="6"/>
-<text class="label" x="672.411254968" y="1635.5281374319998">Golumadama Junction</text>
-<circle class="station" cx="715.9797974640001" cy="1705.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="1692.096679928">German Tec Angulana</text>
-<circle class="station" cx="715.9797974640001" cy="1785.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="1772.096679928">Katubedda Junction</text>
-<circle class="station" cx="715.9797974640001" cy="1865.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="1852.096679928">Mendis Lane Rawathawatta</text>
-<circle class="station" cx="715.9797974640001" cy="1945.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="1932.096679928">Moratuwa</text>
-<circle class="station" cx="715.9797974640001" cy="2025.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="2012.096679928">Koralawella</text>
-<circle class="station" cx="715.9797974640001" cy="2105.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="2092.096679928">Egoda Uyana</text>
-<circle class="station" cx="715.9797974640001" cy="2185.096679928" r="6"/>
-<text class="label" x="728.9797974640001" y="2172.096679928">Jayanthi Mawatha Stop</text>
-<circle class="station" cx="772.54833996" cy="2241.6652224239997" r="6"/>
-<text class="label" x="785.54833996" y="2228.6652224239997">Palam Junction</text>
-<circle class="station" cx="829.116882456" cy="2298.23376492" r="6"/>
-<text class="label" x="842.116882456" y="2285.23376492">Mahanama Junction</text>
-<circle class="station" cx="829.116882456" cy="2378.23376492" r="6"/>
-<text class="label" x="842.116882456" y="2365.23376492">Panadura Base Hospital</text>
-<circle class="station" cx="829.116882456" cy="2458.23376492" r="6"/>
-<text class="label" x="842.116882456" y="2445.23376492">Panadura</text>
-<circle class="station" cx="320.0" cy="1069.116882464" r="6"/>
-<text class="label" x="333.0" y="1056.116882464">Kollupitiya</text>
+<rect width="1478.822509952" height="2721.6652224239997" fill="#f7f5ef"/>
+<polyline class="route" points="1035.979797472,1662.2539674559998 979.411254976,1605.6854249599999" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="979.411254976,1605.6854249599999 899.411254976,1605.6854249599999" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="899.411254976,1605.6854249599999 842.8427124799999,1549.116882464" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="842.8427124799999,1549.116882464 842.8427124799999,1469.116882464" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="842.8427124799999,1469.116882464 842.8427124799999,1389.116882464" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="842.8427124799999,1389.116882464 786.274169984,1332.548339968" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="786.274169984,1332.548339968 729.705627488,1275.979797472" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="729.705627488,1275.979797472 649.705627488,1275.979797472" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="649.705627488,1275.979797472 593.1370849919999,1219.4112549759998" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="593.1370849919999,1219.4112549759998 513.1370849919999,1219.4112549759998" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,1219.4112549759998 433.137084992,1219.4112549759998" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1219.4112549759998 353.13708499200004,1219.4112549759998" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="353.13708499200004,1219.4112549759998 376.568542496,1195.979797472 376.568542496,1162.84271248" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1162.84271248 376.568542496,1082.84271248" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1082.84271248 376.568542496,1002.8427124799999" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1002.8427124799999 320.0,946.274169984" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="320.0,946.274169984 240.0,946.274169984" stroke="#0070a8" stroke-width="3"/>
+<polyline class="route" points="1318.822509952,1445.6854249599999 1262.2539674559998,1502.2539674559998" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1262.2539674559998,1502.2539674559998 1205.6854249599999,1558.822509952" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1205.6854249599999,1558.822509952 1149.116882464,1502.2539674559998" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1149.116882464,1502.2539674559998 1069.116882464,1502.2539674559998" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1069.116882464,1502.2539674559998 1012.548339968,1445.6854249599999" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1012.548339968,1445.6854249599999 955.979797472,1389.116882464" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="955.979797472,1389.116882464 899.411254976,1332.548339968" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="899.411254976,1332.548339968 842.8427124799999,1389.116882464" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="842.8427124799999,1389.116882464 786.274169984,1445.6854249599999" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="786.274169984,1445.6854249599999 729.705627488,1389.116882464" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="729.705627488,1389.116882464 729.705627488,1275.979797472" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="729.705627488,1275.979797472 649.705627488,1275.979797472" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="649.705627488,1275.979797472 593.1370849919999,1219.4112549759998" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="593.1370849919999,1219.4112549759998 513.1370849919999,1219.4112549759998" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,1219.4112549759998 456.568542496,1162.84271248" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1162.84271248 376.568542496,1162.84271248" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1162.84271248 320.0,1106.2741699839999" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="320.0,1106.2741699839999 263.431457504,1049.705627488" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="263.431457504,1049.705627488 320.0,1106.2741699839999 353.13708499200004,1106.2741699839999" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="353.13708499200004,1106.2741699839999 353.13708499200004,1026.2741699839999" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="353.13708499200004,1026.2741699839999 273.13708499200004,946.274169984 240.0,946.274169984" stroke="#ffd400" stroke-width="3"/>
+<polyline class="route" points="1035.979797472,1662.2539674559998 979.411254976,1605.6854249599999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="979.411254976,1605.6854249599999 922.8427124799999,1662.2539674559998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="922.8427124799999,1662.2539674559998 842.8427124799999,1662.2539674559998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="842.8427124799999,1662.2539674559998 786.274169984,1718.822509952" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="786.274169984,1718.822509952 866.2741699840001,1718.822509952" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="866.2741699840001,1718.822509952 809.7056274880001,1662.2539674559998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="809.7056274880001,1662.2539674559998 729.705627488,1662.2539674559998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="729.705627488,1662.2539674559998 673.1370849919999,1605.6854249599999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="673.1370849919999,1605.6854249599999 616.568542496,1549.116882464" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="616.568542496,1549.116882464 560.0,1492.548339968" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="560.0,1492.548339968 560.0,1412.548339968" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="560.0,1412.548339968 560.0,1332.548339968" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="560.0,1332.548339968 513.137084992,1379.411254976 433.137084992,1379.411254976" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1379.411254976 433.137084992,1299.4112549759998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1299.4112549759998 433.137084992,1219.4112549759998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1219.4112549759998 456.568542496,1195.979797472 456.568542496,1162.84271248" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1162.84271248 456.568542496,1082.84271248" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1082.84271248 456.568542496,1002.8427124799999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1002.8427124799999 513.1370849919999,946.274169984" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,946.274169984 569.705627488,889.7056274879999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="569.705627488,889.7056274879999 626.2741699840001,833.1370849919999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="626.2741699840001,833.1370849919999 706.274169984,833.1370849919999" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="706.274169984,833.1370849919999 762.8427124799999,776.5685424959998" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="762.8427124799999,776.5685424959998 819.411254976,720.0" stroke="#8a0f45" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1002.8427124799999 456.568542496,1082.84271248" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1082.84271248 456.568542496,1162.84271248" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1162.84271248 400.0,1219.4112549759998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="400.0,1219.4112549759998 343.431457504,1275.979797472" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="343.431457504,1275.979797472 286.86291500799996,1332.548339968" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="286.86291500799996,1332.548339968 310.29437251199994,1309.116882464 376.568542496,1309.116882464" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1309.116882464 433.137084992,1365.6854249599999" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1365.6854249599999 433.137084992,1445.6854249599999" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1445.6854249599999 433.137084992,1525.6854249599999" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1525.6854249599999 489.705627488,1582.2539674559998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="489.705627488,1582.2539674559998 546.2741699840001,1638.822509952" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="546.2741699840001,1638.822509952 602.84271248,1695.391052448" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="602.84271248,1695.391052448 659.411254968,1751.9595949359998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="659.411254968,1751.9595949359998 715.9797974640001,1808.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,1808.5281374319998 715.9797974640001,1888.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,1888.5281374319998 715.9797974640001,1968.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,1968.5281374319998 715.9797974640001,2048.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,2048.5281374319998 715.9797974640001,2128.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,2128.5281374319998 715.9797974640001,2208.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,2208.5281374319998 715.9797974640001,2288.5281374319998" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="715.9797974640001,2288.5281374319998 772.54833996,2345.096679928" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="772.54833996,2345.096679928 829.116882456,2401.6652224239997" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="829.116882456,2401.6652224239997 829.116882456,2481.6652224239997" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="829.116882456,2481.6652224239997 829.116882456,2561.6652224239997" stroke="#f57c00" stroke-width="3"/>
+<polyline class="route" points="866.2741699840001,1219.4112549759998 809.7056274880001,1275.979797472" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="809.7056274880001,1275.979797472 729.705627488,1275.979797472" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="729.705627488,1275.979797472 649.705627488,1275.979797472" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="649.705627488,1275.979797472 593.1370849919999,1219.4112549759998" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="593.1370849919999,1219.4112549759998 513.1370849919999,1219.4112549759998" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,1219.4112549759998 456.568542496,1162.84271248" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1162.84271248 456.568542496,1082.84271248" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1082.84271248 456.568542496,1002.8427124799999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1002.8427124799999 456.568542496,922.8427124799999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,922.8427124799999 456.568542496,842.8427124799999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,842.8427124799999 456.568542496,762.8427124799999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,762.8427124799999 513.1370849919999,706.274169984" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,706.274169984 456.568542496,649.7056274879999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,649.7056274879999 513.1370849919999,593.1370849919999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,593.1370849919999 513.1370849919999,513.1370849919999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,513.1370849919999 513.1370849919999,433.1370849919999" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,433.1370849919999 513.1370849919999,353.13708499200004" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,353.13708499200004 456.568542496,296.568542496" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,296.568542496 456.568542496,216.56854249600002" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="456.568542496,216.56854249600002 513.1370849919999,160.0" stroke="#6f2dbd" stroke-width="3"/>
+<polyline class="route" points="160.0,1219.4112549759998 240.0,1219.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="240.0,1219.4112549759998 320.0,1219.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="320.0,1219.4112549759998 376.568542496,1162.84271248" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1162.84271248 376.568542496,1242.84271248" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1242.84271248 343.431457504,1209.705627488 343.431457504,1162.84271248" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="343.431457504,1162.84271248 400.0,1219.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="400.0,1219.4112549759998 400.0,1299.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="400.0,1299.4112549759998 480.0,1299.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="480.0,1299.4112549759998 503.431457504,1322.8427124799998 503.431457504,1389.116882464" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="503.431457504,1389.116882464 560.0,1332.548339968" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="560.0,1332.548339968 560.0,1412.548339968" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="560.0,1412.548339968 503.431457504,1469.116882464" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="503.431457504,1469.116882464 513.1370849919999,1459.4112549759998 513.1370849919999,1252.548339968" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,1252.548339968 456.568542496,1309.116882464" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1309.116882464 376.568542496,1309.116882464" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1309.116882464 353.13708499200004,1332.548339968 286.86291500799996,1332.548339968" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="286.86291500799996,1332.548339968 173.72583001599992,1219.4112549759998 160.0,1219.4112549759998" stroke="#72b043" stroke-width="3"/>
+<polyline class="route" points="1035.979797472,1662.2539674559998 979.411254976,1718.822509952" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="979.411254976,1718.822509952 899.411254976,1718.822509952" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="899.411254976,1718.822509952 819.411254976,1718.822509952" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="819.411254976,1718.822509952 819.411254976,1638.822509952" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="819.411254976,1638.822509952 762.8427124799999,1582.2539674559998" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="762.8427124799999,1582.2539674559998 762.8427124799999,1502.2539674559998" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="762.8427124799999,1502.2539674559998 706.274169984,1445.6854249599999" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="706.274169984,1445.6854249599999 649.705627488,1389.116882464" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="649.705627488,1389.116882464 569.705627488,1389.116882464" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="569.705627488,1389.116882464 569.705627488,1309.116882464" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="569.705627488,1309.116882464 513.1370849919999,1252.548339968" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="513.1370849919999,1252.548339968 456.568542496,1195.979797472" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="456.568542496,1195.979797472 400.0,1139.4112549759998" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="400.0,1139.4112549759998 343.431457504,1195.979797472 343.431457504,1275.979797472" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="343.431457504,1275.979797472 296.568542496,1229.116882464 296.568542496,1162.84271248" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="296.568542496,1162.84271248 376.568542496,1162.84271248" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="376.568542496,1162.84271248 433.137084992,1106.2741699839999" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="433.137084992,1106.2741699839999 353.13708499200004,1106.2741699839999" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="353.13708499200004,1106.2741699839999 353.13708499200004,1026.2741699839999" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="353.13708499200004,1026.2741699839999 273.13708499200004,946.274169984 240.0,946.274169984" stroke="#006b3f" stroke-width="3"/>
+<polyline class="route" points="240.0,946.274169984 320.0,946.274169984" stroke="#006b3f" stroke-width="3"/>
+<circle class="interchange" cx="1035.979797472" cy="1662.2539674559998" r="2.25"/>
+<text class="label" x="1039.229797472" y="1659.0039674559998">Makumbura</text>
+<circle class="interchange" cx="979.411254976" cy="1605.6854249599999" r="2.25"/>
+<text class="label" x="982.661254976" y="1602.4354249599999">Kottawa</text>
+<text class="label" x="902.661254976" y="1602.4354249599999">Pannipitiya 02</text>
+<text class="label" x="846.0927124799999" y="1545.866882464">Kalalgoda Junction</text>
+<text class="label" x="846.0927124799999" y="1465.866882464">Thalawathugoda</text>
+<circle class="interchange" cx="842.8427124799999" cy="1389.116882464" r="2.25"/>
+<text class="label" x="846.0927124799999" y="1385.866882464">Isurupaya</text>
+<text class="label" x="789.524169984" y="1329.298339968">Palam Thuna Junction</text>
+<circle class="interchange" cx="729.705627488" cy="1275.979797472" r="2.25"/>
+<text class="label" x="732.955627488" y="1272.729797472">Sethsiripaya</text>
+<circle class="interchange" cx="649.705627488" cy="1275.979797472" r="2.25"/>
+<text class="label" x="652.955627488" y="1272.729797472">NAITA</text>
+<circle class="interchange" cx="593.1370849919999" cy="1219.4112549759998" r="2.25"/>
+<text class="label" x="596.3870849919999" y="1216.1612549759998">Rajagiriya</text>
+<circle class="interchange" cx="513.1370849919999" cy="1219.4112549759998" r="2.25"/>
+<text class="label" x="516.3870849919999" y="1216.1612549759998">Castle Hospital</text>
+<circle class="interchange" cx="433.137084992" cy="1219.4112549759998" r="2.25"/>
+<text class="label" x="436.387084992" y="1216.1612549759998">Singer Mega - Colombo 8</text>
+<text class="label" x="356.38708499200004" y="1216.1612549759998">Wijerama</text>
+<text class="label" x="902.661254976" y="1329.298339968">Thalahena Junction</text>
+<text class="label" x="789.524169984" y="1442.4354249599999">Thalangama Junction</text>
+<text class="label" x="959.229797472" y="1385.866882464">Malabe Bus Stand</text>
+<text class="label" x="1015.798339968" y="1442.4354249599999">Arangala Junction</text>
+<text class="label" x="1072.366882464" y="1499.0039674559998">Hokandara Junction</text>
+<text class="label" x="732.955627488" y="1385.866882464">Koswaththa</text>
+<text class="label" x="1152.366882464" y="1499.0039674559998">Nisaco Mall</text>
+<circle class="interchange" cx="456.568542496" cy="1162.84271248" r="2.25"/>
+<text class="label" x="459.818542496" y="1159.59271248">Borella</text>
+<text class="label" x="1208.9354249599999" y="1555.572509952">Athurugiriya Town</text>
+<circle class="interchange" cx="376.568542496" cy="1162.84271248" r="2.25"/>
+<text class="label" x="379.818542496" y="1159.59271248">Town Hall</text>
+<text class="label" x="1265.5039674559998" y="1499.0039674559998">Athurugiriya Hospital</text>
+<text class="label" x="1322.072509952" y="1442.4354249599999">Millennium City</text>
+<text class="label" x="323.25" y="1103.0241699839999">Union Place</text>
+<text class="label" x="266.681457504" y="1046.455627488">Nawaloka Bus Stop</text>
+<text class="label" x="926.0927124799999" y="1659.0039674559998">Pannipitiya 01</text>
+<text class="label" x="846.0927124799999" y="1659.0039674559998">Maharagama Cargills Food City</text>
+<text class="label" x="789.524169984" y="1715.572509952">Cancer Hospital Bus Stop 01</text>
+<text class="label" x="869.5241699840001" y="1715.572509952">Maharagama</text>
+<text class="label" x="812.9556274880001" y="1659.0039674559998">Nawinna</text>
+<text class="label" x="732.955627488" y="1659.0039674559998">Wijerama Junction</text>
+<text class="label" x="676.3870849919999" y="1602.4354249599999">Delkanda Junction</text>
+<text class="label" x="619.818542496" y="1545.866882464">Nugegoda 01</text>
+<text class="label" x="563.25" y="1489.298339968">Kirulapone</text>
+<circle class="interchange" cx="560.0" cy="1412.548339968" r="2.25"/>
+<text class="label" x="563.25" y="1409.298339968">Narahenpita</text>
+<circle class="interchange" cx="560.0" cy="1332.548339968" r="2.25"/>
+<text class="label" x="563.25" y="1329.298339968">VTA / AAT</text>
+<text class="label" x="436.387084992" y="1296.1612549759998">Army Hospital Borella</text>
+<text class="label" x="436.387084992" y="1376.161254976">Narahenpita Junction</text>
+<circle class="interchange" cx="456.568542496" cy="1082.84271248" r="2.25"/>
+<text class="label" x="459.818542496" y="1079.59271248">Campbell Park</text>
+<circle class="interchange" cx="456.568542496" cy="1002.8427124799999" r="2.25"/>
+<text class="label" x="459.818542496" y="999.5927124799999">Dematagoda</text>
+<text class="label" x="516.3870849919999" y="943.024169984">Orugodawatta</text>
+<text class="label" x="572.955627488" y="886.4556274879999">Thorana Junction</text>
+<text class="label" x="629.5241699840001" y="829.8870849919999">Kelaniya Campus</text>
+<text class="label" x="709.524169984" y="829.8870849919999">Kiribathgoda</text>
+<text class="label" x="766.0927124799999" y="773.3185424959998">Mahara Junction</text>
+<text class="label" x="822.661254976" y="716.75">Kadawatha</text>
+<circle class="interchange" cx="400.0" cy="1219.4112549759998" r="2.25"/>
+<text class="label" x="403.25" y="1216.1612549759998">Independence Arcade</text>
+<circle class="interchange" cx="343.431457504" cy="1275.979797472" r="2.25"/>
+<text class="label" x="346.681457504" y="1272.729797472">Thummulla</text>
+<circle class="interchange" cx="286.86291500799996" cy="1332.548339968" r="2.25"/>
+<text class="label" x="290.11291500799996" y="1329.298339968">Bambalapitiya</text>
+<text class="label" x="812.9556274880001" y="1272.729797472">Battaramulla Junction</text>
+<text class="label" x="869.5241699840001" y="1216.1612549759998">Thalangama Depot</text>
+<text class="label" x="459.818542496" y="919.5927124799999">Peliyagoda (New Kelani Bridge)</text>
+<text class="label" x="459.818542496" y="839.5927124799999">Peliyagoda 02</text>
+<text class="label" x="459.818542496" y="759.5927124799999">Hekitta Junction</text>
+<text class="label" x="516.3870849919999" y="703.024169984">Wattala</text>
+<text class="label" x="459.818542496" y="646.4556274879999">Hendala</text>
+<text class="label" x="516.3870849919999" y="589.8870849919999">Mabola</text>
+<text class="label" x="516.3870849919999" y="509.8870849919999">Mahabage</text>
+<text class="label" x="516.3870849919999" y="429.8870849919999">Kandana</text>
+<text class="label" x="516.3870849919999" y="349.88708499200004">Weligampitiya</text>
+<text class="label" x="459.818542496" y="293.318542496">Ja Ela</text>
+<text class="label" x="459.818542496" y="213.31854249600002">CTB Junction</text>
+<text class="label" x="516.3870849919999" y="156.75">Ekala</text>
+<text class="label" x="506.681457504" y="1465.866882464">Anderson Flat</text>
+<text class="label" x="323.25" y="1216.1612549759998">Public Library</text>
+<text class="label" x="379.818542496" y="1239.59271248">Nelum Pokuna</text>
+<text class="label" x="346.681457504" y="1159.59271248">Independence Square</text>
+<text class="label" x="403.25" y="1296.1612549759998">Jawatta Road</text>
+<text class="label" x="506.681457504" y="1385.866882464">Hirdaramani</text>
+<text class="label" x="243.25" y="1216.1612549759998">Liberty Bus Stop</text>
+<text class="label" x="163.25" y="1216.1612549759998">Kollupitiya</text>
+<text class="label" x="483.25" y="1296.1612549759998">Jawatta</text>
+<text class="label" x="982.661254976" y="1715.572509952">Kesbewa</text>
+<text class="label" x="902.661254976" y="1715.572509952">Piliyandala Bus Stand Stop</text>
+<text class="label" x="822.661254976" y="1715.572509952">Lanka Fiber Fabrica</text>
+<text class="label" x="822.661254976" y="1635.572509952">Weerasinghe Mawatha</text>
+<text class="label" x="766.0927124799999" y="1579.0039674559998">Werahera</text>
+<text class="label" x="766.0927124799999" y="1499.0039674559998">Boralesgamuwa</text>
+<text class="label" x="709.524169984" y="1442.4354249599999">Raththanapitiya</text>
+<text class="label" x="652.955627488" y="1385.866882464">Pepiliyana</text>
+<text class="label" x="572.955627488" y="1385.866882464">Kalubowila Hospital Stop</text>
+<text class="label" x="572.955627488" y="1305.866882464">Royal Institute Bus Stop</text>
+<circle class="interchange" cx="513.1370849919999" cy="1252.548339968" r="2.25"/>
+<text class="label" x="516.3870849919999" y="1249.298339968">Havelock</text>
+<text class="label" x="459.818542496" y="1192.729797472">BRC Junction</text>
+<text class="label" x="403.25" y="1136.1612549759998">Thimbirigasyaya</text>
+<text class="label" x="299.818542496" y="1159.59271248">Bus Stop Infront of Colombo</text>
+<text class="label" x="436.387084992" y="1103.0241699839999">Gamini Hall</text>
+<circle class="interchange" cx="353.13708499200004" cy="1106.2741699839999" r="2.25"/>
+<text class="label" x="356.38708499200004" y="1103.0241699839999">Regal Cinema</text>
+<text class="label" x="379.818542496" y="1079.59271248">Hedges Ct</text>
+<text class="label" x="379.818542496" y="999.5927124799999">Maradana</text>
+<circle class="interchange" cx="320.0" cy="946.274169984" r="2.25"/>
+<text class="label" x="323.25" y="943.024169984">Pettah</text>
+<circle class="interchange" cx="240.0" cy="946.274169984" r="2.25"/>
+<text class="label" x="243.25" y="943.024169984">Colombo Fort</text>
+<circle class="interchange" cx="353.13708499200004" cy="1026.2741699839999" r="2.25"/>
+<text class="label" x="356.38708499200004" y="1023.0241699839999">Lake House Bus Stop</text>
+<text class="label" x="459.818542496" y="1305.866882464">W.A. Silva Mawatha</text>
+<circle class="interchange" cx="376.568542496" cy="1309.116882464" r="2.25"/>
+<text class="label" x="379.818542496" y="1305.866882464">Wellawatta</text>
+<text class="label" x="436.387084992" y="1362.4354249599999">William Junction</text>
+<text class="label" x="436.387084992" y="1442.4354249599999">Dehiwala</text>
+<text class="label" x="436.387084992" y="1522.4354249599999">Mount Lavinia</text>
+<text class="label" x="492.955627488" y="1579.0039674559998">Near Lalanka Head Office</text>
+<text class="label" x="549.5241699840001" y="1635.572509952">Maliban Junction</text>
+<text class="label" x="606.09271248" y="1692.141052448">Rathmalana Tec</text>
+<text class="label" x="662.661254968" y="1748.7095949359998">Golumadama Junction</text>
+<text class="label" x="719.2297974640001" y="1805.2781374319998">German Tec Angulana</text>
+<text class="label" x="719.2297974640001" y="1885.2781374319998">Katubedda Junction</text>
+<text class="label" x="719.2297974640001" y="1965.2781374319998">Mendis Lane Rawathawatta</text>
+<text class="label" x="719.2297974640001" y="2045.2781374319998">Moratuwa</text>
+<text class="label" x="719.2297974640001" y="2125.2781374319998">Koralawella</text>
+<text class="label" x="719.2297974640001" y="2205.2781374319998">Egoda Uyana</text>
+<text class="label" x="719.2297974640001" y="2285.2781374319998">Jayanthi Mawatha Stop</text>
+<text class="label" x="775.79833996" y="2341.846679928">Palam Junction</text>
+<text class="label" x="832.366882456" y="2398.4152224239997">Mahanama Junction</text>
+<text class="label" x="832.366882456" y="2478.4152224239997">Panadura Base Hospital</text>
+<text class="label" x="832.366882456" y="2558.4152224239997">Panadura</text>
 </svg>

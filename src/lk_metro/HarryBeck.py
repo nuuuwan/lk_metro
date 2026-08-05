@@ -5,6 +5,13 @@ from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
 
+from .DiagramStyle import (
+	INTERCHANGE_RADIUS,
+	INTERCHANGE_STROKE_WIDTH,
+	LABEL_FONT_SIZE,
+	LABEL_OFFSET,
+	ROUTE_STROKE_WIDTH,
+)
 from .Route import Route
 from .Stop import Stop
 
@@ -149,9 +156,10 @@ class HarryBeck:
 			f'height="{height}" viewBox="0 0 {width} {height}">',
 			"<style>",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
-			".station { fill: white; stroke: #111; stroke-width: 3; }",
-			".interchange { fill: white; stroke: #111; stroke-width: 5; }",
-			".label { font: 14px sans-serif; fill: #111; dominant-baseline: middle; }",
+			f".interchange {{ fill: white; stroke: #111; "
+			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
+			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
+			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{width}" height="{height}" fill="#f7f5ef"/>',
 		]
@@ -163,19 +171,20 @@ class HarryBeck:
 				)
 				lines.append(
 					f'<polyline class="route" points="{points}" '
-					f'stroke="{route.color}" stroke-width="12"/>'
+					f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}"/>'
 				)
 
 		memberships = self._route_memberships()
 		for name, point in positions.items():
 			x, y = svg_point(point)
-			css_class = "interchange" if len(memberships[name]) > 1 else "station"
-			radius = 9 if css_class == "interchange" else 6
+			if len(memberships[name]) > 1:
+				lines.append(
+					f'<circle class="interchange" cx="{x}" cy="{y}" '
+					f'r="{INTERCHANGE_RADIUS}"/>'
+				)
 			lines.append(
-				f'<circle class="{css_class}" cx="{x}" cy="{y}" r="{radius}"/>'
-			)
-			lines.append(
-				f'<text class="label" x="{x + 13}" y="{y - 13}">'
+				f'<text class="label" x="{x + LABEL_OFFSET}" '
+				f'y="{y - LABEL_OFFSET}">'
 				f"{html.escape(name)}</text>"
 			)
 
