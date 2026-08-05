@@ -1,6 +1,7 @@
 import html
+import json
 import math
-from collections import deque
+from dataclasses import dataclass
 from pathlib import Path
 
 from .Route import Route
@@ -8,6 +9,12 @@ from .Stop import Stop
 
 
 Point = tuple[float, float]
+
+
+@dataclass(frozen=True)
+class HarryBeckSegment:
+	orientation: str
+	stations: tuple[str, ...]
 
 
 class HarryBeck:
@@ -31,12 +38,23 @@ class HarryBeck:
 		(0.0, -1.0),
 		(DIAGONAL, -DIAGONAL),
 	)
+	ORIENTATION_VECTORS: dict[str, Point] = {
+		"N": (0.0, -1.0),
+		"NE": (DIAGONAL, -DIAGONAL),
+		"E": (1.0, 0.0),
+		"SE": (DIAGONAL, DIAGONAL),
+		"S": (0.0, 1.0),
+		"SW": (-DIAGONAL, DIAGONAL),
+		"W": (-1.0, 0.0),
+		"NW": (-DIAGONAL, -DIAGONAL),
+	}
 
 	def __init__(
 		self,
 		routes: list[Route],
 		stops: list[Stop],
 		spacing: int = 80,
+		design_path: str | Path | None = None,
 	) -> None:
 		if spacing <= 0:
 			raise ValueError("spacing must be positive")
@@ -46,39 +64,44 @@ class HarryBeck:
 		self.spacing = spacing
 		self._stops_by_name = {stop.name: stop for stop in stops}
 		self._validate_data()
+		self.design_path = Path(design_path) if design_path else (
+			Path(__file__).resolve().parents[2] / "data" / "harry_beck.json"
+		)
+		self.origin, self.segments = self._read_design()
 
 	def layout(self) -> dict[str, Point]:
-		adjacency = self._build_adjacency()
-		positions: dict[str, Point] = {}
-		occupied: dict[Point, str] = {}
-		component_origin_x = 0.0
+		positions: dict[str, Point] = {self.origin: (0.0, 0.0)}
+		occupied: dict[Point, str] = {(0.0, 0.0): self.origin}
 
-		for root in self._ordered_stop_names():
-			if root in positions:
-				continue
+		for index, segment in enumerate(self.segments):
+			anchor = segment.stations[0]
+			if anchor not in positions:
+				raise ValueError(
+					f"Segment {index} starts at unplaced station {anchor!r}"
+				)
 
-			positions[root] = (component_origin_x, 0)
-			occupied[(component_origin_x, 0)] = root
-			queue = deque([root])
-
-			while queue:
-				current = queue.popleft()
-				for neighbor in adjacency[current]:
-					if neighbor in positions:
-						continue
-
-					position = self._place_neighbor(
-						current,
-						neighbor,
-						positions[current],
-						occupied,
+			direction = self.ORIENTATION_VECTORS[segment.orientation]
+			anchor_point = positions[anchor]
+			for offset, station in enumerate(segment.stations[1:], 1):
+				point = (
+					round(anchor_point[0] + direction[0] * offset, 10),
+					round(anchor_point[1] + direction[1] * offset, 10),
+				)
+				if station in positions and not self._same_point(positions[station], point):
+					raise ValueError(
+						f"Segment {index} places {station!r} inconsistently"
 					)
-					positions[neighbor] = position
-					occupied[position] = neighbor
-					queue.append(neighbor)
+				occupant = occupied.get(point)
+				if occupant is not None and occupant != station:
+					raise ValueError(
+						f"Segment {index} overlaps {station!r} with {occupant!r}"
+					)
+				positions[station] = point
+				occupied[point] = station
 
-			component_origin_x = max(point[0] for point in positions.values()) + 4
-
+		missing = sorted(set(self._stops_by_name) - set(positions))
+		if missing:
+			raise ValueError("Design omits stations: " + ", ".join(missing))
 		return positions
 
 	def route_paths(
@@ -177,60 +200,47 @@ class HarryBeck:
 				"Routes reference unknown stops: " + ", ".join(unknown_stops)
 			)
 
-	def _ordered_stop_names(self) -> list[str]:
-		ordered = list(dict.fromkeys(name for route in self.routes for name in route.stops))
-		ordered.extend(stop.name for stop in self.stops if stop.name not in ordered)
-		return ordered
+	def _read_design(self) -> tuple[str, tuple[HarryBeckSegment, ...]]:
+		with self.design_path.open(encoding="utf-8") as file:
+			design = json.load(file)
 
-	def _build_adjacency(self) -> dict[str, list[str]]:
-		adjacency = {stop.name: [] for stop in self.stops}
-		for route in self.routes:
-			for first, second in zip(route.stops, route.stops[1:]):
-				if second not in adjacency[first]:
-					adjacency[first].append(second)
-				if first not in adjacency[second]:
-					adjacency[second].append(first)
-		return adjacency
+		if not isinstance(design, dict):
+			raise ValueError("Harry Beck design must be a JSON object")
+		origin = design.get("origin")
+		if not isinstance(origin, str) or origin not in self._stops_by_name:
+			raise ValueError("Harry Beck design has an invalid origin")
+		records = design.get("segments")
+		if not isinstance(records, list) or not records:
+			raise ValueError("Harry Beck design must contain segments")
 
-	def _place_neighbor(
-		self,
-		current_name: str,
-		neighbor_name: str,
-		current: Point,
-		occupied: dict[Point, str],
-	) -> Point:
-		preferred_direction = self._geographic_direction(
-			self._stops_by_name[current_name],
-			self._stops_by_name[neighbor_name],
-		)
-		preferred_index = self.DIRECTIONS.index(preferred_direction)
-		direction_indexes = sorted(
-			range(len(self.DIRECTIONS)),
-			key=lambda index: min(
-				(index - preferred_index) % len(self.DIRECTIONS),
-				(preferred_index - index) % len(self.DIRECTIONS),
-			),
-		)
-
-		for distance in range(1, len(self.stops) + 1):
-			for index in direction_indexes:
-				direction = self.DIRECTIONS[index]
-				candidate = (
-					round(current[0] + direction[0] * distance, 10),
-					round(current[1] + direction[1] * distance, 10),
+		segments = []
+		for index, record in enumerate(records):
+			if not isinstance(record, dict):
+				raise ValueError(f"Segment {index} must be an object")
+			orientation = record.get("orientation")
+			stations = record.get("stations")
+			if not isinstance(orientation, str) or orientation not in self.ORIENTATION_VECTORS:
+				raise ValueError(f"Segment {index} has invalid orientation")
+			if (
+				not isinstance(stations, list)
+				or len(stations) < 2
+				or not all(isinstance(station, str) for station in stations)
+			):
+				raise ValueError(f"Segment {index} must contain multiple stations")
+			unknown = sorted(set(stations) - set(self._stops_by_name))
+			if unknown:
+				raise ValueError(
+					f"Segment {index} references unknown stations: {', '.join(unknown)}"
 				)
-				if candidate not in occupied:
-					return candidate
+			segments.append(HarryBeckSegment(orientation, tuple(stations)))
 
-		raise RuntimeError(f"Unable to place stop {neighbor_name}")
+		return origin, tuple(segments)
 
 	@staticmethod
-	def _geographic_direction(first: Stop, second: Stop) -> Point:
-		latitude_delta = second.latlng[0] - first.latlng[0]
-		longitude_delta = second.latlng[1] - first.latlng[1]
-		angle = math.atan2(-latitude_delta, longitude_delta)
-		direction_index = round(angle / (math.pi / 4)) % 8
-		return HarryBeck.DIRECTIONS[direction_index]
+	def _same_point(first: Point, second: Point) -> bool:
+		return math.isclose(first[0], second[0], abs_tol=1e-8) and math.isclose(
+			first[1], second[1], abs_tol=1e-8
+		)
 
 	@staticmethod
 	def _octilinear_path(first: Point, second: Point) -> list[Point]:
