@@ -18,8 +18,8 @@
           "Isurupaya"
         ]
       ],
-      ["SW", ["Isurupaya", "Thalangama Junction"]],
-      ["W", ["Thalangama Junction", "Koswaththa"]],
+      ["W", ["Isurupaya", "Thalangama Junction"]],
+      ["NW", ["Thalangama Junction", "Koswaththa"]],
       ["N", ["Koswaththa", "Sethsiripaya"]],
       [
         "W",
@@ -53,13 +53,13 @@
           "Pannipitiya",
           "Maharagama Cargills Food City",
           "Cancer Hospital Bus Stop 01",
-          "Maharagama",
-          "Nawinna",
-          "Wijerama Junction",
-          "Delkanda Junction",
-          "Nugegoda 01",
-          "Kirulapone"
+          "Maharagama"
         ]
+      ],
+      ["SW", ["Maharagama", "Nawinna", "Wijerama Junction"]],
+      [
+        "W",
+        ["Wijerama Junction", "Delkanda Junction", "Nugegoda 01", "Kirulapone"]
       ],
       [
         "N",
@@ -129,10 +129,17 @@
       ]
     ],
     "CM05": [
-      ["SW", ["Thalangama Depot", "Battaramulla Junction", "Sethsiripaya"]],
       [
         "W",
-        ["Sethsiripaya", "NAITA", "Rajagiriya", "Castle Hospital", "Borella"]
+        [
+          "Thalangama Depot",
+          "Battaramulla Junction",
+          "Sethsiripaya",
+          "NAITA",
+          "Rajagiriya",
+          "Castle Hospital",
+          "Borella"
+        ]
       ],
       [
         "N",
@@ -179,7 +186,7 @@
     ],
     "CM01": [
       ["NW", ["Makumbura", "Kottawa", "Pannipitiya"]],
-      ["N", ["Pannipitiya", "Kalalgoda Junction", "Thalawathugoda"]],
+      ["NW", ["Isurupaya", "Palam Thuna Junction", "Sethsiripaya"]],
       [
         "W",
         ["Sethsiripaya", "NAITA", "Rajagiriya", "Castle Hospital", "Borella"]

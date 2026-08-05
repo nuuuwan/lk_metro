@@ -282,4 +282,22 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		return projected
 
 	def _grid_svg_lines(self) -> list[str]:
-		return []
+		lines = ['<g class="coordinate-grid">']
+		logical_width = round((self.width - self.padding * 2) / self.UNIT_SCALE)
+		logical_height = round((self.height - self.padding * 2) / self.UNIT_SCALE)
+		for index in range(logical_width + 1):
+			x_coordinate = self.padding + index * self.UNIT_SCALE
+			grid_class = "grid-major" if index % 10 == 0 else "grid-minor"
+			lines.append(
+				f'<line class="{grid_class}" x1="{x_coordinate}" y1="0" '
+				f'x2="{x_coordinate}" y2="{self.height}"/>'
+			)
+		for index in range(logical_height + 1):
+			y_coordinate = self.padding + index * self.UNIT_SCALE
+			grid_class = "grid-major" if index % 10 == 0 else "grid-minor"
+			lines.append(
+				f'<line class="{grid_class}" x1="0" y1="{y_coordinate}" '
+				f'x2="{self.width}" y2="{y_coordinate}"/>'
+			)
+		lines.append("</g>")
+		return lines
