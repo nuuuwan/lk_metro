@@ -1,14 +1,5 @@
 {
   "origin": "Makumbura",
-  "route_colors": {
-    "CM01": "#035798",
-    "CM02": "#F3D71E",
-    "CM03": "#80124B",
-    "CM04": "#EF7E0D",
-    "CM05": "#9030A2",
-    "CM06": "#588635",
-    "CM08": "#0B6E38"
-  },
   "segments": [
     { "orientation": "NW", "stations": ["Makumbura", "Kottawa"] },
     { "orientation": "SW", "stations": ["Makumbura", "Kesbewa"] },

@@ -58,7 +58,7 @@ class HarryBeck:
 		self.design_path = Path(design_path) if design_path else (
 			Path(__file__).resolve().parents[2] / "data" / "harry_beck.json"
 		)
-		self.origin, self.route_colors, self.segments = self._read_design()
+		self.origin, self.segments = self._read_design()
 
 	def layout(self) -> dict[str, Point]:
 		positions: dict[str, Point] = {self.origin: (0.0, 0.0)}
@@ -139,14 +139,13 @@ class HarryBeck:
 		]
 
 		for route in self.routes:
-			color = self.route_colors[route.id]
 			for path in paths[route.id]:
 				points = " ".join(
 					f"{x},{y}" for x, y in (svg_point(point) for point in path)
 				)
 				lines.append(
 					f'<polyline class="route" points="{points}" '
-					f'stroke="{color}" stroke-width="12"/>'
+					f'stroke="{route.color}" stroke-width="12"/>'
 				)
 
 		memberships = self._route_memberships()
@@ -190,10 +189,13 @@ class HarryBeck:
 			raise ValueError(
 				"Routes reference unknown stops: " + ", ".join(unknown_stops)
 			)
+		invalid_colors = [route.id for route in self.routes if not self._is_hex_color(route.color)]
+		if invalid_colors:
+			raise ValueError(
+				"Routes have invalid colors: " + ", ".join(invalid_colors)
+			)
 
-	def _read_design(
-		self,
-	) -> tuple[str, dict[str, str], tuple[HarryBeckSegment, ...]]:
+	def _read_design(self) -> tuple[str, tuple[HarryBeckSegment, ...]]:
 		with self.design_path.open(encoding="utf-8") as file:
 			design = json.load(file)
 
@@ -202,17 +204,6 @@ class HarryBeck:
 		origin = design.get("origin")
 		if not isinstance(origin, str) or origin not in self._stops_by_name:
 			raise ValueError("Harry Beck design has an invalid origin")
-		route_colors = design.get("route_colors")
-		expected_route_ids = {route.id for route in self.routes}
-		if not isinstance(route_colors, dict) or set(route_colors) != expected_route_ids:
-			raise ValueError("Harry Beck design must define every route color")
-		if not all(
-			isinstance(route_id, str)
-			and isinstance(color, str)
-			and self._is_hex_color(color)
-			for route_id, color in route_colors.items()
-		):
-			raise ValueError("Route colors must use #RRGGBB format")
 		records = design.get("segments")
 		if not isinstance(records, list) or not records:
 			raise ValueError("Harry Beck design must contain segments")
@@ -238,7 +229,7 @@ class HarryBeck:
 				)
 			segments.append(HarryBeckSegment(orientation, tuple(stations)))
 
-		return origin, route_colors, tuple(segments)
+		return origin, tuple(segments)
 
 	@staticmethod
 	def _is_hex_color(color: str) -> bool:
