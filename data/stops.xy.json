@@ -17,7 +17,7 @@
     "name": "Army Hospital Borella",
     "xy": [
       38,
-      45
+      44
     ]
   },
   {
@@ -38,7 +38,7 @@
     "name": "Bambalapitiya",
     "xy": [
       17,
-      49
+      48
     ]
   },
   {
@@ -59,27 +59,20 @@
     "name": "Borella",
     "xy": [
       40,
-      32
+      33
     ]
   },
   {
     "name": "BRC Junction",
     "xy": [
-      28,
+      27,
       54
-    ]
-  },
-  {
-    "name": "Bus Stop Infront of Colombo",
-    "xy": [
-      19,
-      44
     ]
   },
   {
     "name": "Campbell Park",
     "xy": [
-      40,
+      39,
       30
     ]
   },
@@ -93,7 +86,7 @@
   {
     "name": "Castle Hospital",
     "xy": [
-      47,
+      46,
       37
     ]
   },
@@ -114,7 +107,7 @@
   {
     "name": "Dehiwala",
     "xy": [
-      27,
+      26,
       68
     ]
   },
@@ -122,13 +115,13 @@
     "name": "Delkanda Junction",
     "xy": [
       61,
-      66
+      65
     ]
   },
   {
     "name": "Dematagoda",
     "xy": [
-      42,
+      41,
       26
     ]
   },
@@ -149,7 +142,7 @@
   {
     "name": "Gamini Hall",
     "xy": [
-      21,
+      20,
       28
     ]
   },
@@ -163,14 +156,14 @@
   {
     "name": "Golumadama Junction",
     "xy": [
-      45,
+      44,
       79
     ]
   },
   {
     "name": "Havelock",
     "xy": [
-      31,
+      30,
       57
     ]
   },
@@ -185,20 +178,20 @@
     "name": "Hekitta Junction",
     "xy": [
       46,
-      19
+      20
     ]
   },
   {
     "name": "Hendala",
     "xy": [
-      51,
+      50,
       17
     ]
   },
   {
     "name": "Hirdaramani",
     "xy": [
-      32,
+      31,
       50
     ]
   },
@@ -206,7 +199,7 @@
     "name": "Hokandara Junction",
     "xy": [
       85,
-      55
+      54
     ]
   },
   {
@@ -219,8 +212,8 @@
   {
     "name": "Independence Square",
     "xy": [
-      29,
-      40
+      28,
+      41
     ]
   },
   {
@@ -233,7 +226,7 @@
   {
     "name": "Ja Ela",
     "xy": [
-      53,
+      52,
       13
     ]
   },
@@ -241,13 +234,13 @@
     "name": "Jawatta Road",
     "xy": [
       28,
-      47
+      46
     ]
   },
   {
     "name": "Jayanthi Mawatha Stop",
     "xy": [
-      55,
+      54,
       85
     ]
   },
@@ -262,13 +255,13 @@
     "name": "Kalalgoda Junction",
     "xy": [
       78,
-      64
+      63
     ]
   },
   {
     "name": "Kalubowila Hospital Stop",
     "xy": [
-      30,
+      29,
       65
     ]
   },
@@ -310,7 +303,7 @@
   {
     "name": "Kirulapone",
     "xy": [
-      36,
+      35,
       57
     ]
   },
@@ -429,7 +422,7 @@
   {
     "name": "Maradana",
     "xy": [
-      26,
+      25,
       28
     ]
   },
@@ -464,7 +457,7 @@
   {
     "name": "NAITA",
     "xy": [
-      60,
+      59,
       39
     ]
   },
@@ -478,8 +471,8 @@
   {
     "name": "Narahenpita",
     "xy": [
-      38,
-      51
+      37,
+      50
     ]
   },
   {
@@ -507,7 +500,7 @@
     "name": "Nelum Pokuna",
     "xy": [
       24,
-      34
+      35
     ]
   },
   {
@@ -520,7 +513,7 @@
   {
     "name": "Nugegoda 01",
     "xy": [
-      49,
+      48,
       63
     ]
   },
@@ -534,7 +527,7 @@
   {
     "name": "Palam Junction",
     "xy": [
-      64,
+      63,
       86
     ]
   },
@@ -548,7 +541,7 @@
   {
     "name": "Panadura Base Hospital",
     "xy": [
-      66,
+      65,
       87
     ]
   },
@@ -569,14 +562,14 @@
   {
     "name": "Peliyagoda (New Kelani Bridge)",
     "xy": [
-      44,
+      43,
       23
     ]
   },
   {
     "name": "Peliyagoda 02",
     "xy": [
-      43,
+      42,
       22
     ]
   },
@@ -584,7 +577,7 @@
     "name": "Pepiliyana",
     "xy": [
       51,
-      68
+      67
     ]
   },
   {
@@ -598,7 +591,7 @@
     "name": "Piliyandala Bus Stand Stop",
     "xy": [
       74,
-      81
+      80
     ]
   },
   {
@@ -639,8 +632,8 @@
   {
     "name": "Royal Institute Bus Stop",
     "xy": [
-      34,
-      60
+      33,
+      59
     ]
   },
   {
@@ -654,14 +647,14 @@
     "name": "Singer Mega - Colombo 8",
     "xy": [
       36,
-      36
+      37
     ]
   },
   {
     "name": "Thalahena Junction",
     "xy": [
-      81,
-      38
+      80,
+      39
     ]
   },
   {
@@ -688,14 +681,14 @@
   {
     "name": "Thimbirigasyaya",
     "xy": [
-      24,
-      53
+      23,
+      52
     ]
   },
   {
     "name": "Thorana Junction",
     "xy": [
-      62,
+      61,
       22
     ]
   },
@@ -709,7 +702,7 @@
   {
     "name": "Town Hall",
     "xy": [
-      25,
+      24,
       32
     ]
   },
@@ -730,8 +723,8 @@
   {
     "name": "W.A. Silva Mawatha",
     "xy": [
-      22,
-      62
+      21,
+      61
     ]
   },
   {
@@ -744,7 +737,7 @@
   {
     "name": "Weerasinghe Mawatha",
     "xy": [
-      68,
+      67,
       76
     ]
   },
@@ -786,7 +779,7 @@
   {
     "name": "William Junction",
     "xy": [
-      23,
+      22,
       64
     ]
   }

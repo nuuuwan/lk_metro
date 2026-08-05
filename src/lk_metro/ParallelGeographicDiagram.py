@@ -82,10 +82,11 @@ class ParallelGeographicDiagram(GeographicDiagram):
 	def to_svg(self) -> str:
 		positions = self.layout()
 		segments = self.route_segments(positions)
+		svg_width, svg_height = self._svg_dimensions()
 		lines = [
 			'<?xml version="1.0" encoding="UTF-8"?>',
-			f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" '
-			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
+			f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" '
+			f'height="{svg_height}" viewBox="0 0 {svg_width} {svg_height}">',
 			"<style>",
 			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
@@ -96,8 +97,12 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
 			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
 			"dominant-baseline: middle; }",
+			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px sans-serif; fill: #111; }}",
+			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px sans-serif; fill: #111; "
+			"dominant-baseline: middle; }}",
 			"</style>",
-			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
+			f'<rect width="{svg_width}" height="{svg_height}" fill="#f7f5ef"/>',
+			f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
 			*self._grid_svg_lines(),
 		]
 
@@ -150,7 +155,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				f'{html.escape(stop.name)}</text>'
 			)
 
-		lines.append("</svg>")
+		lines.extend(["</g>", *self._title_and_legend_svg_lines(), "</svg>"])
 		return "\n".join(lines) + "\n"
 
 	def station_ticks(

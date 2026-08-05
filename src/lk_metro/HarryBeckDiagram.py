@@ -1,6 +1,5 @@
 import json
 import math
-from collections import defaultdict, deque
 from dataclasses import replace
 from pathlib import Path
 from typing import ClassVar
@@ -37,6 +36,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 
 	def __init__(self, routes: list[Route], stops: list[Stop]) -> None:
 		super().__init__(routes, stops)
+		self.legend_routes = routes
 		self.design_path = (
 			Path(__file__).resolve().parents[2] / "data" / self.DATA_FILE
 		)
@@ -58,7 +58,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			route.id: index for index, route in enumerate(self.routes)
 		}
 		self._edge_directions = {}
-		self._edge_routes = self._build_edge_routes()
+		self._edge_routes = self._build_design_edge_routes()
 
 	def layout(self) -> dict[str, Point]:
 		projected = self._project_positions(
@@ -179,7 +179,6 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			if not isinstance(segments, list) or not segments:
 				raise ValueError(f"Harry Beck route {route_id} has no segments")
 
-			reconstructed_stops = []
 			for index, segment in enumerate(segments):
 				if not isinstance(segment, dict):
 					raise ValueError(f"Harry Beck route {route_id} has an invalid segment")
@@ -197,29 +196,37 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 					raise ValueError(
 						f"Harry Beck route {route_id} segment {index} has invalid stops"
 					)
-				reconstructed_stops.extend(stops if index == 0 else stops[1:])
-				if index > 0 and stops[0] != reconstructed_stops[-len(stops)]:
+				unknown_stops = sorted(set(stops) - stop_names)
+				if unknown_stops:
 					raise ValueError(
-						f"Harry Beck route {route_id} segments are not connected"
+						f"Harry Beck route {route_id} contains unknown stops: "
+						+ ", ".join(unknown_stops)
 					)
 
-			route_stops = routes_by_id[route_id].stops
-			try:
-				start_index = route_stops.index(reconstructed_stops[0])
-			except ValueError as error:
-				raise ValueError(
-					f"Harry Beck route {route_id} contains an unknown stop"
-				) from error
-			if route_stops[start_index : start_index + len(reconstructed_stops)] != reconstructed_stops:
-				raise ValueError(
-					f"Harry Beck route {route_id} stops are not a contiguous route section"
-				)
+			designed_stops = []
+			for segment in segments:
+				for stop in segment["stops"]:
+					if stop not in designed_stops:
+						designed_stops.append(stop)
 			segments_by_route[route_id] = segments
-			designed_stops_by_route[route_id] = reconstructed_stops
+			designed_stops_by_route[route_id] = designed_stops
 
 		if not segments_by_route:
 			raise ValueError("Harry Beck design must contain at least one route")
 		return origin_positions, segments_by_route, designed_stops_by_route
+
+	def _build_design_edge_routes(self) -> dict[tuple[str, str], list[str]]:
+		edge_routes = {}
+		for route in self.routes:
+			for segment in self._segments_by_route[route.id]:
+				for first, second in zip(segment["stops"], segment["stops"][1:]):
+					edge = self._edge_key(first, second)
+					if edge not in edge_routes:
+						edge_routes[edge] = []
+						self._edge_directions[edge] = (first, second)
+					if route.id not in edge_routes[edge]:
+						edge_routes[edge].append(route.id)
+		return edge_routes
 
 	@classmethod
 	def _project_positions(
@@ -227,34 +234,45 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		origin_positions: dict[str, list[float]],
 		design_routes: list[dict[str, object]],
 	) -> dict[str, list[float]]:
-		constraints: dict[str, list[tuple[str, int, int]]] = defaultdict(list)
+		pending_segments = []
 		for route in design_routes:
 			for segment in route["segments"]:
 				direction_index = cls.DIRECTIONS.index(segment["direction"])
 				x_delta, y_delta = cls.DIRECTION_VECTORS[direction_index]
-				for first, second in zip(segment["stops"], segment["stops"][1:]):
-					constraints[first].append((second, x_delta, y_delta))
-					constraints[second].append((first, -x_delta, -y_delta))
+				pending_segments.append((segment["stops"], x_delta, y_delta))
 
 		projected = {
 			name: point[:] for name, point in origin_positions.items()
 		}
-		queue = deque(projected)
-		while queue:
-			first = queue.popleft()
-			first_x, first_y = projected[first]
-			for second, x_delta, y_delta in constraints[first]:
-				expected = [first_x + x_delta, first_y + y_delta]
-				if second not in projected:
-					projected[second] = expected
-					queue.append(second)
-				elif projected[second] != expected:
-					raise ValueError(
-						f"Harry Beck unit steps conflict at {second!r}"
-					)
-		designed_stops = set(constraints)
-		if set(projected) != designed_stops:
-			missing_stops = sorted(designed_stops - set(projected))
+		while pending_segments:
+			remaining_segments = []
+			for stops, x_delta, y_delta in pending_segments:
+				anchor_index = next(
+					(index for index, stop in enumerate(stops) if stop in projected),
+					None,
+				)
+				if anchor_index is None:
+					remaining_segments.append((stops, x_delta, y_delta))
+					continue
+
+				anchor_x, anchor_y = projected[stops[anchor_index]]
+				for index, stop in enumerate(stops):
+					if stop not in projected:
+						step_count = index - anchor_index
+						projected[stop] = [
+							anchor_x + step_count * x_delta,
+							anchor_y + step_count * y_delta,
+						]
+			if len(remaining_segments) == len(pending_segments):
+				missing_stops = sorted(
+					{stop for stops, _, _ in remaining_segments for stop in stops}
+				)
+				break
+			pending_segments = remaining_segments
+		else:
+			missing_stops = []
+
+		if missing_stops:
 			raise ValueError(
 				"Harry Beck stops are not connected to an origin: "
 				+ ", ".join(missing_stops)

@@ -19,6 +19,12 @@ Point = tuple[float, float]
 
 
 class GeographicDiagram:
+	TITLE_HEIGHT = 8
+	LEGEND_WIDTH = 58
+	LEGEND_LINE_HEIGHT = 4
+	LEGEND_FONT_SIZE = 1.8
+	TITLE_FONT_SIZE = 4
+
 	def __init__(
 		self,
 		routes: list[Route],
@@ -31,6 +37,7 @@ class GeographicDiagram:
 			raise ValueError("width and height must be larger than twice the padding")
 
 		self.routes = routes
+		self.legend_routes = routes
 		self.stops = stops
 		self.width = width
 		self.height = height
@@ -89,10 +96,11 @@ class GeographicDiagram:
 	def to_svg(self) -> str:
 		positions = self.layout()
 		paths = self.route_paths(positions)
+		svg_width, svg_height = self._svg_dimensions()
 		lines = [
 			'<?xml version="1.0" encoding="UTF-8"?>',
-			f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" '
-			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
+			f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" '
+			f'height="{svg_height}" viewBox="0 0 {svg_width} {svg_height}">',
 			"<style>",
 			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
@@ -101,8 +109,12 @@ class GeographicDiagram:
 			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
 			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
 			"dominant-baseline: middle; }",
+			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px sans-serif; fill: #111; }}",
+			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px sans-serif; fill: #111; "
+			"dominant-baseline: middle; }}",
 			"</style>",
-			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
+			f'<rect width="{svg_width}" height="{svg_height}" fill="#f7f5ef"/>',
+			f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
 			*self._grid_svg_lines(),
 		]
 
@@ -135,8 +147,33 @@ class GeographicDiagram:
 				f"{html.escape(stop.name)}</text>"
 			)
 
-		lines.append("</svg>")
+		lines.extend(["</g>", *self._title_and_legend_svg_lines(), "</svg>"])
 		return "\n".join(lines) + "\n"
+
+	def _svg_dimensions(self) -> tuple[int, int]:
+		return self.width + self.LEGEND_WIDTH, self.height + self.TITLE_HEIGHT
+
+	def _title_and_legend_svg_lines(self) -> list[str]:
+		legend_x = self.width + 4
+		lines = [
+			f'<text class="map-title" x="{self.padding}" y="5.5">Lanka Metro</text>',
+			f'<text class="legend-label" x="{legend_x}" y="{self.TITLE_HEIGHT + 2}" '
+			'font-weight="bold">Routes</text>',
+		]
+		for index, route in enumerate(self.legend_routes):
+			y_coordinate = self.TITLE_HEIGHT + 6 + index * self.LEGEND_LINE_HEIGHT
+			lines.extend(
+				[
+					f'<line x1="{legend_x}" y1="{y_coordinate}" '
+					f'x2="{legend_x + 6}" y2="{y_coordinate}" '
+					f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}" '
+					'stroke-linecap="round"/>',
+					f'<text class="legend-label" x="{legend_x + 8}" '
+					f'y="{y_coordinate}">{html.escape(route.id)}: '
+					f'{html.escape(route.name)}</text>',
+				]
+			)
+		return lines
 
 	def write_svg(self, path: str | Path) -> Path:
 		output_path = Path(path)
