@@ -10,3 +10,4 @@ class Stop(AbstractData):
 
 	name: str
 	latlng: list[float]
+	xy: list[int]

@@ -3,6 +3,8 @@ import math
 from pathlib import Path
 
 from .DiagramStyle import (
+	GRID_MAJOR_INTERVAL,
+	GRID_SPACING,
 	INTERCHANGE_RADIUS,
 	INTERCHANGE_STROKE_WIDTH,
 	LABEL_FONT_SIZE,
@@ -37,39 +39,8 @@ class GeographicDiagram:
 		self._validate_data()
 
 	def layout(self) -> dict[str, Point]:
-		projected = {
-			stop.name: self._web_mercator(stop.latlng[0], stop.latlng[1])
-			for stop in self.stops
-		}
-		min_x = min(point[0] for point in projected.values())
-		max_x = max(point[0] for point in projected.values())
-		min_y = min(point[1] for point in projected.values())
-		max_y = max(point[1] for point in projected.values())
-		x_range = max_x - min_x
-		y_range = max_y - min_y
-		if math.isclose(x_range, 0.0) and math.isclose(y_range, 0.0):
-			return {
-				name: (self.width / 2, self.height / 2) for name in projected
-			}
-
-		x_scale = math.inf if math.isclose(x_range, 0.0) else (
-			(self.width - self.padding * 2) / x_range
-		)
-		y_scale = math.inf if math.isclose(y_range, 0.0) else (
-			(self.height - self.padding * 2) / y_range
-		)
-		scale = min(x_scale, y_scale)
-		content_width = x_range * scale
-		content_height = y_range * scale
-		x_offset = (self.width - content_width) / 2
-		y_offset = (self.height - content_height) / 2
-
 		return {
-			name: (
-				x_offset + (point[0] - min_x) * scale,
-				y_offset + (max_y - point[1]) * scale,
-			)
-			for name, point in projected.items()
+			stop.name: (stop.xy[0], stop.xy[1]) for stop in self.stops
 		}
 
 	def route_paths(
@@ -90,6 +61,8 @@ class GeographicDiagram:
 			f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" '
 			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
 			"<style>",
+			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.5; }",
+			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 1; }",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
 			f".interchange {{ fill: white; stroke: #111; "
 			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
@@ -97,6 +70,7 @@ class GeographicDiagram:
 			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
+			*self._grid_svg_lines(),
 		]
 
 		routes_to_draw = self.routes
@@ -136,6 +110,27 @@ class GeographicDiagram:
 		output_path.write_text(self.to_svg(), encoding="utf-8")
 		return output_path
 
+	def _grid_svg_lines(self) -> list[str]:
+		lines = ['<g class="coordinate-grid">']
+		for x in range(0, self.width + 1, GRID_SPACING):
+			grid_class = (
+				"grid-major" if x % GRID_MAJOR_INTERVAL == 0 else "grid-minor"
+			)
+			lines.append(
+				f'<line class="{grid_class}" x1="{x}" y1="0" '
+				f'x2="{x}" y2="{self.height}"/>'
+			)
+		for y in range(0, self.height + 1, GRID_SPACING):
+			grid_class = (
+				"grid-major" if y % GRID_MAJOR_INTERVAL == 0 else "grid-minor"
+			)
+			lines.append(
+				f'<line class="{grid_class}" x1="0" y1="{y}" '
+				f'x2="{self.width}" y2="{y}"/>'
+			)
+		lines.append("</g>")
+		return lines
+
 	def _validate_data(self) -> None:
 		if not self.routes:
 			raise ValueError("At least one route is required")
@@ -158,24 +153,21 @@ class GeographicDiagram:
 			)
 
 		for stop in self.stops:
-			if len(stop.latlng) != 2:
-				raise ValueError(f"Stop {stop.name!r} must have a latitude and longitude")
-			latitude, longitude = stop.latlng
-			if (
-				not math.isfinite(latitude)
-				or not math.isfinite(longitude)
-				or not -85.0 < latitude < 85.0
-				or not -180.0 <= longitude <= 180.0
+			if len(stop.latlng) != 2 or any(
+				not math.isfinite(coordinate) for coordinate in stop.latlng
 			):
-				raise ValueError(f"Stop {stop.name!r} has invalid coordinates")
-
-	@staticmethod
-	def _web_mercator(latitude: float, longitude: float) -> Point:
-		latitude_radians = math.radians(latitude)
-		return (
-			math.radians(longitude),
-			math.log(math.tan(math.pi / 4 + latitude_radians / 2)),
-		)
+				raise ValueError(
+					f"Stop {stop.name!r} must have finite latitude and longitude"
+				)
+			latitude, longitude = stop.latlng
+			if not -85.0 < latitude < 85.0 or not -180.0 <= longitude <= 180.0:
+				raise ValueError(f"Stop {stop.name!r} has invalid latitude or longitude")
+			if len(stop.xy) != 2 or any(
+				type(coordinate) is not int for coordinate in stop.xy
+			):
+				raise ValueError(
+					f"Stop {stop.name!r} must have integer x and y coordinates"
+				)
 
 	def _route_memberships(
 		self,

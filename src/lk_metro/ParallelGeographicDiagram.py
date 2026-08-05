@@ -67,6 +67,8 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" '
 			f'height="{self.height}" viewBox="0 0 {self.width} {self.height}">',
 			"<style>",
+			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.5; }",
+			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 1; }",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
 			f".station-tick {{ stroke-linecap: round; "
 			f"stroke-width: {STATION_TICK_STROKE_WIDTH}; }}",
@@ -76,6 +78,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
+			*self._grid_svg_lines(),
 		]
 
 		for route in self.routes:
@@ -96,6 +99,10 @@ class ParallelGeographicDiagram(GeographicDiagram):
 					f'<circle class="interchange" cx="{x}" cy="{y}" '
 					f'r="{INTERCHANGE_RADIUS}"/>'
 				)
+				label_x = x + LABEL_OFFSET
+				label_y = y - LABEL_OFFSET
+				text_anchor = "start"
+				label_transform = ""
 			else:
 				first, second = station_ticks[stop.name]
 				route_id = next(iter(memberships[stop.name]))
@@ -104,9 +111,23 @@ class ParallelGeographicDiagram(GeographicDiagram):
 					f'x2="{second[0]}" y2="{second[1]}" '
 					f'stroke="{routes_by_id[route_id].color}"/>'
 				)
+				label_x, label_y = second
+				tick_angle = math.degrees(
+					math.atan2(second[1] - first[1], second[0] - first[0])
+				)
+				label_angle = tick_angle
+				if label_angle > 90:
+					label_angle -= 180
+				elif label_angle < -90:
+					label_angle += 180
+				text_anchor = "start"
+				label_transform = (
+					f' transform="rotate({label_angle} {label_x} {label_y})"'
+				)
 			lines.append(
-				f'<text class="label" x="{x + LABEL_OFFSET}" '
-				f'y="{y - LABEL_OFFSET}">{html.escape(stop.name)}</text>'
+				f'<text class="label" x="{label_x}" y="{label_y}" '
+				f'text-anchor="{text_anchor}"{label_transform}>'
+				f'{html.escape(stop.name)}</text>'
 			)
 
 		lines.append("</svg>")
@@ -156,15 +177,25 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			x_delta = second[0] - first[0]
 			y_delta = second[1] - first[1]
 			length = math.hypot(x_delta, y_delta)
-			x_offset = -y_delta / length * STATION_TICK_LENGTH
-			y_offset = x_delta / length * STATION_TICK_LENGTH
+			x_normal = -y_delta / length
+			y_normal = x_delta / length
+			x_offset = x_normal * STATION_TICK_LENGTH
+			y_offset = y_normal * STATION_TICK_LENGTH
 			if x_offset - y_offset < 0:
+				x_normal = -x_normal
+				y_normal = -y_normal
 				x_offset = -x_offset
 				y_offset = -y_offset
 			x, y = positions[stop.name]
 			ticks[stop.name] = (
-				(x, y),
-				(x + x_offset, y + y_offset),
+				(
+					x + x_normal * ROUTE_STROKE_WIDTH / 2,
+					y + y_normal * ROUTE_STROKE_WIDTH / 2,
+				),
+				(
+					x + x_normal * ROUTE_STROKE_WIDTH / 2 + x_offset,
+					y + y_normal * ROUTE_STROKE_WIDTH / 2 + y_offset,
+				),
 			)
 
 		return ticks
