@@ -86,21 +86,29 @@ class GeographicDiagram:
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
 			".station { fill: white; stroke: #111; stroke-width: 3; }",
 			".interchange { fill: white; stroke: #111; stroke-width: 5; }",
-			".label { font: 14px sans-serif; fill: #111; dominant-baseline: middle; "
+			".label { font: 7px sans-serif; fill: #111; dominant-baseline: middle; "
 			"paint-order: stroke; stroke: #f7f5ef; stroke-width: 4px; }",
 			"</style>",
 			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
 		]
 
-		for route in self.routes:
+		routes_to_draw = [self.routes[2]]
+		for route in routes_to_draw:
 			points = " ".join(f"{x},{y}" for x, y in paths[route.id])
 			lines.append(
 				f'<polyline class="route" points="{points}" '
 				f'stroke="{route.color}" stroke-width="10"/>'
 			)
 
-		memberships = self._route_memberships()
+		visible_stop_names = {
+			stop_name
+			for route in routes_to_draw
+			for stop_name in route.stops
+		}
+		memberships = self._route_memberships(routes_to_draw)
 		for stop in self.stops:
+			if stop.name not in visible_stop_names:
+				continue
 			x, y = positions[stop.name]
 			is_interchange = len(memberships[stop.name]) > 1
 			css_class = "interchange" if is_interchange else "station"
@@ -162,9 +170,12 @@ class GeographicDiagram:
 			math.log(math.tan(math.pi / 4 + latitude_radians / 2)),
 		)
 
-	def _route_memberships(self) -> dict[str, set[str]]:
+	def _route_memberships(
+		self,
+		routes: list[Route] | None = None,
+	) -> dict[str, set[str]]:
 		memberships = {stop.name: set() for stop in self.stops}
-		for route in self.routes:
+		for route in routes or self.routes:
 			for name in route.stops:
 				memberships[name].add(route.id)
 		return memberships
