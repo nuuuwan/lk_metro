@@ -92,7 +92,7 @@ class GeographicDiagram:
 			f'<rect width="{self.width}" height="{self.height}" fill="#f7f5ef"/>',
 		]
 
-		routes_to_draw = [self.routes[3]]
+		routes_to_draw = [self.routes[4]]
 		for route in routes_to_draw:
 			points = " ".join(f"{x},{y}" for x, y in paths[route.id])
 			lines.append(
