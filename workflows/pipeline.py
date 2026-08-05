@@ -9,6 +9,7 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR / "src"))
 
 from lk_metro.GeographicDiagram import GeographicDiagram
+from lk_metro.HarryBeckDiagram import HarryBeckDiagram
 from lk_metro.ParallelGeographicDiagram import ParallelGeographicDiagram
 from lk_metro.Route import Route
 from lk_metro.Stop import Stop
@@ -52,6 +53,7 @@ def main() -> None:
 			ParallelGeographicDiagram(routes, stops),
 			"lk_metro_parallel_geographic",
 		),
+		(HarryBeckDiagram(routes, stops), "lk_metro_harry_beck"),
 	)
 
 	for diagram, filename in outputs:

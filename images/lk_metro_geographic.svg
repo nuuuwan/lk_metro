@@ -212,148 +212,148 @@
 <line class="grid-minor" x1="0" y1="99" x2="100" y2="99"/>
 <line class="grid-major" x1="0" y1="100" x2="100" y2="100"/>
 </g>
-<polyline class="route" points="85,73 84,72 81,70 78,64 78,61 77,52 73,49 68,42 60,39 56,38 47,37 36,36 33,35 25,32 26,30 26,28 16,26 14,24" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="88,56 87,58 87,60 86,59 85,55 83,51 83,41 81,38 77,52 72,55 57,45 68,42 60,39 56,38 47,37 40,32 25,32 19,31 15,29 12,27 13,25 14,24" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="85,73 84,72 81,70 75,71 72,74 76,70 70,67 66,66 61,66 49,63 36,57 38,51 37,48 39,47 38,45 36,36 40,32 40,30 42,26 50,24 62,22 69,21 76,20 79,18 82,17" stroke="#8a0f45" stroke-width="0.65"/>
-<polyline class="route" points="42,26 40,30 40,32 36,36 30,43 20,46 17,49 17,62 23,64 27,68 22,74 32,76 35,77 41,78 45,79 48,80 49,81 45,83 43,83 47,84 53,85 55,85 64,86 65,87 66,87 63,88" stroke="#f57c00" stroke-width="0.65"/>
-<polyline class="route" points="74,40 71,43 68,42 60,39 56,38 47,37 40,32 40,30 42,26 44,23 43,22 46,19 54,19 51,17 58,16 60,15 59,15 55,14 53,13 52,13 67,12" stroke="#6f2dbd" stroke-width="0.65"/>
-<polyline class="route" points="13,36 15,34 18,33 25,32 24,34 29,40 30,43 28,47 32,50 37,48 38,51 34,53 31,57 22,62 17,62 17,49 13,36" stroke="#72b043" stroke-width="0.65"/>
-<polyline class="route" points="85,73 80,82 74,81 70,78 68,76 64,75 62,72 57,69 51,68 30,65 34,60 31,57 28,54 24,53 20,46 19,44 25,32 21,28 12,27 13,25 14,24 16,26" stroke="#006b3f" stroke-width="0.65"/>
-<text class="label" x="34.75" y="52.25">Anderson Flat</text>
-<text class="label" x="83.75" y="50.25">Arangala Junction</text>
-<text class="label" x="38.75" y="44.25">Army Hospital Borella</text>
-<text class="label" x="87.75" y="57.25">Athurugiriya Hospital</text>
-<text class="label" x="87.75" y="59.25">Athurugiriya Town</text>
-<circle class="interchange" cx="17" cy="49" r="0.6"/>
-<text class="label" x="17.75" y="48.25">Bambalapitiya</text>
-<text class="label" x="71.75" y="42.25">Battaramulla Junction</text>
-<text class="label" x="62.75" y="71.25">Boralesgamuwa</text>
-<circle class="interchange" cx="40" cy="32" r="0.6"/>
-<text class="label" x="40.75" y="31.25">Borella</text>
-<text class="label" x="28.75" y="53.25">BRC Junction</text>
-<text class="label" x="19.75" y="43.25">Bus Stop Infront of Colombo</text>
-<circle class="interchange" cx="40" cy="30" r="0.6"/>
-<text class="label" x="40.75" y="29.25">Campbell Park</text>
-<text class="label" x="72.75" y="73.25">Cancer Hospital Bus Stop 01</text>
-<circle class="interchange" cx="47" cy="37" r="0.6"/>
-<text class="label" x="47.75" y="36.25">Castle Hospital</text>
-<circle class="interchange" cx="14" cy="24" r="0.6"/>
-<text class="label" x="14.75" y="23.25">Colombo Fort</text>
-<text class="label" x="52.75" y="12.25">CTB Junction</text>
-<text class="label" x="27.75" y="67.25">Dehiwala</text>
-<text class="label" x="61.75" y="65.25">Delkanda Junction</text>
-<circle class="interchange" cx="42" cy="26" r="0.6"/>
-<text class="label" x="42.75" y="25.25">Dematagoda</text>
-<text class="label" x="53.75" y="84.25">Egoda Uyana</text>
-<text class="label" x="67.75" y="11.25">Ekala</text>
-<text class="label" x="21.75" y="27.25">Gamini Hall</text>
-<text class="label" x="48.75" y="79.25">German Tec Angulana</text>
-<text class="label" x="45.75" y="78.25">Golumadama Junction</text>
-<circle class="interchange" cx="31" cy="57" r="0.6"/>
-<text class="label" x="31.75" y="56.25">Havelock</text>
-<text class="label" x="26.75" y="29.25">Hedges Ct</text>
-<text class="label" x="46.75" y="18.25">Hekitta Junction</text>
-<text class="label" x="51.75" y="16.25">Hendala</text>
-<text class="label" x="32.75" y="49.25">Hirdaramani</text>
-<text class="label" x="85.75" y="54.25">Hokandara Junction</text>
-<circle class="interchange" cx="30" cy="43" r="0.6"/>
-<text class="label" x="30.75" y="42.25">Independence Arcade</text>
-<text class="label" x="29.75" y="39.25">Independence Square</text>
-<circle class="interchange" cx="77" cy="52" r="0.6"/>
-<text class="label" x="77.75" y="51.25">Isurupaya</text>
-<text class="label" x="53.75" y="12.25">Ja Ela</text>
-<text class="label" x="28.75" y="46.25">Jawatta Road</text>
-<text class="label" x="55.75" y="84.25">Jayanthi Mawatha Stop</text>
-<text class="label" x="82.75" y="16.25">Kadawatha</text>
-<text class="label" x="78.75" y="63.25">Kalalgoda Junction</text>
-<text class="label" x="30.75" y="64.25">Kalubowila Hospital Stop</text>
-<text class="label" x="59.75" y="14.25">Kandana</text>
-<text class="label" x="49.75" y="80.25">Katubedda Junction</text>
-<text class="label" x="69.75" y="20.25">Kelaniya Campus</text>
-<text class="label" x="80.75" y="81.25">Kesbewa</text>
-<text class="label" x="76.75" y="19.25">Kiribathgoda</text>
-<text class="label" x="36.75" y="56.25">Kirulapone</text>
-<text class="label" x="13.75" y="35.25">Kollupitiya</text>
-<text class="label" x="47.75" y="83.25">Koralawella</text>
-<text class="label" x="57.75" y="44.25">Koswaththa</text>
-<circle class="interchange" cx="84" cy="72" r="0.6"/>
-<text class="label" x="84.75" y="71.25">Kottawa</text>
-<circle class="interchange" cx="13" cy="25" r="0.6"/>
-<text class="label" x="13.75" y="24.25">Lake House Bus Stop</text>
-<text class="label" x="70.75" y="77.25">Lanka Fiber Fabrica</text>
-<text class="label" x="15.75" y="33.25">Liberty Bus Stop</text>
-<text class="label" x="58.75" y="15.25">Mabola</text>
-<text class="label" x="60.75" y="14.25">Mahabage</text>
-<text class="label" x="65.75" y="86.25">Mahanama Junction</text>
-<text class="label" x="79.75" y="17.25">Mahara Junction</text>
-<text class="label" x="75.75" y="70.25">Maharagama Cargills Food City</text>
-<text class="label" x="76.75" y="69.25">Maharagama</text>
-<circle class="interchange" cx="85" cy="73" r="0.6"/>
-<text class="label" x="85.75" y="72.25">Makumbura</text>
-<text class="label" x="83.75" y="40.25">Malabe Bus Stand</text>
-<text class="label" x="35.75" y="76.25">Maliban Junction</text>
-<text class="label" x="26.75" y="27.25">Maradana</text>
-<text class="label" x="45.75" y="82.25">Mendis Lane Rawathawatta</text>
-<text class="label" x="88.75" y="55.25">Millennium City</text>
-<text class="label" x="43.75" y="82.25">Moratuwa</text>
-<text class="label" x="22.75" y="73.25">Mount Lavinia</text>
-<circle class="interchange" cx="60" cy="39" r="0.6"/>
-<text class="label" x="60.75" y="38.25">NAITA</text>
-<text class="label" x="39.75" y="46.25">Narahenpita Junction</text>
-<circle class="interchange" cx="38" cy="51" r="0.6"/>
-<text class="label" x="38.75" y="50.25">Narahenpita</text>
-<text class="label" x="15.75" y="28.25">Nawaloka Bus Stop</text>
-<text class="label" x="70.75" y="66.25">Nawinna</text>
-<text class="label" x="32.75" y="75.25">Near Lalanka Head Office</text>
-<text class="label" x="24.75" y="33.25">Nelum Pokuna</text>
-<text class="label" x="86.75" y="58.25">Nisaco Mall</text>
-<text class="label" x="49.75" y="62.25">Nugegoda 01</text>
-<text class="label" x="50.75" y="23.25">Orugodawatta</text>
-<text class="label" x="64.75" y="85.25">Palam Junction</text>
-<text class="label" x="73.75" y="48.25">Palam Thuna Junction</text>
-<text class="label" x="66.75" y="86.25">Panadura Base Hospital</text>
-<text class="label" x="63.75" y="87.25">Panadura</text>
-<circle class="interchange" cx="81" cy="70" r="0.6"/>
-<text class="label" x="81.75" y="69.25">Pannipitiya</text>
-<text class="label" x="44.75" y="22.25">Peliyagoda (New Kelani Bridge)</text>
-<text class="label" x="43.75" y="21.25">Peliyagoda 02</text>
-<text class="label" x="51.75" y="67.25">Pepiliyana</text>
-<circle class="interchange" cx="16" cy="26" r="0.6"/>
-<text class="label" x="16.75" y="25.25">Pettah</text>
-<text class="label" x="74.75" y="80.25">Piliyandala Bus Stand Stop</text>
-<text class="label" x="18.75" y="32.25">Public Library</text>
-<circle class="interchange" cx="56" cy="38" r="0.6"/>
-<text class="label" x="56.75" y="37.25">Rajagiriya</text>
-<text class="label" x="41.75" y="77.25">Rathmalana Tec</text>
-<text class="label" x="57.75" y="68.25">Raththanapitiya</text>
-<circle class="interchange" cx="12" cy="27" r="0.6"/>
-<text class="label" x="12.75" y="26.25">Regal Cinema</text>
-<text class="label" x="34.75" y="59.25">Royal Institute Bus Stop</text>
-<circle class="interchange" cx="68" cy="42" r="0.6"/>
-<text class="label" x="68.75" y="41.25">Sethsiripaya</text>
-<circle class="interchange" cx="36" cy="36" r="0.6"/>
-<text class="label" x="36.75" y="35.25">Singer Mega - Colombo 8</text>
-<text class="label" x="81.75" y="37.25">Thalahena Junction</text>
-<text class="label" x="74.75" y="39.25">Thalangama Depot</text>
-<text class="label" x="72.75" y="54.25">Thalangama Junction</text>
-<text class="label" x="78.75" y="60.25">Thalawathugoda</text>
-<text class="label" x="24.75" y="52.25">Thimbirigasyaya</text>
-<text class="label" x="62.75" y="21.25">Thorana Junction</text>
-<circle class="interchange" cx="20" cy="46" r="0.6"/>
-<text class="label" x="20.75" y="45.25">Thummulla</text>
-<circle class="interchange" cx="25" cy="32" r="0.6"/>
-<text class="label" x="25.75" y="31.25">Town Hall</text>
-<text class="label" x="19.75" y="30.25">Union Place</text>
-<circle class="interchange" cx="37" cy="48" r="0.6"/>
-<text class="label" x="37.75" y="47.25">VTA / AAT</text>
-<text class="label" x="22.75" y="61.25">W.A. Silva Mawatha</text>
-<text class="label" x="54.75" y="18.25">Wattala</text>
-<text class="label" x="68.75" y="75.25">Weerasinghe Mawatha</text>
-<text class="label" x="55.75" y="13.25">Weligampitiya</text>
-<circle class="interchange" cx="17" cy="62" r="0.6"/>
-<text class="label" x="17.75" y="61.25">Wellawatta</text>
-<text class="label" x="64.75" y="74.25">Werahera</text>
-<text class="label" x="66.75" y="65.25">Wijerama Junction</text>
-<text class="label" x="33.75" y="34.25">Wijerama</text>
-<text class="label" x="23.75" y="63.25">William Junction</text>
+<polyline class="route" points="61.12166574640364,65.31926432393846 59.51226964797763,64.46244437253827 55.71421437475836,63.68727972786472 51.82061124768536,59.28393205117876 52.7343030455381,56.925927923630525 51.615002510677854,53.67190816407498 50.25237284223947,52.698973351469434 48.22102052676782,50.790213160804875 44.7847329778043,49.86665794192989 43.9402834665582,49.41653741901092 41.3613001881022,49.340250499638685 39.51154046672708,49.0865864836879 38.2620047652906,48.97525867341956 36.88492929027646,47.65198962237647 37.066184894533066,46.60983996843119 36.89566803331567,45.13318362425747 34.66057165797494,44.15424169868936 33.575082437492526,43.93464841976841" stroke="#0070a8" stroke-width="0.65"/>
+<polyline class="route" points="67.13419361649245,55.444842724564374 65.48827619403673,55.82308824428025 64.99352179552858,56.716317512095934 63.62922964385972,55.92722557444221 60.24183019490415,54.76664728811475 59.307604482536775,53.643553464523485 57.01760122856655,50.68045734095734 54.9308702486821,49.76149120812769 51.615002510677854,53.67190816407498 50.21006938378762,54.879996966987605 44.096152502540725,51.612337250213216 48.22102052676782,50.790213160804875 44.7847329778043,49.86665794192989 43.9402834665582,49.41653741901092 41.3613001881022,49.340250499638685 39.75765538301828,48.21049165712191 36.88492929027646,47.65198962237647 35.66377902267144,47.13574165128572 34.30626053567124,46.408786517860506 32.86580638350755,44.41219572733033 32.92260270095433,44.126359736775996 33.575082437492526,43.93464841976841" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="61.12166574640364,65.31926432393846 59.51226964797763,64.46244437253827 55.71421437475836,63.68727972786472 50.70420882548673,63.950503257647576 49.34744278033898,65.75107710223804 50.76783250809018,63.49752668473375 48.78244560737696,61.32161061905927 46.68349312913592,61.124046797639515 45.11321031863851,59.94472060186708 42.15780938409596,58.36313877692134 39.24927250390021,55.57167859959058 39.622724209093434,53.29802805225579 39.60093263942852,52.32737120428996 39.65103687251953,52.26694520845667 39.63526045752514,51.562932265760416 39.51154046672708,49.0865864836879 39.75765538301828,48.21049165712191 39.65442416071091,47.03631916092775 40.38030028534172,44.156369055875196 42.25886140540841,40.61197465673789 45.157868035942,36.25739832771701 48.247036142746325,34.77032696616336 50.85439396609458,33.88037569649508 53.64568084646395,30.94180850913028 56.29877942467639,28.45132983543328" stroke="#8a0f45" stroke-width="0.65"/>
+<polyline class="route" points="40.38030028534172,44.156369055875196 39.65442416071091,47.03631916092775 39.75765538301828,48.21049165712191 39.51154046672708,49.0865864836879 37.75346444899401,50.90571689592687 35.928952569270926,51.8363220175001 35.08493173482649,52.49134245018485 35.24383368049441,57.20552852306767 36.60693513471612,59.71961577321858 37.146410943466364,62.59238242938517 36.37998370757073,67.02605060989733 38.16257011998151,68.38002036837932 38.87357375948035,69.77954210762371 40.06903399915427,70.91436914838803 41.17352944685568,72.37429097546253 42.00452393691855,73.55042728084368 42.22284842404652,74.77675579870501 41.23373829903593,78.13918981325236 40.88308913304452,79.92289972486338 41.622849239259516,83.59470607896704 42.9324816381794,87.09966168600194 43.55939178192587,88.71354226460757 45.9783223733328,90.7802584335569 46.27512833721609,91.14363798315637 46.30938946998198,91.8816765384436 45.79496323965732,94.0" stroke="#f57c00" stroke-width="0.65"/>
+<polyline class="route" points="50.65655846150012,50.032963604428744 49.34411781387518,50.91850286207835 48.22102052676782,50.790213160804875 44.7847329778043,49.86665794192989 43.9402834665582,49.41653741901092 41.3613001881022,49.340250499638685 39.75765538301828,48.21049165712191 39.65442416071091,47.03631916092775 40.38030028534172,44.156369055875196 40.94963339429872,39.01881340994568 40.72250223923738,37.22691131824765 41.237220527426544,32.95307111328228 43.152131618700764,31.22779219348671 42.488710945212546,29.748454867020886 44.31005118971715,28.443385017194643 45.00168914616508,23.805953614586034 44.385694176769235,17.731278455210862 43.61643622618226,13.259447377071352 42.79975196776259,11.379776958302127 42.728577903068526,10.603450561054725 47.09729419195318,6.0" stroke="#6f2dbd" stroke-width="0.65"/>
+<polyline class="route" points="33.469465342489435,48.99646966639215 33.915619841181794,48.869603862839064 35.393623889801056,48.821389606673634 36.88492929027646,47.65198962237647 36.6828701796327,48.965242132048125 37.55041683480534,50.62123441164515 37.75346444899401,50.90571689592687 37.308345796650336,52.13069604313287 38.07436429781007,53.03435568681099 39.60093263942852,52.32737120428996 39.622724209093434,53.29802805225579 38.60202734293964,53.86973459841726 38.000667450844155,55.70284991109828 36.28690711257642,57.03246407461591 35.24383368049441,57.20552852306767 35.08493173482649,52.49134245018485 33.469465342489435,48.99646966639215" stroke="#72b043" stroke-width="0.65"/>
+<polyline class="route" points="61.12166574640364,65.31926432393846 53.96694449803478,75.15859767437914 50.421092424288716,73.72348791105335 48.60925529339504,71.81917229698723 47.69706871684309,69.52741955808327 46.07904567840252,68.0744283392871 45.17258792920639,64.90460115269059 44.28001416159158,63.24455227836324 42.678571023494584,61.41424894185665 37.699141686093526,59.78114175771978 38.336365381570126,56.31616061587619 38.000667450844155,55.70284991109828 37.163058241774486,54.635895603338625 36.66051782133236,53.74401823669259 35.928952569270926,51.8363220175001 35.674911089327075,51.47137563078884 36.88492929027646,47.65198962237647 36.21483621787151,45.437867734262 32.86580638350755,44.41219572733033 32.92260270095433,44.126359736775996 33.575082437492526,43.93464841976841 34.66057165797494,44.15424169868936" stroke="#006b3f" stroke-width="0.65"/>
+<text class="label" x="39.35202734293964" y="53.11973459841726">Anderson Flat</text>
+<text class="label" x="60.057604482536775" y="52.893553464523485">Arangala Junction</text>
+<text class="label" x="40.38526045752514" y="50.812932265760416">Army Hospital Borella</text>
+<text class="label" x="66.23827619403673" y="55.07308824428025">Athurugiriya Hospital</text>
+<text class="label" x="65.74352179552858" y="55.966317512095934">Athurugiriya Town</text>
+<circle class="interchange" cx="35.08493173482649" cy="52.49134245018485" r="0.6"/>
+<text class="label" x="35.83493173482649" y="51.74134245018485">Bambalapitiya</text>
+<text class="label" x="50.09411781387518" y="50.16850286207835">Battaramulla Junction</text>
+<text class="label" x="45.92258792920639" y="64.15460115269059">Boralesgamuwa</text>
+<circle class="interchange" cx="39.75765538301828" cy="48.21049165712191" r="0.6"/>
+<text class="label" x="40.50765538301828" y="47.46049165712191">Borella</text>
+<text class="label" x="37.913058241774486" y="53.885895603338625">BRC Junction</text>
+<text class="label" x="36.424911089327075" y="50.72137563078884">Bus Stop Infront of Colombo</text>
+<circle class="interchange" cx="39.65442416071091" cy="47.03631916092775" r="0.6"/>
+<text class="label" x="40.40442416071091" y="46.28631916092775">Campbell Park</text>
+<text class="label" x="50.09744278033898" y="65.00107710223804">Cancer Hospital Bus Stop 01</text>
+<circle class="interchange" cx="41.3613001881022" cy="49.340250499638685" r="0.6"/>
+<text class="label" x="42.1113001881022" y="48.590250499638685">Castle Hospital</text>
+<circle class="interchange" cx="33.575082437492526" cy="43.93464841976841" r="0.6"/>
+<text class="label" x="34.325082437492526" y="43.18464841976841">Colombo Fort</text>
+<text class="label" x="43.478577903068526" y="9.853450561054725">CTB Junction</text>
+<text class="label" x="37.896410943466364" y="61.84238242938517">Dehiwala</text>
+<text class="label" x="45.86321031863851" y="59.19472060186708">Delkanda Junction</text>
+<circle class="interchange" cx="40.38030028534172" cy="44.156369055875196" r="0.6"/>
+<text class="label" x="41.13030028534172" y="43.406369055875196">Dematagoda</text>
+<text class="label" x="43.6824816381794" y="86.34966168600194">Egoda Uyana</text>
+<text class="label" x="47.84729419195318" y="5.25">Ekala</text>
+<text class="label" x="36.96483621787151" y="44.687867734262">Gamini Hall</text>
+<text class="label" x="42.75452393691855" y="72.80042728084368">German Tec Angulana</text>
+<text class="label" x="41.92352944685568" y="71.62429097546253">Golumadama Junction</text>
+<circle class="interchange" cx="38.000667450844155" cy="55.70284991109828" r="0.6"/>
+<text class="label" x="38.750667450844155" y="54.95284991109828">Havelock</text>
+<text class="label" x="37.816184894533066" y="45.85983996843119">Hedges Ct</text>
+<text class="label" x="41.987220527426544" y="32.20307111328228">Hekitta Junction</text>
+<text class="label" x="43.238710945212546" y="28.998454867020886">Hendala</text>
+<text class="label" x="38.82436429781007" y="52.28435568681099">Hirdaramani</text>
+<text class="label" x="60.99183019490415" y="54.01664728811475">Hokandara Junction</text>
+<circle class="interchange" cx="37.75346444899401" cy="50.90571689592687" r="0.6"/>
+<text class="label" x="38.50346444899401" y="50.15571689592687">Independence Arcade</text>
+<text class="label" x="38.30041683480534" y="49.87123441164515">Independence Square</text>
+<circle class="interchange" cx="51.615002510677854" cy="53.67190816407498" r="0.6"/>
+<text class="label" x="52.365002510677854" y="52.92190816407498">Isurupaya</text>
+<text class="label" x="43.54975196776259" y="10.629776958302127">Ja Ela</text>
+<text class="label" x="38.058345796650336" y="51.38069604313287">Jawatta Road</text>
+<text class="label" x="44.30939178192587" y="87.96354226460757">Jayanthi Mawatha Stop</text>
+<text class="label" x="57.04877942467639" y="27.70132983543328">Kadawatha</text>
+<text class="label" x="52.57061124768536" y="58.53393205117876">Kalalgoda Junction</text>
+<text class="label" x="38.449141686093526" y="59.03114175771978">Kalubowila Hospital Stop</text>
+<text class="label" x="45.135694176769235" y="16.981278455210862">Kandana</text>
+<text class="label" x="42.97284842404652" y="74.02675579870501">Katubedda Junction</text>
+<text class="label" x="48.997036142746325" y="34.02032696616336">Kelaniya Campus</text>
+<text class="label" x="54.71694449803478" y="74.40859767437914">Kesbewa</text>
+<text class="label" x="51.60439396609458" y="33.13037569649508">Kiribathgoda</text>
+<text class="label" x="39.99927250390021" y="54.82167859959058">Kirulapone</text>
+<text class="label" x="34.219465342489435" y="48.24646966639215">Kollupitiya</text>
+<text class="label" x="42.372849239259516" y="82.84470607896704">Koralawella</text>
+<text class="label" x="44.846152502540725" y="50.862337250213216">Koswaththa</text>
+<circle class="interchange" cx="59.51226964797763" cy="64.46244437253827" r="0.6"/>
+<text class="label" x="60.26226964797763" y="63.71244437253827">Kottawa</text>
+<circle class="interchange" cx="32.92260270095433" cy="44.126359736775996" r="0.6"/>
+<text class="label" x="33.67260270095433" y="43.376359736775996">Lake House Bus Stop</text>
+<text class="label" x="49.35925529339504" y="71.06917229698723">Lanka Fiber Fabrica</text>
+<text class="label" x="34.665619841181794" y="48.119603862839064">Liberty Bus Stop</text>
+<text class="label" x="45.06005118971715" y="27.693385017194643">Mabola</text>
+<text class="label" x="45.75168914616508" y="23.055953614586034">Mahabage</text>
+<text class="label" x="47.02512833721609" y="90.39363798315637">Mahanama Junction</text>
+<text class="label" x="54.39568084646395" y="30.19180850913028">Mahara Junction</text>
+<text class="label" x="51.45420882548673" y="63.200503257647576">Maharagama Cargills Food City</text>
+<text class="label" x="51.51783250809018" y="62.74752668473375">Maharagama</text>
+<circle class="interchange" cx="61.12166574640364" cy="65.31926432393846" r="0.6"/>
+<text class="label" x="61.87166574640364" y="64.56926432393846">Makumbura</text>
+<text class="label" x="57.76760122856655" y="49.93045734095734">Malabe Bus Stand</text>
+<text class="label" x="39.62357375948035" y="69.02954210762371">Maliban Junction</text>
+<text class="label" x="37.64566803331567" y="44.38318362425747">Maradana</text>
+<text class="label" x="41.98373829903593" y="77.38918981325236">Mendis Lane Rawathawatta</text>
+<text class="label" x="67.88419361649245" y="54.694842724564374">Millennium City</text>
+<text class="label" x="41.63308913304452" y="79.17289972486338">Moratuwa</text>
+<text class="label" x="37.12998370757073" y="66.27605060989733">Mount Lavinia</text>
+<circle class="interchange" cx="44.7847329778043" cy="49.86665794192989" r="0.6"/>
+<text class="label" x="45.5347329778043" y="49.11665794192989">NAITA</text>
+<text class="label" x="40.40103687251953" y="51.51694520845667">Narahenpita Junction</text>
+<circle class="interchange" cx="39.622724209093434" cy="53.29802805225579" r="0.6"/>
+<text class="label" x="40.372724209093434" y="52.54802805225579">Narahenpita</text>
+<text class="label" x="35.05626053567124" y="45.658786517860506">Nawaloka Bus Stop</text>
+<text class="label" x="49.53244560737696" y="60.57161061905927">Nawinna</text>
+<text class="label" x="38.91257011998151" y="67.63002036837932">Near Lalanka Head Office</text>
+<text class="label" x="37.4328701796327" y="48.215242132048125">Nelum Pokuna</text>
+<text class="label" x="64.37922964385973" y="55.17722557444221">Nisaco Mall</text>
+<text class="label" x="42.90780938409596" y="57.61313877692134">Nugegoda 01</text>
+<text class="label" x="43.00886140540841" y="39.86197465673789">Orugodawatta</text>
+<text class="label" x="46.7283223733328" y="90.0302584335569">Palam Junction</text>
+<text class="label" x="51.00237284223947" y="51.948973351469434">Palam Thuna Junction</text>
+<text class="label" x="47.05938946998198" y="91.1316765384436">Panadura Base Hospital</text>
+<text class="label" x="46.54496323965732" y="93.25">Panadura</text>
+<circle class="interchange" cx="55.71421437475836" cy="63.68727972786472" r="0.6"/>
+<text class="label" x="56.46421437475836" y="62.93727972786472">Pannipitiya</text>
+<text class="label" x="41.69963339429872" y="38.26881340994568">Peliyagoda (New Kelani Bridge)</text>
+<text class="label" x="41.47250223923738" y="36.47691131824765">Peliyagoda 02</text>
+<text class="label" x="43.428571023494584" y="60.66424894185665">Pepiliyana</text>
+<circle class="interchange" cx="34.66057165797494" cy="44.15424169868936" r="0.6"/>
+<text class="label" x="35.41057165797494" y="43.40424169868936">Pettah</text>
+<text class="label" x="51.171092424288716" y="72.97348791105335">Piliyandala Bus Stand Stop</text>
+<text class="label" x="36.143623889801056" y="48.071389606673634">Public Library</text>
+<circle class="interchange" cx="43.9402834665582" cy="49.41653741901092" r="0.6"/>
+<text class="label" x="44.6902834665582" y="48.66653741901092">Rajagiriya</text>
+<text class="label" x="40.81903399915427" y="70.16436914838803">Rathmalana Tec</text>
+<text class="label" x="45.03001416159158" y="62.49455227836324">Raththanapitiya</text>
+<circle class="interchange" cx="32.86580638350755" cy="44.41219572733033" r="0.6"/>
+<text class="label" x="33.61580638350755" y="43.66219572733033">Regal Cinema</text>
+<text class="label" x="39.086365381570126" y="55.56616061587619">Royal Institute Bus Stop</text>
+<circle class="interchange" cx="48.22102052676782" cy="50.790213160804875" r="0.6"/>
+<text class="label" x="48.97102052676782" y="50.040213160804875">Sethsiripaya</text>
+<circle class="interchange" cx="39.51154046672708" cy="49.0865864836879" r="0.6"/>
+<text class="label" x="40.26154046672708" y="48.3365864836879">Singer Mega - Colombo 8</text>
+<text class="label" x="55.6808702486821" y="49.01149120812769">Thalahena Junction</text>
+<text class="label" x="51.40655846150012" y="49.282963604428744">Thalangama Depot</text>
+<text class="label" x="50.96006938378762" y="54.129996966987605">Thalangama Junction</text>
+<text class="label" x="53.4843030455381" y="56.175927923630525">Thalawathugoda</text>
+<text class="label" x="37.41051782133236" y="52.99401823669259">Thimbirigasyaya</text>
+<text class="label" x="45.907868035942" y="35.50739832771701">Thorana Junction</text>
+<circle class="interchange" cx="35.928952569270926" cy="51.8363220175001" r="0.6"/>
+<text class="label" x="36.678952569270926" y="51.0863220175001">Thummulla</text>
+<circle class="interchange" cx="36.88492929027646" cy="47.65198962237647" r="0.6"/>
+<text class="label" x="37.63492929027646" y="46.90198962237647">Town Hall</text>
+<text class="label" x="36.41377902267144" y="46.38574165128572">Union Place</text>
+<circle class="interchange" cx="39.60093263942852" cy="52.32737120428996" r="0.6"/>
+<text class="label" x="40.35093263942852" y="51.57737120428996">VTA / AAT</text>
+<text class="label" x="37.03690711257642" y="56.28246407461591">W.A. Silva Mawatha</text>
+<text class="label" x="43.902131618700764" y="30.47779219348671">Wattala</text>
+<text class="label" x="48.44706871684309" y="68.77741955808327">Weerasinghe Mawatha</text>
+<text class="label" x="44.36643622618226" y="12.509447377071352">Weligampitiya</text>
+<circle class="interchange" cx="35.24383368049441" cy="57.20552852306767" r="0.6"/>
+<text class="label" x="35.99383368049441" y="56.45552852306767">Wellawatta</text>
+<text class="label" x="46.82904567840252" y="67.3244283392871">Werahera</text>
+<text class="label" x="47.43349312913592" y="60.374046797639515">Wijerama Junction</text>
+<text class="label" x="39.0120047652906" y="48.22525867341956">Wijerama</text>
+<text class="label" x="37.35693513471612" y="58.96961577321858">William Junction</text>
 </svg>

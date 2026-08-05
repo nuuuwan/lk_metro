@@ -1,0 +1,171 @@
+{
+  "origin_stops": [{ "name": "Colombo Fort", "x": 0, "y": 0 }],
+  "routes": [
+    {
+      "id": "CM02",
+      "segments": [
+        {
+          "direction": "W",
+          "stops": [
+            "Millennium City",
+            "Athurugiriya Hospital",
+            "Athurugiriya Town",
+            "Nisaco Mall",
+            "Hokandara Junction",
+            "Arangala Junction",
+            "Malabe Bus Stand",
+            "Thalahena Junction",
+            "Isurupaya",
+            "Thalangama Junction",
+            "Koswaththa",
+            "Sethsiripaya",
+            "NAITA",
+            "Rajagiriya",
+            "Castle Hospital",
+            "Borella",
+            "Town Hall",
+            "Union Place",
+            "Nawaloka Bus Stop",
+            "Regal Cinema",
+            "Lake House Bus Stop",
+            "Colombo Fort"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM03",
+      "segments": [
+        {
+          "direction": "NW",
+          "stops": [
+            "Makumbura",
+            "Kottawa",
+            "Pannipitiya",
+            "Maharagama Cargills Food City",
+            "Cancer Hospital Bus Stop 01",
+            "Maharagama",
+            "Nawinna",
+            "Wijerama Junction",
+            "Delkanda Junction",
+            "Nugegoda 01",
+            "Kirulapone"
+          ]
+        },
+        {
+          "direction": "N",
+          "stops": [
+            "Kirulapone",
+            "Narahenpita",
+            "VTA / AAT",
+            "Narahenpita Junction",
+            "Army Hospital Borella",
+            "Singer Mega - Colombo 8",
+            "Borella",
+            "Campbell Park",
+            "Dematagoda"
+          ]
+        },
+        {
+          "direction": "NE",
+          "stops": [
+            "Dematagoda",
+            "Orugodawatta",
+            "Thorana Junction",
+            "Kelaniya Campus",
+            "Kiribathgoda",
+            "Mahara Junction",
+            "Kadawatha"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM04",
+      "segments": [
+        {
+          "direction": "S",
+          "stops": [
+            "Dematagoda",
+            "Campbell Park",
+            "Borella",
+            "Singer Mega - Colombo 8"
+          ]
+        },
+        {
+          "direction": "SW",
+          "stops": [
+            "Singer Mega - Colombo 8",
+            "Independence Arcade",
+            "Thummulla",
+            "Bambalapitiya"
+          ]
+        },
+        {
+          "direction": "S",
+          "stops": [
+            "Bambalapitiya",
+            "Wellawatta",
+            "William Junction",
+            "Dehiwala",
+            "Mount Lavinia",
+            "Near Lalanka Head Office",
+            "Maliban Junction",
+            "Rathmalana Tec",
+            "Golumadama Junction",
+            "German Tec Angulana",
+            "Katubedda Junction",
+            "Mendis Lane Rawathawatta",
+            "Moratuwa",
+            "Koralawella",
+            "Egoda Uyana",
+            "Jayanthi Mawatha Stop",
+            "Palam Junction",
+            "Mahanama Junction",
+            "Panadura Base Hospital",
+            "Panadura"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CM05",
+      "segments": [
+        {
+          "direction": "NW",
+          "stops": ["Thalangama Depot", "Battaramulla Junction", "Sethsiripaya"]
+        },
+        {
+          "direction": "W",
+          "stops": [
+            "Sethsiripaya",
+            "NAITA",
+            "Rajagiriya",
+            "Castle Hospital",
+            "Borella"
+          ]
+        },
+        {
+          "direction": "N",
+          "stops": [
+            "Borella",
+            "Campbell Park",
+            "Dematagoda",
+            "Peliyagoda (New Kelani Bridge)",
+            "Peliyagoda 02",
+            "Hekitta Junction",
+            "Wattala",
+            "Hendala",
+            "Mabola",
+            "Mahabage",
+            "Kandana",
+            "Weligampitiya",
+            "Ja Ela",
+            "CTB Junction",
+            "Ekala"
+          ]
+        }
+      ]
+    }
+  ]
+}

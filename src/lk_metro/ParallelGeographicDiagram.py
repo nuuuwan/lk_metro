@@ -41,7 +41,9 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		self._edge_routes = self._build_edge_routes()
 
 	def layout(self) -> dict[str, Point]:
-		positions = super().layout()
+		positions = {
+			stop.name: (stop.xy[0], stop.xy[1]) for stop in self.stops
+		}
 		min_x = min(point[0] for point in positions.values())
 		max_x = max(point[0] for point in positions.values())
 		min_y = min(point[1] for point in positions.values())
