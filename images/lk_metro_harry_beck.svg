@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="154" height="168" viewBox="0 0 154 168">
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="168" viewBox="0 0 150 168">
 <style>
 .grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }
 .grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }
@@ -10,9 +10,8 @@
 .map-title { font: bold 4px sans-serif; fill: #111; }
 .legend-label { font: 1.8px sans-serif; fill: #111; dominant-baseline: middle; }}
 </style>
-<rect width="154" height="168" fill="#f7f5ef"/>
+<rect width="150" height="168" fill="#f7f5ef"/>
 <g transform="translate(0 8)">
-<polyline class="route" points="90.0,62.0 86.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="86.0,62.0 82.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="82.0,62.0 78.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="78.0,62.0 74.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
@@ -21,8 +20,9 @@
 <polyline class="route" points="66.0,62.0 62.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="62.0,62.0 58.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="58.0,62.0 54.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="54.0,62.0 50.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="50.0,62.0 46.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="54.0,62.0 50.0,66.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="50.0,66.0 46.0,66.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="46.0,66.0 46.0,62.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="46.0,62.65 42.0,62.65" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="42.0,62.65 38.0,62.65" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="38.0,62.65 34.0,62.65" stroke="#ffd400" stroke-width="0.65"/>
@@ -132,14 +132,14 @@
 <polyline class="route" points="18.0,58.0 14.0,58.0" stroke="#0070a8" stroke-width="0.65"/>
 <polyline class="route" points="14.0,58.0 10.0,58.0" stroke="#0070a8" stroke-width="0.65"/>
 <polyline class="route" points="10.229809703885628,58.22980970388563 6.229809703885628,62.22980970388563" stroke="#0070a8" stroke-width="0.65"/>
-<line class="station-tick" x1="70.0" y1="61.675" x2="70.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="70.0" y="61.275" text-anchor="start" transform="rotate(-90.0 70.0 61.275)">Arangala Junction</text>
+<line class="station-tick" x1="66.0" y1="61.675" x2="66.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="66.0" y="61.275" text-anchor="start" transform="rotate(-90.0 66.0 61.275)">Arangala Junction</text>
 <line class="station-tick" x1="30.325" y1="70.0" x2="30.724999999999998" y2="70.0" stroke="#8a0f45"/>
 <text class="label" x="30.724999999999998" y="70.0" text-anchor="start" transform="rotate(0.0 30.724999999999998 70.0)">Army Hospital Borella</text>
-<line class="station-tick" x1="86.0" y1="61.675" x2="86.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="86.0" y="61.275" text-anchor="start" transform="rotate(-90.0 86.0 61.275)">Athurugiriya Hospital</text>
 <line class="station-tick" x1="82.0" y1="61.675" x2="82.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="82.0" y="61.275" text-anchor="start" transform="rotate(-90.0 82.0 61.275)">Athurugiriya Town</text>
+<text class="label" x="82.0" y="61.275" text-anchor="start" transform="rotate(-90.0 82.0 61.275)">Athurugiriya Hospital</text>
+<line class="station-tick" x1="78.0" y1="61.675" x2="78.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="78.0" y="61.275" text-anchor="start" transform="rotate(-90.0 78.0 61.275)">Athurugiriya Town</text>
 <line class="station-tick" x1="18.325" y1="78.0" x2="18.724999999999998" y2="78.0" stroke="#f57c00"/>
 <text class="label" x="18.724999999999998" y="78.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 78.0)">Bambalapitiya</text>
 <line class="station-tick" x1="49.77019029611437" y1="57.77019029611437" x2="49.48734758363975" y2="57.48734758363975" stroke="#6f2dbd"/>
@@ -182,12 +182,12 @@
 <text class="label" x="30.724999999999998" y="42.0" text-anchor="start" transform="rotate(0.0 30.724999999999998 42.0)">Hekitta Junction</text>
 <line class="station-tick" x1="30.325" y1="34.0" x2="30.724999999999998" y2="34.0" stroke="#6f2dbd"/>
 <text class="label" x="30.724999999999998" y="34.0" text-anchor="start" transform="rotate(0.0 30.724999999999998 34.0)">Hendala</text>
-<line class="station-tick" x1="74.0" y1="61.675" x2="74.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="74.0" y="61.275" text-anchor="start" transform="rotate(-90.0 74.0 61.275)">Hokandara Junction</text>
+<line class="station-tick" x1="70.0" y1="61.675" x2="70.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="70.0" y="61.275" text-anchor="start" transform="rotate(-90.0 70.0 61.275)">Hokandara Junction</text>
 <line class="station-tick" x1="25.77019029611437" y1="69.77019029611438" x2="25.487347583639753" y2="69.48734758363976" stroke="#f57c00"/>
 <text class="label" x="25.487347583639753" y="69.48734758363976" text-anchor="start" transform="rotate(45.0 25.487347583639753 69.48734758363976)">Independence Arcade</text>
-<line class="station-tick" x1="58.0" y1="61.675" x2="58.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="58.0" y="61.275" text-anchor="start" transform="rotate(-90.0 58.0 61.275)">Isurupaya</text>
+<line class="station-tick" x1="53.77019029611437" y1="61.77019029611437" x2="53.48734758363975" y2="61.48734758363975" stroke="#ffd400"/>
+<text class="label" x="53.48734758363975" y="61.48734758363975" text-anchor="start" transform="rotate(45.0 53.48734758363975 61.48734758363975)">Isurupaya</text>
 <line class="station-tick" x1="30.325" y1="14.0" x2="30.724999999999998" y2="14.0" stroke="#6f2dbd"/>
 <text class="label" x="30.724999999999998" y="14.0" text-anchor="start" transform="rotate(0.0 30.724999999999998 14.0)">Ja Ela</text>
 <line class="station-tick" x1="18.325" y1="138.0" x2="18.724999999999998" y2="138.0" stroke="#f57c00"/>
@@ -212,8 +212,8 @@
 <text class="label" x="30.724999999999998" y="86.0" text-anchor="start" transform="rotate(0.0 30.724999999999998 86.0)">Kirulapone</text>
 <line class="station-tick" x1="18.325" y1="130.0" x2="18.724999999999998" y2="130.0" stroke="#f57c00"/>
 <text class="label" x="18.724999999999998" y="130.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 130.0)">Koralawella</text>
-<line class="station-tick" x1="50.0" y1="61.675" x2="50.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="50.0" y="61.275" text-anchor="start" transform="rotate(-90.0 50.0 61.275)">Koswaththa</text>
+<line class="station-tick" x1="46.325" y1="66.0" x2="46.725" y2="66.0" stroke="#ffd400"/>
+<text class="label" x="46.725" y="66.0" text-anchor="start" transform="rotate(0.0 46.725 66.0)">Koswaththa</text>
 <circle class="interchange" cx="66.0" cy="86.0" r="0.6"/>
 <text class="label" x="66.75" y="85.25" text-anchor="start">Kottawa</text>
 <circle class="interchange" cx="10.0" cy="66.0" r="0.6"/>
@@ -234,16 +234,16 @@
 <text class="label" x="50.0" y="85.27499999999999" text-anchor="start" transform="rotate(-90.0 50.0 85.27499999999999)">Maharagama</text>
 <circle class="interchange" cx="70.0" cy="86.0" r="0.6"/>
 <text class="label" x="70.75" y="85.25" text-anchor="start">Makumbura</text>
-<line class="station-tick" x1="66.0" y1="61.675" x2="66.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="66.0" y="61.275" text-anchor="start" transform="rotate(-90.0 66.0 61.275)">Malabe Bus Stand</text>
+<line class="station-tick" x1="62.0" y1="61.675" x2="62.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="62.0" y="61.275" text-anchor="start" transform="rotate(-90.0 62.0 61.275)">Malabe Bus Stand</text>
 <line class="station-tick" x1="18.325" y1="102.0" x2="18.724999999999998" y2="102.0" stroke="#f57c00"/>
 <text class="label" x="18.724999999999998" y="102.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 102.0)">Maliban Junction</text>
 <line class="station-tick" x1="14.229809703885628" y1="58.22980970388563" x2="14.512652416360247" y2="58.51265241636025" stroke="#0070a8"/>
 <text class="label" x="14.512652416360247" y="58.51265241636025" text-anchor="start" transform="rotate(45.0 14.512652416360247 58.51265241636025)">Maradana</text>
 <line class="station-tick" x1="18.325" y1="122.0" x2="18.724999999999998" y2="122.0" stroke="#f57c00"/>
 <text class="label" x="18.724999999999998" y="122.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 122.0)">Mendis Lane Rawathawatta</text>
-<line class="station-tick" x1="90.0" y1="61.675" x2="90.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="90.0" y="61.275" text-anchor="start" transform="rotate(-90.0 90.0 61.275)">Millennium City</text>
+<line class="station-tick" x1="86.0" y1="61.675" x2="86.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="86.0" y="61.275" text-anchor="start" transform="rotate(-90.0 86.0 61.275)">Millennium City</text>
 <line class="station-tick" x1="18.325" y1="126.0" x2="18.724999999999998" y2="126.0" stroke="#f57c00"/>
 <text class="label" x="18.724999999999998" y="126.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 126.0)">Moratuwa</text>
 <line class="station-tick" x1="18.325" y1="94.0" x2="18.724999999999998" y2="94.0" stroke="#f57c00"/>
@@ -262,8 +262,8 @@
 <text class="label" x="18.724999999999998" y="98.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 98.0)">Near Lalanka Head Office</text>
 <line class="station-tick" x1="22.22980970388563" y1="69.77019029611438" x2="22.512652416360247" y2="69.48734758363976" stroke="#006b3f"/>
 <text class="label" x="22.512652416360247" y="69.48734758363976" text-anchor="start" transform="rotate(-45.0 22.512652416360247 69.48734758363976)">Nelum Pokuna</text>
-<line class="station-tick" x1="78.0" y1="61.675" x2="78.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="78.0" y="61.275" text-anchor="start" transform="rotate(-90.0 78.0 61.275)">Nisaco Mall</text>
+<line class="station-tick" x1="74.0" y1="61.675" x2="74.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="74.0" y="61.275" text-anchor="start" transform="rotate(-90.0 74.0 61.275)">Nisaco Mall</text>
 <line class="station-tick" x1="34.0" y1="85.675" x2="34.0" y2="85.27499999999999" stroke="#8a0f45"/>
 <text class="label" x="34.0" y="85.27499999999999" text-anchor="start" transform="rotate(-90.0 34.0 85.27499999999999)">Nugegoda 01</text>
 <line class="station-tick" x1="34.22980970388563" y1="50.22980970388563" x2="34.51265241636025" y2="50.51265241636025" stroke="#8a0f45"/>
@@ -300,12 +300,12 @@
 <text class="label" x="46.75" y="61.25" text-anchor="start">Sethsiripaya</text>
 <circle class="interchange" cx="30.0" cy="66.0" r="0.6"/>
 <text class="label" x="30.75" y="65.25" text-anchor="start">Singer Mega - Colombo 8</text>
-<line class="station-tick" x1="62.0" y1="61.675" x2="62.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="62.0" y="61.275" text-anchor="start" transform="rotate(-90.0 62.0 61.275)">Thalahena Junction</text>
+<line class="station-tick" x1="58.0" y1="61.675" x2="58.0" y2="61.275" stroke="#ffd400"/>
+<text class="label" x="58.0" y="61.275" text-anchor="start" transform="rotate(-90.0 58.0 61.275)">Thalahena Junction</text>
 <line class="station-tick" x1="53.77019029611437" y1="53.77019029611437" x2="53.48734758363975" y2="53.48734758363975" stroke="#6f2dbd"/>
 <text class="label" x="53.48734758363975" y="53.48734758363975" text-anchor="start" transform="rotate(45.0 53.48734758363975 53.48734758363975)">Thalangama Depot</text>
-<line class="station-tick" x1="54.0" y1="61.675" x2="54.0" y2="61.275" stroke="#ffd400"/>
-<text class="label" x="54.0" y="61.275" text-anchor="start" transform="rotate(-90.0 54.0 61.275)">Thalangama Junction</text>
+<line class="station-tick" x1="50.0" y1="65.675" x2="50.0" y2="65.27499999999999" stroke="#ffd400"/>
+<text class="label" x="50.0" y="65.27499999999999" text-anchor="start" transform="rotate(-90.0 50.0 65.27499999999999)">Thalangama Junction</text>
 <line class="station-tick" x1="62.0" y1="77.675" x2="62.0" y2="77.27499999999999" stroke="#0070a8"/>
 <text class="label" x="62.0" y="77.27499999999999" text-anchor="start" transform="rotate(-90.0 62.0 77.27499999999999)">Thalawathugoda</text>
 <line class="station-tick" x1="22.325" y1="78.0" x2="22.724999999999998" y2="78.0" stroke="#006b3f"/>
@@ -338,19 +338,19 @@
 <text class="label" x="18.724999999999998" y="86.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 86.0)">William Junction</text>
 </g>
 <text class="map-title" x="6" y="5.5">Lanka Metro</text>
-<text class="legend-label" x="100" y="10" font-weight="bold">Routes</text>
-<line x1="100" y1="14" x2="106" y2="14" stroke="#0070a8" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="14">CM01: Makumbura to Pettah</text>
-<line x1="100" y1="18" x2="106" y2="18" stroke="#ffd400" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="18">CM02: Millennium City to Colombo Fort</text>
-<line x1="100" y1="22" x2="106" y2="22" stroke="#8a0f45" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="22">CM03: Kadawatha to Makumbura</text>
-<line x1="100" y1="26" x2="106" y2="26" stroke="#f57c00" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="26">CM04: Dematagoda to Panadura</text>
-<line x1="100" y1="30" x2="106" y2="30" stroke="#6f2dbd" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="30">CM05: Battaramulla to Ekala</text>
-<line x1="100" y1="34" x2="106" y2="34" stroke="#72b043" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="34">CM06: Kollupitiya Circular Route</text>
-<line x1="100" y1="38" x2="106" y2="38" stroke="#006b3f" stroke-width="0.65" stroke-linecap="round"/>
-<text class="legend-label" x="108" y="38">CM08: Kesbewa to Pettah</text>
+<text class="legend-label" x="96" y="10" font-weight="bold">Routes</text>
+<line x1="96" y1="14" x2="102" y2="14" stroke="#0070a8" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="14">CM01: Makumbura to Pettah</text>
+<line x1="96" y1="18" x2="102" y2="18" stroke="#ffd400" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="18">CM02: Millennium City to Colombo Fort</text>
+<line x1="96" y1="22" x2="102" y2="22" stroke="#8a0f45" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="22">CM03: Kadawatha to Makumbura</text>
+<line x1="96" y1="26" x2="102" y2="26" stroke="#f57c00" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="26">CM04: Dematagoda to Panadura</text>
+<line x1="96" y1="30" x2="102" y2="30" stroke="#6f2dbd" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="30">CM05: Battaramulla to Ekala</text>
+<line x1="96" y1="34" x2="102" y2="34" stroke="#72b043" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="34">CM06: Kollupitiya Circular Route</text>
+<line x1="96" y1="38" x2="102" y2="38" stroke="#006b3f" stroke-width="0.65" stroke-linecap="round"/>
+<text class="legend-label" x="104" y="38">CM08: Kesbewa to Pettah</text>
 </svg>

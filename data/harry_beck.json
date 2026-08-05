@@ -1,265 +1,194 @@
 {
-  "origin_stops": [{ "name": "Colombo Fort", "x": 0, "y": 0 }],
-  "routes": [
-    {
-      "id": "CM02",
-      "segments": [
-        {
-          "direction": "W",
-          "stops": [
-            "Millennium City",
-            "Athurugiriya Hospital",
-            "Athurugiriya Town",
-            "Nisaco Mall",
-            "Hokandara Junction",
-            "Arangala Junction",
-            "Malabe Bus Stand",
-            "Thalahena Junction",
-            "Isurupaya",
-            "Thalangama Junction",
-            "Koswaththa",
-            "Sethsiripaya",
-            "NAITA",
-            "Rajagiriya",
-            "Castle Hospital",
-            "Borella",
-            "Town Hall"
-          ]
-        },
-        {
-          "direction": "SW",
-          "stops": ["Town Hall", "Union Place"]
-        },
-        {
-          "direction": "W",
-          "stops": [
-            "Union Place",
-            "Nawaloka Bus Stop",
-            "Regal Cinema",
-            "Lake House Bus Stop"
-          ]
-        },
-        {
-          "direction": "NW",
-          "stops": ["Lake House Bus Stop", "Colombo Fort"]
-        }
+  "origin_stops": {
+    "Colombo Fort": [0, 0]
+  },
+  "routes": {
+    "CM02": [
+      [
+        "W",
+        [
+          "Millennium City",
+          "Athurugiriya Hospital",
+          "Athurugiriya Town",
+          "Nisaco Mall",
+          "Hokandara Junction",
+          "Arangala Junction",
+          "Malabe Bus Stand",
+          "Thalahena Junction",
+          "Isurupaya"
+        ]
+      ],
+      ["SW", ["Isurupaya", "Thalangama Junction"]],
+      ["W", ["Thalangama Junction", "Koswaththa"]],
+      ["N", ["Koswaththa", "Sethsiripaya"]],
+      [
+        "W",
+        [
+          "Sethsiripaya",
+          "NAITA",
+          "Rajagiriya",
+          "Castle Hospital",
+          "Borella",
+          "Town Hall"
+        ]
+      ],
+      ["SW", ["Town Hall", "Union Place"]],
+      [
+        "W",
+        [
+          "Union Place",
+          "Nawaloka Bus Stop",
+          "Regal Cinema",
+          "Lake House Bus Stop"
+        ]
+      ],
+      ["NW", ["Lake House Bus Stop", "Colombo Fort"]]
+    ],
+    "CM03": [
+      [
+        "W",
+        [
+          "Makumbura",
+          "Kottawa",
+          "Pannipitiya",
+          "Maharagama Cargills Food City",
+          "Cancer Hospital Bus Stop 01",
+          "Maharagama",
+          "Nawinna",
+          "Wijerama Junction",
+          "Delkanda Junction",
+          "Nugegoda 01",
+          "Kirulapone"
+        ]
+      ],
+      [
+        "N",
+        [
+          "Kirulapone",
+          "Narahenpita",
+          "VTA / AAT",
+          "Narahenpita Junction",
+          "Army Hospital Borella",
+          "Singer Mega - Colombo 8",
+          "Borella",
+          "Campbell Park",
+          "Dematagoda"
+        ]
+      ],
+      [
+        "NE",
+        [
+          "Dematagoda",
+          "Orugodawatta",
+          "Thorana Junction",
+          "Kelaniya Campus",
+          "Kiribathgoda",
+          "Mahara Junction",
+          "Kadawatha"
+        ]
       ]
-    },
-    {
-      "id": "CM03",
-      "segments": [
-        {
-          "direction": "W",
-          "stops": [
-            "Makumbura",
-            "Kottawa",
-            "Pannipitiya",
-            "Maharagama Cargills Food City",
-            "Cancer Hospital Bus Stop 01",
-            "Maharagama",
-            "Nawinna",
-            "Wijerama Junction",
-            "Delkanda Junction",
-            "Nugegoda 01",
-            "Kirulapone"
-          ]
-        },
-        {
-          "direction": "N",
-          "stops": [
-            "Kirulapone",
-            "Narahenpita",
-            "VTA / AAT",
-            "Narahenpita Junction",
-            "Army Hospital Borella",
-            "Singer Mega - Colombo 8",
-            "Borella",
-            "Campbell Park",
-            "Dematagoda"
-          ]
-        },
-        {
-          "direction": "NE",
-          "stops": [
-            "Dematagoda",
-            "Orugodawatta",
-            "Thorana Junction",
-            "Kelaniya Campus",
-            "Kiribathgoda",
-            "Mahara Junction",
-            "Kadawatha"
-          ]
-        }
+    ],
+    "CM04": [
+      [
+        "S",
+        ["Dematagoda", "Campbell Park", "Borella", "Singer Mega - Colombo 8"]
+      ],
+      [
+        "SW",
+        [
+          "Singer Mega - Colombo 8",
+          "Independence Arcade",
+          "Thummulla",
+          "Bambalapitiya"
+        ]
+      ],
+      [
+        "S",
+        [
+          "Bambalapitiya",
+          "Wellawatta",
+          "William Junction",
+          "Dehiwala",
+          "Mount Lavinia",
+          "Near Lalanka Head Office",
+          "Maliban Junction",
+          "Rathmalana Tec",
+          "Golumadama Junction",
+          "German Tec Angulana",
+          "Katubedda Junction",
+          "Mendis Lane Rawathawatta",
+          "Moratuwa",
+          "Koralawella",
+          "Egoda Uyana",
+          "Jayanthi Mawatha Stop",
+          "Palam Junction",
+          "Mahanama Junction",
+          "Panadura Base Hospital",
+          "Panadura"
+        ]
       ]
-    },
-    {
-      "id": "CM04",
-      "segments": [
-        {
-          "direction": "S",
-          "stops": [
-            "Dematagoda",
-            "Campbell Park",
-            "Borella",
-            "Singer Mega - Colombo 8"
-          ]
-        },
-        {
-          "direction": "SW",
-          "stops": [
-            "Singer Mega - Colombo 8",
-            "Independence Arcade",
-            "Thummulla",
-            "Bambalapitiya"
-          ]
-        },
-        {
-          "direction": "S",
-          "stops": [
-            "Bambalapitiya",
-            "Wellawatta",
-            "William Junction",
-            "Dehiwala",
-            "Mount Lavinia",
-            "Near Lalanka Head Office",
-            "Maliban Junction",
-            "Rathmalana Tec",
-            "Golumadama Junction",
-            "German Tec Angulana",
-            "Katubedda Junction",
-            "Mendis Lane Rawathawatta",
-            "Moratuwa",
-            "Koralawella",
-            "Egoda Uyana",
-            "Jayanthi Mawatha Stop",
-            "Palam Junction",
-            "Mahanama Junction",
-            "Panadura Base Hospital",
-            "Panadura"
-          ]
-        }
+    ],
+    "CM05": [
+      ["SW", ["Thalangama Depot", "Battaramulla Junction", "Sethsiripaya"]],
+      [
+        "W",
+        ["Sethsiripaya", "NAITA", "Rajagiriya", "Castle Hospital", "Borella"]
+      ],
+      [
+        "N",
+        [
+          "Borella",
+          "Campbell Park",
+          "Dematagoda",
+          "Peliyagoda (New Kelani Bridge)",
+          "Peliyagoda 02",
+          "Hekitta Junction",
+          "Wattala",
+          "Hendala",
+          "Mabola",
+          "Mahabage",
+          "Kandana",
+          "Weligampitiya",
+          "Ja Ela",
+          "CTB Junction",
+          "Ekala"
+        ]
       ]
-    },
-    {
-      "id": "CM05",
-      "segments": [
-        {
-          "direction": "SW",
-          "stops": ["Thalangama Depot", "Battaramulla Junction", "Sethsiripaya"]
-        },
-        {
-          "direction": "W",
-          "stops": [
-            "Sethsiripaya",
-            "NAITA",
-            "Rajagiriya",
-            "Castle Hospital",
-            "Borella"
-          ]
-        },
-        {
-          "direction": "N",
-          "stops": [
-            "Borella",
-            "Campbell Park",
-            "Dematagoda",
-            "Peliyagoda (New Kelani Bridge)",
-            "Peliyagoda 02",
-            "Hekitta Junction",
-            "Wattala",
-            "Hendala",
-            "Mabola",
-            "Mahabage",
-            "Kandana",
-            "Weligampitiya",
-            "Ja Ela",
-            "CTB Junction",
-            "Ekala"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CM08",
-      "segments": [
-        {
-          "direction": "NW",
-          "stops": [
-            "Kesbewa",
-            "Piliyandala Bus Stand Stop",
-            "Lanka Fiber Fabrica",
-            "Weerasinghe Mawatha",
-            "Werahera",
-            "Boralesgamuwa",
-            "Raththanapitiya",
-            "Pepiliyana",
-            "Kalubowila Hospital Stop",
-            "Royal Institute Bus Stop",
-            "Havelock",
-            "BRC Junction"
-          ]
-        },
-        {
-          "direction": "N",
-          "stops": [
-            "BRC Junction",
-            "Thimbirigasyaya",
-            "Thummulla",
-            "Nelum Pokuna"
-          ]
-        },
-        {
-          "direction": "W",
-          "stops": ["Lake House Bus Stop", "Colombo Fort"]
-        },
-        {
-          "direction": "NE",
-          "stops": ["Colombo Fort", "Pettah"]
-        }
-      ]
-    },
-    {
-      "id": "CM01",
-      "segments": [
-        {
-          "direction": "NW",
-          "stops": ["Makumbura", "Kottawa", "Pannipitiya"]
-        },
-        {
-          "direction": "N",
-          "stops": ["Pannipitiya", "Kalalgoda Junction", "Thalawathugoda"]
-        },
-        {
-          "direction": "W",
-          "stops": [
-            "Sethsiripaya",
-            "NAITA",
-            "Rajagiriya",
-            "Castle Hospital",
-            "Borella"
-          ]
-        },
-        {
-          "direction": "S",
-          "stops": ["Borella", "Singer Mega - Colombo 8"]
-        },
-        {
-          "direction": "W",
-          "stops": ["Singer Mega - Colombo 8", "Wijerama"]
-        },
-        {
-          "direction": "N",
-          "stops": ["Wijerama", "Town Hall"]
-        },
-        {
-          "direction": "W",
-          "stops": ["Hedges Ct", "Maradana", "Pettah"]
-        },
-        {
-          "direction": "SW",
-          "stops": ["Pettah", "Colombo Fort"]
-        }
-      ]
-    }
-  ]
+    ],
+    "CM08": [
+      [
+        "NW",
+        [
+          "Kesbewa",
+          "Piliyandala Bus Stand Stop",
+          "Lanka Fiber Fabrica",
+          "Weerasinghe Mawatha",
+          "Werahera",
+          "Boralesgamuwa",
+          "Raththanapitiya",
+          "Pepiliyana",
+          "Kalubowila Hospital Stop",
+          "Royal Institute Bus Stop",
+          "Havelock",
+          "BRC Junction"
+        ]
+      ],
+      ["N", ["BRC Junction", "Thimbirigasyaya", "Thummulla", "Nelum Pokuna"]],
+      ["W", ["Lake House Bus Stop", "Colombo Fort"]],
+      ["NE", ["Colombo Fort", "Pettah"]]
+    ],
+    "CM01": [
+      ["NW", ["Makumbura", "Kottawa", "Pannipitiya"]],
+      ["N", ["Pannipitiya", "Kalalgoda Junction", "Thalawathugoda"]],
+      [
+        "W",
+        ["Sethsiripaya", "NAITA", "Rajagiriya", "Castle Hospital", "Borella"]
+      ],
+      ["S", ["Borella", "Singer Mega - Colombo 8"]],
+      ["W", ["Singer Mega - Colombo 8", "Wijerama"]],
+      ["N", ["Wijerama", "Town Hall"]],
+      ["W", ["Hedges Ct", "Maradana", "Pettah"]],
+      ["SW", ["Pettah", "Colombo Fort"]]
+    ]
+  }
 }

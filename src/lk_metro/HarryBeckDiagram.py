@@ -139,20 +139,18 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			design = json.load(file)
 		origin_records = design.get("origin_stops") if isinstance(design, dict) else None
 		records = design.get("routes") if isinstance(design, dict) else None
-		if not isinstance(origin_records, list) or not origin_records:
+		if not isinstance(origin_records, dict) or not origin_records:
 			raise ValueError("Harry Beck design must contain origin stops")
-		if not isinstance(records, list):
-			raise ValueError("Harry Beck design must contain a route list")
+		if not isinstance(records, dict):
+			raise ValueError("Harry Beck design must contain routes")
 
 		routes_by_id = {route.id: route for route in self.routes}
 		stop_names = {stop.name for stop in self.stops}
 		origin_positions = {}
-		for record in origin_records:
-			if not isinstance(record, dict):
+		for name, coordinates in origin_records.items():
+			if not isinstance(coordinates, list) or len(coordinates) != 2:
 				raise ValueError("Harry Beck design contains an invalid origin stop")
-			name = record.get("name")
-			x_coordinate = record.get("x")
-			y_coordinate = record.get("y")
+			x_coordinate, y_coordinate = coordinates
 			if (
 				name not in stop_names
 				or isinstance(x_coordinate, bool)
@@ -163,21 +161,25 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				or not math.isfinite(y_coordinate)
 			):
 				raise ValueError("Harry Beck design contains an invalid origin stop")
-			if name in origin_positions:
-				raise ValueError(f"Harry Beck design repeats origin stop {name!r}")
 			origin_positions[name] = [float(x_coordinate), float(y_coordinate)]
 
 		segments_by_route = {}
 		designed_stops_by_route = {}
-		for record in records:
-			if not isinstance(record, dict) or record.get("id") not in routes_by_id:
+		for route_id, segment_records in records.items():
+			if route_id not in routes_by_id:
 				raise ValueError("Harry Beck design contains an invalid route")
-			route_id = record["id"]
 			if route_id in segments_by_route:
 				raise ValueError(f"Harry Beck design repeats route {route_id}")
-			segments = record.get("segments")
-			if not isinstance(segments, list) or not segments:
+			if not isinstance(segment_records, list) or not segment_records:
 				raise ValueError(f"Harry Beck route {route_id} has no segments")
+			segments = []
+			for index, segment_record in enumerate(segment_records):
+				if not isinstance(segment_record, list) or len(segment_record) != 2:
+					raise ValueError(
+						f"Harry Beck route {route_id} segment {index} is invalid"
+					)
+				direction, stops = segment_record
+				segments.append({"direction": direction, "stops": stops})
 
 			for index, segment in enumerate(segments):
 				if not isinstance(segment, dict):
