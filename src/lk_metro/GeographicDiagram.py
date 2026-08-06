@@ -28,6 +28,10 @@ class GeographicDiagram:
 		"Routes follow the geographic positions of their stops,",
 		"preserving the network's real-world shape and orientation.",
 	)
+	FOOTER_TEXT = (		
+		"Data from https://lankametro.lk"
+		" · Design and Visualisation by https://github.com/nuuuwan"
+	)
 	LEGEND_TITLE = "Routes"
 	TITLE_HEIGHT = 12
 	LOGO_WIDTH = 36
@@ -265,7 +269,7 @@ class GeographicDiagram:
 		footer_y = self._content_dimensions()[1] - 2
 		lines.append(
 			f'<text class="legend-route-label" x="{self.padding}" '
-			f'y="{footer_y}">Source data: https://lankametro.lk</text>'
+			f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
 		)
 		return lines
 

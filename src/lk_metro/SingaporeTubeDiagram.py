@@ -124,7 +124,7 @@ class SingaporeTubeDiagram(HarryBeckDiagram):
 		lines.append(
 			f'<text class="source" x="{self.width - 4}" '
 			f'y="{self.TITLE_HEIGHT + self.height + self.FOOTER_HEIGHT - 2}" '
-			'text-anchor="end">Source data: lankametro.lk</text>'
+			f'text-anchor="end">{html.escape(self.FOOTER_TEXT)}</text>'
 		)
 		return lines
 

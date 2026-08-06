@@ -259,6 +259,6 @@
 <text class="legend-route-label" x="312" y="39.0">CM08: Kesbewa to Pettah</text>
 <text class="legend-route-label" x="304" y="44.5">Routes follow the geographic positions of their stops,</text>
 <text class="legend-route-label" x="304" y="46.9">preserving the network&#x27;s real-world shape and orientation.</text>
-<text class="legend-route-label" x="6" y="310">Source data: https://lankametro.lk</text>
+<text class="legend-route-label" x="6" y="310">Data from https://lankametro.lk · Design and Visualisation by https://github.com/nuuuwan</text>
 </g>
 </svg>
