@@ -2,6 +2,8 @@ import html
 import math
 from pathlib import Path
 
+from utils_future import Log
+
 from .DiagramStyle import (
 	INTERCHANGE_RADIUS,
 	INTERCHANGE_STROKE_WIDTH,
@@ -15,12 +17,28 @@ from .Stop import Stop
 
 
 Edge = tuple[str, str]
+Bounds = tuple[float, float, float, float]
+
+
+log = Log("ParallelGeographicDiagram")
 
 
 class ParallelGeographicDiagram(GeographicDiagram):
 	STATION_TICK_LENGTH = STATION_TICK_LENGTH
 	STATION_TICK_STROKE_WIDTH = STATION_TICK_STROKE_WIDTH
+	ROUTE_CURVE_RADIUS = 1.5
 	ROTATE_LABELS = True
+	WARN_LABEL_OVERLAPS = False
+	LABEL_DIRECTIONS = (
+		(1.0, 0.0),
+		(1.0, 1.0),
+		(0.0, 1.0),
+		(-1.0, 1.0),
+		(-1.0, 0.0),
+		(-1.0, -1.0),
+		(0.0, -1.0),
+		(1.0, -1.0),
+	)
 
 	def __init__(
 		self,
@@ -98,39 +116,47 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			"<style>",
 			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
-			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
-			f".station-tick {{ stroke-linecap: round; "
-			f"stroke-width: {self.STATION_TICK_STROKE_WIDTH}; }}",
-			f".interchange {{ fill: white; stroke: {self.TEXT_COLOR}; "
+			".route { fill: none; stroke-linecap: butt; stroke-linejoin: round; }",
+			f".station {{ stroke-width: "
+			f"{self.STATION_TICK_STROKE_WIDTH}; stroke-linecap: square; }}",
+			f".interchange {{ fill: white; stroke: #000000; "
 			f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
 			f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
-			f"fill: {self.TEXT_COLOR}; paint-order: stroke; "
-			f"stroke: {self.BACKGROUND_COLOR}; stroke-width: {self.LABEL_HALO_WIDTH}; "
+			f"fill: {self.LABEL_COLOR}; "
 			"dominant-baseline: middle; }",
+			f".terminal-label {{ font-size: {self._terminal_label_font_size()}px; "
+			"font-weight: bold; }",
+			f".route-name {{ font: bold {self._route_name_font_size()}px "
+			f"{self.FONT_FAMILY}; paint-order: stroke fill; stroke: white; "
+			"stroke-width: 0.7; stroke-linejoin: round; }",
 			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px {self.FONT_FAMILY}; "
 			f"fill: {self.TEXT_COLOR}; }}",
 			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px {self.FONT_FAMILY}; "
 			f"fill: {self.TEXT_COLOR}; "
-			"dominant-baseline: middle; }}",
+			"dominant-baseline: middle; }",
+			f".legend-route-label {{ font: {self.LEGEND_FONT_SIZE}px "
+			f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
+			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{svg_width}" height="{svg_height}" '
 			f'fill="{self.BACKGROUND_COLOR}"/>',
 			f'<g transform="translate({content_x} {content_y})">',
 			f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
+			*self._background_svg_lines(),
 			*(self._grid_svg_lines() if self.SHOW_GRID else []),
 		]
 
 		for route in self.routes:
-			for path in segments[route.id]:
-				points = " ".join(f"{x},{y}" for x, y in path)
-				lines.append(
-					f'<polyline class="route" points="{points}" '
-					f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
-				)
+			path_data = self._route_path_data(segments[route.id])
+			lines.append(
+				f'<path class="route" d="{path_data}" stroke="{route.color}" '
+				f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
+			)
+		lines.extend(self._route_name_svg_lines())
 
 		memberships = self._route_memberships()
+		route_colors = {route.id: route.color for route in self.routes}
 		station_ticks = self.station_ticks(positions, segments, memberships)
-		routes_by_id = {route.id: route for route in self.routes}
 		for stop in self.stops:
 			x, y = positions[stop.name]
 			if len(memberships[stop.name]) > 1:
@@ -146,11 +172,11 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				first, second = station_ticks[stop.name]
 				route_id = next(iter(memberships[stop.name]))
 				lines.append(
-					f'<line class="station-tick" x1="{first[0]}" y1="{first[1]}" '
+					f'<line class="station" x1="{first[0]}" y1="{first[1]}" '
 					f'x2="{second[0]}" y2="{second[1]}" '
-					f'stroke="{routes_by_id[route_id].color}"/>'
+					f'stroke="{route_colors[route_id]}"/>'
 				)
-				label_x, label_y = second
+				label_x, label_y = self._station_label_positions[stop.name]
 				tick_angle = math.degrees(
 					math.atan2(second[1] - first[1], second[0] - first[0])
 				)
@@ -167,12 +193,35 @@ class ParallelGeographicDiagram(GeographicDiagram):
 						f' transform="rotate({label_angle} {label_x} {label_y})"'
 					)
 				else:
-					text_anchor = "end" if second[0] < first[0] else "start"
+					text_anchor = (
+						"end"
+						if label_x < x
+						or (
+							math.isclose(label_x, x)
+							and label_x > self.width / 2
+						)
+						else "start"
+					)
 					label_transform = ""
+			label_lines = self._label_lines(self._stop_label(stop.name))
+			label_font_size = self._label_font_size(stop.name)
+			line_height = label_font_size * 1.05
+			first_line_offset = -(len(label_lines) - 1) * line_height / 2
+			label_class = (
+				"label terminal-label"
+				if self._is_terminus(stop.name)
+				else "label"
+			)
 			lines.append(
-				f'<text class="label" x="{label_x}" y="{label_y}" '
+				f'<text class="{label_class}" x="{label_x}" y="{label_y}" '
 				f'text-anchor="{text_anchor}"{label_transform}>'
-				f'{html.escape(self._stop_label(stop.name))}</text>'
+				+ "".join(
+					f'<tspan x="{label_x}" dy="'
+					f'{first_line_offset if index == 0 else line_height}">'
+					f'{html.escape(label_line)}</tspan>'
+					for index, label_line in enumerate(label_lines)
+				)
+				+ "</text>"
 			)
 
 		lines.extend(
@@ -180,8 +229,90 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		)
 		return "\n".join(lines) + "\n"
 
+	def _background_svg_lines(self) -> list[str]:
+		return []
+
+	def _route_name_svg_lines(self) -> list[str]:
+		return []
+
+	def _route_name_bounds(self) -> list[tuple[str, Bounds]]:
+		return []
+
+	def _route_name_font_size(self) -> float:
+		return self.LABEL_FONT_SIZE
+
+	def _terminal_label_font_size(self) -> float:
+		return self.LABEL_FONT_SIZE
+
+	def _is_terminus(self, stop_name: str) -> bool:
+		return any(
+			stop_name in (route.stops[0], route.stops[-1])
+			for route in self.routes
+		)
+
+	def _label_font_size(self, stop_name: str) -> float:
+		return (
+			self._terminal_label_font_size()
+			if self._is_terminus(stop_name)
+			else self.LABEL_FONT_SIZE
+		)
+
+	def _route_path_data(
+		self,
+		segments: list[list[Point]],
+	) -> str:
+		points = []
+		for segment in segments:
+			if points and points[-1] != segment[0]:
+				points.append(
+					(
+						(points[-1][0] + segment[0][0]) / 2,
+						(points[-1][1] + segment[0][1]) / 2,
+					)
+				)
+			for point in segment:
+				if not points or point != points[-1]:
+					points.append(point)
+		return self._rounded_path_data(points)
+
+	def _rounded_path_data(self, points: list[Point]) -> str:
+		commands = [f"M {points[0][0]},{points[0][1]}"]
+		for previous, point, following in zip(points, points[1:], points[2:]):
+			incoming = (previous[0] - point[0], previous[1] - point[1])
+			outgoing = (following[0] - point[0], following[1] - point[1])
+			incoming_length = math.hypot(*incoming)
+			outgoing_length = math.hypot(*outgoing)
+			cross_product = incoming[0] * outgoing[1] - incoming[1] * outgoing[0]
+			if math.isclose(cross_product, 0.0, abs_tol=1e-9):
+				commands.append(f"L {point[0]},{point[1]}")
+				continue
+			radius = min(
+				self.ROUTE_CURVE_RADIUS,
+				incoming_length / 2,
+				outgoing_length / 2,
+			)
+			entry = (
+				point[0] + incoming[0] / incoming_length * radius,
+				point[1] + incoming[1] / incoming_length * radius,
+			)
+			exit_point = (
+				point[0] + outgoing[0] / outgoing_length * radius,
+				point[1] + outgoing[1] / outgoing_length * radius,
+			)
+			commands.extend(
+				(
+					f"L {entry[0]},{entry[1]}",
+					f"Q {point[0]},{point[1]} {exit_point[0]},{exit_point[1]}",
+				)
+			)
+		commands.append(f"L {points[-1][0]},{points[-1][1]}")
+		return " ".join(commands)
+
 	def _stop_label(self, stop_name: str) -> str:
 		return stop_name
+
+	def _label_lines(self, label: str) -> tuple[str, ...]:
+		return (label,)
 
 	def station_ticks(
 		self,
@@ -235,56 +366,102 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				x_offset = -x_offset
 				y_offset = -y_offset
 			x, y = positions[stop.name]
-			ticks[stop.name] = (
-				(
-					x + x_normal * self.ROUTE_STROKE_WIDTH / 2,
-					y + y_normal * self.ROUTE_STROKE_WIDTH / 2,
-				),
-				(
-					x + x_normal * self.ROUTE_STROKE_WIDTH / 2 + x_offset,
-					y + y_normal * self.ROUTE_STROKE_WIDTH / 2 + y_offset,
-				),
+			outer = (
+				x + x_normal * self.ROUTE_STROKE_WIDTH / 2 + x_offset,
+				y + y_normal * self.ROUTE_STROKE_WIDTH / 2 + y_offset,
 			)
+			is_terminus = stop_index in (0, len(route.stops) - 1)
+			inner = (
+				(2 * x - outer[0], 2 * y - outer[1])
+				if is_terminus
+				else (x, y)
+			)
+			ticks[stop.name] = (inner, outer)
 
-		return self._avoid_label_overlaps(positions, ticks, memberships)
+		return self._avoid_label_overlaps(
+			positions,
+			ticks,
+			memberships,
+			segments,
+		)
 
 	def _avoid_label_overlaps(
 		self,
 		positions: dict[str, Point],
 		ticks: dict[str, tuple[Point, Point]],
 		memberships: dict[str, set[str]],
+		segments: dict[str, list[list[Point]]],
 	) -> dict[str, tuple[Point, Point]]:
-		occupied = []
+		placed_labels = self._route_name_bounds()
+		occupied = [bounds for _, bounds in placed_labels]
+		route_margin = self.ROUTE_STROKE_WIDTH / 2 + 0.15
+		route_bounds = [
+			(
+				min(first[0], second[0]) - route_margin,
+				min(first[1], second[1]) - route_margin,
+				max(first[0], second[0]) + route_margin,
+				max(first[1], second[1]) + route_margin,
+			)
+			for route_segments in segments.values()
+			for path in route_segments
+			for first, second in zip(path, path[1:])
+		]
+		canvas_bounds = (0.0, 0.0, float(self.width), float(self.height))
+
+		def score(bounds: tuple[float, float, float, float]) -> float:
+			return (
+				1_000
+				* sum(self._overlap_area(bounds, other) for other in occupied)
+				+ 10_000
+				* sum(self._overlap_area(bounds, route) for route in route_bounds)
+				+ 1_000_000 * self._outside_area(bounds, canvas_bounds)
+			)
+
 		self._interchange_label_positions = {}
 		for stop in sorted(
 			(stop for stop in self.stops if len(memberships[stop.name]) > 1),
 			key=lambda stop: (positions[stop.name][1], positions[stop.name][0]),
 		):
 			x, y = positions[stop.name]
-			offset = self.INTERCHANGE_RADIUS + self.LABEL_OFFSET
-			candidates = [
-				(x + offset, y - offset, "start", (1.0, 0.0)),
-				(x + offset, y + offset, "start", (1.0, 0.0)),
-				(x - offset, y - offset, "end", (-1.0, 0.0)),
-				(x - offset, y + offset, "end", (-1.0, 0.0)),
-			]
+			base_offset = self.INTERCHANGE_RADIUS + self.LABEL_OFFSET
+			candidates = []
+			for extra in range(0, 25, 2):
+				for x_direction, y_direction in self.LABEL_DIRECTIONS:
+					length = math.hypot(x_direction, y_direction)
+					x_direction /= length
+					y_direction /= length
+					text_direction = (
+						x_direction
+						if not math.isclose(x_direction, 0.0)
+						else (-1.0 if x > self.width / 2 else 1.0)
+					)
+					candidates.append(
+						(
+							x + x_direction * (base_offset + extra),
+							y + y_direction * (base_offset + extra),
+							"start" if text_direction > 0 else "end",
+							(text_direction, 0.0),
+						)
+					)
 			candidate_bounds = [
 				self._label_bounds(
 					(candidate[0], candidate[1]),
 					self._stop_label(stop.name),
 					candidate[3],
+					self._label_font_size(stop.name),
 				)
 				for candidate in candidates
 			]
-			scores = [
-				sum(self._overlap_area(bounds, other) for other in occupied)
-				for bounds in candidate_bounds
-			]
+			scores = [score(bounds) for bounds in candidate_bounds]
 			selected_index = min(range(len(candidates)), key=scores.__getitem__)
 			selected = candidates[selected_index]
 			self._interchange_label_positions[stop.name] = selected[:3]
 			occupied.append(candidate_bounds[selected_index])
+			placed_labels.append(
+				(stop.name, candidate_bounds[selected_index])
+			)
 		selected_ticks = {}
+		self._station_label_positions = {}
 		for stop in sorted(
 			(stop for stop in self.stops if stop.name in ticks),
 			key=lambda stop: (positions[stop.name][1], positions[stop.name][0]),
@@ -295,35 +472,109 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				(2 * x - first[0], 2 * y - first[1]),
 				(2 * x - second[0], 2 * y - second[1]),
 			)
-			candidates = [ticks[stop.name], mirrored]
+			base_candidates = [ticks[stop.name], mirrored]
+			font_size = self._label_font_size(stop.name)
+			label_clearance = self._label_half_height(
+				self._stop_label(stop.name),
+				font_size,
+			) + 0.2
+			candidates = []
+			candidate_anchors = []
+			for extra in range(0, 25, 2):
+				for candidate in base_candidates:
+					candidates.append(candidate)
+					outward_x = candidate[1][0] - x
+					outward_y = candidate[1][1] - y
+					outward_length = math.hypot(outward_x, outward_y)
+					clearance = label_clearance + extra
+					candidate_anchors.append(
+						(
+							candidate[1][0]
+							+ outward_x / outward_length * clearance,
+							candidate[1][1]
+							+ outward_y / outward_length * clearance,
+						)
+					)
+			for extra in range(0, 25, 2):
+				radius = (
+					self.ROUTE_STROKE_WIDTH / 2
+					+ self.STATION_TICK_LENGTH
+					+ label_clearance
+					+ extra
+				)
+				for x_direction, y_direction in self.LABEL_DIRECTIONS:
+					direction_length = math.hypot(x_direction, y_direction)
+					x_direction /= direction_length
+					y_direction /= direction_length
+					candidate = max(
+						base_candidates,
+						key=lambda tick: (
+							(tick[1][0] - x) * x_direction
+							+ (tick[1][1] - y) * y_direction
+						),
+					)
+					candidates.append(candidate)
+					candidate_anchors.append(
+						(
+							x + x_direction * radius,
+							y + y_direction * radius,
+						)
+					)
 			candidate_bounds = [
 				self._label_bounds(
-					candidate[1],
+					anchor,
 					self._stop_label(stop.name),
-					(candidate[1][0] - x, candidate[1][1] - y),
+					(
+						anchor[0] - x
+						if not math.isclose(anchor[0], x)
+						else (-1.0 if anchor[0] > self.width / 2 else 1.0),
+						anchor[1] - y,
+					),
+					font_size,
 				)
-				for candidate in candidates
+				for candidate, anchor in zip(candidates, candidate_anchors)
 			]
-			scores = [
-				sum(self._overlap_area(bounds, other) for other in occupied)
-				for bounds in candidate_bounds
-			]
+			scores = [score(bounds) for bounds in candidate_bounds]
 			selected_index = min(range(len(candidates)), key=scores.__getitem__)
 			selected_ticks[stop.name] = candidates[selected_index]
+			self._station_label_positions[stop.name] = candidate_anchors[
+				selected_index
+			]
 			occupied.append(candidate_bounds[selected_index])
+			placed_labels.append(
+				(stop.name, candidate_bounds[selected_index])
+			)
+		if self.WARN_LABEL_OVERLAPS:
+			self._warn_label_overlaps(placed_labels)
 		return selected_ticks
+
+	def _warn_label_overlaps(
+		self,
+		placed_labels: list[tuple[str, Bounds]],
+	) -> None:
+		for index, (first_name, first_bounds) in enumerate(placed_labels):
+			for second_name, second_bounds in placed_labels[index + 1 :]:
+				overlap = self._overlap_area(first_bounds, second_bounds)
+				if overlap > 0.01:
+					log.warn(
+						"Label overlap: "
+						f"{first_name!r} overlaps {second_name!r} "
+						f"by {overlap:.2f} square units"
+					)
 
 	def _label_bounds(
 		self,
 		anchor: Point,
 		label: str,
 		outward: Point,
+		font_size: float,
 	) -> tuple[float, float, float, float]:
+		label_lines = self._label_lines(label)
 		text_width = max(
-			self.LABEL_FONT_SIZE,
-			len(label) * self.LABEL_FONT_SIZE * 0.52,
+			font_size,
+			max(map(len, label_lines)) * font_size * 0.52,
 		)
-		half_height = self.LABEL_FONT_SIZE * 0.6
+		half_height = self._label_half_height(label, font_size)
 		if not self.ROTATE_LABELS:
 			if outward[0] < 0:
 				return (
@@ -358,6 +609,11 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			max(point[1] for point in corners),
 		)
 
+	def _label_half_height(self, label: str, font_size: float) -> float:
+		return font_size * (
+			0.6 + (len(self._label_lines(label)) - 1) * 1.05 / 2
+		)
+
 	@staticmethod
 	def _overlap_area(
 		first: tuple[float, float, float, float],
@@ -366,6 +622,17 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		width = max(0.0, min(first[2], second[2]) - max(first[0], second[0]))
 		height = max(0.0, min(first[3], second[3]) - max(first[1], second[1]))
 		return width * height
+
+	@classmethod
+	def _outside_area(
+		cls,
+		bounds: tuple[float, float, float, float],
+		container: tuple[float, float, float, float],
+	) -> float:
+		area = max(0.0, bounds[2] - bounds[0]) * max(
+			0.0, bounds[3] - bounds[1]
+		)
+		return area - cls._overlap_area(bounds, container)
 
 	def write_svg(self, path: str | Path) -> Path:
 		output_path = Path(path)

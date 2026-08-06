@@ -1,3 +1,4 @@
+import html
 import json
 import math
 import re
@@ -21,25 +22,45 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	DATA_FILE: ClassVar[str] = "harry_beck.json"
 	UNIT_SCALE: ClassVar[float] = 8.0
 	MAP_TITLE = "LANKA METRO"
-	LEGEND_TITLE = "Lines"
+	LEGEND_TITLE = "Key"
+	TITLE_HEIGHT = 12
+	LOGO_WIDTH = 36
 	LEGEND_WIDTH = 0
 	LEGEND_LINE_HEIGHT = 3.5
 	LEGEND_FONT_SIZE = 1.55
 	TITLE_FONT_SIZE = 3.8
 	BACKGROUND_COLOR = "#ffffff"
-	TEXT_COLOR = "#0019a8"
-	FONT_FAMILY = "'Johnston 100', Johnston100, 'Gill Sans', sans-serif"
+	TEXT_COLOR = "#991f1d"
+	FONT_FAMILY = (
+		"'Johnston Sans', 'Johnston 100', Johnston100, 'Gill Sans', sans-serif"
+	)
 	SHOW_GRID = False
 	ROUTE_STROKE_WIDTH = 1.0
 	PARALLEL_ROUTE_GAP = 1.0
-	INTERCHANGE_RADIUS = 0.78
+	INTERCHANGE_RADIUS = 1.014
 	INTERCHANGE_STROKE_WIDTH = 0.34
-	LABEL_FONT_SIZE = 0.9
+	LABEL_FONT_SIZE = 1.8
+	TERMINAL_LABEL_FONT_SIZE = LABEL_FONT_SIZE
+	ROUTE_NAME_FONT_SIZE = 3.2
+	WARN_LABEL_OVERLAPS = True
 	LABEL_OFFSET = 0.95
 	LABEL_HALO_WIDTH = 0.2
 	STATION_TICK_LENGTH = 0.58
 	STATION_TICK_STROKE_WIDTH = 0.42
 	ROTATE_LABELS = False
+	RIVER_PATH = (
+		"M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 "
+		"L 98,54 L 160,54"
+	)
+	ROUTE_NAME_POSITIONS: ClassVar[dict[str, tuple[float, float, float]]] = {
+		"CM01": (110.0, 98.5, 0.0),
+		"CM02": (126.0, 74.5, 0.0),
+		"CM03": (58.0, 26.5, 0.0),
+		"CM04": (108.0, 122.5, 0.0),
+		"CM05": (94.0, 10.0, 0.0),
+		"CM06": (8.5, 82.0, -90.0),
+		"CM08": (78.0, 106.5, 0.0),
+	}
 	DIRECTIONS: ClassVar[tuple[str, ...]] = (
 		"E",
 		"SE",
@@ -106,6 +127,68 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	def _stop_label(self, stop_name: str) -> str:
 		return stop_name
 
+	def _label_lines(self, label: str) -> tuple[str, ...]:
+		lines = []
+		for word in label.split():
+			if lines and len(lines[-1]) + len(word) + 1 <= 12:
+				lines[-1] = f"{lines[-1]} {word}"
+			else:
+				lines.append(word)
+		return tuple(lines)
+
+	def _terminal_label_font_size(self) -> float:
+		return self.TERMINAL_LABEL_FONT_SIZE
+
+	def _route_name_font_size(self) -> float:
+		return self.ROUTE_NAME_FONT_SIZE
+
+	def _route_name_svg_lines(self) -> list[str]:
+		routes_by_id = {route.id: route for route in self.routes}
+		lines = []
+		for route_id, (x, y, angle) in self.ROUTE_NAME_POSITIONS.items():
+			route = routes_by_id[route_id]
+			transform = f' transform="rotate({angle} {x} {y})"' if angle else ""
+			lines.append(
+				f'<text class="route-name" x="{x}" y="{y}" '
+				f'text-anchor="middle" fill="{route.color}"{transform}>'
+				f'{html.escape(route.id)}</text>'
+			)
+		return lines
+
+	def _route_name_bounds(self) -> list[tuple[str, tuple[float, float, float, float]]]:
+		text_width = 4 * self.ROUTE_NAME_FONT_SIZE * 0.6
+		half_height = self.ROUTE_NAME_FONT_SIZE * 0.6
+		bounds = []
+		for route_id, (x, y, angle) in self.ROUTE_NAME_POSITIONS.items():
+			half_width = text_width / 2
+			if angle:
+				half_width, rotated_half_height = half_height, half_width
+			else:
+				rotated_half_height = half_height
+			bounds.append(
+				(
+					f"route ID {route_id}",
+					(
+						x - half_width,
+						y - rotated_half_height,
+						x + half_width,
+						y + rotated_half_height,
+					),
+				)
+			)
+		return bounds
+
+	def _background_svg_lines(self) -> list[str]:
+		return [
+			f'<path d="{self.RIVER_PATH}" fill="none" stroke="#66b9d0" '
+			'stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>',
+			f'<path d="{self.RIVER_PATH}" fill="none" stroke="#d9f1f7" '
+			'stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+			'<text x="58" y="33.6" text-anchor="middle" '
+			'font-family="Gill Sans, sans-serif" font-size="0.8" '
+			'font-style="italic" fill="#287f98">Kelani River</text>',
+		]
+
 	def _svg_dimensions(self) -> tuple[int, int]:
 		width, height = super()._svg_dimensions()
 		size = max(width, height)
@@ -133,25 +216,51 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		return sum(self.complexity_by_route.values())
 
 	def _title_and_legend_svg_lines(self) -> list[str]:
-		lines = super()._title_and_legend_svg_lines()
 		legend_x, legend_title_y = self._legend_origin()
-		warning_y = (
+		lines = [
+			self._logo_svg_line(),
+			f'<text class="legend-label" x="{legend_x}" y="{legend_title_y}" '
+			f'font-weight="bold">{html.escape(self.LEGEND_TITLE)}</text>',
+		]
+		for index, route in enumerate(self.legend_routes):
+			y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+			lines.extend(
+				[
+					f'<rect class="legend-swatch" x="{legend_x}" '
+					f'y="{y_coordinate - 0.65}" width="6" height="1.3" '
+					f'fill="{route.color}"/>',
+					f'<text class="legend-route-label" x="{legend_x + 8}" '
+					f'y="{y_coordinate}">{html.escape(route.id)}: '
+					f'{html.escape(route.name)}</text>',
+				]
+			)
+		note_y = (
 			legend_title_y
 			+ 6
 			+ len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
 		)
+		note_lines = (
+			("Diagrammatic map", True),
+			("Routes are simplified so they are easier to follow.", False),
+			("Stops and connections are shown, but distances", False),
+			("and locations are not drawn to geographic scale.", False),
+		)
 		lines.extend(
-			[
-				f'<text class="legend-label" x="{legend_x}" y="{warning_y}">'
-				"Diagrammatic map</text>",
-				f'<text class="legend-label" x="{legend_x}" '
-				f'y="{warning_y + self.LEGEND_LINE_HEIGHT}">Not to scale</text>',
-			]
+			f'<text class="{("legend-label" if is_heading else "legend-route-label")}" '
+			f'x="{legend_x}" y="{note_y + index * 2.4}"'
+			f'{" font-weight=\"bold\"" if is_heading else ""}>'
+			f'{html.escape(text)}</text>'
+			for index, (text, is_heading) in enumerate(note_lines)
+		)
+		footer_y = self._svg_dimensions()[1] - self._content_offset()[1] - 2
+		lines.append(
+			f'<text class="legend-route-label" x="{self.padding}" '
+			f'y="{footer_y}">Source data: https://lankametro.lk</text>'
 		)
 		return lines
 
 	def _legend_origin(self) -> Point:
-		return (self.width - 44, self.TITLE_HEIGHT + 12)
+		return (self.width - 44, self.TITLE_HEIGHT + 10)
 
 	def layout(self) -> dict[str, Point]:
 		projected = self._project_positions(

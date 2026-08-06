@@ -1,3 +1,4 @@
+import base64
 import html
 import math
 from pathlib import Path
@@ -10,6 +11,8 @@ from .DiagramStyle import (
 	LABEL_FONT_SIZE,
 	LABEL_OFFSET,
 	ROUTE_STROKE_WIDTH,
+	STATION_TICK_LENGTH,
+	STATION_TICK_STROKE_WIDTH,
 )
 from .Route import Route
 from .Stop import Stop
@@ -22,17 +25,22 @@ class GeographicDiagram:
 	MAP_TITLE = "Lanka Metro"
 	LEGEND_TITLE = "Routes"
 	TITLE_HEIGHT = 8
+	LOGO_WIDTH = 20
+	LOGO_ASPECT_RATIO = 607 / 190
 	LEGEND_WIDTH = 58
 	LEGEND_LINE_HEIGHT = 4
 	LEGEND_FONT_SIZE = 1.8
 	TITLE_FONT_SIZE = 4
 	BACKGROUND_COLOR = "#f7f5ef"
-	TEXT_COLOR = "#111"
+	TEXT_COLOR = "#991f1d"
+	LABEL_COLOR = "#000000"
 	FONT_FAMILY = "sans-serif"
 	SHOW_GRID = True
 	ROUTE_STROKE_WIDTH = ROUTE_STROKE_WIDTH
 	INTERCHANGE_RADIUS = INTERCHANGE_RADIUS
 	INTERCHANGE_STROKE_WIDTH = INTERCHANGE_STROKE_WIDTH
+	STATION_TICK_LENGTH = STATION_TICK_LENGTH
+	STATION_TICK_STROKE_WIDTH = STATION_TICK_STROKE_WIDTH
 	LABEL_FONT_SIZE = LABEL_FONT_SIZE
 	LABEL_OFFSET = LABEL_OFFSET
 	LABEL_HALO_WIDTH = 0.0
@@ -116,18 +124,22 @@ class GeographicDiagram:
 			"<style>",
 			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
-			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
-			f".interchange {{ fill: white; stroke: {self.TEXT_COLOR}; "
+			".route { fill: none; stroke-linecap: butt; stroke-linejoin: round; }",
+			f".station {{ stroke-width: "
+			f"{self.STATION_TICK_STROKE_WIDTH}; stroke-linecap: square; }}",
+			f".interchange {{ fill: white; stroke: #000000; "
 			f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
 			f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
-			f"fill: {self.TEXT_COLOR}; paint-order: stroke; "
-			f"stroke: {self.BACKGROUND_COLOR}; stroke-width: {self.LABEL_HALO_WIDTH}; "
+			f"fill: {self.LABEL_COLOR}; "
 			"dominant-baseline: middle; }",
 			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px {self.FONT_FAMILY}; "
 			f"fill: {self.TEXT_COLOR}; }}",
 			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px {self.FONT_FAMILY}; "
 			f"fill: {self.TEXT_COLOR}; "
-			"dominant-baseline: middle; }}",
+			"dominant-baseline: middle; }",
+			f".legend-route-label {{ font: {self.LEGEND_FONT_SIZE}px "
+			f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
+			"dominant-baseline: middle; }",
 			"</style>",
 			f'<rect width="{svg_width}" height="{svg_height}" '
 			f'fill="{self.BACKGROUND_COLOR}"/>',
@@ -149,6 +161,7 @@ class GeographicDiagram:
 			for stop_name in route.stops
 		}
 		memberships = self._route_memberships(routes_to_draw)
+		route_colors = {route.id: route.color for route in routes_to_draw}
 		for stop in self.stops:
 			if stop.name not in visible_stop_names:
 				continue
@@ -158,6 +171,14 @@ class GeographicDiagram:
 					f'<circle class="interchange" cx="{x}" cy="{y}" '
 					f'r="{self.INTERCHANGE_RADIUS}"/>'
 				)
+			else:
+				first, second = self._station_tick(stop.name, positions, paths)
+				route_id = next(iter(memberships[stop.name]))
+				lines.append(
+					f'<line class="station" x1="{first[0]}" y1="{first[1]}" '
+					f'x2="{second[0]}" y2="{second[1]}" '
+					f'stroke="{route_colors[route_id]}"/>'
+				)
 			lines.append(
 				f'<text class="label" x="{x + self.LABEL_OFFSET}" '
 				f'y="{y - self.LABEL_OFFSET}">'
@@ -166,6 +187,27 @@ class GeographicDiagram:
 
 		lines.extend(["</g>", *self._title_and_legend_svg_lines(), "</svg>"])
 		return "\n".join(lines) + "\n"
+
+	def _station_tick(
+		self,
+		stop_name: str,
+		positions: dict[str, Point],
+		paths: dict[str, list[Point]],
+	) -> tuple[Point, Point]:
+		route = next(route for route in self.routes if stop_name in route.stops)
+		stop_index = route.stops.index(stop_name)
+		neighbor_index = 1 if stop_index == 0 else stop_index - 1
+		neighbor = paths[route.id][neighbor_index]
+		x_coordinate, y_coordinate = positions[stop_name]
+		x_delta = neighbor[0] - x_coordinate
+		y_delta = neighbor[1] - y_coordinate
+		length = math.hypot(x_delta, y_delta)
+		x_offset = -y_delta / length * self.STATION_TICK_LENGTH / 2
+		y_offset = x_delta / length * self.STATION_TICK_LENGTH / 2
+		return (
+			(x_coordinate - x_offset, y_coordinate - y_offset),
+			(x_coordinate + x_offset, y_coordinate + y_offset),
+		)
 
 	def _svg_dimensions(self) -> tuple[int, int]:
 		return self.width + self.LEGEND_WIDTH, self.height + self.TITLE_HEIGHT
@@ -179,8 +221,7 @@ class GeographicDiagram:
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		legend_x, legend_title_y = self._legend_origin()
 		lines = [
-			f'<text class="map-title" x="{self.padding}" y="5.5">'
-			f'{html.escape(self.MAP_TITLE)}</text>',
+			self._logo_svg_line(),
 			f'<text class="legend-label" x="{legend_x}" y="{legend_title_y}" '
 			f'font-weight="bold">{html.escape(self.LEGEND_TITLE)}</text>',
 		]
@@ -192,12 +233,27 @@ class GeographicDiagram:
 					f'x2="{legend_x + 6}" y2="{y_coordinate}" '
 					f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}" '
 					'stroke-linecap="round"/>',
-					f'<text class="legend-label" x="{legend_x + 8}" '
+					f'<text class="legend-route-label" x="{legend_x + 8}" '
 					f'y="{y_coordinate}">{html.escape(route.id)}: '
 					f'{html.escape(route.name)}</text>',
 				]
 			)
 		return lines
+
+	def _logo_svg_line(self) -> str:
+		logo_path = (
+			Path(__file__).resolve().parents[2]
+			/ "source_data"
+			/ "lanka-metro-logo.png"
+		)
+		logo_data = base64.b64encode(logo_path.read_bytes()).decode("ascii")
+		logo_height = self.LOGO_WIDTH / self.LOGO_ASPECT_RATIO
+		logo_y = (self.TITLE_HEIGHT - logo_height) / 2
+		return (
+			f'<image class="map-logo" x="{self.padding}" y="{logo_y}" '
+			f'width="{self.LOGO_WIDTH}" height="{logo_height}" '
+			f'href="data:image/png;base64,{logo_data}"/>'
+		)
 
 	def write_svg(self, path: str | Path) -> Path:
 		output_path = Path(path)
