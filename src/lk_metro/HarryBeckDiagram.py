@@ -76,6 +76,25 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	def _stop_label(self, stop_name: str) -> str:
 		return f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
 
+	def _title_and_legend_svg_lines(self) -> list[str]:
+		lines = super()._title_and_legend_svg_lines()
+		legend_x = self.width + 4
+		warning_y = (
+			self.TITLE_HEIGHT
+			+ 8
+			+ len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
+		)
+		lines.extend(
+			[
+				f'<text class="legend-label" x="{legend_x}" y="{warning_y}">'
+				"⚠️ Not to scale</text>",
+				f'<text class="legend-label" x="{legend_x}" '
+				f'y="{warning_y + self.LEGEND_LINE_HEIGHT}">'
+				"⚠️ Directions are schematic</text>",
+			]
+		)
+		return lines
+
 	def layout(self) -> dict[str, Point]:
 		projected = self._project_positions(
 			self._origin_positions,

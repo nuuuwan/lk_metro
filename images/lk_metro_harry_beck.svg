@@ -61,10 +61,10 @@
 <polyline class="route" points="18.0,34.0 14.0,34.0" stroke="#0070a8" stroke-width="0.65"/>
 <polyline class="route" points="14.0,34.0 14.0,34.0" stroke="#0070a8" stroke-width="0.65"/>
 <polyline class="route" points="13.675,34.0 13.675,30.0" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="14.0,30.0 14.0,26.0" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="14.0,26.0 14.0,22.0" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="14.0,22.0 10.0,22.0" stroke="#0070a8" stroke-width="0.65"/>
-<polyline class="route" points="10.0,22.325 6.0,22.325" stroke="#0070a8" stroke-width="0.65"/>
+<polyline class="route" points="14.0,30.0 14.0,22.0" stroke="#0070a8" stroke-width="0.65"/>
+<polyline class="route" points="14.0,22.0 14.0,18.0" stroke="#0070a8" stroke-width="0.65"/>
+<polyline class="route" points="14.0,18.0 10.0,18.0" stroke="#0070a8" stroke-width="0.65"/>
+<polyline class="route" points="10.0,18.325 6.0,18.325" stroke="#0070a8" stroke-width="0.65"/>
 <polyline class="route" points="74.0,38.0 70.0,38.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="70.0,38.0 66.0,38.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="66.0,38.0 62.0,38.0" stroke="#ffd400" stroke-width="0.65"/>
@@ -83,10 +83,10 @@
 <polyline class="route" points="17.35,34.0 17.35,30.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="18.0,30.0 14.0,30.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="14.0,30.0 10.0,30.0" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="10.0,30.0 6.0,34.0" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="6.0,34.0 6.0,30.0" stroke="#ffd400" stroke-width="0.65"/>
-<polyline class="route" points="5.675,30.0 5.675,26.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="10.0,30.0 6.0,30.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="6.0,30.0 6.0,26.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="5.675,26.0 5.675,22.0" stroke="#ffd400" stroke-width="0.65"/>
+<polyline class="route" points="5.675,22.0 5.675,18.0" stroke="#ffd400" stroke-width="0.65"/>
 <polyline class="route" points="62.0,49.675 58.0,49.675" stroke="#8a0f45" stroke-width="0.65"/>
 <polyline class="route" points="58.0,49.675 54.0,49.675" stroke="#8a0f45" stroke-width="0.65"/>
 <polyline class="route" points="54.0,50.0 50.0,50.0" stroke="#8a0f45" stroke-width="0.65"/>
@@ -174,218 +174,218 @@
 <polyline class="route" points="10.0,38.0 14.0,34.0" stroke="#006b3f" stroke-width="0.65"/>
 <polyline class="route" points="14.325,34.0 14.325,30.0" stroke="#006b3f" stroke-width="0.65"/>
 <polyline class="route" points="14.0,30.0 10.0,26.0" stroke="#006b3f" stroke-width="0.65"/>
-<polyline class="route" points="10.0,26.0 6.0,30.0" stroke="#006b3f" stroke-width="0.65"/>
-<polyline class="route" points="6.325,30.0 6.325,26.0" stroke="#006b3f" stroke-width="0.65"/>
+<polyline class="route" points="10.0,26.0 6.0,26.0" stroke="#006b3f" stroke-width="0.65"/>
 <polyline class="route" points="6.325,26.0 6.325,22.0" stroke="#006b3f" stroke-width="0.65"/>
-<polyline class="route" points="6.0,21.675 10.0,21.675" stroke="#006b3f" stroke-width="0.65"/>
-<line class="station-tick" x1="6.325" y1="50.0" x2="6.7250000000000005" y2="50.0" stroke="#f57c00"/>
-<text class="label" x="6.7250000000000005" y="50.0" text-anchor="start" transform="rotate(0.0 6.7250000000000005 50.0)">William Junction (9)</text>
-<line class="station-tick" x1="5.675" y1="42.0" x2="5.2749999999999995" y2="42.0" stroke="#f57c00"/>
-<text class="label" x="5.2749999999999995" y="42.0" text-anchor="end" transform="rotate(0.0 5.2749999999999995 42.0)">Bambalapitiya (7)</text>
-<line class="station-tick" x1="50.0" y1="5.675" x2="50.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="50.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 50.0 5.2749999999999995)">Weligampitiya (19)</text>
-<line class="station-tick" x1="62.0" y1="37.675" x2="62.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="62.0" y="37.275" text-anchor="start" transform="rotate(-90.0 62.0 37.275)">Nisaco Mall (4)</text>
-<line class="station-tick" x1="50.0" y1="62.325" x2="50.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="50.0" y="62.725" text-anchor="start" transform="rotate(90.0 50.0 62.725)">Egoda Uyana (21)</text>
-<line class="station-tick" x1="17.77019029611437" y1="13.770190296114372" x2="17.487347583639753" y2="13.487347583639753" stroke="#6f2dbd"/>
-<text class="label" x="17.487347583639753" y="13.487347583639753" text-anchor="end" transform="rotate(45.0 17.487347583639753 13.487347583639753)">Peliyagoda (New Kelani Bridge) (11)</text>
-<line class="station-tick" x1="5.770190296114372" y1="54.22980970388563" x2="5.487347583639752" y2="54.51265241636025" stroke="#f57c00"/>
-<text class="label" x="5.487347583639752" y="54.51265241636025" text-anchor="end" transform="rotate(-44.999999999999886 5.487347583639752 54.51265241636025)">Dehiwala (10)</text>
-<line class="station-tick" x1="26.0" y1="5.675" x2="26.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="26.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 26.0 5.2749999999999995)">Hekitta Junction (13)</text>
-<circle class="interchange" cx="26.0" cy="30.0" r="0.6"/>
-<text class="label" x="26.75" y="29.25" text-anchor="start">Rajagiriya (10/14/5)</text>
-<line class="station-tick" x1="22.0" y1="18.325" x2="22.0" y2="18.724999999999998" stroke="#8a0f45"/>
-<text class="label" x="22.0" y="18.724999999999998" text-anchor="start" transform="rotate(90.0 22.0 18.724999999999998)">Thorana Junction (21)</text>
-<line class="station-tick" x1="50.22980970388563" y1="45.77019029611437" x2="50.51265241636025" y2="45.48734758363975" stroke="#0070a8"/>
-<text class="label" x="50.51265241636025" y="45.48734758363975" text-anchor="start" transform="rotate(-45.0 50.51265241636025 45.48734758363975)">Kalalgoda Junction (4)</text>
-<line class="station-tick" x1="62.0" y1="61.675" x2="62.0" y2="61.275" stroke="#f57c00"/>
-<text class="label" x="62.0" y="61.275" text-anchor="start" transform="rotate(-90.0 62.0 61.275)">Mahanama Junction (24)</text>
-<line class="station-tick" x1="34.0" y1="5.675" x2="34.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="34.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 34.0 5.2749999999999995)">Hendala (15)</text>
-<line class="station-tick" x1="10.325" y1="42.0" x2="10.725" y2="42.0" stroke="#006b3f"/>
-<text class="label" x="10.725" y="42.0" text-anchor="start" transform="rotate(0.0 10.725 42.0)">Thimbirigasyaya (14)</text>
-<line class="station-tick" x1="42.0" y1="5.675" x2="42.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="42.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 42.0 5.2749999999999995)">Mahabage (17)</text>
-<line class="station-tick" x1="18.325" y1="50.0" x2="18.724999999999998" y2="50.0" stroke="#8a0f45"/>
-<text class="label" x="18.724999999999998" y="50.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 50.0)">Narahenpita (12)</text>
-<line class="station-tick" x1="46.0" y1="5.675" x2="46.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="46.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 46.0 5.2749999999999995)">Kandana (18)</text>
-<line class="station-tick" x1="18.0" y1="62.325" x2="18.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="18.0" y="62.725" text-anchor="start" transform="rotate(90.0 18.0 62.725)">Maliban Junction (13)</text>
-<line class="station-tick" x1="74.0" y1="37.675" x2="74.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="74.0" y="37.275" text-anchor="start" transform="rotate(-90.0 74.0 37.275)">Millennium City (1)</text>
-<line class="station-tick" x1="54.0" y1="37.675" x2="54.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="54.0" y="37.275" text-anchor="start" transform="rotate(-90.0 54.0 37.275)">Arangala Junction (6)</text>
-<line class="station-tick" x1="22.0" y1="50.325" x2="22.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="22.0" y="50.725" text-anchor="start" transform="rotate(90.0 22.0 50.725)">Kirulapone (11)</text>
-<line class="station-tick" x1="54.0" y1="58.325" x2="54.0" y2="58.725" stroke="#006b3f"/>
-<text class="label" x="54.0" y="58.725" text-anchor="start" transform="rotate(90.0 54.0 58.725)">Piliyandala Bus Stand Stop (3)</text>
-<line class="station-tick" x1="38.22980970388563" y1="37.77019029611437" x2="38.51265241636025" y2="37.48734758363975" stroke="#ffd400"/>
-<text class="label" x="38.51265241636025" y="37.48734758363975" text-anchor="start" transform="rotate(-45.0 38.51265241636025 37.48734758363975)">Thalangama Junction (10)</text>
-<line class="station-tick" x1="26.0" y1="50.325" x2="26.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="26.0" y="50.725" text-anchor="start" transform="rotate(90.0 26.0 50.725)">Nugegoda 01 (10)</text>
-<line class="station-tick" x1="33.675" y1="34.0" x2="33.275" y2="34.0" stroke="#ffd400"/>
-<text class="label" x="33.275" y="34.0" text-anchor="end" transform="rotate(0.0 33.275 34.0)">Koswaththa (11)</text>
-<line class="station-tick" x1="26.0" y1="18.325" x2="26.0" y2="18.724999999999998" stroke="#8a0f45"/>
-<text class="label" x="26.0" y="18.724999999999998" text-anchor="start" transform="rotate(90.0 26.0 18.724999999999998)">Kelaniya Campus (22)</text>
-<line class="station-tick" x1="42.0" y1="58.325" x2="42.0" y2="58.725" stroke="#006b3f"/>
-<text class="label" x="42.0" y="58.725" text-anchor="start" transform="rotate(90.0 42.0 58.725)">Werahera (6)</text>
-<circle class="interchange" cx="6.0" cy="30.0" r="0.6"/>
-<text class="label" x="6.75" y="29.25" text-anchor="start">Regal Cinema (21/19)</text>
-<line class="station-tick" x1="66.0" y1="62.325" x2="66.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="66.0" y="62.725" text-anchor="start" transform="rotate(90.0 66.0 62.725)">Panadura Base Hospital (25)</text>
-<circle class="interchange" cx="10.0" cy="38.0" r="0.6"/>
-<text class="label" x="10.75" y="37.25" text-anchor="start">Thummulla (6/15)</text>
-<line class="station-tick" x1="13.770190296114372" y1="50.22980970388563" x2="13.487347583639753" y2="50.51265241636025" stroke="#006b3f"/>
-<text class="label" x="13.487347583639753" y="50.51265241636025" text-anchor="end" transform="rotate(-45.0 13.487347583639753 50.51265241636025)">Havelock (12)</text>
-<line class="station-tick" x1="14.325" y1="26.0" x2="14.725" y2="26.0" stroke="#0070a8"/>
-<text class="label" x="14.725" y="26.0" text-anchor="start" transform="rotate(0.0 14.725 26.0)">Hedges Ct (16)</text>
-<line class="station-tick" x1="34.0" y1="62.325" x2="34.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="34.0" y="62.725" text-anchor="start" transform="rotate(90.0 34.0 62.725)">Katubedda Junction (17)</text>
-<line class="station-tick" x1="58.0" y1="37.675" x2="58.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="58.0" y="37.275" text-anchor="start" transform="rotate(-90.0 58.0 37.275)">Hokandara Junction (5)</text>
-<line class="station-tick" x1="30.0" y1="17.675" x2="30.0" y2="17.275000000000002" stroke="#8a0f45"/>
-<text class="label" x="30.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 30.0 17.275000000000002)">Kiribathgoda (23)</text>
-<line class="station-tick" x1="37.77019029611437" y1="34.22980970388563" x2="37.48734758363975" y2="34.51265241636025" stroke="#0070a8"/>
-<text class="label" x="37.48734758363975" y="34.51265241636025" text-anchor="end" transform="rotate(-45.0 37.48734758363975 34.51265241636025)">Palam Thuna Junction (7)</text>
-<line class="station-tick" x1="58.0" y1="62.325" x2="58.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="58.0" y="62.725" text-anchor="start" transform="rotate(90.0 58.0 62.725)">Palam Junction (23)</text>
-<line class="station-tick" x1="70.0" y1="37.675" x2="70.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="70.0" y="37.275" text-anchor="start" transform="rotate(-90.0 70.0 37.275)">Athurugiriya Hospital (2)</text>
-<line class="station-tick" x1="62.0" y1="5.675" x2="62.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="62.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 62.0 5.2749999999999995)">Ekala (22)</text>
-<line class="station-tick" x1="57.77019029611437" y1="53.77019029611437" x2="57.48734758363975" y2="53.48734758363975" stroke="#006b3f"/>
-<text class="label" x="57.48734758363975" y="53.48734758363975" text-anchor="end" transform="rotate(45.0 57.48734758363975 53.48734758363975)">Kesbewa (2)</text>
-<line class="station-tick" x1="58.0" y1="5.675" x2="58.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="58.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 58.0 5.2749999999999995)">CTB Junction (21)</text>
-<line class="station-tick" x1="30.0" y1="62.325" x2="30.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="30.0" y="62.725" text-anchor="start" transform="rotate(90.0 30.0 62.725)">German Tec Angulana (16)</text>
-<line class="station-tick" x1="50.0" y1="50.325" x2="50.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="50.0" y="50.725" text-anchor="start" transform="rotate(90.0 50.0 50.725)">Maharagama Cargills Food City (4)</text>
-<line class="station-tick" x1="18.325" y1="46.0" x2="18.724999999999998" y2="46.0" stroke="#8a0f45"/>
-<text class="label" x="18.724999999999998" y="46.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 46.0)">VTA / AAT (13)</text>
-<line class="station-tick" x1="22.22980970388563" y1="10.229809703885628" x2="22.512652416360247" y2="10.512652416360247" stroke="#6f2dbd"/>
-<text class="label" x="22.512652416360247" y="10.512652416360247" text-anchor="start" transform="rotate(45.0 22.512652416360247 10.512652416360247)">Peliyagoda 02 (12)</text>
-<line class="station-tick" x1="18.325" y1="42.0" x2="18.724999999999998" y2="42.0" stroke="#8a0f45"/>
-<text class="label" x="18.724999999999998" y="42.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 42.0)">Narahenpita Junction (14)</text>
-<line class="station-tick" x1="50.0" y1="37.675" x2="50.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="50.0" y="37.275" text-anchor="start" transform="rotate(-90.0 50.0 37.275)">Malabe Bus Stand (7)</text>
-<line class="station-tick" x1="38.0" y1="17.675" x2="38.0" y2="17.275000000000002" stroke="#8a0f45"/>
-<text class="label" x="38.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 38.0 17.275000000000002)">Kadawatha (25)</text>
-<circle class="interchange" cx="54.0" cy="50.0" r="0.6"/>
-<text class="label" x="54.75" y="49.25" text-anchor="start">Pannipitiya (3/3)</text>
-<circle class="interchange" cx="18.0" cy="26.0" r="0.6"/>
-<text class="label" x="18.75" y="25.25" text-anchor="start">Campbell Park (18/2/8)</text>
-<line class="station-tick" x1="54.0" y1="61.675" x2="54.0" y2="61.275" stroke="#f57c00"/>
-<text class="label" x="54.0" y="61.275" text-anchor="start" transform="rotate(-90.0 54.0 61.275)">Jayanthi Mawatha Stop (22)</text>
-<line class="station-tick" x1="22.0" y1="54.325" x2="22.0" y2="54.725" stroke="#006b3f"/>
-<text class="label" x="22.0" y="54.725" text-anchor="start" transform="rotate(90.0 22.0 54.725)">Kalubowila Hospital Stop (10)</text>
-<line class="station-tick" x1="14.0" y1="22.325" x2="14.0" y2="22.724999999999998" stroke="#0070a8"/>
-<text class="label" x="14.0" y="22.724999999999998" text-anchor="start" transform="rotate(90.0 14.0 22.724999999999998)">Maradana (17)</text>
-<circle class="interchange" cx="14.0" cy="34.0" r="0.6"/>
-<text class="label" x="14.75" y="33.25" text-anchor="start">Nelum Pokuna (14/16)</text>
-<line class="station-tick" x1="70.0" y1="61.675" x2="70.0" y2="61.275" stroke="#f57c00"/>
-<text class="label" x="70.0" y="61.275" text-anchor="start" transform="rotate(-90.0 70.0 61.275)">Panadura (26)</text>
-<line class="station-tick" x1="6.325" y1="46.0" x2="6.7250000000000005" y2="46.0" stroke="#f57c00"/>
-<text class="label" x="6.7250000000000005" y="46.0" text-anchor="start" transform="rotate(0.0 6.7250000000000005 46.0)">Wellawatta (8)</text>
-<line class="station-tick" x1="42.0" y1="50.325" x2="42.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="42.0" y="50.725" text-anchor="start" transform="rotate(90.0 42.0 50.725)">Maharagama (6)</text>
-<circle class="interchange" cx="6.0" cy="22.0" r="0.6"/>
-<text class="label" x="6.75" y="21.25" text-anchor="start">Colombo Fort (19/23/21)</text>
-<line class="station-tick" x1="14.325" y1="34.0" x2="14.725" y2="34.0" stroke="#0070a8"/>
-<text class="label" x="14.725" y="34.0" text-anchor="start" transform="rotate(0.0 14.725 34.0)">Wijerama (13)</text>
-<line class="station-tick" x1="34.0" y1="17.675" x2="34.0" y2="17.275000000000002" stroke="#8a0f45"/>
-<text class="label" x="34.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 34.0 17.275000000000002)">Mahara Junction (24)</text>
-<line class="station-tick" x1="30.0" y1="53.675" x2="30.0" y2="53.275" stroke="#006b3f"/>
-<text class="label" x="30.0" y="53.275" text-anchor="start" transform="rotate(-90.0 30.0 53.275)">Raththanapitiya (8)</text>
-<circle class="interchange" cx="22.0" cy="30.0" r="0.6"/>
-<text class="label" x="22.75" y="29.25" text-anchor="start">Castle Hospital (11/15/6)</text>
-<line class="station-tick" x1="17.675" y1="38.0" x2="17.275000000000002" y2="38.0" stroke="#8a0f45"/>
-<text class="label" x="17.275000000000002" y="38.0" text-anchor="end" transform="rotate(0.0 17.275000000000002 38.0)">Army Hospital Borella (15)</text>
-<circle class="interchange" cx="18.0" cy="18.0" r="0.6"/>
-<text class="label" x="18.75" y="17.25" text-anchor="start">Orugodawatta (20/10)</text>
-<circle class="interchange" cx="6.0" cy="26.0" r="0.6"/>
-<text class="label" x="6.75" y="25.25" text-anchor="start">Lake House Bus Stop (22/20)</text>
-<circle class="interchange" cx="62.0" cy="50.0" r="0.6"/>
-<text class="label" x="62.75" y="49.25" text-anchor="start">Makumbura (1/1/1)</text>
-<line class="station-tick" x1="17.77019029611437" y1="54.22980970388563" x2="17.487347583639753" y2="54.51265241636025" stroke="#006b3f"/>
-<text class="label" x="17.487347583639753" y="54.51265241636025" text-anchor="end" transform="rotate(-45.0 17.487347583639753 54.51265241636025)">Royal Institute Bus Stop (11)</text>
-<line class="station-tick" x1="42.0" y1="62.325" x2="42.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="42.0" y="62.725" text-anchor="start" transform="rotate(90.0 42.0 62.725)">Moratuwa (19)</text>
-<line class="station-tick" x1="30.0" y1="50.325" x2="30.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="30.0" y="50.725" text-anchor="start" transform="rotate(90.0 30.0 50.725)">Delkanda Junction (9)</text>
-<line class="station-tick" x1="9.770190296114372" y1="58.22980970388563" x2="9.487347583639753" y2="58.51265241636025" stroke="#f57c00"/>
-<text class="label" x="9.487347583639753" y="58.51265241636025" text-anchor="end" transform="rotate(-45.0 9.487347583639753 58.51265241636025)">Mount Lavinia (11)</text>
-<circle class="interchange" cx="14.0" cy="30.0" r="0.6"/>
-<text class="label" x="14.75" y="29.25" text-anchor="start">Town Hall (15/18/17)</text>
-<line class="station-tick" x1="26.0" y1="53.675" x2="26.0" y2="53.275" stroke="#006b3f"/>
-<text class="label" x="26.0" y="53.275" text-anchor="start" transform="rotate(-90.0 26.0 53.275)">Pepiliyana (9)</text>
-<circle class="interchange" cx="58.0" cy="50.0" r="0.6"/>
-<text class="label" x="58.75" y="49.25" text-anchor="start">Kottawa (2/2)</text>
-<line class="station-tick" x1="46.0" y1="58.325" x2="46.0" y2="58.725" stroke="#006b3f"/>
-<text class="label" x="46.0" y="58.725" text-anchor="start" transform="rotate(90.0 46.0 58.725)">Weerasinghe Mawatha (5)</text>
+<polyline class="route" points="6.325,22.0 6.325,18.0" stroke="#006b3f" stroke-width="0.65"/>
+<polyline class="route" points="6.0,17.675 10.0,17.675" stroke="#006b3f" stroke-width="0.65"/>
 <line class="station-tick" x1="54.0" y1="5.675" x2="54.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
 <text class="label" x="54.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 54.0 5.2749999999999995)">Ja Ela (20)</text>
-<line class="station-tick" x1="38.0" y1="62.325" x2="38.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="38.0" y="62.725" text-anchor="start" transform="rotate(90.0 38.0 62.725)">Mendis Lane Rawathawatta (18)</text>
-<circle class="interchange" cx="18.0" cy="22.0" r="0.6"/>
-<text class="label" x="18.75" y="21.25" text-anchor="start">Dematagoda (19/1/9)</text>
-<circle class="interchange" cx="30.0" cy="30.0" r="0.6"/>
-<text class="label" x="30.75" y="29.25" text-anchor="start">NAITA (9/13/4)</text>
-<line class="station-tick" x1="5.675" y1="34.0" x2="5.2749999999999995" y2="34.0" stroke="#ffd400"/>
-<text class="label" x="5.2749999999999995" y="34.0" text-anchor="end" transform="rotate(0.0 5.2749999999999995 34.0)">Nawaloka Bus Stop (20)</text>
-<line class="station-tick" x1="26.0" y1="62.325" x2="26.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="26.0" y="62.725" text-anchor="start" transform="rotate(90.0 26.0 62.725)">Golumadama Junction (15)</text>
-<line class="station-tick" x1="50.0" y1="58.325" x2="50.0" y2="58.725" stroke="#006b3f"/>
-<text class="label" x="50.0" y="58.725" text-anchor="start" transform="rotate(90.0 50.0 58.725)">Lanka Fiber Fabrica (4)</text>
-<line class="station-tick" x1="38.0" y1="30.325" x2="38.0" y2="30.724999999999998" stroke="#6f2dbd"/>
-<text class="label" x="38.0" y="30.724999999999998" text-anchor="start" transform="rotate(90.0 38.0 30.724999999999998)">Battaramulla Junction (2)</text>
-<circle class="interchange" cx="18.0" cy="30.0" r="0.6"/>
-<text class="label" x="18.75" y="29.25" text-anchor="start">Borella (17/17/3/7)</text>
-<circle class="interchange" cx="10.0" cy="22.0" r="0.6"/>
-<text class="label" x="10.75" y="21.25" text-anchor="start">Pettah (18/22)</text>
-<line class="station-tick" x1="45.77019029611437" y1="42.22980970388563" x2="45.48734758363975" y2="42.51265241636025" stroke="#0070a8"/>
-<text class="label" x="45.48734758363975" y="42.51265241636025" text-anchor="end" transform="rotate(-45.0 45.48734758363975 42.51265241636025)">Thalawathugoda (5)</text>
-<line class="station-tick" x1="9.770190296114372" y1="25.77019029611437" x2="9.487347583639753" y2="25.487347583639753" stroke="#006b3f"/>
-<text class="label" x="9.487347583639753" y="25.487347583639753" text-anchor="end" transform="rotate(45.0 9.487347583639753 25.487347583639753)">Gamini Hall (18)</text>
-<line class="station-tick" x1="34.0" y1="50.325" x2="34.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="34.0" y="50.725" text-anchor="start" transform="rotate(90.0 34.0 50.725)">Wijerama Junction (8)</text>
-<line class="station-tick" x1="38.0" y1="5.675" x2="38.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="38.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 38.0 5.2749999999999995)">Mabola (16)</text>
-<line class="station-tick" x1="30.0" y1="5.675" x2="30.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
-<text class="label" x="30.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 30.0 5.2749999999999995)">Wattala (14)</text>
-<line class="station-tick" x1="42.0" y1="30.325" x2="42.0" y2="30.724999999999998" stroke="#6f2dbd"/>
-<text class="label" x="42.0" y="30.724999999999998" text-anchor="start" transform="rotate(90.0 42.0 30.724999999999998)">Thalangama Depot (1)</text>
-<line class="station-tick" x1="37.85465558146252" y1="58.290688837074974" x2="37.67577014326253" y2="58.64845971347494" stroke="#006b3f"/>
-<text class="label" x="37.67577014326253" y="58.64845971347494" text-anchor="end" transform="rotate(-63.43494882292201 37.67577014326253 58.64845971347494)">Boralesgamuwa (7)</text>
-<line class="station-tick" x1="46.0" y1="38.325" x2="46.0" y2="38.725" stroke="#ffd400"/>
-<text class="label" x="46.0" y="38.725" text-anchor="start" transform="rotate(90.0 46.0 38.725)">Thalahena Junction (8)</text>
-<circle class="interchange" cx="42.0" cy="38.0" r="0.6"/>
-<text class="label" x="42.75" y="37.25" text-anchor="start">Isurupaya (6/9)</text>
-<line class="station-tick" x1="14.0" y1="38.325" x2="14.0" y2="38.725" stroke="#f57c00"/>
-<text class="label" x="14.0" y="38.725" text-anchor="start" transform="rotate(90.0 14.0 38.725)">Independence Arcade (5)</text>
-<line class="station-tick" x1="10.229809703885628" y1="30.22980970388563" x2="10.512652416360247" y2="30.512652416360247" stroke="#ffd400"/>
-<text class="label" x="10.512652416360247" y="30.512652416360247" text-anchor="start" transform="rotate(45.0 10.512652416360247 30.512652416360247)">Union Place (19)</text>
-<line class="station-tick" x1="66.0" y1="37.675" x2="66.0" y2="37.275" stroke="#ffd400"/>
-<text class="label" x="66.0" y="37.275" text-anchor="start" transform="rotate(-90.0 66.0 37.275)">Athurugiriya Town (3)</text>
-<circle class="interchange" cx="18.0" cy="34.0" r="0.6"/>
-<text class="label" x="18.75" y="33.25" text-anchor="start">Singer Mega - Colombo 8 (12/16/16/4)</text>
-<line class="station-tick" x1="46.0" y1="50.325" x2="46.0" y2="50.725" stroke="#8a0f45"/>
-<text class="label" x="46.0" y="50.725" text-anchor="start" transform="rotate(90.0 46.0 50.725)">Cancer Hospital Bus Stop 01 (5)</text>
-<line class="station-tick" x1="14.0" y1="62.325" x2="14.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="14.0" y="62.725" text-anchor="start" transform="rotate(90.0 14.0 62.725)">Near Lalanka Head Office (12)</text>
+<line class="station-tick" x1="30.0" y1="53.675" x2="30.0" y2="53.275" stroke="#006b3f"/>
+<text class="label" x="30.0" y="53.275" text-anchor="start" transform="rotate(-90.0 30.0 53.275)">Raththanapitiya (8)</text>
 <line class="station-tick" x1="46.0" y1="62.325" x2="46.0" y2="62.725" stroke="#f57c00"/>
 <text class="label" x="46.0" y="62.725" text-anchor="start" transform="rotate(90.0 46.0 62.725)">Koralawella (20)</text>
-<line class="station-tick" x1="22.0" y1="62.325" x2="22.0" y2="62.725" stroke="#f57c00"/>
-<text class="label" x="22.0" y="62.725" text-anchor="start" transform="rotate(90.0 22.0 62.725)">Rathmalana Tec (14)</text>
-<line class="station-tick" x1="9.675" y1="46.0" x2="9.275" y2="46.0" stroke="#006b3f"/>
-<text class="label" x="9.275" y="46.0" text-anchor="end" transform="rotate(0.0 9.275 46.0)">BRC Junction (13)</text>
 <line class="station-tick" x1="38.0" y1="49.675" x2="38.0" y2="49.275" stroke="#8a0f45"/>
 <text class="label" x="38.0" y="49.275" text-anchor="start" transform="rotate(-90.0 38.0 49.275)">Nawinna (7)</text>
+<line class="station-tick" x1="14.325" y1="22.0" x2="14.725" y2="22.0" stroke="#0070a8"/>
+<text class="label" x="14.725" y="22.0" text-anchor="start" transform="rotate(0.0 14.725 22.0)">Hedges Ct (16)</text>
+<line class="station-tick" x1="18.0" y1="62.325" x2="18.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="18.0" y="62.725" text-anchor="start" transform="rotate(90.0 18.0 62.725)">Maliban Junction (13)</text>
+<line class="station-tick" x1="26.0" y1="5.675" x2="26.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="26.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 26.0 5.2749999999999995)">Hekitta Junction (13)</text>
+<line class="station-tick" x1="10.325" y1="42.0" x2="10.725" y2="42.0" stroke="#006b3f"/>
+<text class="label" x="10.725" y="42.0" text-anchor="start" transform="rotate(0.0 10.725 42.0)">Thimbirigasyaya (14)</text>
+<line class="station-tick" x1="42.0" y1="50.325" x2="42.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="42.0" y="50.725" text-anchor="start" transform="rotate(90.0 42.0 50.725)">Maharagama (6)</text>
+<line class="station-tick" x1="46.0" y1="58.325" x2="46.0" y2="58.725" stroke="#006b3f"/>
+<text class="label" x="46.0" y="58.725" text-anchor="start" transform="rotate(90.0 46.0 58.725)">Weerasinghe Mawatha (5)</text>
+<circle class="interchange" cx="6.0" cy="26.0" r="0.6"/>
+<text class="label" x="6.75" y="25.25" text-anchor="start">Regal Cinema (21/19)</text>
+<line class="station-tick" x1="26.0" y1="50.325" x2="26.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="26.0" y="50.725" text-anchor="start" transform="rotate(90.0 26.0 50.725)">Nugegoda 01 (10)</text>
+<line class="station-tick" x1="50.0" y1="58.325" x2="50.0" y2="58.725" stroke="#006b3f"/>
+<text class="label" x="50.0" y="58.725" text-anchor="start" transform="rotate(90.0 50.0 58.725)">Lanka Fiber Fabrica (4)</text>
+<line class="station-tick" x1="18.325" y1="38.0" x2="18.724999999999998" y2="38.0" stroke="#8a0f45"/>
+<text class="label" x="18.724999999999998" y="38.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 38.0)">Army Hospital Borella (15)</text>
+<line class="station-tick" x1="30.0" y1="17.675" x2="30.0" y2="17.275000000000002" stroke="#8a0f45"/>
+<text class="label" x="30.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 30.0 17.275000000000002)">Kiribathgoda (23)</text>
+<line class="station-tick" x1="46.0" y1="5.675" x2="46.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="46.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 46.0 5.2749999999999995)">Kandana (18)</text>
+<line class="station-tick" x1="30.0" y1="62.325" x2="30.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="30.0" y="62.725" text-anchor="start" transform="rotate(90.0 30.0 62.725)">German Tec Angulana (16)</text>
+<circle class="interchange" cx="42.0" cy="38.0" r="0.6"/>
+<text class="label" x="42.75" y="37.25" text-anchor="start">Isurupaya (6/9)</text>
+<circle class="interchange" cx="26.0" cy="30.0" r="0.6"/>
+<text class="label" x="26.75" y="29.25" text-anchor="start">Rajagiriya (10/14/5)</text>
+<line class="station-tick" x1="17.77019029611437" y1="13.770190296114372" x2="17.487347583639753" y2="13.487347583639753" stroke="#6f2dbd"/>
+<text class="label" x="17.487347583639753" y="13.487347583639753" text-anchor="end" transform="rotate(45.0 17.487347583639753 13.487347583639753)">Peliyagoda (New Kelani Bridge) (11)</text>
+<line class="station-tick" x1="70.0" y1="37.675" x2="70.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="70.0" y="37.275" text-anchor="start" transform="rotate(-90.0 70.0 37.275)">Athurugiriya Hospital (2)</text>
+<line class="station-tick" x1="10.0" y1="26.325" x2="10.0" y2="26.724999999999998" stroke="#006b3f"/>
+<text class="label" x="10.0" y="26.724999999999998" text-anchor="start" transform="rotate(90.0 10.0 26.724999999999998)">Gamini Hall (18)</text>
+<circle class="interchange" cx="14.0" cy="34.0" r="0.6"/>
+<text class="label" x="14.75" y="33.25" text-anchor="start">Nelum Pokuna (14/16)</text>
+<line class="station-tick" x1="37.77019029611437" y1="34.22980970388563" x2="37.48734758363975" y2="34.51265241636025" stroke="#0070a8"/>
+<text class="label" x="37.48734758363975" y="34.51265241636025" text-anchor="end" transform="rotate(-45.0 37.48734758363975 34.51265241636025)">Palam Thuna Junction (7)</text>
+<line class="station-tick" x1="50.0" y1="37.675" x2="50.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="50.0" y="37.275" text-anchor="start" transform="rotate(-90.0 50.0 37.275)">Malabe Bus Stand (7)</text>
+<line class="station-tick" x1="30.0" y1="5.675" x2="30.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="30.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 30.0 5.2749999999999995)">Wattala (14)</text>
 <circle class="interchange" cx="34.0" cy="30.0" r="0.6"/>
 <text class="label" x="34.75" y="29.25" text-anchor="start">Sethsiripaya (8/12/3)</text>
+<line class="station-tick" x1="66.0" y1="62.325" x2="66.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="66.0" y="62.725" text-anchor="start" transform="rotate(90.0 66.0 62.725)">Panadura Base Hospital (25)</text>
+<line class="station-tick" x1="34.0" y1="50.325" x2="34.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="34.0" y="50.725" text-anchor="start" transform="rotate(90.0 34.0 50.725)">Wijerama Junction (8)</text>
+<line class="station-tick" x1="62.0" y1="61.675" x2="62.0" y2="61.275" stroke="#f57c00"/>
+<text class="label" x="62.0" y="61.275" text-anchor="start" transform="rotate(-90.0 62.0 61.275)">Mahanama Junction (24)</text>
+<line class="station-tick" x1="33.675" y1="34.0" x2="33.275" y2="34.0" stroke="#ffd400"/>
+<text class="label" x="33.275" y="34.0" text-anchor="end" transform="rotate(0.0 33.275 34.0)">Koswaththa (11)</text>
+<line class="station-tick" x1="45.77019029611437" y1="42.22980970388563" x2="45.48734758363975" y2="42.51265241636025" stroke="#0070a8"/>
+<text class="label" x="45.48734758363975" y="42.51265241636025" text-anchor="end" transform="rotate(-45.0 45.48734758363975 42.51265241636025)">Thalawathugoda (5)</text>
+<line class="station-tick" x1="42.0" y1="30.325" x2="42.0" y2="30.724999999999998" stroke="#6f2dbd"/>
+<text class="label" x="42.0" y="30.724999999999998" text-anchor="start" transform="rotate(90.0 42.0 30.724999999999998)">Thalangama Depot (1)</text>
+<circle class="interchange" cx="18.0" cy="18.0" r="0.6"/>
+<text class="label" x="18.75" y="17.25" text-anchor="start">Orugodawatta (20/10)</text>
+<line class="station-tick" x1="54.0" y1="58.325" x2="54.0" y2="58.725" stroke="#006b3f"/>
+<text class="label" x="54.0" y="58.725" text-anchor="start" transform="rotate(90.0 54.0 58.725)">Piliyandala Bus Stand Stop (3)</text>
+<line class="station-tick" x1="46.0" y1="38.325" x2="46.0" y2="38.725" stroke="#ffd400"/>
+<text class="label" x="46.0" y="38.725" text-anchor="start" transform="rotate(90.0 46.0 38.725)">Thalahena Junction (8)</text>
+<line class="station-tick" x1="17.77019029611437" y1="54.22980970388563" x2="17.487347583639753" y2="54.51265241636025" stroke="#006b3f"/>
+<text class="label" x="17.487347583639753" y="54.51265241636025" text-anchor="end" transform="rotate(-45.0 17.487347583639753 54.51265241636025)">Royal Institute Bus Stop (11)</text>
+<circle class="interchange" cx="30.0" cy="30.0" r="0.6"/>
+<text class="label" x="30.75" y="29.25" text-anchor="start">NAITA (9/13/4)</text>
+<line class="station-tick" x1="58.0" y1="37.675" x2="58.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="58.0" y="37.275" text-anchor="start" transform="rotate(-90.0 58.0 37.275)">Hokandara Junction (5)</text>
+<line class="station-tick" x1="5.675" y1="42.0" x2="5.2749999999999995" y2="42.0" stroke="#f57c00"/>
+<text class="label" x="5.2749999999999995" y="42.0" text-anchor="end" transform="rotate(0.0 5.2749999999999995 42.0)">Bambalapitiya (7)</text>
+<circle class="interchange" cx="18.0" cy="22.0" r="0.6"/>
+<text class="label" x="18.75" y="21.25" text-anchor="start">Dematagoda (19/1/9)</text>
+<circle class="interchange" cx="18.0" cy="30.0" r="0.6"/>
+<text class="label" x="18.75" y="29.25" text-anchor="start">Borella (17/17/3/7)</text>
+<circle class="interchange" cx="10.0" cy="18.0" r="0.6"/>
+<text class="label" x="10.75" y="17.25" text-anchor="start">Pettah (18/22)</text>
+<line class="station-tick" x1="46.0" y1="50.325" x2="46.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="46.0" y="50.725" text-anchor="start" transform="rotate(90.0 46.0 50.725)">Cancer Hospital Bus Stop 01 (5)</text>
+<line class="station-tick" x1="42.0" y1="58.325" x2="42.0" y2="58.725" stroke="#006b3f"/>
+<text class="label" x="42.0" y="58.725" text-anchor="start" transform="rotate(90.0 42.0 58.725)">Werahera (6)</text>
+<line class="station-tick" x1="18.325" y1="42.0" x2="18.724999999999998" y2="42.0" stroke="#8a0f45"/>
+<text class="label" x="18.724999999999998" y="42.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 42.0)">Narahenpita Junction (14)</text>
+<line class="station-tick" x1="62.0" y1="5.675" x2="62.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="62.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 62.0 5.2749999999999995)">Ekala (22)</text>
+<line class="station-tick" x1="38.0" y1="30.325" x2="38.0" y2="30.724999999999998" stroke="#6f2dbd"/>
+<text class="label" x="38.0" y="30.724999999999998" text-anchor="start" transform="rotate(90.0 38.0 30.724999999999998)">Battaramulla Junction (2)</text>
+<line class="station-tick" x1="10.0" y1="30.325" x2="10.0" y2="30.724999999999998" stroke="#ffd400"/>
+<text class="label" x="10.0" y="30.724999999999998" text-anchor="start" transform="rotate(90.0 10.0 30.724999999999998)">Union Place (19)</text>
+<line class="station-tick" x1="58.0" y1="62.325" x2="58.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="58.0" y="62.725" text-anchor="start" transform="rotate(90.0 58.0 62.725)">Palam Junction (23)</text>
+<line class="station-tick" x1="42.0" y1="62.325" x2="42.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="42.0" y="62.725" text-anchor="start" transform="rotate(90.0 42.0 62.725)">Moratuwa (19)</text>
+<line class="station-tick" x1="74.0" y1="37.675" x2="74.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="74.0" y="37.275" text-anchor="start" transform="rotate(-90.0 74.0 37.275)">Millennium City (1)</text>
+<line class="station-tick" x1="26.0" y1="53.675" x2="26.0" y2="53.275" stroke="#006b3f"/>
+<text class="label" x="26.0" y="53.275" text-anchor="start" transform="rotate(-90.0 26.0 53.275)">Pepiliyana (9)</text>
+<line class="station-tick" x1="14.325" y1="34.0" x2="14.725" y2="34.0" stroke="#0070a8"/>
+<text class="label" x="14.725" y="34.0" text-anchor="start" transform="rotate(0.0 14.725 34.0)">Wijerama (13)</text>
+<circle class="interchange" cx="6.0" cy="18.0" r="0.6"/>
+<text class="label" x="6.75" y="17.25" text-anchor="start">Colombo Fort (19/23/21)</text>
+<circle class="interchange" cx="10.0" cy="38.0" r="0.6"/>
+<text class="label" x="10.75" y="37.25" text-anchor="start">Thummulla (6/15)</text>
+<line class="station-tick" x1="58.0" y1="5.675" x2="58.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="58.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 58.0 5.2749999999999995)">CTB Junction (21)</text>
+<line class="station-tick" x1="22.0" y1="50.325" x2="22.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="22.0" y="50.725" text-anchor="start" transform="rotate(90.0 22.0 50.725)">Kirulapone (11)</text>
+<line class="station-tick" x1="54.0" y1="37.675" x2="54.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="54.0" y="37.275" text-anchor="start" transform="rotate(-90.0 54.0 37.275)">Arangala Junction (6)</text>
+<line class="station-tick" x1="70.0" y1="61.675" x2="70.0" y2="61.275" stroke="#f57c00"/>
+<text class="label" x="70.0" y="61.275" text-anchor="start" transform="rotate(-90.0 70.0 61.275)">Panadura (26)</text>
+<line class="station-tick" x1="18.325" y1="46.0" x2="18.724999999999998" y2="46.0" stroke="#8a0f45"/>
+<text class="label" x="18.724999999999998" y="46.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 46.0)">VTA / AAT (13)</text>
+<line class="station-tick" x1="38.0" y1="62.325" x2="38.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="38.0" y="62.725" text-anchor="start" transform="rotate(90.0 38.0 62.725)">Mendis Lane Rawathawatta (18)</text>
+<line class="station-tick" x1="38.0" y1="17.675" x2="38.0" y2="17.275000000000002" stroke="#8a0f45"/>
+<text class="label" x="38.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 38.0 17.275000000000002)">Kadawatha (25)</text>
+<line class="station-tick" x1="34.0" y1="62.325" x2="34.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="34.0" y="62.725" text-anchor="start" transform="rotate(90.0 34.0 62.725)">Katubedda Junction (17)</text>
+<line class="station-tick" x1="57.77019029611437" y1="53.77019029611437" x2="57.48734758363975" y2="53.48734758363975" stroke="#006b3f"/>
+<text class="label" x="57.48734758363975" y="53.48734758363975" text-anchor="end" transform="rotate(45.0 57.48734758363975 53.48734758363975)">Kesbewa (2)</text>
+<line class="station-tick" x1="62.0" y1="37.675" x2="62.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="62.0" y="37.275" text-anchor="start" transform="rotate(-90.0 62.0 37.275)">Nisaco Mall (4)</text>
+<line class="station-tick" x1="54.0" y1="61.675" x2="54.0" y2="61.275" stroke="#f57c00"/>
+<text class="label" x="54.0" y="61.275" text-anchor="start" transform="rotate(-90.0 54.0 61.275)">Jayanthi Mawatha Stop (22)</text>
+<line class="station-tick" x1="66.0" y1="37.675" x2="66.0" y2="37.275" stroke="#ffd400"/>
+<text class="label" x="66.0" y="37.275" text-anchor="start" transform="rotate(-90.0 66.0 37.275)">Athurugiriya Town (3)</text>
+<line class="station-tick" x1="13.770190296114372" y1="50.22980970388563" x2="13.487347583639753" y2="50.51265241636025" stroke="#006b3f"/>
+<text class="label" x="13.487347583639753" y="50.51265241636025" text-anchor="end" transform="rotate(-45.0 13.487347583639753 50.51265241636025)">Havelock (12)</text>
+<line class="station-tick" x1="38.0" y1="5.675" x2="38.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="38.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 38.0 5.2749999999999995)">Mabola (16)</text>
+<line class="station-tick" x1="14.0" y1="18.325" x2="14.0" y2="18.724999999999998" stroke="#0070a8"/>
+<text class="label" x="14.0" y="18.724999999999998" text-anchor="start" transform="rotate(90.0 14.0 18.724999999999998)">Maradana (17)</text>
+<line class="station-tick" x1="26.0" y1="62.325" x2="26.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="26.0" y="62.725" text-anchor="start" transform="rotate(90.0 26.0 62.725)">Golumadama Junction (15)</text>
+<line class="station-tick" x1="22.0" y1="18.325" x2="22.0" y2="18.724999999999998" stroke="#8a0f45"/>
+<text class="label" x="22.0" y="18.724999999999998" text-anchor="start" transform="rotate(90.0 22.0 18.724999999999998)">Thorana Junction (21)</text>
+<line class="station-tick" x1="34.0" y1="5.675" x2="34.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="34.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 34.0 5.2749999999999995)">Hendala (15)</text>
+<line class="station-tick" x1="26.0" y1="18.325" x2="26.0" y2="18.724999999999998" stroke="#8a0f45"/>
+<text class="label" x="26.0" y="18.724999999999998" text-anchor="start" transform="rotate(90.0 26.0 18.724999999999998)">Kelaniya Campus (22)</text>
+<line class="station-tick" x1="38.22980970388563" y1="37.77019029611437" x2="38.51265241636025" y2="37.48734758363975" stroke="#ffd400"/>
+<text class="label" x="38.51265241636025" y="37.48734758363975" text-anchor="start" transform="rotate(-45.0 38.51265241636025 37.48734758363975)">Thalangama Junction (10)</text>
+<line class="station-tick" x1="5.770190296114372" y1="54.22980970388563" x2="5.487347583639752" y2="54.51265241636025" stroke="#f57c00"/>
+<text class="label" x="5.487347583639752" y="54.51265241636025" text-anchor="end" transform="rotate(-44.999999999999886 5.487347583639752 54.51265241636025)">Dehiwala (10)</text>
+<line class="station-tick" x1="9.770190296114372" y1="58.22980970388563" x2="9.487347583639753" y2="58.51265241636025" stroke="#f57c00"/>
+<text class="label" x="9.487347583639753" y="58.51265241636025" text-anchor="end" transform="rotate(-45.0 9.487347583639753 58.51265241636025)">Mount Lavinia (11)</text>
+<line class="station-tick" x1="6.325" y1="50.0" x2="6.7250000000000005" y2="50.0" stroke="#f57c00"/>
+<text class="label" x="6.7250000000000005" y="50.0" text-anchor="start" transform="rotate(0.0 6.7250000000000005 50.0)">William Junction (9)</text>
+<circle class="interchange" cx="58.0" cy="50.0" r="0.6"/>
+<text class="label" x="58.75" y="49.25" text-anchor="start">Kottawa (2/2)</text>
+<line class="station-tick" x1="9.675" y1="46.0" x2="9.275" y2="46.0" stroke="#006b3f"/>
+<text class="label" x="9.275" y="46.0" text-anchor="end" transform="rotate(0.0 9.275 46.0)">BRC Junction (13)</text>
+<line class="station-tick" x1="14.0" y1="38.325" x2="14.0" y2="38.725" stroke="#f57c00"/>
+<text class="label" x="14.0" y="38.725" text-anchor="start" transform="rotate(90.0 14.0 38.725)">Independence Arcade (5)</text>
+<circle class="interchange" cx="22.0" cy="30.0" r="0.6"/>
+<text class="label" x="22.75" y="29.25" text-anchor="start">Castle Hospital (11/15/6)</text>
+<circle class="interchange" cx="62.0" cy="50.0" r="0.6"/>
+<text class="label" x="62.75" y="49.25" text-anchor="start">Makumbura (1/1/1)</text>
+<line class="station-tick" x1="14.0" y1="62.325" x2="14.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="14.0" y="62.725" text-anchor="start" transform="rotate(90.0 14.0 62.725)">Near Lalanka Head Office (12)</text>
+<circle class="interchange" cx="18.0" cy="26.0" r="0.6"/>
+<text class="label" x="18.75" y="25.25" text-anchor="start">Campbell Park (18/2/8)</text>
+<circle class="interchange" cx="54.0" cy="50.0" r="0.6"/>
+<text class="label" x="54.75" y="49.25" text-anchor="start">Pannipitiya (3/3)</text>
+<line class="station-tick" x1="37.85465558146252" y1="58.290688837074974" x2="37.67577014326253" y2="58.64845971347494" stroke="#006b3f"/>
+<text class="label" x="37.67577014326253" y="58.64845971347494" text-anchor="end" transform="rotate(-63.43494882292201 37.67577014326253 58.64845971347494)">Boralesgamuwa (7)</text>
+<line class="station-tick" x1="18.325" y1="50.0" x2="18.724999999999998" y2="50.0" stroke="#8a0f45"/>
+<text class="label" x="18.724999999999998" y="50.0" text-anchor="start" transform="rotate(0.0 18.724999999999998 50.0)">Narahenpita (12)</text>
+<circle class="interchange" cx="6.0" cy="22.0" r="0.6"/>
+<text class="label" x="6.75" y="21.25" text-anchor="start">Lake House Bus Stop (22/20)</text>
+<circle class="interchange" cx="18.0" cy="34.0" r="0.6"/>
+<text class="label" x="18.75" y="33.25" text-anchor="start">Singer Mega - Colombo 8 (12/16/16/4)</text>
+<line class="station-tick" x1="42.0" y1="5.675" x2="42.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="42.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 42.0 5.2749999999999995)">Mahabage (17)</text>
+<circle class="interchange" cx="14.0" cy="30.0" r="0.6"/>
+<text class="label" x="14.75" y="29.25" text-anchor="start">Town Hall (15/18/17)</text>
+<line class="station-tick" x1="22.22980970388563" y1="10.229809703885628" x2="22.512652416360247" y2="10.512652416360247" stroke="#6f2dbd"/>
+<text class="label" x="22.512652416360247" y="10.512652416360247" text-anchor="start" transform="rotate(45.0 22.512652416360247 10.512652416360247)">Peliyagoda 02 (12)</text>
+<line class="station-tick" x1="22.0" y1="54.325" x2="22.0" y2="54.725" stroke="#006b3f"/>
+<text class="label" x="22.0" y="54.725" text-anchor="start" transform="rotate(90.0 22.0 54.725)">Kalubowila Hospital Stop (10)</text>
+<line class="station-tick" x1="6.325" y1="46.0" x2="6.7250000000000005" y2="46.0" stroke="#f57c00"/>
+<text class="label" x="6.7250000000000005" y="46.0" text-anchor="start" transform="rotate(0.0 6.7250000000000005 46.0)">Wellawatta (8)</text>
+<line class="station-tick" x1="30.0" y1="50.325" x2="30.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="30.0" y="50.725" text-anchor="start" transform="rotate(90.0 30.0 50.725)">Delkanda Junction (9)</text>
+<line class="station-tick" x1="22.0" y1="62.325" x2="22.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="22.0" y="62.725" text-anchor="start" transform="rotate(90.0 22.0 62.725)">Rathmalana Tec (14)</text>
+<line class="station-tick" x1="50.0" y1="62.325" x2="50.0" y2="62.725" stroke="#f57c00"/>
+<text class="label" x="50.0" y="62.725" text-anchor="start" transform="rotate(90.0 50.0 62.725)">Egoda Uyana (21)</text>
+<line class="station-tick" x1="50.22980970388563" y1="45.77019029611437" x2="50.51265241636025" y2="45.48734758363975" stroke="#0070a8"/>
+<text class="label" x="50.51265241636025" y="45.48734758363975" text-anchor="start" transform="rotate(-45.0 50.51265241636025 45.48734758363975)">Kalalgoda Junction (4)</text>
+<line class="station-tick" x1="50.0" y1="5.675" x2="50.0" y2="5.2749999999999995" stroke="#6f2dbd"/>
+<text class="label" x="50.0" y="5.2749999999999995" text-anchor="start" transform="rotate(-90.0 50.0 5.2749999999999995)">Weligampitiya (19)</text>
+<line class="station-tick" x1="5.675" y1="30.0" x2="5.2749999999999995" y2="30.0" stroke="#ffd400"/>
+<text class="label" x="5.2749999999999995" y="30.0" text-anchor="end" transform="rotate(0.0 5.2749999999999995 30.0)">Nawaloka Bus Stop (20)</text>
+<line class="station-tick" x1="34.0" y1="17.675" x2="34.0" y2="17.275000000000002" stroke="#8a0f45"/>
+<text class="label" x="34.0" y="17.275000000000002" text-anchor="start" transform="rotate(-90.0 34.0 17.275000000000002)">Mahara Junction (24)</text>
+<line class="station-tick" x1="50.0" y1="50.325" x2="50.0" y2="50.725" stroke="#8a0f45"/>
+<text class="label" x="50.0" y="50.725" text-anchor="start" transform="rotate(90.0 50.0 50.725)">Maharagama Cargills Food City (4)</text>
 </g>
 <text class="map-title" x="6" y="5.5">Lanka Metro</text>
 <text class="legend-label" x="84" y="10" font-weight="bold">Routes</text>
@@ -403,4 +403,6 @@
 <text class="legend-label" x="92" y="34">CM06: Kollupitiya Circular Route</text>
 <line x1="84" y1="38" x2="90" y2="38" stroke="#006b3f" stroke-width="0.65" stroke-linecap="round"/>
 <text class="legend-label" x="92" y="38">CM08: Kesbewa to Pettah</text>
+<text class="legend-label" x="84" y="44">⚠️ Not to scale</text>
+<text class="legend-label" x="84" y="48">⚠️ Directions are schematic</text>
 </svg>
