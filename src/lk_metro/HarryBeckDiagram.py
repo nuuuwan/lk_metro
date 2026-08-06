@@ -140,8 +140,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		positions: dict[str, list[float]],
 	) -> None:
 		errors = []
+		edges = []
 		for route in self.routes:
 			for first, second in zip(route.stops, route.stops[1:]):
+				edges.append((route.id, first, second))
 				x_delta = positions[second][0] - positions[first][0]
 				y_delta = positions[second][1] - positions[first][1]
 				is_zero_length = math.isclose(x_delta, 0.0) and math.isclose(
@@ -181,8 +183,71 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 					f"overlap at ({position[0]:g}, {position[1]:g})"
 				)
 
+		for index, (first_route, first_start, first_end) in enumerate(edges):
+			for second_route, second_start, second_end in edges[index + 1:]:
+				if {first_start, first_end} & {second_start, second_end}:
+					continue
+				intersection = self._proper_segment_intersection(
+					positions[first_start],
+					positions[first_end],
+					positions[second_start],
+					positions[second_end],
+				)
+				if intersection is None:
+					continue
+				errors.append(
+					f"route {first_route} edge "
+					f"{self._format_stop_at(first_start, positions[first_start])} to "
+					f"{self._format_stop_at(first_end, positions[first_end])} crosses "
+					f"route {second_route} edge "
+					f"{self._format_stop_at(second_start, positions[second_start])} to "
+					f"{self._format_stop_at(second_end, positions[second_end])} at "
+					f"({intersection[0]:g}, {intersection[1]:g}) without a shared stop"
+				)
+
 		for error in errors:
 			log.warn(f"Harry Beck geometry: {error}")
+
+	@staticmethod
+	def _proper_segment_intersection(
+		first_start: list[float],
+		first_end: list[float],
+		second_start: list[float],
+		second_end: list[float],
+	) -> Point | None:
+		first_delta = (
+			first_end[0] - first_start[0],
+			first_end[1] - first_start[1],
+		)
+		second_delta = (
+			second_end[0] - second_start[0],
+			second_end[1] - second_start[1],
+		)
+		denominator = (
+			first_delta[0] * second_delta[1]
+			- first_delta[1] * second_delta[0]
+		)
+		if math.isclose(denominator, 0.0):
+			return None
+
+		start_delta = (
+			second_start[0] - first_start[0],
+			second_start[1] - first_start[1],
+		)
+		first_fraction = (
+			start_delta[0] * second_delta[1]
+			- start_delta[1] * second_delta[0]
+		) / denominator
+		second_fraction = (
+			start_delta[0] * first_delta[1]
+			- start_delta[1] * first_delta[0]
+		) / denominator
+		if not 0.0 < first_fraction < 1.0 or not 0.0 < second_fraction < 1.0:
+			return None
+		return (
+			first_start[0] + first_fraction * first_delta[0],
+			first_start[1] + first_fraction * first_delta[1],
+		)
 
 	def route_segments(
 		self,
