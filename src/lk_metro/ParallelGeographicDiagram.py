@@ -141,11 +141,13 @@ class ParallelGeographicDiagram(GeographicDiagram):
 					math.atan2(second[1] - first[1], second[0] - first[0])
 				)
 				label_angle = tick_angle
+				text_anchor = "start"
 				if label_angle > 90:
 					label_angle -= 180
+					text_anchor = "end"
 				elif label_angle < -90:
 					label_angle += 180
-				text_anchor = "start"
+					text_anchor = "end"
 				label_transform = (
 					f' transform="rotate({label_angle} {label_x} {label_y})"'
 				)
@@ -224,7 +226,89 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				),
 			)
 
-		return ticks
+		return self._avoid_label_overlaps(positions, ticks, memberships)
+
+	def _avoid_label_overlaps(
+		self,
+		positions: dict[str, Point],
+		ticks: dict[str, tuple[Point, Point]],
+		memberships: dict[str, set[str]],
+	) -> dict[str, tuple[Point, Point]]:
+		occupied = [
+			self._label_bounds(
+				(x + LABEL_OFFSET, y - LABEL_OFFSET),
+				self._stop_label(stop.name),
+				(1.0, 0.0),
+			)
+			for stop in self.stops
+			if len(memberships[stop.name]) > 1
+			for x, y in [positions[stop.name]]
+		]
+		selected_ticks = {}
+		for stop in sorted(
+			(stop for stop in self.stops if stop.name in ticks),
+			key=lambda stop: (positions[stop.name][1], positions[stop.name][0]),
+		):
+			x, y = positions[stop.name]
+			first, second = ticks[stop.name]
+			mirrored = (
+				(2 * x - first[0], 2 * y - first[1]),
+				(2 * x - second[0], 2 * y - second[1]),
+			)
+			candidates = [ticks[stop.name], mirrored]
+			candidate_bounds = [
+				self._label_bounds(
+					candidate[1],
+					self._stop_label(stop.name),
+					(candidate[1][0] - x, candidate[1][1] - y),
+				)
+				for candidate in candidates
+			]
+			scores = [
+				sum(self._overlap_area(bounds, other) for other in occupied)
+				for bounds in candidate_bounds
+			]
+			selected_index = min(range(len(candidates)), key=scores.__getitem__)
+			selected_ticks[stop.name] = candidates[selected_index]
+			occupied.append(candidate_bounds[selected_index])
+		return selected_ticks
+
+	@staticmethod
+	def _label_bounds(
+		anchor: Point,
+		label: str,
+		outward: Point,
+	) -> tuple[float, float, float, float]:
+		length = math.hypot(*outward)
+		x_direction = outward[0] / length
+		y_direction = outward[1] / length
+		x_normal = -y_direction
+		y_normal = x_direction
+		text_width = max(LABEL_FONT_SIZE, len(label) * LABEL_FONT_SIZE * 0.55)
+		half_height = LABEL_FONT_SIZE / 2
+		corners = [
+			(
+				anchor[0] + x_direction * distance + x_normal * offset,
+				anchor[1] + y_direction * distance + y_normal * offset,
+			)
+			for distance in (0.0, text_width)
+			for offset in (-half_height, half_height)
+		]
+		return (
+			min(point[0] for point in corners),
+			min(point[1] for point in corners),
+			max(point[0] for point in corners),
+			max(point[1] for point in corners),
+		)
+
+	@staticmethod
+	def _overlap_area(
+		first: tuple[float, float, float, float],
+		second: tuple[float, float, float, float],
+	) -> float:
+		width = max(0.0, min(first[2], second[2]) - max(first[0], second[0]))
+		height = max(0.0, min(first[3], second[3]) - max(first[1], second[1]))
+		return width * height
 
 	def write_svg(self, path: str | Path) -> Path:
 		output_path = Path(path)

@@ -2,5 +2,11 @@
   "origin_stops": {
     "Colombo Fort": [0, 0]
   },
-  "routes": { "CM01": "2W-6NW-5W-3N-2W", "CM02": "9W-NW-N-4W-N-4W-2N" }
+  "routes": {
+    "CM01": "2W-6NW-5W-3N-2W",
+    "CM02": "9W-NW-N-4W-N-4W-2N",
+    "CM03": "11W-8N-5NE",
+    "CM04": "3S-3SW-19S",
+    "CM05": "6W-12N-2NE"
+  }
 }
