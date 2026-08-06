@@ -496,28 +496,32 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				font_size,
 			) + 0.2
 			candidate_outwards = []
+			candidate_extra_distances = []
 			if not self.ROTATE_LABELS:
 				left = min(first[0], second[0])
 				right = max(first[0], second[0])
-				top = min(first[1], second[1]) - label_clearance
-				bottom = (
-					max(first[1], second[1])
-					+ label_clearance
-					+ font_size * self.LABEL_BASELINE_COMPENSATION
-				)
-				candidates = [ticks[stop.name]] * 4
-				candidate_anchors = [
-					(left, top),
-					(right, top),
-					(left, bottom),
-					(right, bottom),
-				]
-				candidate_outwards = [
-					(-1.0, -1.0),
-					(1.0, -1.0),
-					(-1.0, 1.0),
-					(1.0, 1.0),
-				]
+				candidates = []
+				candidate_anchors = []
+				for extra_distance in (0.0, font_size * 1.1, font_size * 2.2):
+					top = (
+						min(first[1], second[1])
+						- label_clearance
+						- extra_distance
+					)
+					bottom = (
+						max(first[1], second[1])
+						+ label_clearance
+						+ font_size * self.LABEL_BASELINE_COMPENSATION
+						+ extra_distance
+					)
+					candidates.extend([ticks[stop.name]] * 4)
+					candidate_anchors.extend(
+						[(left, top), (right, top), (left, bottom), (right, bottom)]
+					)
+					candidate_outwards.extend(
+						[(-1.0, -1.0), (1.0, -1.0), (-1.0, 1.0), (1.0, 1.0)]
+					)
+					candidate_extra_distances.extend([extra_distance] * 4)
 			else:
 				candidates = []
 				candidate_anchors = []
@@ -539,6 +543,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 						candidate_outwards.append(
 							(outward_x, outward_y)
 						)
+						candidate_extra_distances.append(extra)
 				for extra in range(0, 25, 2):
 					radius = (
 						self.ROUTE_STROKE_WIDTH / 2
@@ -567,6 +572,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 						candidate_outwards.append(
 							(x_direction, y_direction)
 						)
+						candidate_extra_distances.append(extra)
 			candidate_bounds = [
 				self._label_bounds(
 					anchor,
@@ -580,6 +586,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			scores = [
 				station_score(bounds)
 				+ (
+					extra_distance,
 					route_label_side_counts[route_id][
 						"above" if outward[1] < 0 else "below"
 					]
@@ -590,13 +597,22 @@ class ParallelGeographicDiagram(GeographicDiagram):
 						for route in route_bounds
 					),
 				)
-				for bounds, outward in zip(candidate_bounds, candidate_outwards)
+				for bounds, outward, extra_distance in zip(
+					candidate_bounds,
+					candidate_outwards,
+					candidate_extra_distances,
+				)
 			]
 			selected_index = min(range(len(candidates)), key=scores.__getitem__)
 			label_options[stop.name] = list(
 				zip(
 					candidate_bounds,
-					zip(candidates, candidate_anchors, candidate_outwards),
+					zip(
+						candidates,
+						candidate_anchors,
+						candidate_outwards,
+						candidate_extra_distances,
+					),
 				)
 			)
 			selected_indices[stop.name] = selected_index
@@ -619,26 +635,19 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				(stop.name, candidate_bounds[selected_index])
 			)
 		if not self.ROTATE_LABELS:
-			seen_selections = set()
-			for _ in range(30):
-				selection = tuple(selected_indices.items())
-				if selection in seen_selections:
-					break
-				seen_selections.add(selection)
-				changed = False
-				for stop_name, options in label_options.items():
+			label_names = list(label_options)
+			for pass_index in range(4):
+				ordered_names = (
+					label_names if pass_index % 2 == 0 else reversed(label_names)
+				)
+				for stop_name in ordered_names:
 					route_id = next(iter(memberships[stop_name]))
-					current_outward = options[selected_indices[stop_name]][1][2]
-					current_side = (
-						"above" if current_outward[1] < 0 else "below"
-					)
-					route_label_side_counts[route_id][current_side] -= 1
 					other_bounds = [
-						other_options[selected_indices[other_name]][0]
-						for other_name, other_options in label_options.items()
-						if other_name != stop_name
+						label_options[name][selected_indices[name]][0]
+						for name in label_names
+						if name != stop_name
 					]
-					scores = [
+					candidate_scores = [
 						(
 							self._outside_area(bounds, canvas_bounds),
 							sum(
@@ -649,6 +658,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 								self._overlap_area(bounds, other)
 								for other in other_bounds
 							),
+							payload[3],
 							route_label_side_counts[route_id][
 								"above" if payload[2][1] < 0 else "below"
 							],
@@ -657,26 +667,16 @@ class ParallelGeographicDiagram(GeographicDiagram):
 								for route in route_bounds
 							),
 						)
-						for bounds, payload in options
+						for bounds, payload in label_options[stop_name]
 					]
-					selected_index = min(
-						range(len(options)),
-						key=scores.__getitem__,
+					selected_indices[stop_name] = min(
+						range(len(candidate_scores)),
+						key=candidate_scores.__getitem__,
 					)
-					if selected_index != selected_indices[stop_name]:
-						selected_indices[stop_name] = selected_index
-						changed = True
-					selected_outward = options[selected_index][1][2]
-					selected_side = (
-						"above" if selected_outward[1] < 0 else "below"
-					)
-					route_label_side_counts[route_id][selected_side] += 1
-				if not changed:
-					break
 			placed_labels = placed_labels[: len(fixed_bounds)]
 			for stop_name, options in label_options.items():
 				bounds, payload = options[selected_indices[stop_name]]
-				selected_tick, label_position, outward = payload
+				selected_tick, label_position, outward, _ = payload
 				selected_ticks[stop_name] = selected_tick
 				self._station_label_positions[stop_name] = label_position
 				self._station_label_text_anchors[stop_name] = (
