@@ -28,21 +28,14 @@
           "NAITA",
           "Rajagiriya",
           "Castle Hospital",
-          "Borella",
-          "Town Hall"
+          "Singer Mega - Colombo 8"
         ]
       ],
-      ["SW", ["Town Hall", "Union Place"]],
-      [
-        "W",
-        [
-          "Union Place",
-          "Nawaloka Bus Stop",
-          "Regal Cinema",
-          "Lake House Bus Stop"
-        ]
-      ],
-      ["NW", ["Lake House Bus Stop", "Colombo Fort"]]
+      ["N", ["Singer Mega - Colombo 8", "Borella"]],
+      ["W", ["Borella", "", "Town Hall", "Union Place", "Nawaloka Bus Stop"]],
+      ["N", ["Nawaloka Bus Stop", "Regal Cinema"]],
+      ["W", ["Regal Cinema", "Lake House Bus Stop"]],
+      ["N", ["Lake House Bus Stop", "Colombo Fort"]]
     ],
     "CM03": [
       [
@@ -56,7 +49,7 @@
           "Maharagama"
         ]
       ],
-      ["SW", ["Maharagama", "Nawinna", "Wijerama Junction"]],
+      ["W", ["Maharagama", "Nawinna", "Wijerama Junction"]],
       [
         "W",
         ["Wijerama Junction", "Delkanda Junction", "Nugegoda 01", "Kirulapone"]
@@ -93,15 +86,8 @@
         "S",
         ["Dematagoda", "Campbell Park", "Borella", "Singer Mega - Colombo 8"]
       ],
-      [
-        "SW",
-        [
-          "Singer Mega - Colombo 8",
-          "Independence Arcade",
-          "Thummulla",
-          "Bambalapitiya"
-        ]
-      ],
+      ["SW", ["Singer Mega - Colombo 8", "Independence Arcade", "Thummulla"]],
+      ["W", ["Thummulla", "Bambalapitiya"]],
       [
         "S",
         [
@@ -138,12 +124,13 @@
           "NAITA",
           "Rajagiriya",
           "Castle Hospital",
-          "Borella"
+          "Singer Mega - Colombo 8"
         ]
       ],
       [
         "N",
         [
+          "Singer Mega - Colombo 8",
           "Borella",
           "Campbell Park",
           "Dematagoda",
@@ -164,38 +151,74 @@
     ],
     "CM08": [
       [
-        "NW",
+        "SW",
         [
+          "Makumbura",
           "Kesbewa",
           "Piliyandala Bus Stand Stop",
           "Lanka Fiber Fabrica",
+
+          "Weerasinghe Mawatha"
+        ]
+      ],
+      [
+        "W",
+        [
           "Weerasinghe Mawatha",
           "Werahera",
           "Boralesgamuwa",
           "Raththanapitiya",
           "Pepiliyana",
+          "Kalubowila Hospital Stop"
+        ]
+      ],
+      [
+        "NW",
+        [
           "Kalubowila Hospital Stop",
           "Royal Institute Bus Stop",
           "Havelock",
           "BRC Junction"
         ]
       ],
-      ["N", ["BRC Junction", "Thimbirigasyaya", "Thummulla", "Nelum Pokuna"]],
-      ["W", ["Lake House Bus Stop", "Colombo Fort"]],
-      ["NE", ["Colombo Fort", "Pettah"]]
+      [
+        "N",
+        ["BRC Junction", "Thimbirigasyaya", "Thummulla", "-", "Nelum Pokuna"]
+      ],
+      ["NW", ["Town Hall", "Gamini Hall"]],
+      ["W", ["Gamini Hall", "Regal Cinema"]],
+      ["W", ["Regal Cinema", "Lake House Bus Stop"]],
+      ["NW", ["Lake House Bus Stop", "Colombo Fort"]],
+      ["E", ["Colombo Fort", "Pettah"]]
     ],
+
     "CM01": [
       ["NW", ["Makumbura", "Kottawa", "Pannipitiya"]],
+      ["N", ["Pannipitiya", "Kalalgoda Junction"]],
+      ["NW", ["Kalalgoda Junction", "Thalawathugoda"]],
+      ["N", ["Thalawathugoda", "Isurupaya"]],
       ["NW", ["Isurupaya", "Palam Thuna Junction", "Sethsiripaya"]],
       [
         "W",
-        ["Sethsiripaya", "NAITA", "Rajagiriya", "Castle Hospital", "Borella"]
+        [
+          "Sethsiripaya",
+          "NAITA",
+          "Rajagiriya",
+          "Castle Hospital",
+          "Singer Mega - Colombo 8",
+          "Wijerama",
+          "Nelum Pokuna"
+        ]
       ],
-      ["S", ["Borella", "Singer Mega - Colombo 8"]],
-      ["W", ["Singer Mega - Colombo 8", "Wijerama"]],
-      ["N", ["Wijerama", "Town Hall"]],
-      ["W", ["Hedges Ct", "Maradana", "Pettah"]],
-      ["SW", ["Pettah", "Colombo Fort"]]
+      ["N", ["Nelum Pokuna", "Town Hall"]],
+      ["N", ["Town Hall", "Hedges Ct"]],
+      ["NW", ["Hedges Ct", "Maradana"]],
+      ["W", ["Maradana", "Pettah"]],
+      ["W", ["Pettah", "Colombo Fort"]]
+    ],
+    "CM06": [
+      ["N", ["Wellawatta", "Bambalapitiya", "Kollupitiya", "Public Library"]],
+      ["NE", ["Public Library", "Town Hall"]]
     ]
   }
 }

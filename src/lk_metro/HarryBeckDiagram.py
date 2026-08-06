@@ -53,7 +53,11 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		designed_stop_names = {
 			name for route_stops in designed_stops_by_route.values() for name in route_stops
 		}
-		self.stops = [stop for stop in stops if stop.name in designed_stop_names]
+		stops_by_name = {stop.name: stop for stop in stops}
+		self.stops = [
+			stops_by_name.get(name, Stop(name=name, latlng=[0.0, 0.0], xy=[0.0, 0.0]))
+			for name in designed_stop_names
+		]
 		self._route_order = {
 			route.id: index for index, route in enumerate(self.routes)
 		}
@@ -145,14 +149,14 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			raise ValueError("Harry Beck design must contain routes")
 
 		routes_by_id = {route.id: route for route in self.routes}
-		stop_names = {stop.name for stop in self.stops}
 		origin_positions = {}
 		for name, coordinates in origin_records.items():
 			if not isinstance(coordinates, list) or len(coordinates) != 2:
 				raise ValueError("Harry Beck design contains an invalid origin stop")
 			x_coordinate, y_coordinate = coordinates
 			if (
-				name not in stop_names
+				not isinstance(name, str)
+				or not name
 				or isinstance(x_coordinate, bool)
 				or not isinstance(x_coordinate, (int, float))
 				or isinstance(y_coordinate, bool)
@@ -198,13 +202,6 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 					raise ValueError(
 						f"Harry Beck route {route_id} segment {index} has invalid stops"
 					)
-				unknown_stops = sorted(set(stops) - stop_names)
-				if unknown_stops:
-					raise ValueError(
-						f"Harry Beck route {route_id} contains unknown stops: "
-						+ ", ".join(unknown_stops)
-					)
-
 			designed_stops = []
 			for segment in segments:
 				for stop in segment["stops"]:
