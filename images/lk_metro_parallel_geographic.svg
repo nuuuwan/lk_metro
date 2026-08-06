@@ -435,12 +435,12 @@
 <text class="label" x="71.30927450125131" y="84.16440970927502" text-anchor="start" transform="rotate(-45.0 71.30927450125131 84.16440970927502)"><tspan x="71.30927450125131" dy="0.0">Army Hospital Borella</tspan></text>
 <line class="station" x1="191.5263157894737" y1="119.78947368421053" x2="190.8013157894737" y2="119.78947368421053" stroke="#ffd400"/>
 <text class="label" x="184.1213157894737" y="119.78947368421053" text-anchor="end" transform="rotate(0.0 184.1213157894737 119.78947368421053)"><tspan x="184.1213157894737" dy="0.0">Athurugiriya Hospital</tspan></text>
-<line class="station" x1="191.5263157894737" y1="124.73684210526316" x2="191.01366337311345" y2="125.2494945216234" stroke="#ffd400"/>
-<text class="label" x="190.53283076190658" y="125.73032713283025" text-anchor="end" transform="rotate(-44.999999999999204 190.53283076190658 125.73032713283025)"><tspan x="190.53283076190658" dy="0.0">Athurugiriya Town</tspan></text>
+<line class="station" x1="191.5263157894737" y1="124.73684210526316" x2="192.03896820583395" y2="124.22418968890292" stroke="#ffd400"/>
+<text class="label" x="192.51980081704082" y="123.74335707769607" text-anchor="start" transform="rotate(-44.999999999999204 192.51980081704082 123.74335707769607)"><tspan x="192.51980081704082" dy="0.0">Athurugiriya Town</tspan></text>
 <circle class="interchange" cx="18.36842105263158" cy="95.05263157894737" r="0.78"/>
 <text class="label" x="17.28654767741616" y="96.1345049541628" text-anchor="end"><tspan x="17.28654767741616" dy="0.0">Bambalapitiya</tspan></text>
-<line class="station" x1="151.94736842105263" y1="85.15789473684211" x2="151.43471600469238" y2="85.67054715320235" stroke="#6f2dbd"/>
-<text class="label" x="142.54236842105263" y="85.15789473684211" text-anchor="end" transform="rotate(-44.999999999999204 142.54236842105263 85.15789473684211)"><tspan x="142.54236842105263" dy="0.0">Battaramulla Junction</tspan></text>
+<line class="station" x1="151.94736842105263" y1="85.15789473684211" x2="152.46002083741288" y2="84.64524232048187" stroke="#6f2dbd"/>
+<text class="label" x="165.66877550997776" y="71.43648764791735" text-anchor="start" transform="rotate(-44.999999999999204 165.66877550997776 71.43648764791735)"><tspan x="165.66877550997776" dy="0.0">Battaramulla Junction</tspan></text>
 <line class="station" x1="129.68421052631578" y1="154.42105263157896" x2="130.19686294267603" y2="153.9084002152187" stroke="#006b3f"/>
 <text class="label" x="130.6776955538829" y="153.42756760401184" text-anchor="start" transform="rotate(-45.0 130.6776955538829 153.42756760401184)"><tspan x="130.6776955538829" dy="0.0">Boralesgamuwa</tspan></text>
 <circle class="interchange" cx="75.26315789473685" cy="57.94736842105264" r="0.78"/>
@@ -497,8 +497,8 @@
 <text class="label terminal-label" x="179.1578947368421" y="16.96342105263158" text-anchor="start" transform="rotate(-90.0 179.1578947368421 16.96342105263158)"><tspan x="179.1578947368421" dy="0.0">Kadawatha</tspan></text>
 <line class="station" x1="169.26315789473685" y1="132.1578947368421" x2="169.98815789473684" y2="132.1578947368421" stroke="#0070a8"/>
 <text class="label" x="170.66815789473685" y="132.1578947368421" text-anchor="start" transform="rotate(0.0 170.66815789473685 132.1578947368421)"><tspan x="170.66815789473685" dy="0.0">Kalalgoda Junction</tspan></text>
-<line class="station" x1="48.05263157894737" y1="137.10526315789474" x2="48.56528399530762" y2="137.617915574255" stroke="#006b3f"/>
-<text class="label" x="49.04611660651447" y="138.09874818546186" text-anchor="start" transform="rotate(45.0000000000004 49.04611660651447 138.09874818546186)"><tspan x="49.04611660651447" dy="0.0">Kalubowila Hospital</tspan></text>
+<line class="station" x1="48.05263157894737" y1="137.10526315789474" x2="47.53997916258712" y2="136.5926107415345" stroke="#006b3f"/>
+<text class="label" x="47.05914655138027" y="136.11177813032762" text-anchor="end" transform="rotate(45.00000000000037 47.05914655138027 136.11177813032762)"><tspan x="47.05914655138027" dy="0.0">Kalubowila Hospital</tspan></text>
 <line class="station" x1="119.78947368421053" y1="13.421052631578949" x2="120.30212610057077" y2="12.908400215218702" stroke="#6f2dbd"/>
 <text class="label" x="120.78295871177762" y="12.427567604011847" text-anchor="start" transform="rotate(-45.0000000000004 120.78295871177762 12.427567604011847)"><tspan x="120.78295871177762" dy="0.0">Kandana</tspan></text>
 <line class="station" x1="97.52631578947368" y1="176.6842105263158" x2="98.03896820583392" y2="177.19686294267606" stroke="#f57c00"/>
@@ -510,7 +510,7 @@
 <line class="station" x1="164.31578947368422" y1="25.789473684210527" x2="164.82844189004447" y2="26.302126100570774" stroke="#8a0f45"/>
 <text class="label" x="165.30927450125134" y="26.782958711777624" text-anchor="start" transform="rotate(44.9999999999996 165.30927450125134 26.782958711777624)"><tspan x="165.30927450125134" dy="0.0">Kiribathgoda</tspan></text>
 <line class="station" x1="62.89473684210527" y1="114.8421052631579" x2="63.407389258465514" y2="115.35475767951814" stroke="#8a0f45"/>
-<text class="label" x="63.88822186967237" y="115.835590290725" text-anchor="start" transform="rotate(44.9999999999996 63.88822186967237 115.835590290725)"><tspan x="63.88822186967237" dy="0.0">Kirulapone</tspan></text>
+<text class="label" x="65.30243543204547" y="117.24980385309807" text-anchor="start" transform="rotate(44.9999999999996 65.30243543204547 117.24980385309807)"><tspan x="65.30243543204547" dy="0.0">Kirulapone</tspan></text>
 <line class="station" x1="8.986336626886562" y1="65.88107346899183" x2="7.961031794166068" y2="64.85576863627135" stroke="#72b043"/>
 <text class="label terminal-label" x="7.480199182959213" y="64.3749360250645" text-anchor="end" transform="rotate(44.9999999999996 7.480199182959213 64.3749360250645)"><tspan x="7.480199182959213" dy="0.0">Kollupitiya</tspan></text>
 <line class="station" x1="92.57894736842105" y1="184.10526315789474" x2="92.06629495206082" y2="184.617915574255" stroke="#f57c00"/>
@@ -528,9 +528,9 @@
 <line class="station" x1="119.78947368421053" y1="15.894736842105264" x2="120.30212610057077" y2="16.40738925846551" stroke="#6f2dbd"/>
 <text class="label" x="120.78295871177762" y="16.888221869672368" text-anchor="start" transform="rotate(45.0000000000004 120.78295871177762 16.888221869672368)"><tspan x="120.78295871177762" dy="0.0">Mabola</tspan></text>
 <line class="station" x1="124.73684210526316" y1="13.421052631578949" x2="124.73684210526316" y2="12.696052631578949" stroke="#6f2dbd"/>
-<text class="label" x="124.73684210526316" y="10.01605263157895" text-anchor="start" transform="rotate(-90.0 124.73684210526316 10.01605263157895)"><tspan x="124.73684210526316" dy="0.0">Mahabage</tspan></text>
-<line class="station" x1="137.10526315789474" y1="191.5263157894737" x2="137.617915574255" y2="192.03896820583395" stroke="#f57c00"/>
-<text class="label" x="138.09874818546186" y="192.51980081704082" text-anchor="start" transform="rotate(45.0 138.09874818546186 192.51980081704082)"><tspan x="138.09874818546186" dy="0.0">Mahanama Junction</tspan></text>
+<text class="label" x="124.73684210526316" y="12.01605263157895" text-anchor="start" transform="rotate(-90.0 124.73684210526316 12.01605263157895)"><tspan x="124.73684210526316" dy="0.0">Mahabage</tspan></text>
+<line class="station" x1="137.10526315789474" y1="191.5263157894737" x2="136.5926107415345" y2="191.01366337311345" stroke="#f57c00"/>
+<text class="label" x="133.28335100558144" y="187.7044036371604" text-anchor="end" transform="rotate(45.0 133.28335100558144 187.7044036371604)"><tspan x="133.28335100558144" dy="0.0">Mahanama Junction</tspan></text>
 <line class="station" x1="171.73684210526318" y1="20.842105263157897" x2="171.22418968890295" y2="20.32945284679765" stroke="#8a0f45"/>
 <text class="label" x="170.74335707769612" y="19.84862023559079" text-anchor="end" transform="rotate(45.000000000001194 170.74335707769612 19.84862023559079)"><tspan x="170.74335707769612" dy="0.0">Mahara Junction</tspan></text>
 <line class="station" x1="161.8421052631579" y1="151.94736842105263" x2="162.35475767951814" y2="152.46002083741288" stroke="#8a0f45"/>
@@ -539,16 +539,16 @@
 <text class="label" x="165.30927450125134" y="146.00651497243288" text-anchor="start" transform="rotate(-45.0 165.30927450125134 146.00651497243288)"><tspan x="165.30927450125134" dy="0.0">Maharagama</tspan></text>
 <circle class="interchange" cx="186.57894736842107" cy="156.89473684210526" r="0.78"/>
 <text class="label terminal-label" x="188.10894736842107" y="156.89473684210526" text-anchor="start"><tspan x="188.10894736842107" dy="0.0">Makumbura</tspan></text>
-<line class="station" x1="179.1578947368421" y1="80.21052631578948" x2="179.67054715320236" y2="79.69787389942924" stroke="#ffd400"/>
-<text class="label" x="180.15137976440923" y="79.21704128822239" text-anchor="start" transform="rotate(-44.999999999999204 180.15137976440923 79.21704128822239)"><tspan x="180.15137976440923" dy="0.0">Malabe Bus Stand</tspan></text>
+<line class="station" x1="179.1578947368421" y1="80.21052631578948" x2="178.64524232048186" y2="80.72317873214972" stroke="#ffd400"/>
+<text class="label" x="178.164409709275" y="81.20401134335657" text-anchor="end" transform="rotate(-44.999999999999204 178.164409709275 81.20401134335657)"><tspan x="178.164409709275" dy="0.0">Malabe Bus Stand</tspan></text>
 <line class="station" x1="62.89473684210527" y1="166.78947368421055" x2="62.38208442574502" y2="167.3021261005708" stroke="#f57c00"/>
 <text class="label" x="61.90125181453817" y="167.78295871177767" text-anchor="end" transform="rotate(-45.00000000000037 61.90125181453817 167.78295871177767)"><tspan x="61.90125181453817" dy="0.0">Maliban Junction</tspan></text>
 <line class="station" x1="38.15789473684211" y1="45.578947368421055" x2="38.67054715320236" y2="45.06629495206081" stroke="#0070a8"/>
 <text class="label" x="39.15137976440921" y="44.58546234085396" text-anchor="start" transform="rotate(-45.0 39.15137976440921 44.58546234085396)"><tspan x="39.15137976440921" dy="0.0">Maradana</tspan></text>
 <line class="station" x1="85.15789473684211" y1="179.1578947368421" x2="85.67054715320235" y2="179.67054715320236" stroke="#f57c00"/>
 <text class="label" x="94.63666113864764" y="188.63666113864792" text-anchor="start" transform="rotate(45.000000000000796 94.63666113864764 188.63666113864792)"><tspan x="94.63666113864764" dy="0.0">Mendis Lane Rawathawatta</tspan></text>
-<line class="station" x1="193.48734758363975" y1="114.32945284679766" x2="194.51265241636025" y2="115.35475767951814" stroke="#ffd400"/>
-<text class="label terminal-label" x="194.99348502756712" y="115.835590290725" text-anchor="start" transform="rotate(44.999999999999204 194.99348502756712 115.835590290725)"><tspan x="194.99348502756712" dy="0.0">Millennium City</tspan></text>
+<line class="station" x1="194.51265241636025" y1="115.35475767951814" x2="193.48734758363975" y2="114.32945284679766" stroke="#ffd400"/>
+<text class="label terminal-label" x="177.45016578632863" y="98.292271049487" text-anchor="end" transform="rotate(44.999999999999204 177.45016578632863 98.292271049487)"><tspan x="177.45016578632863" dy="0.0">Millennium City</tspan></text>
 <line class="station" x1="80.21052631578948" y1="181.63157894736844" x2="79.69787389942924" y2="182.1442313637287" stroke="#f57c00"/>
 <text class="label" x="79.21704128822239" y="182.62506397493556" text-anchor="end" transform="rotate(-45.000000000000796 79.21704128822239 182.62506397493556)"><tspan x="79.21704128822239" dy="0.0">Moratuwa</tspan></text>
 <line class="station" x1="30.736842105263158" y1="159.3684210526316" x2="30.22418968890291" y2="159.88107346899184" stroke="#f57c00"/>
@@ -572,13 +572,13 @@
 <circle class="interchange" cx="97.52631578947368" cy="35.684210526315795" r="0.78"/>
 <text class="label" x="98.60818916468911" y="36.76608390153121" text-anchor="start"><tspan x="98.60818916468911" dy="0.0">Orugodawatta</tspan></text>
 <line class="station" x1="132.1578947368421" y1="189.05263157894737" x2="132.67054715320236" y2="188.53997916258712" stroke="#f57c00"/>
-<text class="label" x="133.15137976440923" y="188.05914655138025" text-anchor="start" transform="rotate(-45.0 133.15137976440923 188.05914655138025)"><tspan x="133.15137976440923" dy="0.0">Palam Junction</tspan></text>
+<text class="label" x="134.5655933267823" y="186.64493298900717" text-anchor="start" transform="rotate(-45.0 134.5655933267823 186.64493298900717)"><tspan x="134.5655933267823" dy="0.0">Palam Junction</tspan></text>
 <line class="station" x1="156.89473684210526" y1="97.52631578947368" x2="157.4073892584655" y2="97.01366337311345" stroke="#0070a8"/>
 <text class="label" x="157.88822186967238" y="96.5328307619066" text-anchor="start" transform="rotate(-44.999999999999204 157.88822186967238 96.5328307619066)"><tspan x="157.88822186967238" dy="0.0">Palam Thuna Junction</tspan></text>
-<line class="station" x1="137.10526315789474" y1="191.5263157894737" x2="136.5926107415345" y2="191.01366337311345" stroke="#f57c00"/>
-<text class="label" x="131.86913744320836" y="186.29019007478732" text-anchor="end" transform="rotate(45.0 131.86913744320836 186.29019007478732)"><tspan x="131.86913744320836" dy="0.0">Panadura Base Hospital</tspan></text>
-<line class="station" x1="129.68421052631578" y1="194.725" x2="129.68421052631578" y2="193.275" stroke="#f57c00"/>
-<text class="label terminal-label" x="129.68421052631578" y="192.595" text-anchor="start" transform="rotate(-90.0 129.68421052631578 192.595)"><tspan x="129.68421052631578" dy="0.0">Panadura</tspan></text>
+<line class="station" x1="137.10526315789474" y1="191.5263157894737" x2="137.617915574255" y2="192.03896820583395" stroke="#f57c00"/>
+<text class="label" x="138.09874818546186" y="192.51980081704082" text-anchor="start" transform="rotate(45.0 138.09874818546186 192.51980081704082)"><tspan x="138.09874818546186" dy="0.0">Panadura Base Hospital</tspan></text>
+<line class="station" x1="129.68421052631578" y1="193.275" x2="129.68421052631578" y2="194.725" stroke="#f57c00"/>
+<text class="label terminal-label" x="129.68421052631578" y="195.405" text-anchor="start" transform="rotate(90.0 129.68421052631578 195.405)"><tspan x="129.68421052631578" dy="0.0">Panadura</tspan></text>
 <circle class="interchange" cx="176.6842105263158" cy="149.47368421052633" r="0.78"/>
 <text class="label" x="176.6842105263158" y="153.00368421052633" text-anchor="end"><tspan x="176.6842105263158" dy="0.0">Pannipitiya</tspan></text>
 <line class="station" x1="82.6842105263158" y1="33.21052631578948" x2="82.17155810995555" y2="33.72317873214973" stroke="#6f2dbd"/>
@@ -601,14 +601,14 @@
 <text class="label" x="118.30927450125131" y="146.00651497243288" text-anchor="start" transform="rotate(-45.000000000000796 118.30927450125131 146.00651497243288)"><tspan x="118.30927450125131" dy="0.0">Raththanapitiya</tspan></text>
 <circle class="interchange" cx="6.0" cy="43.10526315789474" r="0.78"/>
 <text class="label" x="6.0" y="50.63526315789474" text-anchor="start"><tspan x="6.0" dy="0.0">Regal Cinema</tspan></text>
-<line class="station" x1="57.94736842105264" y1="122.26315789473685" x2="57.43471600469239" y2="122.77581031109709" stroke="#006b3f"/>
-<text class="label" x="47.0543884568738" y="133.15613785891554" text-anchor="end" transform="rotate(-44.9999999999996 47.0543884568738 133.15613785891554)"><tspan x="47.0543884568738" dy="0.0">Royal Institute</tspan></text>
+<line class="station" x1="57.94736842105264" y1="122.26315789473685" x2="58.460020837412884" y2="121.75050547837661" stroke="#006b3f"/>
+<text class="label" x="58.94085344861974" y="121.26967286716976" text-anchor="start" transform="rotate(-44.9999999999996 58.94085344861974 121.26967286716976)"><tspan x="58.94085344861974" dy="0.0">Royal Institute</tspan></text>
 <circle class="interchange" cx="144.5263157894737" cy="80.21052631578948" r="0.78"/>
 <text class="label" x="145.60818916468912" y="79.12865294057406" text-anchor="start"><tspan x="145.60818916468912" dy="0.0">Sethsiripaya</tspan></text>
 <circle class="interchange" cx="65.36842105263159" cy="67.84210526315789" r="0.78"/>
 <text class="label" x="67.8645079902201" y="70.3381922007464" text-anchor="start"><tspan x="67.8645079902201" dy="0.0">Singer Mega - Colombo 8</tspan></text>
-<line class="station" x1="174.21052631578948" y1="72.78947368421053" x2="173.69787389942923" y2="72.2768212678503" stroke="#ffd400"/>
-<text class="label" x="173.21704128822236" y="71.79598865664344" text-anchor="end" transform="rotate(44.999999999999204 173.21704128822236 71.79598865664344)"><tspan x="173.21704128822236" dy="0.0">Thalahena Junction</tspan></text>
+<line class="station" x1="174.21052631578948" y1="72.78947368421053" x2="174.72317873214973" y2="73.30212610057077" stroke="#ffd400"/>
+<text class="label" x="180.86086559284905" y="79.43981296126992" text-anchor="start" transform="rotate(44.999999999999204 180.86086559284905 79.43981296126992)"><tspan x="180.86086559284905" dy="0.0">Thalahena Junction</tspan></text>
 <line class="station" x1="159.88107346899184" y1="75.77581031109709" x2="158.85576863627134" y2="74.75050547837661" stroke="#6f2dbd"/>
 <text class="label terminal-label" x="158.37493602506447" y="74.26967286716976" text-anchor="end" transform="rotate(44.999999999999204 158.37493602506447 74.26967286716976)"><tspan x="158.37493602506447" dy="0.0">Thalangama Depot</tspan></text>
 <line class="station" x1="154.42105263157896" y1="112.36842105263159" x2="153.9084002152187" y2="112.88107346899183" stroke="#ffd400"/>

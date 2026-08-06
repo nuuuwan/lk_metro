@@ -29,6 +29,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 	ROUTE_CURVE_RADIUS = 1.5
 	ROTATE_LABELS = True
 	WARN_LABEL_OVERLAPS = False
+	LABEL_BASELINE_COMPENSATION = 0.25
 	LABEL_DIRECTIONS = (
 		(1.0, 0.0),
 		(1.0, 1.0),
@@ -193,15 +194,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 						f' transform="rotate({label_angle} {label_x} {label_y})"'
 					)
 				else:
-					text_anchor = (
-						"end"
-						if label_x < x
-						or (
-							math.isclose(label_x, x)
-							and label_x > self.width / 2
-						)
-						else "start"
-					)
+					text_anchor = self._station_label_text_anchors[stop.name]
 					label_transform = ""
 			label_lines = self._label_lines(self._stop_label(stop.name))
 			label_font_size = self._label_font_size(stop.name)
@@ -408,13 +401,13 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		]
 		canvas_bounds = (0.0, 0.0, float(self.width), float(self.height))
 
-		def score(bounds: tuple[float, float, float, float]) -> float:
+		def score(
+			bounds: tuple[float, float, float, float],
+		) -> tuple[float, float, float]:
 			return (
-				1_000
-				* sum(self._overlap_area(bounds, other) for other in occupied)
-				+ 10_000
-				* sum(self._overlap_area(bounds, route) for route in route_bounds)
-				+ 1_000_000 * self._outside_area(bounds, canvas_bounds)
+				self._outside_area(bounds, canvas_bounds),
+				sum(self._overlap_area(bounds, other) for other in occupied),
+				sum(self._overlap_area(bounds, route) for route in route_bounds),
 			)
 
 		self._interchange_label_positions = {}
@@ -462,9 +455,33 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			)
 		selected_ticks = {}
 		self._station_label_positions = {}
+		self._station_label_text_anchors = {}
+		fixed_bounds = list(occupied)
+		route_label_side_counts = {
+			route.id: {"above": 0, "below": 0} for route in self.routes
+		}
+		label_options = {}
+		selected_indices = {}
+
+		def station_score(
+			bounds: tuple[float, float, float, float],
+		) -> tuple[float, float, float]:
+			return (
+				self._outside_area(bounds, canvas_bounds),
+				sum(self._overlap_area(bounds, fixed) for fixed in fixed_bounds),
+				sum(
+					self._overlap_area(bounds, other)
+					for other in occupied[len(fixed_bounds) :]
+				),
+			)
+
 		for stop in sorted(
 			(stop for stop in self.stops if stop.name in ticks),
-			key=lambda stop: (positions[stop.name][1], positions[stop.name][0]),
+			key=lambda stop: (
+				-max(map(len, self._label_lines(self._stop_label(stop.name)))),
+				positions[stop.name][1],
+				positions[stop.name][0],
+			),
 		):
 			x, y = positions[stop.name]
 			first, second = ticks[stop.name]
@@ -478,72 +495,194 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				self._stop_label(stop.name),
 				font_size,
 			) + 0.2
-			candidates = []
-			candidate_anchors = []
-			for extra in range(0, 25, 2):
-				for candidate in base_candidates:
-					candidates.append(candidate)
-					outward_x = candidate[1][0] - x
-					outward_y = candidate[1][1] - y
-					outward_length = math.hypot(outward_x, outward_y)
-					clearance = label_clearance + extra
-					candidate_anchors.append(
-						(
-							candidate[1][0]
-							+ outward_x / outward_length * clearance,
-							candidate[1][1]
-							+ outward_y / outward_length * clearance,
-						)
-					)
-			for extra in range(0, 25, 2):
-				radius = (
-					self.ROUTE_STROKE_WIDTH / 2
-					+ self.STATION_TICK_LENGTH
+			candidate_outwards = []
+			if not self.ROTATE_LABELS:
+				left = min(first[0], second[0])
+				right = max(first[0], second[0])
+				top = min(first[1], second[1]) - label_clearance
+				bottom = (
+					max(first[1], second[1])
 					+ label_clearance
-					+ extra
+					+ font_size * self.LABEL_BASELINE_COMPENSATION
 				)
-				for x_direction, y_direction in self.LABEL_DIRECTIONS:
-					direction_length = math.hypot(x_direction, y_direction)
-					x_direction /= direction_length
-					y_direction /= direction_length
-					candidate = max(
-						base_candidates,
-						key=lambda tick: (
-							(tick[1][0] - x) * x_direction
-							+ (tick[1][1] - y) * y_direction
-						),
-					)
-					candidates.append(candidate)
-					candidate_anchors.append(
-						(
-							x + x_direction * radius,
-							y + y_direction * radius,
+				candidates = [ticks[stop.name]] * 4
+				candidate_anchors = [
+					(left, top),
+					(right, top),
+					(left, bottom),
+					(right, bottom),
+				]
+				candidate_outwards = [
+					(-1.0, -1.0),
+					(1.0, -1.0),
+					(-1.0, 1.0),
+					(1.0, 1.0),
+				]
+			else:
+				candidates = []
+				candidate_anchors = []
+				for extra in range(0, 25, 2):
+					for candidate in base_candidates:
+						candidates.append(candidate)
+						outward_x = candidate[1][0] - x
+						outward_y = candidate[1][1] - y
+						outward_length = math.hypot(outward_x, outward_y)
+						clearance = label_clearance + extra
+						candidate_anchors.append(
+							(
+								candidate[1][0]
+								+ outward_x / outward_length * clearance,
+								candidate[1][1]
+								+ outward_y / outward_length * clearance,
+							)
 						)
+						candidate_outwards.append(
+							(outward_x, outward_y)
+						)
+				for extra in range(0, 25, 2):
+					radius = (
+						self.ROUTE_STROKE_WIDTH / 2
+						+ self.STATION_TICK_LENGTH
+						+ label_clearance
+						+ extra
 					)
+					for x_direction, y_direction in self.LABEL_DIRECTIONS:
+						direction_length = math.hypot(x_direction, y_direction)
+						x_direction /= direction_length
+						y_direction /= direction_length
+						candidate = max(
+							base_candidates,
+							key=lambda tick: (
+								(tick[1][0] - x) * x_direction
+								+ (tick[1][1] - y) * y_direction
+							),
+						)
+						candidates.append(candidate)
+						candidate_anchors.append(
+							(
+								x + x_direction * radius,
+								y + y_direction * radius,
+							)
+						)
+						candidate_outwards.append(
+							(x_direction, y_direction)
+						)
 			candidate_bounds = [
 				self._label_bounds(
 					anchor,
 					self._stop_label(stop.name),
-					(
-						anchor[0] - x
-						if not math.isclose(anchor[0], x)
-						else (-1.0 if anchor[0] > self.width / 2 else 1.0),
-						anchor[1] - y,
-					),
+					outward,
 					font_size,
 				)
-				for candidate, anchor in zip(candidates, candidate_anchors)
+				for anchor, outward in zip(candidate_anchors, candidate_outwards)
 			]
-			scores = [score(bounds) for bounds in candidate_bounds]
+			route_id = next(iter(memberships[stop.name]))
+			scores = [
+				station_score(bounds)
+				+ (
+					route_label_side_counts[route_id][
+						"above" if outward[1] < 0 else "below"
+					]
+					if not self.ROTATE_LABELS
+					else 0,
+					sum(
+						self._overlap_area(bounds, route)
+						for route in route_bounds
+					),
+				)
+				for bounds, outward in zip(candidate_bounds, candidate_outwards)
+			]
 			selected_index = min(range(len(candidates)), key=scores.__getitem__)
+			label_options[stop.name] = list(
+				zip(
+					candidate_bounds,
+					zip(candidates, candidate_anchors, candidate_outwards),
+				)
+			)
+			selected_indices[stop.name] = selected_index
+			if not self.ROTATE_LABELS:
+				selected_side = (
+					"above"
+					if candidate_outwards[selected_index][1] < 0
+					else "below"
+				)
+				route_label_side_counts[route_id][selected_side] += 1
 			selected_ticks[stop.name] = candidates[selected_index]
 			self._station_label_positions[stop.name] = candidate_anchors[
 				selected_index
 			]
+			self._station_label_text_anchors[stop.name] = (
+				"end" if candidate_outwards[selected_index][0] < 0 else "start"
+			)
 			occupied.append(candidate_bounds[selected_index])
 			placed_labels.append(
 				(stop.name, candidate_bounds[selected_index])
 			)
+		if not self.ROTATE_LABELS:
+			seen_selections = set()
+			for _ in range(30):
+				selection = tuple(selected_indices.items())
+				if selection in seen_selections:
+					break
+				seen_selections.add(selection)
+				changed = False
+				for stop_name, options in label_options.items():
+					route_id = next(iter(memberships[stop_name]))
+					current_outward = options[selected_indices[stop_name]][1][2]
+					current_side = (
+						"above" if current_outward[1] < 0 else "below"
+					)
+					route_label_side_counts[route_id][current_side] -= 1
+					other_bounds = [
+						other_options[selected_indices[other_name]][0]
+						for other_name, other_options in label_options.items()
+						if other_name != stop_name
+					]
+					scores = [
+						(
+							self._outside_area(bounds, canvas_bounds),
+							sum(
+								self._overlap_area(bounds, fixed)
+								for fixed in fixed_bounds
+							),
+							sum(
+								self._overlap_area(bounds, other)
+								for other in other_bounds
+							),
+							route_label_side_counts[route_id][
+								"above" if payload[2][1] < 0 else "below"
+							],
+							sum(
+								self._overlap_area(bounds, route)
+								for route in route_bounds
+							),
+						)
+						for bounds, payload in options
+					]
+					selected_index = min(
+						range(len(options)),
+						key=scores.__getitem__,
+					)
+					if selected_index != selected_indices[stop_name]:
+						selected_indices[stop_name] = selected_index
+						changed = True
+					selected_outward = options[selected_index][1][2]
+					selected_side = (
+						"above" if selected_outward[1] < 0 else "below"
+					)
+					route_label_side_counts[route_id][selected_side] += 1
+				if not changed:
+					break
+			placed_labels = placed_labels[: len(fixed_bounds)]
+			for stop_name, options in label_options.items():
+				bounds, payload = options[selected_indices[stop_name]]
+				selected_tick, label_position, outward = payload
+				selected_ticks[stop_name] = selected_tick
+				self._station_label_positions[stop_name] = label_position
+				self._station_label_text_anchors[stop_name] = (
+					"end" if outward[0] < 0 else "start"
+				)
+				placed_labels.append((stop_name, bounds))
 		if self.WARN_LABEL_OVERLAPS:
 			self._warn_label_overlaps(placed_labels)
 		return selected_ticks
