@@ -5,10 +5,10 @@
   "routes": {
     "CM01": "2W-N-4NW-6W-N-NE-NW-2W",
     "CM02": "9W-NW-N-4W-N-bW-3W-NE-W-N",
-    "CM03": "3W-N-NW-3W-SW-W-NW-N-NE-NW-4N-5E",
+    "CM03": "3W-2NW-3W-SW-W-8N-5E",
     "CM04": "3S-SW-W-SW-3S-2SE-14E",
     "CM05": "6W-5N-2NE-9E",
-    "CM06": "N-2NE-S-SE-S-E-2S-2W-NW-N-W",
+    "CM06": "N-2NE-S-SE-S-E-S-W-S-W-NW-N-W",
     "CM08": "SW-8W-3NW-5N-2W-N-E"
   }
 }
