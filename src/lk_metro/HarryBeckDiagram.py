@@ -82,6 +82,22 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	def _stop_label(self, stop_name: str) -> str:
 		return stop_name
 
+	@property
+	def complexity_by_route(self) -> dict[str, int]:
+		return {
+			route.id: sum(
+				index == 0
+				or segment["direction"] != segments[index - 1]["direction"]
+				for index, segment in enumerate(segments)
+			)
+			for route in self.routes
+			for segments in [self._segments_by_route[route.id]]
+		}
+
+	@property
+	def complexity(self) -> int:
+		return sum(self.complexity_by_route.values())
+
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		lines = super()._title_and_legend_svg_lines()
 		legend_x = self.width + 4

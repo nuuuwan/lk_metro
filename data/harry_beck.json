@@ -11,5 +11,5 @@
     "CM06": "N-E-NE-3S-E-2S-2W-NW-2N",
     "CM08": "SW-5W-SW-2W-3NW-2N-NE-N-NW-W-2N-E"
   },
-  "routes_backup1": {}
+  "routes_backup_ignore": {}
 }

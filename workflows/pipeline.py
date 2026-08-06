@@ -67,6 +67,10 @@ def main() -> None:
 		generate_png(svg_path, png_path)
 		log.info(f"Wrote {File(str(svg_path))}")
 		log.info(f"Wrote {File(str(svg_path))}")
+		if isinstance(diagram, HarryBeckDiagram):
+			for route_id, complexity in diagram.complexity_by_route.items():
+				log.info(f"Harry Beck complexity: {route_id} = {complexity} segments")
+			log.info(f"Harry Beck complexity: total = {diagram.complexity} segments")
 
 if __name__ == "__main__":
 	main()
