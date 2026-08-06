@@ -22,7 +22,6 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	DATA_FILE: ClassVar[str] = "harry_beck.json"
 	UNIT_SCALE: ClassVar[float] = 8.0
 	MAP_TITLE = "LANKA METRO"
-	LEGEND_TITLE = "Key"
 	TITLE_HEIGHT = 12
 	LOGO_WIDTH = 36
 	LEGEND_WIDTH = 0
@@ -217,11 +216,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		legend_x, legend_title_y = self._legend_origin()
-		lines = [
-			self._logo_svg_line(),
-			f'<text class="legend-label" x="{legend_x}" y="{legend_title_y}" '
-			f'font-weight="bold">{html.escape(self.LEGEND_TITLE)}</text>',
-		]
+		lines = [self._logo_svg_line()]
 		for index, route in enumerate(self.legend_routes):
 			y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
 			lines.extend(
@@ -240,10 +235,9 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			+ len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
 		)
 		note_lines = (
-			("Diagrammatic map", True),
-			("Routes are simplified so they are easier to follow.", False),
-			("Stops and connections are shown, but distances", False),
-			("and locations are not drawn to geographic scale.", False),
+			("Inspired by Harry Beck's iconic diagrammatic", False),
+			("map of the London Underground, first published", False),
+			("in 1933.", False),
 		)
 		lines.extend(
 			f'<text class="{("legend-label" if is_heading else "legend-route-label")}" '
