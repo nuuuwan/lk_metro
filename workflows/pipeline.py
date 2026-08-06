@@ -5,6 +5,9 @@ import tempfile
 from pathlib import Path
 
 
+from utils_future import Log, File
+
+
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR / "src"))
 
@@ -16,6 +19,7 @@ from lk_metro.Stop import Stop
 
 
 PNG_SIZE = 6000
+log = Log("pipeline")
 
 
 def generate_png(svg_path: Path, png_path: Path) -> None:
@@ -61,9 +65,8 @@ def main() -> None:
 		png_path = images_dir / f"{filename}.png"
 		diagram.write_svg(svg_path)
 		generate_png(svg_path, png_path)
-		print(f"Generated {svg_path}")
-		print(f"Generated {png_path}")
-
+		log.info(f"Wrote {File(str(svg_path))}")
+		log.info(f"Wrote {File(str(svg_path))}")
 
 if __name__ == "__main__":
 	main()

@@ -6,10 +6,15 @@ from dataclasses import replace
 from pathlib import Path
 from typing import ClassVar
 
+from utils_future import Log
+
 from .GeographicDiagram import Point
 from .ParallelGeographicDiagram import ParallelGeographicDiagram
 from .Route import Route
 from .Stop import Stop
+
+
+log = Log("HarryBeckDiagram")
 
 
 class HarryBeckDiagram(ParallelGeographicDiagram):
@@ -181,7 +186,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				)
 
 		for error in errors:
-			self._warn(f"Harry Beck geometry: {error}")
+			log.warn(f"Harry Beck geometry: {error}")
 
 	def route_segments(
 		self,
@@ -232,22 +237,22 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			with self.design_path.open(encoding="utf-8") as file:
 				design = json.load(file)
 		except (OSError, json.JSONDecodeError) as error:
-			self._warn(f"Could not read Harry Beck design: {error}")
+			log.warn(f"Could not read Harry Beck design: {error}")
 			design = {}
 		origin_records = design.get("origin_stops") if isinstance(design, dict) else None
 		records = design.get("routes") if isinstance(design, dict) else None
 		if not isinstance(origin_records, dict) or not origin_records:
-			self._warn("Harry Beck design must contain origin stops")
+			log.warn("Harry Beck design must contain origin stops")
 			origin_records = {}
 		if not isinstance(records, dict):
-			self._warn("Harry Beck design must contain routes")
+			log.warn("Harry Beck design must contain routes")
 			records = {}
 
 		routes_by_id = {route.id: route for route in self.routes}
 		origin_positions = {}
 		for name, coordinates in origin_records.items():
 			if not isinstance(coordinates, list) or len(coordinates) != 2:
-				self._warn(f"Harry Beck origin stop {name!r} is invalid")
+				log.warn(f"Harry Beck origin stop {name!r} is invalid")
 				continue
 			x_coordinate, y_coordinate = coordinates
 			if (
@@ -260,7 +265,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				or not math.isfinite(x_coordinate)
 				or not math.isfinite(y_coordinate)
 			):
-				self._warn(f"Harry Beck origin stop {name!r} is invalid")
+				log.warn(f"Harry Beck origin stop {name!r} is invalid")
 				continue
 			origin_positions[name] = [float(x_coordinate), float(y_coordinate)]
 
@@ -268,7 +273,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		designed_stops_by_route = {}
 		for route_id, direction_sequence in records.items():
 			if route_id not in routes_by_id:
-				self._warn(f"Harry Beck route {route_id!r} does not exist")
+				log.warn(f"Harry Beck route {route_id!r} does not exist")
 				continue
 
 			designed_stops = routes_by_id[route_id].stops
@@ -290,7 +295,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			designed_stops_by_route[route_id] = designed_stops
 
 		if not segments_by_route:
-			self._warn("Harry Beck design must contain at least one valid route")
+			log.warn("Harry Beck design must contain at least one valid route")
 			fallback_route = self.routes[0]
 			designed_stops = fallback_route.stops
 			segments_by_route[fallback_route.id] = [
@@ -300,7 +305,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			designed_stops_by_route[fallback_route.id] = designed_stops
 		if not origin_positions:
 			fallback_origin = next(iter(designed_stops_by_route.values()))[0]
-			self._warn(f"Using {fallback_origin!r} as the origin stop")
+			log.warn(f"Using {fallback_origin!r} as the origin stop")
 			origin_positions[fallback_origin] = [0.0, 0.0]
 		return origin_positions, segments_by_route, designed_stops_by_route
 
@@ -330,10 +335,6 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				f"but the sequence defines {len(directions)}"
 			)
 		return directions
-
-	@staticmethod
-	def _warn(message: str) -> None:
-		print(f"⚠️ {message}")
 
 	def _build_design_edge_routes(self) -> dict[tuple[str, str], list[str]]:
 		edge_routes = {}
@@ -394,7 +395,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 						retained_route_ids = "/".join(
 							sorted(position_routes[stop])
 						) or "origin"
-						self._warn(
+						log.warn(
 							"Harry Beck position conflict: "
 							f"{self._format_stop_at(stop, projected[stop])} "
 							f"(route {retained_route_ids}) and "
@@ -405,8 +406,8 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			if len(remaining_segments) == len(pending_segments):
 				first_route_id, first_stops, _, _ = remaining_segments[0]
 				fallback_origin = first_stops[0]
-				print(
-					f"⚠️ Harry Beck stops are not connected to an origin; "
+				log.warn(
+					f"Harry Beck stops are not connected to an origin; "
 					f"placing {fallback_origin!r} separately"
 				)
 				projected[fallback_origin] = [

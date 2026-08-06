@@ -6,6 +6,11 @@ from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from utils_future import Log
+
+
+log = Log("LatLng")
+
 
 CUSTOM_LATLNG = {
     "Anderson Flat": (6.890321583694404, 79.8730423696894),
@@ -132,11 +137,10 @@ class LatLng:
 
 if __name__ == "__main__":
     import sys
-    import os
     name = sys.argv[1] if len(sys.argv) > 1 else input("Enter a location name: ")
     latlng = LatLng.from_name(name)
-    print(f"Location: {name}")
-    print(f"Latitude: {latlng}")
+    log.info(f"Location: {name}")
+    log.info(f"Latitude: {latlng}")
     google_maps_url = f"https://www.google.com/maps/search/?api=1&query={latlng.lat},{latlng.lng}"
-    print(f"Google Maps URL: {google_maps_url}")
+    log.info(f"Google Maps URL: {google_maps_url}")
     os.system(f"open -a firefox '{google_maps_url}'") 
