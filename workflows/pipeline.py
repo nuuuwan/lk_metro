@@ -16,6 +16,7 @@ from lk_metro.GeographicDiagram import GeographicDiagram
 from lk_metro.HarryBeckDiagram import HarryBeckDiagram
 from lk_metro.ParallelGeographicDiagram import ParallelGeographicDiagram
 from lk_metro.Route import Route
+from lk_metro.SingaporeTubeDiagram import SingaporeTubeDiagram
 from lk_metro.Stop import Stop
 
 
@@ -68,6 +69,7 @@ def main() -> None:
 			"lk_metro_parallel_geographic",
 		),
 		(HarryBeckDiagram(routes, stops), "lk_metro_harry_beck"),
+		(SingaporeTubeDiagram(routes, stops), "lk_metro_singapore"),
 	)
 
 	for diagram, filename in outputs:
@@ -76,8 +78,8 @@ def main() -> None:
 		diagram.write_svg(svg_path)
 		generate_png(svg_path, png_path)
 		log.info(f"Wrote {File(str(svg_path))}")
-		log.info(f"Wrote {File(str(svg_path))}")
-		if isinstance(diagram, HarryBeckDiagram):
+		log.info(f"Wrote {File(str(png_path))}")
+		if type(diagram) is HarryBeckDiagram:
 			for route_id, complexity in diagram.complexity_by_route.items():
 				log.info(f"Harry Beck complexity: {route_id} = {complexity} segments")
 			log.info(f"Harry Beck complexity: total = {diagram.complexity} segments")
