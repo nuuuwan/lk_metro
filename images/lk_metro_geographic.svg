@@ -5,7 +5,7 @@
 .grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }
 .route { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .interchange { fill: white; stroke: #111; stroke-width: 0.3; }
-.label { font: 0.8px sans-serif; fill: #111; dominant-baseline: middle; }
+.label { font: 0.8px sans-serif; fill: #111; paint-order: stroke; stroke: #f7f5ef; stroke-width: 0.0; dominant-baseline: middle; }
 .map-title { font: bold 4px sans-serif; fill: #111; }
 .legend-label { font: 1.8px sans-serif; fill: #111; dominant-baseline: middle; }}
 </style>

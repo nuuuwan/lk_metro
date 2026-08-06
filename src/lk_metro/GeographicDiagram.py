@@ -19,11 +19,23 @@ Point = tuple[float, float]
 
 
 class GeographicDiagram:
+	MAP_TITLE = "Lanka Metro"
+	LEGEND_TITLE = "Routes"
 	TITLE_HEIGHT = 8
 	LEGEND_WIDTH = 58
 	LEGEND_LINE_HEIGHT = 4
 	LEGEND_FONT_SIZE = 1.8
 	TITLE_FONT_SIZE = 4
+	BACKGROUND_COLOR = "#f7f5ef"
+	TEXT_COLOR = "#111"
+	FONT_FAMILY = "sans-serif"
+	SHOW_GRID = True
+	ROUTE_STROKE_WIDTH = ROUTE_STROKE_WIDTH
+	INTERCHANGE_RADIUS = INTERCHANGE_RADIUS
+	INTERCHANGE_STROKE_WIDTH = INTERCHANGE_STROKE_WIDTH
+	LABEL_FONT_SIZE = LABEL_FONT_SIZE
+	LABEL_OFFSET = LABEL_OFFSET
+	LABEL_HALO_WIDTH = 0.0
 
 	def __init__(
 		self,
@@ -105,17 +117,22 @@ class GeographicDiagram:
 			".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
-			f".interchange {{ fill: white; stroke: #111; "
-			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
-			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
+			f".interchange {{ fill: white; stroke: {self.TEXT_COLOR}; "
+			f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
+			f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; paint-order: stroke; "
+			f"stroke: {self.BACKGROUND_COLOR}; stroke-width: {self.LABEL_HALO_WIDTH}; "
 			"dominant-baseline: middle; }",
-			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px sans-serif; fill: #111; }}",
-			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px sans-serif; fill: #111; "
+			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; }}",
+			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; "
 			"dominant-baseline: middle; }}",
 			"</style>",
-			f'<rect width="{svg_width}" height="{svg_height}" fill="#f7f5ef"/>',
+			f'<rect width="{svg_width}" height="{svg_height}" '
+			f'fill="{self.BACKGROUND_COLOR}"/>',
 			f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
-			*self._grid_svg_lines(),
+			*(self._grid_svg_lines() if self.SHOW_GRID else []),
 		]
 
 		routes_to_draw = self.routes
@@ -123,7 +140,7 @@ class GeographicDiagram:
 			points = " ".join(f"{x},{y}" for x, y in paths[route.id])
 			lines.append(
 				f'<polyline class="route" points="{points}" '
-				f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}"/>'
+				f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
 			)
 
 		visible_stop_names = {
@@ -139,11 +156,11 @@ class GeographicDiagram:
 			if len(memberships[stop.name]) > 1:
 				lines.append(
 					f'<circle class="interchange" cx="{x}" cy="{y}" '
-					f'r="{INTERCHANGE_RADIUS}"/>'
+					f'r="{self.INTERCHANGE_RADIUS}"/>'
 				)
 			lines.append(
-				f'<text class="label" x="{x + LABEL_OFFSET}" '
-				f'y="{y - LABEL_OFFSET}">'
+				f'<text class="label" x="{x + self.LABEL_OFFSET}" '
+				f'y="{y - self.LABEL_OFFSET}">'
 				f"{html.escape(stop.name)}</text>"
 			)
 
@@ -153,20 +170,27 @@ class GeographicDiagram:
 	def _svg_dimensions(self) -> tuple[int, int]:
 		return self.width + self.LEGEND_WIDTH, self.height + self.TITLE_HEIGHT
 
+	def _content_offset(self) -> Point:
+		return (0.0, 0.0)
+
+	def _legend_origin(self) -> Point:
+		return (self.width + 4, self.TITLE_HEIGHT + 2)
+
 	def _title_and_legend_svg_lines(self) -> list[str]:
-		legend_x = self.width + 4
+		legend_x, legend_title_y = self._legend_origin()
 		lines = [
-			f'<text class="map-title" x="{self.padding}" y="5.5">Lanka Metro</text>',
-			f'<text class="legend-label" x="{legend_x}" y="{self.TITLE_HEIGHT + 2}" '
-			'font-weight="bold">Routes</text>',
+			f'<text class="map-title" x="{self.padding}" y="5.5">'
+			f'{html.escape(self.MAP_TITLE)}</text>',
+			f'<text class="legend-label" x="{legend_x}" y="{legend_title_y}" '
+			f'font-weight="bold">{html.escape(self.LEGEND_TITLE)}</text>',
 		]
 		for index, route in enumerate(self.legend_routes):
-			y_coordinate = self.TITLE_HEIGHT + 6 + index * self.LEGEND_LINE_HEIGHT
+			y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
 			lines.extend(
 				[
 					f'<line x1="{legend_x}" y1="{y_coordinate}" '
 					f'x2="{legend_x + 6}" y2="{y_coordinate}" '
-					f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}" '
+					f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}" '
 					'stroke-linecap="round"/>',
 					f'<text class="legend-label" x="{legend_x + 8}" '
 					f'y="{y_coordinate}">{html.escape(route.id)}: '

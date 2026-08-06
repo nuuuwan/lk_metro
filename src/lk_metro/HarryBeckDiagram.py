@@ -19,7 +19,27 @@ log = Log("HarryBeckDiagram")
 
 class HarryBeckDiagram(ParallelGeographicDiagram):
 	DATA_FILE: ClassVar[str] = "harry_beck.json"
-	UNIT_SCALE: ClassVar[float] = 4.0
+	UNIT_SCALE: ClassVar[float] = 8.0
+	MAP_TITLE = "LANKA METRO"
+	LEGEND_TITLE = "Lines"
+	LEGEND_WIDTH = 0
+	LEGEND_LINE_HEIGHT = 3.5
+	LEGEND_FONT_SIZE = 1.55
+	TITLE_FONT_SIZE = 3.8
+	BACKGROUND_COLOR = "#ffffff"
+	TEXT_COLOR = "#0019a8"
+	FONT_FAMILY = "'Johnston 100', Johnston100, 'Gill Sans', sans-serif"
+	SHOW_GRID = False
+	ROUTE_STROKE_WIDTH = 1.0
+	PARALLEL_ROUTE_GAP = 1.0
+	INTERCHANGE_RADIUS = 0.78
+	INTERCHANGE_STROKE_WIDTH = 0.34
+	LABEL_FONT_SIZE = 0.9
+	LABEL_OFFSET = 0.95
+	LABEL_HALO_WIDTH = 0.2
+	STATION_TICK_LENGTH = 0.58
+	STATION_TICK_STROKE_WIDTH = 0.42
+	ROTATE_LABELS = False
 	DIRECTIONS: ClassVar[tuple[str, ...]] = (
 		"E",
 		"SE",
@@ -42,7 +62,11 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	)
 
 	def __init__(self, routes: list[Route], stops: list[Stop]) -> None:
-		super().__init__(routes, stops)
+		super().__init__(
+			routes,
+			stops,
+			parallel_route_gap=self.PARALLEL_ROUTE_GAP,
+		)
 		self.legend_routes = routes
 		self.design_path = (
 			Path(__file__).resolve().parents[2] / "data" / self.DATA_FILE
@@ -82,6 +106,16 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	def _stop_label(self, stop_name: str) -> str:
 		return stop_name
 
+	def _svg_dimensions(self) -> tuple[int, int]:
+		width, height = super()._svg_dimensions()
+		size = max(width, height)
+		return size, size
+
+	def _content_offset(self) -> Point:
+		width, height = super()._svg_dimensions()
+		size = max(width, height)
+		return (0.0, (size - height) / 2)
+
 	@property
 	def complexity_by_route(self) -> dict[str, int]:
 		return {
@@ -100,22 +134,24 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		lines = super()._title_and_legend_svg_lines()
-		legend_x = self.width + 4
+		legend_x, legend_title_y = self._legend_origin()
 		warning_y = (
-			self.TITLE_HEIGHT
-			+ 8
+			legend_title_y
+			+ 6
 			+ len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
 		)
 		lines.extend(
 			[
 				f'<text class="legend-label" x="{legend_x}" y="{warning_y}">'
-				"⚠️ Not to scale</text>",
+				"Diagrammatic map</text>",
 				f'<text class="legend-label" x="{legend_x}" '
-				f'y="{warning_y + self.LEGEND_LINE_HEIGHT}">'
-				"⚠️ Directions are schematic</text>",
+				f'y="{warning_y + self.LEGEND_LINE_HEIGHT}">Not to scale</text>',
 			]
 		)
 		return lines
+
+	def _legend_origin(self) -> Point:
+		return (self.width - 44, self.TITLE_HEIGHT + 12)
 
 	def layout(self) -> dict[str, Point]:
 		projected = self._project_positions(

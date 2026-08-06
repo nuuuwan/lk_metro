@@ -5,10 +5,7 @@ from pathlib import Path
 from .DiagramStyle import (
 	INTERCHANGE_RADIUS,
 	INTERCHANGE_STROKE_WIDTH,
-	LABEL_FONT_SIZE,
-	LABEL_OFFSET,
 	PARALLEL_ROUTE_GAP,
-	ROUTE_STROKE_WIDTH,
 	STATION_TICK_LENGTH,
 	STATION_TICK_STROKE_WIDTH,
 )
@@ -21,6 +18,10 @@ Edge = tuple[str, str]
 
 
 class ParallelGeographicDiagram(GeographicDiagram):
+	STATION_TICK_LENGTH = STATION_TICK_LENGTH
+	STATION_TICK_STROKE_WIDTH = STATION_TICK_STROKE_WIDTH
+	ROTATE_LABELS = True
+
 	def __init__(
 		self,
 		routes: list[Route],
@@ -89,6 +90,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		positions = self.layout()
 		segments = self.route_segments(positions)
 		svg_width, svg_height = self._svg_dimensions()
+		content_x, content_y = self._content_offset()
 		lines = [
 			'<?xml version="1.0" encoding="UTF-8"?>',
 			f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" '
@@ -98,18 +100,24 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
 			".route { fill: none; stroke-linecap: round; stroke-linejoin: round; }",
 			f".station-tick {{ stroke-linecap: round; "
-			f"stroke-width: {STATION_TICK_STROKE_WIDTH}; }}",
-			f".interchange {{ fill: white; stroke: #111; "
-			f"stroke-width: {INTERCHANGE_STROKE_WIDTH}; }}",
-			f".label {{ font: {LABEL_FONT_SIZE}px sans-serif; fill: #111; "
+			f"stroke-width: {self.STATION_TICK_STROKE_WIDTH}; }}",
+			f".interchange {{ fill: white; stroke: {self.TEXT_COLOR}; "
+			f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
+			f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; paint-order: stroke; "
+			f"stroke: {self.BACKGROUND_COLOR}; stroke-width: {self.LABEL_HALO_WIDTH}; "
 			"dominant-baseline: middle; }",
-			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px sans-serif; fill: #111; }}",
-			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px sans-serif; fill: #111; "
+			f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; }}",
+			f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px {self.FONT_FAMILY}; "
+			f"fill: {self.TEXT_COLOR}; "
 			"dominant-baseline: middle; }}",
 			"</style>",
-			f'<rect width="{svg_width}" height="{svg_height}" fill="#f7f5ef"/>',
+			f'<rect width="{svg_width}" height="{svg_height}" '
+			f'fill="{self.BACKGROUND_COLOR}"/>',
+			f'<g transform="translate({content_x} {content_y})">',
 			f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
-			*self._grid_svg_lines(),
+			*(self._grid_svg_lines() if self.SHOW_GRID else []),
 		]
 
 		for route in self.routes:
@@ -117,7 +125,7 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				points = " ".join(f"{x},{y}" for x, y in path)
 				lines.append(
 					f'<polyline class="route" points="{points}" '
-					f'stroke="{route.color}" stroke-width="{ROUTE_STROKE_WIDTH}"/>'
+					f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
 				)
 
 		memberships = self._route_memberships()
@@ -128,11 +136,11 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			if len(memberships[stop.name]) > 1:
 				lines.append(
 					f'<circle class="interchange" cx="{x}" cy="{y}" '
-					f'r="{INTERCHANGE_RADIUS}"/>'
+					f'r="{self.INTERCHANGE_RADIUS}"/>'
 				)
-				label_x = x + LABEL_OFFSET
-				label_y = y - LABEL_OFFSET
-				text_anchor = "start"
+				label_x, label_y, text_anchor = self._interchange_label_positions[
+					stop.name
+				]
 				label_transform = ""
 			else:
 				first, second = station_ticks[stop.name]
@@ -146,24 +154,30 @@ class ParallelGeographicDiagram(GeographicDiagram):
 				tick_angle = math.degrees(
 					math.atan2(second[1] - first[1], second[0] - first[0])
 				)
-				label_angle = tick_angle
-				text_anchor = "start"
-				if label_angle > 90:
-					label_angle -= 180
-					text_anchor = "end"
-				elif label_angle < -90:
-					label_angle += 180
-					text_anchor = "end"
-				label_transform = (
-					f' transform="rotate({label_angle} {label_x} {label_y})"'
-				)
+				if self.ROTATE_LABELS:
+					label_angle = tick_angle
+					text_anchor = "start"
+					if label_angle > 90:
+						label_angle -= 180
+						text_anchor = "end"
+					elif label_angle < -90:
+						label_angle += 180
+						text_anchor = "end"
+					label_transform = (
+						f' transform="rotate({label_angle} {label_x} {label_y})"'
+					)
+				else:
+					text_anchor = "end" if second[0] < first[0] else "start"
+					label_transform = ""
 			lines.append(
 				f'<text class="label" x="{label_x}" y="{label_y}" '
 				f'text-anchor="{text_anchor}"{label_transform}>'
 				f'{html.escape(self._stop_label(stop.name))}</text>'
 			)
 
-		lines.extend(["</g>", *self._title_and_legend_svg_lines(), "</svg>"])
+		lines.extend(
+			["</g>", *self._title_and_legend_svg_lines(), "</g>", "</svg>"]
+		)
 		return "\n".join(lines) + "\n"
 
 	def _stop_label(self, stop_name: str) -> str:
@@ -213,8 +227,8 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			length = math.hypot(x_delta, y_delta)
 			x_normal = -y_delta / length
 			y_normal = x_delta / length
-			x_offset = x_normal * STATION_TICK_LENGTH
-			y_offset = y_normal * STATION_TICK_LENGTH
+			x_offset = x_normal * self.STATION_TICK_LENGTH
+			y_offset = y_normal * self.STATION_TICK_LENGTH
 			if x_offset - y_offset < 0:
 				x_normal = -x_normal
 				y_normal = -y_normal
@@ -223,12 +237,12 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			x, y = positions[stop.name]
 			ticks[stop.name] = (
 				(
-					x + x_normal * ROUTE_STROKE_WIDTH / 2,
-					y + y_normal * ROUTE_STROKE_WIDTH / 2,
+					x + x_normal * self.ROUTE_STROKE_WIDTH / 2,
+					y + y_normal * self.ROUTE_STROKE_WIDTH / 2,
 				),
 				(
-					x + x_normal * ROUTE_STROKE_WIDTH / 2 + x_offset,
-					y + y_normal * ROUTE_STROKE_WIDTH / 2 + y_offset,
+					x + x_normal * self.ROUTE_STROKE_WIDTH / 2 + x_offset,
+					y + y_normal * self.ROUTE_STROKE_WIDTH / 2 + y_offset,
 				),
 			)
 
@@ -240,16 +254,36 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		ticks: dict[str, tuple[Point, Point]],
 		memberships: dict[str, set[str]],
 	) -> dict[str, tuple[Point, Point]]:
-		occupied = [
-			self._label_bounds(
-				(x + LABEL_OFFSET, y - LABEL_OFFSET),
-				self._stop_label(stop.name),
-				(1.0, 0.0),
-			)
-			for stop in self.stops
-			if len(memberships[stop.name]) > 1
-			for x, y in [positions[stop.name]]
-		]
+		occupied = []
+		self._interchange_label_positions = {}
+		for stop in sorted(
+			(stop for stop in self.stops if len(memberships[stop.name]) > 1),
+			key=lambda stop: (positions[stop.name][1], positions[stop.name][0]),
+		):
+			x, y = positions[stop.name]
+			offset = self.INTERCHANGE_RADIUS + self.LABEL_OFFSET
+			candidates = [
+				(x + offset, y - offset, "start", (1.0, 0.0)),
+				(x + offset, y + offset, "start", (1.0, 0.0)),
+				(x - offset, y - offset, "end", (-1.0, 0.0)),
+				(x - offset, y + offset, "end", (-1.0, 0.0)),
+			]
+			candidate_bounds = [
+				self._label_bounds(
+					(candidate[0], candidate[1]),
+					self._stop_label(stop.name),
+					candidate[3],
+				)
+				for candidate in candidates
+			]
+			scores = [
+				sum(self._overlap_area(bounds, other) for other in occupied)
+				for bounds in candidate_bounds
+			]
+			selected_index = min(range(len(candidates)), key=scores.__getitem__)
+			selected = candidates[selected_index]
+			self._interchange_label_positions[stop.name] = selected[:3]
+			occupied.append(candidate_bounds[selected_index])
 		selected_ticks = {}
 		for stop in sorted(
 			(stop for stop in self.stops if stop.name in ticks),
@@ -279,19 +313,36 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			occupied.append(candidate_bounds[selected_index])
 		return selected_ticks
 
-	@staticmethod
 	def _label_bounds(
+		self,
 		anchor: Point,
 		label: str,
 		outward: Point,
 	) -> tuple[float, float, float, float]:
+		text_width = max(
+			self.LABEL_FONT_SIZE,
+			len(label) * self.LABEL_FONT_SIZE * 0.52,
+		)
+		half_height = self.LABEL_FONT_SIZE * 0.6
+		if not self.ROTATE_LABELS:
+			if outward[0] < 0:
+				return (
+					anchor[0] - text_width,
+					anchor[1] - half_height,
+					anchor[0],
+					anchor[1] + half_height,
+				)
+			return (
+				anchor[0],
+				anchor[1] - half_height,
+				anchor[0] + text_width,
+				anchor[1] + half_height,
+			)
 		length = math.hypot(*outward)
 		x_direction = outward[0] / length
 		y_direction = outward[1] / length
 		x_normal = -y_direction
 		y_normal = x_direction
-		text_width = max(LABEL_FONT_SIZE, len(label) * LABEL_FONT_SIZE * 0.55)
-		half_height = LABEL_FONT_SIZE / 2
 		corners = [
 			(
 				anchor[0] + x_direction * distance + x_normal * offset,

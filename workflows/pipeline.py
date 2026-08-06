@@ -2,6 +2,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
@@ -28,6 +29,15 @@ def generate_png(svg_path: Path, png_path: Path) -> None:
 		raise RuntimeError("qlmanage is required to generate the PNG")
 
 	with tempfile.TemporaryDirectory() as directory:
+		render_path = Path(directory) / svg_path.name
+		tree = ET.parse(svg_path)
+		root = tree.getroot()
+		width = float(root.attrib["width"])
+		height = float(root.attrib["height"])
+		scale = PNG_SIZE / max(width, height)
+		root.set("width", str(round(width * scale)))
+		root.set("height", str(round(height * scale)))
+		tree.write(render_path, encoding="utf-8", xml_declaration=True)
 		subprocess.run(
 			[
 				qlmanage,
@@ -36,12 +46,12 @@ def generate_png(svg_path: Path, png_path: Path) -> None:
 				str(PNG_SIZE),
 				"-o",
 				directory,
-				str(svg_path),
+				str(render_path),
 			],
 			check=True,
 			stdout=subprocess.DEVNULL,
 		)
-		generated_path = Path(directory) / f"{svg_path.name}.png"
+		generated_path = Path(directory) / f"{render_path.name}.png"
 		generated_path.replace(png_path)
 
 
