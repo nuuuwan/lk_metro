@@ -142,7 +142,8 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		errors = []
 		edges = []
 		for route in self.routes:
-			for first, second in zip(route.stops, route.stops[1:]):
+			for segment in self._segments_by_route[route.id]:
+				first, second = segment["stops"]
 				edges.append((route.id, first, second))
 				x_delta = positions[second][0] - positions[first][0]
 				y_delta = positions[second][1] - positions[first][1]
@@ -344,14 +345,21 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				direction_sequence,
 				expected_count,
 			)
-			segments = [
-				{"direction": direction, "stops": [first, second]}
-				for direction, first, second in zip(
-					directions,
-					designed_stops,
-					designed_stops[1:],
+			segments = []
+			current_stop = designed_stops[0]
+			next_stop_index = 1
+			blank_index = 0
+			for direction, is_blank in directions:
+				if is_blank:
+					blank_index += 1
+					next_stop = f"__blank__:{route_id}:{blank_index}"
+				else:
+					next_stop = designed_stops[next_stop_index]
+					next_stop_index += 1
+				segments.append(
+					{"direction": direction, "stops": [current_stop, next_stop]}
 				)
-			]
+				current_stop = next_stop
 			segments_by_route[route_id] = segments
 			designed_stops_by_route[route_id] = designed_stops
 
@@ -375,7 +383,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		route_id: str,
 		direction_sequence: object,
 		expected_count: int,
-	) -> list[str]:
+	) -> list[tuple[str, bool]]:
 		directions = []
 		if not isinstance(direction_sequence, str) or not direction_sequence:
 			raise ValueError(
@@ -383,17 +391,23 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			)
 		else:
 			for token in direction_sequence.split("-"):
-				match = re.fullmatch(r"(\d+)?(E|SE|S|SW|W|NW|N|NE)", token)
+				match = re.fullmatch(
+					r"(\d+)?(b)?(E|SE|S|SW|W|NW|N|NE)", token
+				)
 				if match is None or int(match.group(1) or 1) == 0:
 					raise ValueError(
 						f"Harry Beck route {route_id} has invalid direction {token!r}"
 					)
-				directions.extend([match.group(2)] * int(match.group(1) or 1))
+				directions.extend(
+					[(match.group(3), match.group(2) == "b")]
+					* int(match.group(1) or 1)
+				)
 
-		if len(directions) != expected_count:
+		direction_count = sum(not is_blank for _, is_blank in directions)
+		if direction_count != expected_count:
 			raise ValueError(
 				f"Harry Beck route {route_id} requires {expected_count} directions, "
-				f"but the sequence defines {len(directions)}"
+				f"but the sequence defines {direction_count}"
 			)
 		return directions
 
@@ -482,6 +496,9 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 
 	def _format_stop_at(self, stop_name: str, position: list[float]) -> str:
 		x_coordinate, y_coordinate = position
+		if stop_name.startswith("__blank__:"):
+			_, route_id, blank_index = stop_name.split(":")
+			return f"[{x_coordinate:g}, {y_coordinate:g}]<blank {route_id}.{blank_index}>"
 		return (
 			f"[{x_coordinate:g}, {y_coordinate:g}]"
 			f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
