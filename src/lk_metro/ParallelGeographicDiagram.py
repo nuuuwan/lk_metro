@@ -24,6 +24,11 @@ log = Log("ParallelGeographicDiagram")
 
 
 class ParallelGeographicDiagram(GeographicDiagram):
+	MAP_SUBTITLE = "PARALLEL GEOGRAPHIC MAP"
+	DESCRIPTION_LINES = (
+		"Routes follow the geographic positions of their stops,",
+		"with shared corridors separated for clarity.",
+	)
 	STATION_TICK_LENGTH = STATION_TICK_LENGTH
 	STATION_TICK_STROKE_WIDTH = STATION_TICK_STROKE_WIDTH
 	ROUTE_CURVE_RADIUS = 1.5

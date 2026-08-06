@@ -189,14 +189,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		]
 
 	def _svg_dimensions(self) -> tuple[int, int]:
-		width, height = super()._svg_dimensions()
-		size = max(width, height)
-		return size, size
+		return super()._svg_dimensions()
 
 	def _content_offset(self) -> Point:
-		width, height = super()._svg_dimensions()
-		size = max(width, height)
-		return (0.0, (size - height) / 2)
+		return super()._content_offset()
 
 	@property
 	def complexity_by_route(self) -> dict[str, int]:
