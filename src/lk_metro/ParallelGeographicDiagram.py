@@ -152,11 +152,14 @@ class ParallelGeographicDiagram(GeographicDiagram):
 			lines.append(
 				f'<text class="label" x="{label_x}" y="{label_y}" '
 				f'text-anchor="{text_anchor}"{label_transform}>'
-				f'{html.escape(stop.name)}</text>'
+				f'{html.escape(self._stop_label(stop.name))}</text>'
 			)
 
 		lines.extend(["</g>", *self._title_and_legend_svg_lines(), "</svg>"])
 		return "\n".join(lines) + "\n"
+
+	def _stop_label(self, stop_name: str) -> str:
+		return stop_name
 
 	def station_ticks(
 		self,

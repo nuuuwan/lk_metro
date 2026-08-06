@@ -1,5 +1,6 @@
 import json
 import math
+import re
 from dataclasses import replace
 from pathlib import Path
 from typing import ClassVar
@@ -63,6 +64,17 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		}
 		self._edge_directions = {}
 		self._edge_routes = self._build_design_edge_routes()
+		self._stop_numbers = {
+			stop.name: [
+				str(route.stops.index(stop.name) + 1)
+				for route in self.routes
+				if stop.name in route.stops
+			]
+			for stop in self.stops
+		}
+
+	def _stop_label(self, stop_name: str) -> str:
+		return f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
 
 	def layout(self) -> dict[str, Point]:
 		projected = self._project_positions(
@@ -169,44 +181,42 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 
 		segments_by_route = {}
 		designed_stops_by_route = {}
-		for route_id, segment_records in records.items():
+		for route_id, direction_sequence in records.items():
 			if route_id not in routes_by_id:
 				raise ValueError("Harry Beck design contains an invalid route")
-			if route_id in segments_by_route:
-				raise ValueError(f"Harry Beck design repeats route {route_id}")
-			if not isinstance(segment_records, list) or not segment_records:
-				raise ValueError(f"Harry Beck route {route_id} has no segments")
-			segments = []
-			for index, segment_record in enumerate(segment_records):
-				if not isinstance(segment_record, list) or len(segment_record) != 2:
+			if not isinstance(direction_sequence, str) or not direction_sequence:
+				raise ValueError(
+					f"Harry Beck route {route_id} has no direction sequence"
+				)
+			directions = []
+			for token in direction_sequence.split("-"):
+				match = re.fullmatch(r"(\d+)?(E|SE|S|SW|W|NW|N|NE)", token)
+				if match is None:
 					raise ValueError(
-						f"Harry Beck route {route_id} segment {index} is invalid"
+						f"Harry Beck route {route_id} has invalid direction {token!r}"
 					)
-				direction, stops = segment_record
-				segments.append({"direction": direction, "stops": stops})
+				count = int(match.group(1) or 1)
+				if count == 0:
+					raise ValueError(
+						f"Harry Beck route {route_id} has invalid direction {token!r}"
+					)
+				directions.extend([match.group(2)] * count)
 
-			for index, segment in enumerate(segments):
-				if not isinstance(segment, dict):
-					raise ValueError(f"Harry Beck route {route_id} has an invalid segment")
-				direction = segment.get("direction")
-				stops = segment.get("stops")
-				if direction not in self.DIRECTIONS:
-					raise ValueError(
-						f"Harry Beck route {route_id} segment {index} has an invalid direction"
-					)
-				if (
-					not isinstance(stops, list)
-					or len(stops) < 2
-					or not all(isinstance(stop, str) for stop in stops)
-				):
-					raise ValueError(
-						f"Harry Beck route {route_id} segment {index} has invalid stops"
-					)
-			designed_stops = []
-			for segment in segments:
-				for stop in segment["stops"]:
-					if stop not in designed_stops:
-						designed_stops.append(stop)
+			designed_stops = routes_by_id[route_id].stops
+			expected_count = len(designed_stops) - 1
+			if len(directions) != expected_count:
+				raise ValueError(
+					f"Harry Beck route {route_id} requires {expected_count} directions, "
+					f"but the sequence defines {len(directions)}"
+				)
+			segments = [
+				{"direction": direction, "stops": [first, second]}
+				for direction, first, second in zip(
+					directions,
+					designed_stops,
+					designed_stops[1:],
+				)
+			]
 			segments_by_route[route_id] = segments
 			designed_stops_by_route[route_id] = designed_stops
 
