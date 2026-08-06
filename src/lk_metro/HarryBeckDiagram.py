@@ -1,6 +1,7 @@
 import json
 import math
 import re
+from collections import defaultdict
 from dataclasses import replace
 from pathlib import Path
 from typing import ClassVar
@@ -74,7 +75,13 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		}
 
 	def _stop_label(self, stop_name: str) -> str:
-		return f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
+		if not hasattr(self, "_logical_positions"):
+			self.layout()
+		x_coordinate, y_coordinate = self._logical_positions[stop_name]
+		return (
+			f"[{x_coordinate:g}, {y_coordinate:g}]"
+			f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
+		)
 
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		lines = super()._title_and_legend_svg_lines()
@@ -107,10 +114,14 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				for route in self.routes
 			],
 		)
+		self._logical_positions = projected
+		self._validate_projected_geometry(projected)
 		min_x = min(point[0] for point in projected.values())
 		max_x = max(point[0] for point in projected.values())
 		min_y = min(point[1] for point in projected.values())
 		max_y = max(point[1] for point in projected.values())
+		self._grid_min_x = min_x
+		self._grid_min_y = min_y
 		self.width = math.ceil(
 			(max_x - min_x) * self.UNIT_SCALE + self.padding * 2
 		)
@@ -124,6 +135,53 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 			)
 			for name, point in projected.items()
 		}
+
+	def _validate_projected_geometry(
+		self,
+		positions: dict[str, list[float]],
+	) -> None:
+		errors = []
+		for route in self.routes:
+			for first, second in zip(route.stops, route.stops[1:]):
+				x_delta = positions[second][0] - positions[first][0]
+				y_delta = positions[second][1] - positions[first][1]
+				is_zero_length = math.isclose(x_delta, 0.0) and math.isclose(
+					y_delta,
+					0.0,
+				)
+				is_octilinear = (
+					not is_zero_length
+					and (
+						math.isclose(x_delta, 0.0)
+						or math.isclose(y_delta, 0.0)
+						or math.isclose(abs(x_delta), abs(y_delta))
+					)
+				)
+				if not is_octilinear:
+					if is_zero_length:
+						geometry_error = "has zero length (angle undefined)"
+					else:
+						angle = math.degrees(math.atan2(y_delta, x_delta)) % 360
+						geometry_error = (
+							f"is not a multiple of 45 degrees (angle: {angle:.3f}°)"
+						)
+					errors.append(
+						f"route {route.id} edge {self._stop_label(first)} to "
+						f"{self._stop_label(second)} {geometry_error}"
+					)
+
+		stops_by_position = defaultdict(list)
+		for stop_name, position in positions.items():
+			stops_by_position[tuple(position)].append(stop_name)
+		for position, stop_names in stops_by_position.items():
+			if len(stop_names) > 1:
+				errors.append(
+					f"stops {', '.join(self._stop_label(name) for name in sorted(stop_names))} "
+					f"overlap at ({position[0]:g}, {position[1]:g})"
+				)
+
+		for error in errors:
+			self._warn(f"Harry Beck geometry: {error}")
 
 	def route_segments(
 		self,
@@ -254,27 +312,24 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 	) -> list[str]:
 		directions = []
 		if not isinstance(direction_sequence, str) or not direction_sequence:
-			self._warn(f"Harry Beck route {route_id} has no direction sequence")
+			raise ValueError(
+				f"Harry Beck route {route_id} has no direction sequence"
+			)
 		else:
 			for token in direction_sequence.split("-"):
 				match = re.fullmatch(r"(\d+)?(E|SE|S|SW|W|NW|N|NE)", token)
 				if match is None or int(match.group(1) or 1) == 0:
-					self._warn(
+					raise ValueError(
 						f"Harry Beck route {route_id} has invalid direction {token!r}"
 					)
-					continue
 				directions.extend([match.group(2)] * int(match.group(1) or 1))
 
 		if len(directions) != expected_count:
-			self._warn(
+			raise ValueError(
 				f"Harry Beck route {route_id} requires {expected_count} directions, "
 				f"but the sequence defines {len(directions)}"
 			)
-		if len(directions) < expected_count:
-			directions.extend([directions[-1] if directions else "N"] * (
-				expected_count - len(directions)
-			))
-		return directions[:expected_count]
+		return directions
 
 	@staticmethod
 	def _warn(message: str) -> None:
@@ -293,43 +348,62 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 						edge_routes[edge].append(route.id)
 		return edge_routes
 
-	@classmethod
 	def _project_positions(
-		cls,
+		self,
 		origin_positions: dict[str, list[float]],
 		design_routes: list[dict[str, object]],
 	) -> dict[str, list[float]]:
 		pending_segments = []
 		for route in design_routes:
 			for segment in route["segments"]:
-				direction_index = cls.DIRECTIONS.index(segment["direction"])
-				x_delta, y_delta = cls.DIRECTION_VECTORS[direction_index]
-				pending_segments.append((segment["stops"], x_delta, y_delta))
+				direction_index = self.DIRECTIONS.index(segment["direction"])
+				x_delta, y_delta = self.DIRECTION_VECTORS[direction_index]
+				pending_segments.append(
+					(route["id"], segment["stops"], x_delta, y_delta)
+				)
 
 		projected = {
 			name: point[:] for name, point in origin_positions.items()
 		}
+		position_routes = {name: set() for name in origin_positions}
 		while pending_segments:
 			remaining_segments = []
-			for stops, x_delta, y_delta in pending_segments:
+			for route_id, stops, x_delta, y_delta in pending_segments:
 				anchor_index = next(
 					(index for index, stop in enumerate(stops) if stop in projected),
 					None,
 				)
 				if anchor_index is None:
-					remaining_segments.append((stops, x_delta, y_delta))
+					remaining_segments.append((route_id, stops, x_delta, y_delta))
 					continue
 
 				anchor_x, anchor_y = projected[stops[anchor_index]]
 				for index, stop in enumerate(stops):
+					step_count = index - anchor_index
+					expected = [
+						anchor_x + step_count * x_delta,
+						anchor_y + step_count * y_delta,
+					]
 					if stop not in projected:
-						step_count = index - anchor_index
-						projected[stop] = [
-							anchor_x + step_count * x_delta,
-							anchor_y + step_count * y_delta,
-						]
+						projected[stop] = expected
+						position_routes[stop] = {route_id}
+					elif not all(
+						math.isclose(actual, candidate)
+						for actual, candidate in zip(projected[stop], expected)
+					):
+						retained_route_ids = "/".join(
+							sorted(position_routes[stop])
+						) or "origin"
+						self._warn(
+							"Harry Beck position conflict: "
+							f"{self._format_stop_at(stop, projected[stop])} "
+							f"(route {retained_route_ids}) and "
+							f"{self._format_stop_at(stop, expected)} (route {route_id})"
+						)
+					else:
+						position_routes[stop].add(route_id)
 			if len(remaining_segments) == len(pending_segments):
-				first_stops = remaining_segments[0][0]
+				first_route_id, first_stops, _, _ = remaining_segments[0]
 				fallback_origin = first_stops[0]
 				print(
 					f"⚠️ Harry Beck stops are not connected to an origin; "
@@ -339,9 +413,17 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 					max(point[0] for point in projected.values()) + 2.0,
 					min(point[1] for point in projected.values()),
 				]
+				position_routes[fallback_origin] = {first_route_id}
 				continue
 			pending_segments = remaining_segments
 		return projected
+
+	def _format_stop_at(self, stop_name: str, position: list[float]) -> str:
+		x_coordinate, y_coordinate = position
+		return (
+			f"[{x_coordinate:g}, {y_coordinate:g}]"
+			f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
+		)
 
 	def _grid_svg_lines(self) -> list[str]:
 		lines = ['<g class="coordinate-grid">']
@@ -361,5 +443,15 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 				f'<line class="{grid_class}" x1="0" y1="{y_coordinate}" '
 				f'x2="{self.width}" y2="{y_coordinate}"/>'
 			)
+		for x_index in range(logical_width + 1):
+			x_coordinate = self.padding + x_index * self.UNIT_SCALE
+			for y_index in range(logical_height + 1):
+				y_coordinate = self.padding + y_index * self.UNIT_SCALE
+				lines.append(
+					f'<text x="{x_coordinate + 0.15}" y="{y_coordinate + 0.65}" '
+					f'font-size="0.5" fill="#111" opacity="0.25">'
+					f'({self._grid_min_x + x_index:g},'
+					f'{self._grid_min_y + y_index:g})</text>'
+				)
 		lines.append("</g>")
 		return lines

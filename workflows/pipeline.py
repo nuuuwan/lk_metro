@@ -48,7 +48,7 @@ def main() -> None:
 	routes = Route.read_all()
 	stops = Stop.read_all()
 	outputs = (
-		(GeographicDiagram(routes, stops), "lk_metro_geographic"),
+		(GeographicDiagram(routes, stops, width=300, height=300), "lk_metro_geographic"),
 		(
 			ParallelGeographicDiagram(routes, stops),
 			"lk_metro_parallel_geographic",

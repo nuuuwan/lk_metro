@@ -33,6 +33,12 @@ class ParallelGeographicDiagram(GeographicDiagram):
 		if parallel_route_gap <= 0:
 			raise ValueError("parallel_route_gap must be positive")
 		super().__init__(routes, stops, width, height, padding)
+		active_stop_names = {
+			stop_name for route in self.routes for stop_name in route.stops
+		}
+		self.stops = [
+			stop for stop in self.stops if stop.name in active_stop_names
+		]
 		self.parallel_route_gap = parallel_route_gap
 		self._route_order = {
 			route.id: index for index, route in enumerate(self.routes)
