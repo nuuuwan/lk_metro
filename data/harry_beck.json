@@ -4,10 +4,10 @@
   },
   "routes": {
     "CM01": "2W-6NW-5W-3N-2W",
-    "CM02": "9W-NW-N-4W-N-4W-2N",
-    "CM03": "11W-8N-2NE-3E",
+    "CM02": "9W-NW-N-4W-N-2W-SW-3N",
+    "CM03": "11W-8N-5E",
     "CM04": "3S-SW-W-SW-3S-2SE-14E",
-    "CM05": "6W-5N-2NE-7E",
-    "CM08": "2SW-8W-2NW-2N-7NW"
+    "CM05": "6W-4N-2NE-9E",
+    "CM08": "2SW-8W-2NW-2N-NW-N-NW-SW-3N"
   }
 }
