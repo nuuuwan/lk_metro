@@ -80,13 +80,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		}
 
 	def _stop_label(self, stop_name: str) -> str:
-		if not hasattr(self, "_logical_positions"):
-			self.layout()
-		x_coordinate, y_coordinate = self._logical_positions[stop_name]
-		return (
-			f"[{x_coordinate:g}, {y_coordinate:g}]"
-			f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"
-		)
+		return stop_name
 
 	def _title_and_legend_svg_lines(self) -> list[str]:
 		lines = super()._title_and_legend_svg_lines()
@@ -171,8 +165,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 							f"is not a multiple of 45 degrees (angle: {angle:.3f}°)"
 						)
 					errors.append(
-						f"route {route.id} edge {self._stop_label(first)} to "
-						f"{self._stop_label(second)} {geometry_error}"
+						f"route {route.id} edge "
+						f"{self._format_stop_at(first, positions[first])} to "
+						f"{self._format_stop_at(second, positions[second])} "
+						f"{geometry_error}"
 					)
 
 		stops_by_position = defaultdict(list)
@@ -181,7 +177,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		for position, stop_names in stops_by_position.items():
 			if len(stop_names) > 1:
 				errors.append(
-					f"stops {', '.join(self._stop_label(name) for name in sorted(stop_names))} "
+					f"stops {', '.join(self._format_stop_at(name, positions[name]) for name in sorted(stop_names))} "
 					f"overlap at ({position[0]:g}, {position[1]:g})"
 				)
 
@@ -427,32 +423,4 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
 		)
 
 	def _grid_svg_lines(self) -> list[str]:
-		lines = ['<g class="coordinate-grid">']
-		logical_width = round((self.width - self.padding * 2) / self.UNIT_SCALE)
-		logical_height = round((self.height - self.padding * 2) / self.UNIT_SCALE)
-		for index in range(logical_width + 1):
-			x_coordinate = self.padding + index * self.UNIT_SCALE
-			grid_class = "grid-major" if index % 10 == 0 else "grid-minor"
-			lines.append(
-				f'<line class="{grid_class}" x1="{x_coordinate}" y1="0" '
-				f'x2="{x_coordinate}" y2="{self.height}"/>'
-			)
-		for index in range(logical_height + 1):
-			y_coordinate = self.padding + index * self.UNIT_SCALE
-			grid_class = "grid-major" if index % 10 == 0 else "grid-minor"
-			lines.append(
-				f'<line class="{grid_class}" x1="0" y1="{y_coordinate}" '
-				f'x2="{self.width}" y2="{y_coordinate}"/>'
-			)
-		for x_index in range(logical_width + 1):
-			x_coordinate = self.padding + x_index * self.UNIT_SCALE
-			for y_index in range(logical_height + 1):
-				y_coordinate = self.padding + y_index * self.UNIT_SCALE
-				lines.append(
-					f'<text x="{x_coordinate + 0.15}" y="{y_coordinate + 0.65}" '
-					f'font-size="0.5" fill="#111" opacity="0.25">'
-					f'({self._grid_min_x + x_index:g},'
-					f'{self._grid_min_y + y_index:g})</text>'
-				)
-		lines.append("</g>")
-		return lines
+		return []
