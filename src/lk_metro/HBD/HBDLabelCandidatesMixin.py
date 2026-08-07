@@ -31,18 +31,20 @@ class HBDLabelCandidatesMixin:
                 + self.ROUTE_STROKE_WIDTH / 2
                 + self.LABEL_OFFSET
             )
-            for side in (-1.0, 1.0):
-                center = (
-                    position[0] + normal[0] * clearance * side,
-                    position[1] + normal[1] * clearance * side,
-                )
-                bounds = (
-                    center[0] - half_width,
-                    center[1] - half_height,
-                    center[0] + half_width,
-                    center[1] + half_height,
-                )
-                options.append((bounds, center))
+            for distance_scale in (1.0, 1.5, 2.0, 3.0, 4.0, 5.0):
+                distance = clearance * distance_scale
+                for side in (-1.0, 1.0):
+                    center = (
+                        position[0] + normal[0] * distance * side,
+                        position[1] + normal[1] * distance * side,
+                    )
+                    bounds = (
+                        center[0] - half_width,
+                        center[1] - half_height,
+                        center[0] + half_width,
+                        center[1] + half_height,
+                    )
+                    options.append((bounds, center))
         return options
 
     def _route_normal(

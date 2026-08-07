@@ -1,6 +1,8 @@
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDLabelCandidatesMixin import (HBDLabelCandidatesMixin,
-                                                  LabelOption)
+from lk_metro.HBD.HBDLabelCandidatesMixin import (
+    HBDLabelCandidatesMixin,
+    LabelOption,
+)
 from lk_metro.PGD.PGDTypes import Bounds
 
 
@@ -24,10 +26,16 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
                 segments,
                 memberships[stop_name],
             )
-            selected = min(
-                options,
-                key=lambda option: self._label_option_score(option, occupied),
+            route_segments = (
+                segments if len(memberships[stop_name]) > 1 else {}
             )
+            scores = [
+                self._label_option_score(option, occupied, route_segments)
+                for option in options
+            ]
+            selected = options[
+                min(range(len(options)), key=scores.__getitem__)
+            ]
             occupied.append(selected[0])
             self._stop_label_placements[stop_name] = (*selected[1], "middle")
         self._stop_label_bounds = occupied
@@ -51,12 +59,31 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
         self,
         option: LabelOption,
         occupied: list[Bounds],
-    ) -> tuple[int, float, float]:
+        segments: dict[str, list[list[Point]]],
+    ) -> tuple[int, int, int, float, float]:
         bounds = option[0]
         overlaps = [self._overlap_area(bounds, other) for other in occupied]
+        route_padding = self.ROUTE_STROKE_WIDTH / 2
+        route_bounds = (
+            bounds[0] - route_padding,
+            bounds[1] - route_padding,
+            bounds[2] + route_padding,
+            bounds[3] + route_padding,
+        )
+        route_overlaps = sum(
+            any(
+                self._segment_intersects_bounds(first, second, route_bounds)
+                for path in route_segments
+                for first, second in zip(path, path[1:])
+            )
+            for route_segments in segments.values()
+        )
+        label_overlaps = sum(area > 0 for area in overlaps)
         canvas = (0.0, 0.0, float(self.width), float(self.height))
         return (
-            sum(area > 0 for area in overlaps),
+            route_overlaps + label_overlaps,
+            route_overlaps,
+            label_overlaps,
             sum(overlaps),
             self._outside_area(bounds, canvas),
         )
@@ -64,6 +91,6 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
     def _stop_label_placement(
         self,
         stop_name: str,
-        position: Point,
+        _position: Point,
     ) -> tuple[float, float, str]:
         return self._stop_label_placements[stop_name]
