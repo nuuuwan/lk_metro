@@ -28,7 +28,28 @@ class StopXYMixin:
             record["latlng"][0] for record in records
         )
 
-        xy_records = [
+        xy_records = cls._xy_records(
+            records,
+            longitude_ranks,
+            latitude_ranks,
+        )
+        xy_path.write_text(
+            json.dumps(xy_records, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        overlaps_path.write_text(
+            json.dumps(cls._overlap_records(xy_records), indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    @classmethod
+    def _xy_records(
+        cls,
+        records: list[dict[str, object]],
+        longitude_ranks: dict[float, int],
+        latitude_ranks: dict[float, int],
+    ) -> list[dict[str, object]]:
+        return [
             {
                 "name": record["name"],
                 "xy": [
@@ -48,24 +69,20 @@ class StopXYMixin:
             }
             for record in records
         ]
-        xy_path.write_text(
-            json.dumps(xy_records, indent=2) + "\n",
-            encoding="utf-8",
-        )
 
+    @staticmethod
+    def _overlap_records(
+        xy_records: list[dict[str, object]],
+    ) -> list[dict[str, object]]:
         stops_by_xy: dict[tuple[int, int], list[str]] = {}
         for record in xy_records:
             coordinate = tuple(record["xy"])
             stops_by_xy.setdefault(coordinate, []).append(record["name"])
-        overlaps = [
+        return [
             {"xy": list(coordinate), "stops": stop_names}
             for coordinate, stop_names in stops_by_xy.items()
             if len(stop_names) > 1
         ]
-        overlaps_path.write_text(
-            json.dumps(overlaps, indent=2) + "\n",
-            encoding="utf-8",
-        )
 
     @staticmethod
     def _dense_ranks(values: Iterable[float]) -> dict[float, int]:

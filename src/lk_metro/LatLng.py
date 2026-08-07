@@ -68,18 +68,36 @@ class LatLng:
 
         cache_key = " ".join(name.casefold().split())
         cache = cls._read_cache()
-        cached_location = cache.get(cache_key)
+        cached_location = cls._location_from_cache(cache, cache_key)
         if cached_location is not None:
-            try:
-                return cls(
-                    lat=float(cached_location["lat"]),
-                    lng=float(cached_location["lng"]),
-                )
-            except (KeyError, TypeError, ValueError):
-                del cache[cache_key]
+            return cached_location
 
         query_name = f"{name}, Sri Lanka"
+        location = cls._fetch_location(query_name)
+        cache[cache_key] = {"lat": location.lat, "lng": location.lng}
+        cls._write_cache(cache)
+        return location
 
+    @classmethod
+    def _location_from_cache(
+        cls,
+        cache: dict[str, dict[str, float]],
+        cache_key: str,
+    ) -> "LatLng | None":
+        cached_location = cache.get(cache_key)
+        if cached_location is None:
+            return None
+        try:
+            return cls(
+                lat=float(cached_location["lat"]),
+                lng=float(cached_location["lng"]),
+            )
+        except (KeyError, TypeError, ValueError):
+            del cache[cache_key]
+            return None
+
+    @classmethod
+    def _fetch_location(cls, query_name: str) -> "LatLng":
         query = urlencode({"q": query_name, "format": "jsonv2", "limit": 1})
         request = Request(
             f"{cls.NOMINATIM_URL}?{query}",
@@ -100,9 +118,6 @@ class LatLng:
             raise ValueError(
                 "Nominatim returned an invalid location"
             ) from error
-
-        cache[cache_key] = {"lat": location.lat, "lng": location.lng}
-        cls._write_cache(cache)
         return location
 
     @classmethod

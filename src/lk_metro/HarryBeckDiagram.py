@@ -29,7 +29,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
     TITLE_FONT_SIZE = 3.8
     BACKGROUND_COLOR = "#ffffff"
     TEXT_COLOR = "#991f1d"
-    FONT_FAMILY = "'Johnston Sans', 'Johnston 100', Johnston100, 'Gill Sans', sans-serif"
+    FONT_FAMILY = (
+        "'Johnston Sans', 'Johnston 100', Johnston100, "
+        "'Gill Sans', sans-serif"
+    )
     SHOW_GRID = False
     ROUTE_STROKE_WIDTH = 1.0
     PARALLEL_ROUTE_GAP = 1.0
@@ -92,6 +95,27 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
             self._segments_by_route,
             designed_stops_by_route,
         ) = self._read_design()
+        self._apply_design(routes, stops, designed_stops_by_route)
+        self._route_order = {
+            route.id: index for index, route in enumerate(self.routes)
+        }
+        self._edge_directions = {}
+        self._edge_routes = self._build_design_edge_routes()
+        self._stop_numbers = {
+            stop.name: [
+                str(route.stops.index(stop.name) + 1)
+                for route in self.routes
+                if stop.name in route.stops
+            ]
+            for stop in self.stops
+        }
+
+    def _apply_design(
+        self,
+        routes: list[Route],
+        stops: list[Stop],
+        designed_stops_by_route: dict[str, list[str]],
+    ) -> None:
         routes_by_id = {route.id: route for route in routes}
         self.routes = [
             replace(routes_by_id[route_id], stops=route_stops)
@@ -109,19 +133,6 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
             )
             for name in designed_stop_names
         ]
-        self._route_order = {
-            route.id: index for index, route in enumerate(self.routes)
-        }
-        self._edge_directions = {}
-        self._edge_routes = self._build_design_edge_routes()
-        self._stop_numbers = {
-            stop.name: [
-                str(route.stops.index(stop.name) + 1)
-                for route in self.routes
-                if stop.name in route.stops
-            ]
-            for stop in self.stops
-        }
 
     def _stop_label(self, stop_name: str) -> str:
         return stop_name
@@ -184,9 +195,11 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
     def _background_svg_lines(self) -> list[str]:
         return [
             f'<path d="{self.RIVER_PATH}" fill="none" stroke="#66b9d0" '
-            'stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>',
+            'stroke-width="4.2" stroke-linecap="round" '
+            'stroke-linejoin="round"/>',
             f'<path d="{self.RIVER_PATH}" fill="none" stroke="#d9f1f7" '
-            'stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+            'stroke-width="3.5" stroke-linecap="round" '
+            'stroke-linejoin="round"/>',
             '<text x="58" y="33.6" text-anchor="middle" '
             'font-family="Gill Sans, sans-serif" font-size="0.8" '
             'font-style="italic" fill="#287f98">Kelani River</text>',
@@ -242,7 +255,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
             ("in 1933.", False),
         )
         lines.extend(
-            f'<text class="{("legend-label" if is_heading else "legend-route-label")}" '
+            f'<text class="{self._note_class(is_heading)}" '
             f'x="{legend_x}" y="{note_y + index * 2.4}"'
             f'{" font-weight=\"bold\"" if is_heading else ""}>'
             f'{html.escape(text)}</text>'
@@ -254,6 +267,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
             f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
         )
         return lines
+
+    @staticmethod
+    def _note_class(is_heading: bool) -> str:
+        return "legend-label" if is_heading else "legend-route-label"
 
     def _legend_origin(self) -> Point:
         return (self.width - 44, self.TITLE_HEIGHT + 10)
@@ -296,6 +313,16 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
         self,
         positions: dict[str, list[float]],
     ) -> None:
+        edges, errors = self._edge_geometry_errors(positions)
+        errors.extend(self._overlap_errors(positions))
+        errors.extend(self._crossing_errors(positions, edges))
+        for error in errors:
+            log.warn(f"Harry Beck geometry: {error}")
+
+    def _edge_geometry_errors(
+        self,
+        positions: dict[str, list[float]],
+    ) -> tuple[list[tuple[str, str, str]], list[str]]:
         errors = []
         edges = []
         for route in self.routes:
@@ -320,29 +347,44 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                         angle = (
                             math.degrees(math.atan2(y_delta, x_delta)) % 360
                         )
-                        geometry_error = f"is not a multiple of 45 degrees (angle: {
-                            angle:.3f}°)"
+                        geometry_error = (
+                            "is not a multiple of 45 degrees "
+                            f"(angle: {angle:.3f}°)"
+                        )
                     errors.append(
                         f"route {route.id} edge "
                         f"{self._format_stop_at(first, positions[first])} to "
                         f"{self._format_stop_at(second, positions[second])} "
                         f"{geometry_error}"
                     )
+        return edges, errors
 
+    def _overlap_errors(
+        self,
+        positions: dict[str, list[float]],
+    ) -> list[str]:
+        errors = []
         stops_by_position = defaultdict(list)
         for stop_name, position in positions.items():
             stops_by_position[tuple(position)].append(stop_name)
         for position, stop_names in stops_by_position.items():
             if len(stop_names) > 1:
+                formatted_stops = ", ".join(
+                    self._format_stop_at(name, positions[name])
+                    for name in sorted(stop_names)
+                )
                 errors.append(
-                    f"stops {
-                        ', '.join(
-                            self._format_stop_at(
-                                name,
-                                positions[name]) for name in sorted(stop_names))} "
+                    f"stops {formatted_stops} "
                     f"overlap at ({position[0]:g}, {position[1]:g})"
                 )
+        return errors
 
+    def _crossing_errors(
+        self,
+        positions: dict[str, list[float]],
+        edges: list[tuple[str, str, str]],
+    ) -> list[str]:
+        errors = []
         for index, (first_route, first_start, first_end) in enumerate(edges):
             for second_route, second_start, second_end in edges[index + 1:]:
                 if {first_start, first_end} & {second_start, second_end}:
@@ -366,11 +408,10 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                                             positions[second_start])} to "
                     f"{self._format_stop_at(second_end,
                                             positions[second_end])} at "
-                    f"({intersection[0]:g}, {intersection[1]:g}) without a shared stop"
+                    f"({intersection[0]:g}, {intersection[1]:g}) "
+                    "without a shared stop"
                 )
-
-        for error in errors:
-            log.warn(f"Harry Beck geometry: {error}")
+        return errors
 
     @staticmethod
     def _proper_segment_intersection(
@@ -463,12 +504,7 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
         dict[str, list[dict[str, object]]],
         dict[str, list[str]],
     ]:
-        try:
-            with self.design_path.open(encoding="utf-8") as file:
-                design = json.load(file)
-        except (OSError, json.JSONDecodeError) as error:
-            log.warn(f"Could not read Harry Beck design: {error}")
-            design = {}
+        design = self._load_design()
         origin_records = (
             design.get("origin_stops") if isinstance(design, dict) else None
         )
@@ -479,8 +515,26 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
         if not isinstance(records, dict):
             log.warn("Harry Beck design must contain routes")
             records = {}
+        origin_positions = self._read_origin_positions(origin_records)
+        segments, designed_stops = self._read_design_routes(records)
+        return self._with_design_fallbacks(
+            origin_positions,
+            segments,
+            designed_stops,
+        )
 
-        routes_by_id = {route.id: route for route in self.routes}
+    def _load_design(self) -> object:
+        try:
+            with self.design_path.open(encoding="utf-8") as file:
+                return json.load(file)
+        except (OSError, json.JSONDecodeError) as error:
+            log.warn(f"Could not read Harry Beck design: {error}")
+            return {}
+
+    @staticmethod
+    def _read_origin_positions(
+        origin_records: dict[object, object],
+    ) -> dict[str, list[float]]:
         origin_positions = {}
         for name, coordinates in origin_records.items():
             if not isinstance(coordinates, list) or len(coordinates) != 2:
@@ -503,7 +557,13 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                 float(x_coordinate),
                 float(y_coordinate),
             ]
+        return origin_positions
 
+    def _read_design_routes(
+        self,
+        records: dict[object, object],
+    ) -> tuple[dict[str, list[dict[str, object]]], dict[str, list[str]]]:
+        routes_by_id = {route.id: route for route in self.routes}
         segments_by_route = {}
         designed_stops_by_route = {}
         for route_id, direction_sequence in records.items():
@@ -518,27 +578,45 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                 direction_sequence,
                 expected_count,
             )
-            segments = []
-            current_stop = designed_stops[0]
-            next_stop_index = 1
-            blank_index = 0
-            for direction, is_blank in directions:
-                if is_blank:
-                    blank_index += 1
-                    next_stop = f"__blank__:{route_id}:{blank_index}"
-                else:
-                    next_stop = designed_stops[next_stop_index]
-                    next_stop_index += 1
-                segments.append(
-                    {
-                        "direction": direction,
-                        "stops": [current_stop, next_stop],
-                    }
-                )
-                current_stop = next_stop
-            segments_by_route[route_id] = segments
+            segments_by_route[route_id] = self._segments_from_directions(
+                route_id, designed_stops, directions
+            )
             designed_stops_by_route[route_id] = designed_stops
+        return segments_by_route, designed_stops_by_route
 
+    @staticmethod
+    def _segments_from_directions(
+        route_id: str,
+        designed_stops: list[str],
+        directions: list[tuple[str, bool]],
+    ) -> list[dict[str, object]]:
+        segments = []
+        current_stop = designed_stops[0]
+        next_stop_index = 1
+        blank_index = 0
+        for direction, is_blank in directions:
+            if is_blank:
+                blank_index += 1
+                next_stop = f"__blank__:{route_id}:{blank_index}"
+            else:
+                next_stop = designed_stops[next_stop_index]
+                next_stop_index += 1
+            segments.append(
+                {"direction": direction, "stops": [current_stop, next_stop]}
+            )
+            current_stop = next_stop
+        return segments
+
+    def _with_design_fallbacks(
+        self,
+        origin_positions: dict[str, list[float]],
+        segments_by_route: dict[str, list[dict[str, object]]],
+        designed_stops_by_route: dict[str, list[str]],
+    ) -> tuple[
+        dict[str, list[float]],
+        dict[str, list[dict[str, object]]],
+        dict[str, list[str]],
+    ]:
         if not segments_by_route:
             log.warn(
                 "Harry Beck design must contain at least one valid route"
@@ -585,7 +663,8 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
         direction_count = sum(not is_blank for _, is_blank in directions)
         if direction_count != expected_count:
             raise ValueError(
-                f"Harry Beck route {route_id} requires {expected_count} directions, "
+                f"Harry Beck route {route_id} requires "
+                f"{expected_count} directions, "
                 f"but the sequence defines {direction_count}"
             )
         return directions
@@ -598,18 +677,51 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                     segment["stops"], segment["stops"][1:]
                 ):
                     edge = self._edge_key(first, second)
-                    if edge not in edge_routes:
-                        edge_routes[edge] = []
-                        self._edge_directions[edge] = (first, second)
-                    if route.id not in edge_routes[edge]:
-                        edge_routes[edge].append(route.id)
+                    self._add_design_edge(
+                        edge_routes, edge, first, second, route.id
+                    )
         return edge_routes
+
+    def _add_design_edge(
+        self,
+        edge_routes: dict[tuple[str, str], list[str]],
+        edge: tuple[str, str],
+        first: str,
+        second: str,
+        route_id: str,
+    ) -> None:
+        if edge not in edge_routes:
+            edge_routes[edge] = []
+            self._edge_directions[edge] = (first, second)
+        if route_id not in edge_routes[edge]:
+            edge_routes[edge].append(route_id)
 
     def _project_positions(
         self,
         origin_positions: dict[str, list[float]],
         design_routes: list[dict[str, object]],
     ) -> dict[str, list[float]]:
+        pending_segments = self._pending_segments(design_routes)
+        projected = {
+            name: point[:] for name, point in origin_positions.items()
+        }
+        position_routes = {name: set() for name in origin_positions}
+        while pending_segments:
+            remaining_segments = self._project_available_segments(
+                pending_segments, projected, position_routes
+            )
+            if len(remaining_segments) == len(pending_segments):
+                self._add_fallback_origin(
+                    remaining_segments[0], projected, position_routes
+                )
+                continue
+            pending_segments = remaining_segments
+        return projected
+
+    def _pending_segments(
+        self,
+        design_routes: list[dict[str, object]],
+    ) -> list[tuple[str, list[str], int, int]]:
         pending_segments = []
         for route in design_routes:
             for segment in route["segments"]:
@@ -618,78 +730,97 @@ class HarryBeckDiagram(ParallelGeographicDiagram):
                 pending_segments.append(
                     (route["id"], segment["stops"], x_delta, y_delta)
                 )
+        return pending_segments
 
-        projected = {
-            name: point[:] for name, point in origin_positions.items()
-        }
-        position_routes = {name: set() for name in origin_positions}
-        while pending_segments:
-            remaining_segments = []
-            for route_id, stops, x_delta, y_delta in pending_segments:
-                anchor_index = next(
-                    (
-                        index
-                        for index, stop in enumerate(stops)
-                        if stop in projected
-                    ),
-                    None,
-                )
-                if anchor_index is None:
-                    remaining_segments.append(
-                        (route_id, stops, x_delta, y_delta)
-                    )
-                    continue
+    def _project_available_segments(
+        self,
+        pending_segments: list[tuple[str, list[str], int, int]],
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> list[tuple[str, list[str], int, int]]:
+        remaining_segments = []
+        for segment in pending_segments:
+            if not self._project_segment(segment, projected, position_routes):
+                remaining_segments.append(segment)
+        return remaining_segments
 
-                anchor_x, anchor_y = projected[stops[anchor_index]]
-                for index, stop in enumerate(stops):
-                    step_count = index - anchor_index
-                    expected = [
-                        anchor_x + step_count * x_delta,
-                        anchor_y + step_count * y_delta,
-                    ]
-                    if stop not in projected:
-                        projected[stop] = expected
-                        position_routes[stop] = {route_id}
-                    elif not all(
-                        math.isclose(actual, candidate)
-                        for actual, candidate in zip(
-                            projected[stop], expected
-                        )
-                    ):
-                        retained_route_ids = (
-                            "/".join(sorted(position_routes[stop]))
-                            or "origin"
-                        )
-                        log.warn(
-                            "Harry Beck position conflict: "
-                            f"{self._format_stop_at(stop, projected[stop])} "
-                            f"(route {retained_route_ids}) and "
-                            f"{self._format_stop_at(stop,
-                                                    expected)} (route {route_id})"
-                        )
-                    else:
-                        position_routes[stop].add(route_id)
-            if len(remaining_segments) == len(pending_segments):
-                first_route_id, first_stops, _, _ = remaining_segments[0]
-                fallback_origin = first_stops[0]
-                log.warn(
-                    f"Harry Beck stops are not connected to an origin; "
-                    f"placing {fallback_origin!r} separately"
-                )
-                projected[fallback_origin] = [
-                    max(point[0] for point in projected.values()) + 2.0,
-                    min(point[1] for point in projected.values()),
-                ]
-                position_routes[fallback_origin] = {first_route_id}
-                continue
-            pending_segments = remaining_segments
-        return projected
+    def _project_segment(
+        self,
+        segment: tuple[str, list[str], int, int],
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> bool:
+        route_id, stops, x_delta, y_delta = segment
+        anchor_index = next(
+            (index for index, stop in enumerate(stops) if stop in projected),
+            None,
+        )
+        if anchor_index is None:
+            return False
+        anchor_x, anchor_y = projected[stops[anchor_index]]
+        for index, stop in enumerate(stops):
+            step_count = index - anchor_index
+            expected = [
+                anchor_x + step_count * x_delta,
+                anchor_y + step_count * y_delta,
+            ]
+            self._record_projected_stop(
+                stop, expected, route_id, projected, position_routes
+            )
+        return True
+
+    def _record_projected_stop(
+        self,
+        stop: str,
+        expected: list[float],
+        route_id: str,
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> None:
+        if stop not in projected:
+            projected[stop] = expected
+            position_routes[stop] = {route_id}
+        elif all(
+            math.isclose(actual, candidate)
+            for actual, candidate in zip(projected[stop], expected)
+        ):
+            position_routes[stop].add(route_id)
+        else:
+            retained_routes = "/".join(sorted(position_routes[stop]))
+            retained_routes = retained_routes or "origin"
+            log.warn(
+                "Harry Beck position conflict: "
+                f"{self._format_stop_at(stop, projected[stop])} "
+                f"(route {retained_routes}) and "
+                f"{self._format_stop_at(stop, expected)} (route {route_id})"
+            )
+
+    @staticmethod
+    def _add_fallback_origin(
+        segment: tuple[str, list[str], int, int],
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> None:
+        route_id, stops, _, _ = segment
+        fallback_origin = stops[0]
+        log.warn(
+            "Harry Beck stops are not connected to an origin; "
+            f"placing {fallback_origin!r} separately"
+        )
+        projected[fallback_origin] = [
+            max(point[0] for point in projected.values()) + 2.0,
+            min(point[1] for point in projected.values()),
+        ]
+        position_routes[fallback_origin] = {route_id}
 
     def _format_stop_at(self, stop_name: str, position: list[float]) -> str:
         x_coordinate, y_coordinate = position
         if stop_name.startswith("__blank__:"):
             _, route_id, blank_index = stop_name.split(":")
-            return f"[{x_coordinate:g}, {y_coordinate:g}]<blank {route_id}.{blank_index}>"
+            return (
+                f"[{x_coordinate:g}, {y_coordinate:g}]"
+                f"<blank {route_id}.{blank_index}>"
+            )
         return (
             f"[{x_coordinate:g}, {y_coordinate:g}]"
             f"{stop_name} ({'/'.join(self._stop_numbers[stop_name])})"

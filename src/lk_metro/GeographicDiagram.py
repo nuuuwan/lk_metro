@@ -121,16 +121,28 @@ class GeographicDiagram:
     def to_svg(self) -> str:
         positions = self.layout()
         paths = self.route_paths(positions)
+        lines = self._svg_header_lines()
+        lines.extend(self._route_svg_lines(paths))
+        lines.extend(self._stop_svg_lines(positions, paths))
+        lines.extend(
+            ["</g>", *self._title_and_legend_svg_lines(), "</g>", "</svg>"]
+        )
+        return "\n".join(lines) + "\n"
+
+    def _svg_header_lines(self) -> list[str]:
         svg_width, svg_height = self._svg_dimensions()
         content_x, content_y = self._content_offset()
-        lines = [
+        return [
             '<?xml version="1.0" encoding="UTF-8"?>',
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{svg_width}" '
             f'height="{svg_height}" viewBox="0 0 {svg_width} {svg_height}">',
             "<style>",
-            ".grid-minor { stroke: #777; stroke-opacity: 0.12; stroke-width: 0.25; }",
-            ".grid-major { stroke: #555; stroke-opacity: 0.2; stroke-width: 0.5; }",
-            ".route { fill: none; stroke-linecap: butt; stroke-linejoin: round; }",
+            ".grid-minor { stroke: #777; stroke-opacity: 0.12; "
+            "stroke-width: 0.25; }",
+            ".grid-major { stroke: #555; stroke-opacity: 0.2; "
+            "stroke-width: 0.5; }",
+            ".route { fill: none; stroke-linecap: butt; "
+            "stroke-linejoin: round; }",
             f".station {{ stroke-width: "
             f"{self.STATION_TICK_STROKE_WIDTH}; stroke-linecap: square; }}",
             f".interchange {{ fill: white; stroke: #000000; "
@@ -138,9 +150,11 @@ class GeographicDiagram:
             f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
             f"fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
-            f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px {self.FONT_FAMILY}; "
+            f".map-title {{ font: bold {self.TITLE_FONT_SIZE}px "
+            f"{self.FONT_FAMILY}; "
             f"fill: {self.TEXT_COLOR}; }}",
-            f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px {self.FONT_FAMILY}; "
+            f".legend-label {{ font: {self.LEGEND_FONT_SIZE}px "
+            f"{self.FONT_FAMILY}; "
             f"fill: {self.TEXT_COLOR}; "
             "dominant-baseline: middle; }",
             f".legend-route-label {{ font: {self.LEGEND_FONT_SIZE}px "
@@ -154,14 +168,27 @@ class GeographicDiagram:
             *(self._grid_svg_lines() if self.SHOW_GRID else []),
         ]
 
-        routes_to_draw = self.routes
-        for route in routes_to_draw:
+    def _route_svg_lines(
+        self,
+        paths: dict[str, list[Point]],
+    ) -> list[str]:
+        lines = []
+        for route in self.routes:
             points = " ".join(f"{x},{y}" for x, y in paths[route.id])
             lines.append(
                 f'<polyline class="route" points="{points}" '
-                f'stroke="{route.color}" stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
+                f'stroke="{route.color}" '
+                f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
             )
+        return lines
 
+    def _stop_svg_lines(
+        self,
+        positions: dict[str, Point],
+        paths: dict[str, list[Point]],
+    ) -> list[str]:
+        lines = []
+        routes_to_draw = self.routes
         visible_stop_names = {
             stop_name for route in routes_to_draw for stop_name in route.stops
         }
@@ -191,11 +218,7 @@ class GeographicDiagram:
                 f'y="{y - self.LABEL_OFFSET}">'
                 f"{html.escape(stop.name)}</text>"
             )
-
-        lines.extend(
-            ["</g>", *self._title_and_legend_svg_lines(), "</g>", "</svg>"]
-        )
-        return "\n".join(lines) + "\n"
+        return lines
 
     def _station_tick(
         self,
@@ -238,16 +261,30 @@ class GeographicDiagram:
 
     def _title_and_legend_svg_lines(self) -> list[str]:
         legend_x, legend_title_y = self._legend_origin()
+        title_x = self.padding + self.LOGO_WIDTH + 4
         lines = [
             self._logo_svg_line(),
-            f'<text class="map-title" x="{self.padding +
-                                          self.LOGO_WIDTH +
-                                          4}" '
+            f'<text class="map-title" x="{title_x}" '
             f'y="{self.TITLE_HEIGHT / 2 + self.TITLE_FONT_SIZE / 3}">'
             f'{html.escape(self.MAP_SUBTITLE)}</text>',
             f'<text class="legend-label" x="{legend_x}" y="{legend_title_y}" '
             f'font-weight="bold">{html.escape(self.LEGEND_TITLE)}</text>',
         ]
+        lines.extend(self._legend_route_svg_lines(legend_x, legend_title_y))
+        lines.extend(self._legend_note_svg_lines(legend_x, legend_title_y))
+        footer_y = self._content_dimensions()[1] - 2
+        lines.append(
+            f'<text class="legend-route-label" x="{self.padding}" '
+            f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
+        )
+        return lines
+
+    def _legend_route_svg_lines(
+        self,
+        legend_x: float,
+        legend_title_y: float,
+    ) -> list[str]:
+        lines = []
         for index, route in enumerate(self.legend_routes):
             y_coordinate = (
                 legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
@@ -262,22 +299,23 @@ class GeographicDiagram:
                     f'{html.escape(route.name)}</text>',
                 ]
             )
+        return lines
+
+    def _legend_note_svg_lines(
+        self,
+        legend_x: float,
+        legend_title_y: float,
+    ) -> list[str]:
         note_y = (
             legend_title_y
             + 6
             + len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
         )
-        lines.extend(
+        return [
             f'<text class="legend-route-label" x="{legend_x}" '
             f'y="{note_y + index * 2.4}">{html.escape(text)}</text>'
             for index, text in enumerate(self.DESCRIPTION_LINES)
-        )
-        footer_y = self._content_dimensions()[1] - 2
-        lines.append(
-            f'<text class="legend-route-label" x="{self.padding}" '
-            f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
-        )
-        return lines
+        ]
 
     def _logo_svg_line(self) -> str:
         logo_path = (
@@ -321,6 +359,12 @@ class GeographicDiagram:
         return lines
 
     def _validate_data(self) -> None:
+        self._validate_collection_data()
+        self._validate_route_stops()
+        for stop in self.stops:
+            self._validate_stop_coordinates(stop)
+
+    def _validate_collection_data(self) -> None:
         if not self.routes:
             raise ValueError("At least one route is required")
         if not self.stops:
@@ -328,6 +372,7 @@ class GeographicDiagram:
         if len(self._stops_by_name) != len(self.stops):
             raise ValueError("Stop names must be unique")
 
+    def _validate_route_stops(self) -> None:
         unknown_stops = sorted(
             {
                 name
@@ -341,30 +386,27 @@ class GeographicDiagram:
                 "Routes reference unknown stops: " + ", ".join(unknown_stops)
             )
 
-        for stop in self.stops:
-            if len(stop.latlng) != 2 or any(
-                not math.isfinite(coordinate) for coordinate in stop.latlng
-            ):
-                raise ValueError(
-                    f"Stop {
-                        stop.name!r} must have finite latitude and longitude"
-                )
-            latitude, longitude = stop.latlng
-            if (
-                not -85.0 < latitude < 85.0
-                or not -180.0 <= longitude <= 180.0
-            ):
-                raise ValueError(
-                    f"Stop {stop.name!r} has invalid latitude or longitude"
-                )
-            if len(stop.xy) != 2 or any(
-                type(coordinate) not in (int, float)
-                or not math.isfinite(coordinate)
-                for coordinate in stop.xy
-            ):
-                raise ValueError(
-                    f"Stop {stop.name!r} must have finite x and y coordinates"
-                )
+    @staticmethod
+    def _validate_stop_coordinates(stop: Stop) -> None:
+        if len(stop.latlng) != 2 or any(
+            not math.isfinite(coordinate) for coordinate in stop.latlng
+        ):
+            raise ValueError(
+                f"Stop {stop.name!r} must have finite latitude and longitude"
+            )
+        latitude, longitude = stop.latlng
+        if not -85.0 < latitude < 85.0 or not -180.0 <= longitude <= 180.0:
+            raise ValueError(
+                f"Stop {stop.name!r} has invalid latitude or longitude"
+            )
+        if len(stop.xy) != 2 or any(
+            type(coordinate) not in (int, float)
+            or not math.isfinite(coordinate)
+            for coordinate in stop.xy
+        ):
+            raise ValueError(
+                f"Stop {stop.name!r} must have finite x and y coordinates"
+            )
 
     def _route_memberships(
         self,
