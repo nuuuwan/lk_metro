@@ -40,8 +40,9 @@ class HBDSvgMixin:
             f'<path d="{self.RIVER_PATH}" fill="none" stroke="#d9f1f7" '
             'stroke-width="3.5" stroke-linecap="round" '
             'stroke-linejoin="round"/>',
-            '<text x="58" y="33.6" text-anchor="middle" '
-            'font-family="Gill Sans, sans-serif" font-size="0.8" '
+            '<text x="117" y="54" text-anchor="middle" '
+            'dominant-baseline="middle" '
+            'font-family="Gill Sans, sans-serif" font-size="1.6" '
             'font-style="italic" fill="#287f98">Kelani River</text>',
         ]
 

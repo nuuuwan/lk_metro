@@ -50,4 +50,4 @@ class HBDLegendSvgMixin:
         return "legend-label" if is_heading else "legend-route-label"
 
     def _legend_origin(self) -> Point:
-        return (self.width - 44, self.TITLE_HEIGHT + 10)
+        return (self.width - 44, self.TITLE_HEIGHT + 14)

@@ -32,10 +32,7 @@ class HBDStyleMixin:
     STATION_TICK_LENGTH = LABEL_FONT_SIZE / 2
     STATION_TICK_STROKE_WIDTH = 0.42
     ROTATE_LABELS = False
-    RIVER_PATH = (
-        "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 "
-        + "L 98,54 L 160,54"
-    )
+    RIVER_PATH = "M -4,2 L 18,2 L 70,54 L 164,54"
     DIRECTIONS: ClassVar[tuple[str, ...]] = (
         "E",
         "SE",

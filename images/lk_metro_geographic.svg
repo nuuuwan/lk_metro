@@ -10,7 +10,7 @@
 .map-title { font: bold 10px sans-serif; fill: #991f1d; }
 .legend-label { font: 10px sans-serif; fill: #991f1d; dominant-baseline: middle; }
 .legend-route-label { font: 10px sans-serif; fill: #000000; dominant-baseline: middle; }
-.footer-label { font: 20px sans-serif; fill: #000000; dominant-baseline: middle; }
+.footer-label { font: 10px sans-serif; fill: #000000; dominant-baseline: middle; }
 </style>
 <rect width="358" height="358" fill="#ffffff"/>
 <g transform="translate(0.0 23.0)">

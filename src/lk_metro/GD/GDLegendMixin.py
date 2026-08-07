@@ -26,10 +26,10 @@ class GDLegendMixin:
         lines = [
             self._logo_svg_line(),
             f'<text class="map-title" x="{title_x}" y="{title_y}">'
-            f'{html.escape(self.MAP_SUBTITLE)}</text>',
+            f"{html.escape(self.MAP_SUBTITLE)}</text>",
             f'<text class="legend-label" x="{legend_x}" '
             f'y="{legend_title_y}" font-weight="bold">'
-            f'{html.escape(self.LEGEND_TITLE)}</text>',
+            f"{html.escape(self.LEGEND_TITLE)}</text>",
             *self._legend_route_svg_lines(legend_x, legend_title_y),
             *self._legend_note_svg_lines(legend_x, legend_title_y),
             f'<text class="footer-label" x="{self.padding}" '
@@ -52,7 +52,7 @@ class GDLegendMixin:
                     f'fill="{route.color}"/>',
                     f'<text class="legend-route-label" x="{legend_x + 8}" '
                     f'y="{y_coordinate}">{html.escape(route.id)}: '
-                    f'{html.escape(route.name)}</text>',
+                    f"{html.escape(route.name)}</text>",
                 ]
             )
         return lines

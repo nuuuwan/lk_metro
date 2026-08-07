@@ -45,7 +45,7 @@ class PGDSvgMarkupMixin:
             f".legend-route-label {{ font: {self.LEGEND_FONT_SIZE}px "
             f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
-            f".footer-label {{ font: {self.LEGEND_FONT_SIZE * 2}px "
+            f".footer-label {{ font: {self.LEGEND_FONT_SIZE * 1}px "
             f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
         ]
