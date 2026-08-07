@@ -81,9 +81,7 @@ class HBDLabelPlacementMixin(
             memberships[stop_name],
             prefer_positive,
         )
-        route_segments = (
-            segments if len(memberships[stop_name]) > 1 else {}
-        )
+        route_segments = segments if len(memberships[stop_name]) > 1 else {}
         scores = [
             self._label_option_score(option, occupied, route_segments)
             for option in options
