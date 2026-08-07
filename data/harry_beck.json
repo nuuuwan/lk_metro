@@ -3,12 +3,12 @@
     "Colombo Fort": [0, 0]
   },
   "routes": {
-    "CM01": "2W-N-4NW-6W-N-NE-NW-2W",
+    "CM01": "2W-2N-3NW-6W-N-NE-NW-2W",
     "CM02": "S-SW-6W-N-NW-5W-N-bW-3W-NE-W-N",
-    "CM03": "3W-6W-NW-8N-NE-4E",
+    "CM03": "3W-6W-9N-NE-4E",
     "CM04": "3S-SW-W-SW-3S-4SE-10E-NE-N",
     "CM05": "NW-5W-5N-2NE-9E",
-    "CM06": "N-E-NE-S-E-S-SW-E-SE-N-S-W-S-W-NW-N-NW",
-    "CM08": "2SW-6W-4NW-5N-2W-N-E"
+    "CM06": "NE-E-NE-S-E-SW-SW-E-SE-NE-S-W-SW-W-NW-N-NW",
+    "CM08": "2SW-6W-4NW-2N-NE-2N-2W-N-E"
   }
 }
