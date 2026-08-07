@@ -184,10 +184,6 @@
     "latlng": [6.7584521, 79.8859023]
   },
   {
-    "name": "Koswaththa",
-    "latlng": [6.8998011, 79.8969114]
-  },
-  {
     "name": "Kottawa",
     "latlng": [6.8430139, 79.9655312]
   },
@@ -372,12 +368,8 @@
     "latlng": [6.9079798, 79.9451386]
   },
   {
-    "name": "Thalangama Depot",
+    "name": "Thalangama",
     "latlng": [6.9067802, 79.9261129]
-  },
-  {
-    "name": "Thalangama Junc.",
-    "latlng": [6.8853613, 79.9241255]
   },
   {
     "name": "Thalawathugoda",

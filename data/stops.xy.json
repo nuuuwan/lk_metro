@@ -24,14 +24,14 @@
     "name": "Athurugiriya Hosp.",
     "xy": [
       87,
-      58
+      57
     ]
   },
   {
     "name": "Athurugiriya Town",
     "xy": [
       87,
-      60
+      59
     ]
   },
   {
@@ -45,7 +45,7 @@
     "name": "Battaramulla Junc.",
     "xy": [
       71,
-      44
+      45
     ]
   },
   {
@@ -58,8 +58,8 @@
   {
     "name": "Borella",
     "xy": [
-      40,
-      33
+      41,
+      34
     ]
   },
   {
@@ -72,21 +72,21 @@
   {
     "name": "Campbell Park",
     "xy": [
-      39,
-      30
+      40,
+      31
     ]
   },
   {
     "name": "Cancer Hosp. 01",
     "xy": [
       72,
-      74
+      73
     ]
   },
   {
     "name": "Castle Hosp.",
     "xy": [
-      46,
+      47,
       38
     ]
   },
@@ -94,7 +94,7 @@
     "name": "Colombo Fort",
     "xy": [
       14,
-      24
+      25
     ]
   },
   {
@@ -121,14 +121,14 @@
   {
     "name": "Dematagoda",
     "xy": [
-      41,
-      26
+      42,
+      27
     ]
   },
   {
     "name": "Egoda Uyana",
     "xy": [
-      53,
+      54,
       85
     ]
   },
@@ -143,7 +143,7 @@
     "name": "Gamini Hall",
     "xy": [
       20,
-      28
+      29
     ]
   },
   {
@@ -156,21 +156,21 @@
   {
     "name": "Golumadama Junc.",
     "xy": [
-      44,
+      45,
       79
     ]
   },
   {
     "name": "Havelock",
     "xy": [
-      31,
+      32,
       57
     ]
   },
   {
     "name": "Hedges Ct.",
     "xy": [
-      26,
+      27,
       30
     ]
   },
@@ -184,8 +184,8 @@
   {
     "name": "Hendala",
     "xy": [
-      50,
-      17
+      51,
+      18
     ]
   },
   {
@@ -199,21 +199,21 @@
     "name": "Hokandara Junc.",
     "xy": [
       85,
-      54
+      55
     ]
   },
   {
     "name": "Independence Arcade",
     "xy": [
-      30,
-      43
+      31,
+      44
     ]
   },
   {
     "name": "Independence Sq.",
     "xy": [
       29,
-      41
+      42
     ]
   },
   {
@@ -226,21 +226,21 @@
   {
     "name": "Ja Ela",
     "xy": [
-      52,
+      53,
       13
     ]
   },
   {
     "name": "Jawatta Rd.",
     "xy": [
-      28,
+      29,
       47
     ]
   },
   {
     "name": "Jayanthi Mw.",
     "xy": [
-      54,
+      55,
       85
     ]
   },
@@ -262,7 +262,7 @@
     "name": "Kalubowila Hosp.",
     "xy": [
       30,
-      65
+      64
     ]
   },
   {
@@ -275,7 +275,7 @@
   {
     "name": "Katubedda Junc.",
     "xy": [
-      49,
+      50,
       81
     ]
   },
@@ -304,7 +304,7 @@
     "name": "Kirulapone",
     "xy": [
       36,
-      57
+      56
     ]
   },
   {
@@ -317,22 +317,15 @@
   {
     "name": "Koralawella",
     "xy": [
-      47,
+      48,
       84
-    ]
-  },
-  {
-    "name": "Koswaththa",
-    "xy": [
-      57,
-      46
     ]
   },
   {
     "name": "Kottawa",
     "xy": [
       84,
-      72
+      71
     ]
   },
   {
@@ -394,8 +387,8 @@
   {
     "name": "Maharagama",
     "xy": [
-      76,
-      70
+      75,
+      69
     ]
   },
   {
@@ -408,21 +401,21 @@
   {
     "name": "Malabe",
     "xy": [
-      83,
-      42
+      82,
+      43
     ]
   },
   {
     "name": "Maliban Junc.",
     "xy": [
-      35,
+      36,
       77
     ]
   },
   {
     "name": "Maradana Railway",
     "xy": [
-      24,
+      25,
       28
     ]
   },
@@ -430,14 +423,14 @@
     "name": "Mendis Ln. Rawathawatta",
     "xy": [
       45,
-      83
+      82
     ]
   },
   {
     "name": "Millennium City",
     "xy": [
       88,
-      56
+      55
     ]
   },
   {
@@ -458,7 +451,7 @@
     "name": "NAITA",
     "xy": [
       59,
-      40
+      41
     ]
   },
   {
@@ -478,36 +471,36 @@
   {
     "name": "Nawinna",
     "xy": [
-      70,
-      67
+      71,
+      66
     ]
   },
   {
     "name": "Lalanka Ratmalana",
     "xy": [
       34,
-      76
+      75
     ]
   },
   {
     "name": "Nelum Pokuna",
     "xy": [
       24,
-      35
+      36
     ]
   },
   {
     "name": "Nisaco Mall",
     "xy": [
       86,
-      59
+      58
     ]
   },
   {
     "name": "Nugegoda",
     "xy": [
-      48,
-      63
+      49,
+      62
     ]
   },
   {
@@ -520,7 +513,7 @@
   {
     "name": "Palam Junc.",
     "xy": [
-      63,
+      64,
       86
     ]
   },
@@ -534,7 +527,7 @@
   {
     "name": "Panadura Base Hosp.",
     "xy": [
-      65,
+      66,
       87
     ]
   },
@@ -555,21 +548,21 @@
   {
     "name": "New Kelani Br.",
     "xy": [
-      43,
+      44,
       23
     ]
   },
   {
     "name": "Peliyagoda",
     "xy": [
-      42,
+      43,
       22
     ]
   },
   {
     "name": "Pepiliyana",
     "xy": [
-      51,
+      52,
       67
     ]
   },
@@ -583,7 +576,7 @@
   {
     "name": "Piliyandala",
     "xy": [
-      74,
+      73,
       80
     ]
   },
@@ -597,7 +590,7 @@
   {
     "name": "Rajagiriya",
     "xy": [
-      56,
+      57,
       39
     ]
   },
@@ -612,7 +605,7 @@
     "name": "Raththanapitiya",
     "xy": [
       57,
-      69
+      68
     ]
   },
   {
@@ -625,7 +618,7 @@
   {
     "name": "Royal Institute",
     "xy": [
-      33,
+      34,
       59
     ]
   },
@@ -640,35 +633,28 @@
     "name": "Singer Mega",
     "xy": [
       37,
-      37
+      38
     ]
   },
   {
     "name": "Thalahena Junc.",
     "xy": [
       80,
-      39
+      40
     ]
   },
   {
-    "name": "Thalangama Depot",
+    "name": "Thalangama",
     "xy": [
       74,
       41
     ]
   },
   {
-    "name": "Thalangama Junc.",
-    "xy": [
-      72,
-      55
-    ]
-  },
-  {
     "name": "Thalawathugoda",
     "xy": [
       78,
-      61
+      60
     ]
   },
   {
@@ -681,7 +667,7 @@
   {
     "name": "Thorana Junc.",
     "xy": [
-      61,
+      62,
       22
     ]
   },
@@ -710,13 +696,13 @@
     "name": "Union Place",
     "xy": [
       19,
-      31
+      32
     ]
   },
   {
     "name": "VTA / AAT",
     "xy": [
-      37,
+      38,
       48
     ]
   },
@@ -730,28 +716,28 @@
   {
     "name": "Wattala",
     "xy": [
-      54,
+      55,
       19
     ]
   },
   {
     "name": "Weerasinghe Mw.",
     "xy": [
-      67,
+      68,
       76
     ]
   },
   {
     "name": "Weligampitiya",
     "xy": [
-      55,
+      56,
       14
     ]
   },
   {
     "name": "Wellawatta",
     "xy": [
-      17,
+      18,
       62
     ]
   },
