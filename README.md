@@ -40,9 +40,9 @@ The network data is stored as JSON in `data/`. Route records define each service
 
 The three renderers build progressively on one another:
 
-- `GeographicDiagram` projects latitude and longitude with Web Mercator, scales the result into the drawing area, and renders routes, station ticks, interchanges, labels, title, and legend.
-- `ParallelGeographicDiagram` uses planar stop coordinates, offsets routes that share an edge, rounds corners with quadratic curves, and searches candidate positions to reduce label collisions.
-- `HarryBeckDiagram` reads the design in `data/harry_beck.json`. Compact direction sequences describe east, southeast, south, and the other five octilinear directions. These instructions are projected from known origin stops onto a regular grid; optional blank points allow bends between stations. The renderer also checks for non-octilinear edges, overlapping stops, position conflicts, and crossings without a shared interchange.
+- `GD` projects latitude and longitude with Web Mercator, scales the result into the drawing area, and renders routes, station ticks, interchanges, labels, title, and legend.
+- `PGD` uses planar stop coordinates, offsets routes that share an edge, rounds corners with quadratic curves, and searches candidate positions to reduce label collisions.
+- `HBD` reads the design in `data/harry_beck.json`. Compact direction sequences describe east, southeast, south, and the other five octilinear directions. These instructions are projected from known origin stops onto a regular grid; optional blank points allow bends between stations. The renderer also checks for non-octilinear edges, overlapping stops, position conflicts, and crossings without a shared interchange.
 
 Every map is assembled as SVG, including its white background, route geometry, typography, logo, legend, description, and source note. The workflow then scales each SVG and rasterizes a 6000-pixel PNG for publication.
 
