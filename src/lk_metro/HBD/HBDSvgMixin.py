@@ -33,14 +33,31 @@ class HBDSvgMixin:
         ]
 
     def _background_svg_lines(self) -> list[str]:
+        bridge_x, bridge_y = self._logical_positions["New Kelani Br."]
+        bridge_x = (
+            bridge_x - self._grid_min_x
+        ) * self.UNIT_SCALE + self.padding
+        bridge_y = (
+            bridge_y - self._grid_min_y
+        ) * self.UNIT_SCALE + self.padding
+        diagonal_half_span = 26
+        upper_y = bridge_y - diagonal_half_span
+        lower_y = bridge_y + diagonal_half_span
+        river_path = (
+            f"M -4,{upper_y:g} "
+            f"L {bridge_x - diagonal_half_span:g},{upper_y:g} "
+            f"L {bridge_x + diagonal_half_span:g},{lower_y:g} "
+            f"L {self.width + 4:g},{lower_y:g}"
+        )
+        label_x = (bridge_x + diagonal_half_span + self.width + 4) / 2
         return [
-            f'<path d="{self.RIVER_PATH}" fill="none" stroke="#66b9d0" '
+            f'<path d="{river_path}" fill="none" stroke="#66b9d0" '
             'stroke-width="4.2" stroke-linecap="round" '
             'stroke-linejoin="round"/>',
-            f'<path d="{self.RIVER_PATH}" fill="none" stroke="#d9f1f7" '
+            f'<path d="{river_path}" fill="none" stroke="#d9f1f7" '
             'stroke-width="3.5" stroke-linecap="round" '
             'stroke-linejoin="round"/>',
-            '<text x="117" y="54" text-anchor="middle" '
+            f'<text x="{label_x:g}" y="{lower_y:g}" text-anchor="middle" '
             'dominant-baseline="middle" '
             'font-family="Gill Sans, sans-serif" font-size="1.6" '
             'font-style="italic" fill="#287f98">Kelani River</text>',
