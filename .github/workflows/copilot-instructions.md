@@ -28,6 +28,23 @@ python3 -m black --quiet --skip-string-normalization --line-length 78 <file>
 python3 -m flake8 --ignore="CFQ002,W503" --per-file-ignores="__init__.py:F401" --max-function-length 40 --max-line-length 80 --max-complexity 5 <file>
 ```
 
+Make sure no file is longer than 100 lines, buy running the following. If any file is too long, split as described above:
+
+```bash
+function pyl_long_files {
+    local folder="${1:-.}"
+    local min="${2:-100}"
+    find "$folder" -name '*.py' -type f -print0 |
+        xargs -0 wc -l |
+        awk -v min="$min" '$2 != "total" && $1 > min {print $1, $2}' |
+        sort -rn
+}
+```
+
 Also, run any unittests, if they exist
 
 Fix all flake8 output before finishing.
+
+```
+
+```
