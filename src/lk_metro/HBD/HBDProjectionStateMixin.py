@@ -63,4 +63,28 @@ class HBDProjectionStateMixin:
         return f"[{x_coordinate:g}, {y_coordinate:g}]{stop_name} ({numbers})"
 
     def _grid_svg_lines(self) -> list[str]:
-        return []
+        x_coordinates = range(
+            self.padding,
+            self.width - self.padding + 1,
+            round(self.UNIT_SCALE),
+        )
+        y_coordinates = range(
+            self.padding,
+            self.height - self.padding + 1,
+            round(self.UNIT_SCALE),
+        )
+        return [
+            '<g class="coordinate-grid" stroke="#ccc" '
+            'stroke-opacity="0.1" stroke-width="0.25">',
+            *(
+                f'<line x1="{x}" y1="{self.padding}" x2="{x}" '
+                f'y2="{self.height - self.padding}"/>'
+                for x in x_coordinates
+            ),
+            *(
+                f'<line x1="{self.padding}" y1="{y}" '
+                f'x2="{self.width - self.padding}" y2="{y}"/>'
+                for y in y_coordinates
+            ),
+            "</g>",
+        ]

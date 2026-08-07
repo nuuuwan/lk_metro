@@ -20,6 +20,7 @@ class GDLegendMixin:
 
     def _title_and_legend_svg_lines(self) -> list[str]:
         legend_x, legend_title_y = self._legend_origin()
+        center_x = self._content_dimensions()[0] / 2
         footer_y = self._content_dimensions()[1] - 2
         lines = [
             self._logo_svg_line(),
@@ -28,8 +29,8 @@ class GDLegendMixin:
             f"{html.escape(self.LEGEND_TITLE)}</text>",
             *self._legend_route_svg_lines(legend_x, legend_title_y),
             *self._legend_note_svg_lines(legend_x, legend_title_y),
-            f'<text class="footer-label" x="{self.padding}" '
-            f'y="{footer_y}">{html.escape(self._footer_text())}</text>',
+            f'<text class="footer-label" x="{center_x}" y="{footer_y}" '
+            f'text-anchor="middle">{html.escape(self._footer_text())}</text>',
         ]
         return lines
 

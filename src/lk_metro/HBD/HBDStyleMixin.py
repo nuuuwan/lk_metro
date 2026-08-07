@@ -19,7 +19,7 @@ class HBDStyleMixin:
         "'Johnston Sans', 'Johnston 100', Johnston100, "
         "'Gill Sans', sans-serif"
     )
-    SHOW_GRID = False
+    SHOW_GRID = True
     ROUTE_STROKE_WIDTH = 1.0
     PARALLEL_ROUTE_GAP = 1.0
     INTERCHANGE_RADIUS = 1.014

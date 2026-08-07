@@ -19,7 +19,7 @@ class HBDLabelCandidatesMixin(HBDLabelCandidateGeometryMixin):
         prefer_positive: bool,
     ) -> list[LabelOption]:
         font_size = self._label_font_size(stop_name)
-        label = self._stop_label(stop_name)
+        label = stop_name
         half_width = self._label_width(label, font_size) / 2
         half_height = self._label_half_height(label, font_size)
         routes_by_id = {route.id: route for route in self.routes}

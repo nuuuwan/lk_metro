@@ -38,10 +38,11 @@ class HBDLegendSvgMixin:
             f"{html.escape(self._translated_text(text))}</text>"
             for index, (text, is_heading) in enumerate(note_lines)
         )
+        center_x = self._content_dimensions()[0] / 2
         footer_y = self._svg_dimensions()[1] - self._content_offset()[1] - 2
         lines.append(
-            f'<text class="footer-label" x="{self.padding}" '
-            f'y="{footer_y}">{html.escape(self._footer_text())}</text>'
+            f'<text class="footer-label" x="{center_x}" y="{footer_y}" '
+            f'text-anchor="middle">{html.escape(self._footer_text())}</text>'
         )
         return lines
 

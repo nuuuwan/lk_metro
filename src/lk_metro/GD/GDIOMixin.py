@@ -11,9 +11,10 @@ class GDIOMixin:
         )
         logo_data = base64.b64encode(logo_path.read_bytes()).decode("ascii")
         logo_height = self.LOGO_WIDTH / self.LOGO_ASPECT_RATIO
+        logo_x = (self._content_dimensions()[0] - self.LOGO_WIDTH) / 2
         logo_y = (self.TITLE_HEIGHT - logo_height) / 2
         return (
-            f'<image class="map-logo" x="{self.padding}" y="{logo_y}" '
+            f'<image class="map-logo" x="{logo_x}" y="{logo_y}" '
             f'width="{self.LOGO_WIDTH}" height="{logo_height}" '
             f'href="data:image/png;base64,{logo_data}"/>'
         )
