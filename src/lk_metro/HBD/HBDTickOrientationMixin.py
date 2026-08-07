@@ -1,5 +1,5 @@
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render.Types import Bounds
 
 
 class HBDTickOrientationMixin:

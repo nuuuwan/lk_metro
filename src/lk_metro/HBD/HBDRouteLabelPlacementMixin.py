@@ -2,7 +2,7 @@ from lk_metro.GD.Point import Point
 from lk_metro.HBD.HBDRouteLabelCandidatesMixin import \
     HBDRouteLabelCandidatesMixin
 from lk_metro.HBD.HBDRouteLabelOptionMixin import RouteLabelOption
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render.Types import Bounds
 
 
 class HBDRouteLabelPlacementMixin(HBDRouteLabelCandidatesMixin):

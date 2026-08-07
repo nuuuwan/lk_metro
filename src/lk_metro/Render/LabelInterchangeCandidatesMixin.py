@@ -1,11 +1,11 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.PGD._PlacementContext import _PlacementContext
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render._PlacementContext import _PlacementContext
+from lk_metro.Render.Types import Bounds
 
 
-class PGDLabelInterchangeCandidatesMixin:
+class LabelInterchangeCandidatesMixin:
     def _interchange_candidates(
         self,
         position: Point,

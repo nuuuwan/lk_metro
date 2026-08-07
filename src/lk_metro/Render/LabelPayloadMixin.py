@@ -1,10 +1,10 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import CandidatePayload, Tick
+from lk_metro.Render.Types import CandidatePayload, Tick
 
 
-class PGDLabelPayloadMixin:
+class LabelPayloadMixin:
     @staticmethod
     def _outward_tick_payloads(
         base_candidates: list[Tick],

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from lk_metro.PGD.PGDTypes import LabelOption, Tick
+from lk_metro.Render.Types import LabelOption, Tick
 
 
 @dataclass

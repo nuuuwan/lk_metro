@@ -24,7 +24,7 @@ class GDSvgMixin:
             f".legend-route-label {{ font: {self.LEGEND_FONT_SIZE}px "
             f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
-            f".footer-label {{ font: {self.LEGEND_FONT_SIZE * 1}px "
+            f".footer-label {{ font: {self.FOOTER_FONT_SIZE}px "
             f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
         ]
@@ -49,13 +49,13 @@ class GDSvgMixin:
 
     def _route_svg_lines(
         self,
-        paths: dict[str, list[tuple[float, float]]],
+        segments: dict[str, list[list[tuple[float, float]]]],
     ) -> list[str]:
         lines = []
         for route in self.routes:
-            points = " ".join(f"{x},{y}" for x, y in paths[route.id])
+            path_data = self._route_path_data(segments[route.id])
             lines.append(
-                f'<polyline class="route" points="{points}" '
+                f'<path class="route" d="{path_data}" '
                 f'stroke="{route.color}" '
                 f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
             )

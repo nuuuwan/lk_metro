@@ -1,9 +1,9 @@
-from lk_metro.PGD._PlacementContext import _PlacementContext
-from lk_metro.PGD._StationPlacement import _StationPlacement
-from lk_metro.PGD.PGDTypes import Bounds, LabelOption
+from lk_metro.Render._PlacementContext import _PlacementContext
+from lk_metro.Render._StationPlacement import _StationPlacement
+from lk_metro.Render.Types import Bounds, LabelOption
 
 
-class PGDLabelRefineFlowMixin:
+class LabelRefineFlowMixin:
     def _refine_station_labels(
         self,
         context: _PlacementContext,

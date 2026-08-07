@@ -1,8 +1,12 @@
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import Edge
+from lk_metro.Render.Types import Edge
 
 
-class PGDRouteBuildMixin:
+class RouteBuildMixin:
+    @staticmethod
+    def _edge_key(first: str, second: str) -> Edge:
+        return tuple(sorted((first, second)))
+
     def _build_edge_routes(self) -> dict[Edge, list[str]]:
         edge_routes: dict[Edge, list[str]] = {}
         for route in self.routes:
@@ -33,7 +37,7 @@ class PGDRouteBuildMixin:
             if is_ref
             else (second_point, first_point)
         )
-        path = self._octilinear_path(*canonical)
+        path = self._base_route_edge_path(*canonical)
         if len(route_ids) > 1:
             offset_index = (
                 route_ids.index(route_id) - (len(route_ids) - 1) / 2

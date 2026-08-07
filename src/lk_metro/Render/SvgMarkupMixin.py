@@ -1,7 +1,7 @@
 from lk_metro.GD.Point import Point
 
 
-class PGDSvgMarkupMixin:
+class SvgMarkupMixin:
     def _svg_header_lines(self) -> list[str]:
         svg_width, svg_height = self._svg_dimensions()
         content_x, content_y = self._content_offset()

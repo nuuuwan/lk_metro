@@ -1,9 +1,9 @@
-from lk_metro.PGD._PlacementContext import _PlacementContext
-from lk_metro.PGD._StationPlacement import _StationPlacement
-from lk_metro.PGD.PGDTypes import LabelOption
+from lk_metro.Render._PlacementContext import _PlacementContext
+from lk_metro.Render._StationPlacement import _StationPlacement
+from lk_metro.Render.Types import LabelOption
 
 
-class PGDLabelOptionMixin:
+class LabelOptionMixin:
     def _station_option_score(
         self,
         option: LabelOption,

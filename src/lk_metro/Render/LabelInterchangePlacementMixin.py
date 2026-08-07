@@ -1,9 +1,9 @@
 from lk_metro.GD.Point import Point
-from lk_metro.PGD._PlacementContext import _PlacementContext
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render._PlacementContext import _PlacementContext
+from lk_metro.Render.Types import Bounds
 
 
-class PGDLabelInterchangePlacementMixin:
+class LabelInterchangePlacementMixin:
     def _avoid_label_overlaps(
         self,
         positions: dict[str, Point],

@@ -1,11 +1,11 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import Tick
+from lk_metro.Render.Types import Tick
 from lk_metro.Route import Route
 
 
-class PGDTickPlacementMixin:
+class TickPlacementMixin:
     def station_ticks(
         self,
         positions: dict[str, Point] | None = None,

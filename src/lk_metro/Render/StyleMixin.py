@@ -2,7 +2,7 @@ from lk_metro.DiagramStyle import (PARALLEL_ROUTE_GAP, STATION_TICK_LENGTH,
                                    STATION_TICK_STROKE_WIDTH)
 
 
-class PGDStyleMixin:
+class StyleMixin:
     MAP_SUBTITLE = "PARALLEL GEOGRAPHIC MAP"
     DESCRIPTION_LINES = (
         "Routes follow the geographic positions of their stops,",

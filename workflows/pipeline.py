@@ -9,7 +9,6 @@ from utils_future import File, Log
 
 from lk_metro.GD.GD import GD
 from lk_metro.HBD.HBD import HBD
-from lk_metro.PGD.PGD import PGD
 from lk_metro.Route import Route
 from lk_metro.Stop.Stop import Stop
 
@@ -64,10 +63,6 @@ def main() -> None:
             GD(routes, stops, width=300, height=300),
             "lk_metro_geographic",
         ),
-        (
-            PGD(routes, stops),
-            "lk_metro_parallel_geographic",
-        ),
         (HBD(routes, stops), "lk_metro_harry_beck"),
         (HBD(routes, stops, language="si"), "lk_metro_harry_beck_si"),
         (HBD(routes, stops, language="ta"), "lk_metro_harry_beck_ta"),
@@ -80,13 +75,6 @@ def main() -> None:
         generate_png(svg_path, png_path)
         log.info(f"Wrote {File(str(svg_path))}")
         log.info(f"Wrote {File(str(png_path))}")
-        if type(diagram) is HBD:
-            for route_id, complexity in diagram.complexity_by_route.items():
-                log.info(
-                    f"Harry Beck complexity: {route_id} = {complexity} segments"
-                )
-            log.info(f"Harry Beck complexity: total = {
-                    diagram.complexity} segments")
 
 
 if __name__ == "__main__":

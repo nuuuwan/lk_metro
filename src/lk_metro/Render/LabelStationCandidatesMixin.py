@@ -1,8 +1,8 @@
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import CandidatePayload, Tick
+from lk_metro.Render.Types import CandidatePayload, Tick
 
 
-class PGDLabelStationCandidatesMixin:
+class LabelStationCandidatesMixin:
     def _horizontal_candidate_payloads(
         self,
         tick: Tick,

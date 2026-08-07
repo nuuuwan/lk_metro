@@ -1,10 +1,9 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import Edge
 
 
-class PGDPathMixin:
+class PathMixin:
     def _route_path_data(self, segments: list[list[Point]]) -> str:
         points = []
         for segment in segments:
@@ -58,7 +57,3 @@ class PGDPathMixin:
             f"L {entry[0]},{entry[1]}",
             f"Q {point[0]},{point[1]} {exit_point[0]},{exit_point[1]}",
         ]
-
-    @staticmethod
-    def _edge_key(first: str, second: str) -> Edge:
-        return tuple(sorted((first, second)))

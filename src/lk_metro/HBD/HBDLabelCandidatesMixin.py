@@ -3,7 +3,7 @@ import math
 from lk_metro.GD.Point import Point
 from lk_metro.HBD.HBDLabelCandidateGeometryMixin import \
     HBDLabelCandidateGeometryMixin
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render.Types import Bounds
 from lk_metro.Route import Route
 
 LabelOption = tuple[Bounds, Point]

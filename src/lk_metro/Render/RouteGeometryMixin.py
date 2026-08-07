@@ -3,9 +3,14 @@ import math
 from lk_metro.GD.Point import Point
 
 
-class PGDRouteGeometryMixin:
+class RouteGeometryMixin:
+    def _base_route_edge_path(
+        self, first: Point, second: Point
+    ) -> list[Point]:
+        return self.octilinear_path(first, second)
+
     @staticmethod
-    def _octilinear_path(first: Point, second: Point) -> list[Point]:
+    def octilinear_path(first: Point, second: Point) -> list[Point]:
         x_delta = second[0] - first[0]
         y_delta = second[1] - first[1]
         if (
@@ -36,7 +41,7 @@ class PGDRouteGeometryMixin:
             return path
         if all(first == second for first, second in zip(path, path[1:])):
             return path
-        normals = PGDRouteGeometryMixin._path_normals(path)
+        normals = RouteGeometryMixin._path_normals(path)
         offset_points = [
             (
                 path[0][0] + normals[0][0] * offset,

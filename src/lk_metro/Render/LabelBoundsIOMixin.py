@@ -2,12 +2,12 @@ from pathlib import Path
 
 from utils_future import Log
 
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render.Types import Bounds
 
-log = Log("PGD")
+log = Log("Render")
 
 
-class PGDLabelBoundsIOMixin:
+class LabelBoundsIOMixin:
     def _warn_label_overlaps(
         self,
         placed_labels: list[tuple[str, Bounds]],

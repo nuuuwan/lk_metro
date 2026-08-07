@@ -1,11 +1,16 @@
 from lk_metro.DiagramStyle import PARALLEL_ROUTE_GAP
 from lk_metro.GD.Point import Point
-from lk_metro.PGD.PGDTypes import Edge
+from lk_metro.Render.RouteGeometryMixin import RouteGeometryMixin
 from lk_metro.Route import Route
 from lk_metro.Stop.Stop import Stop
 
 
-class PGDCoreMixin:
+class CoreMixin:
+    def _base_route_edge_path(
+        self, first: Point, second: Point
+    ) -> list[Point]:
+        return RouteGeometryMixin.octilinear_path(first, second)
+
     def __init__(
         self,
         routes: list[Route],
@@ -17,19 +22,15 @@ class PGDCoreMixin:
     ) -> None:
         if parallel_route_gap <= 0:
             raise ValueError("parallel_route_gap must be positive")
-        super().__init__(routes, stops, width, height, padding)
+        super().__init__(
+            routes, stops, width, height, padding, parallel_route_gap
+        )
         active_stop_names = {
             name for route in self.routes for name in route.stops
         }
         self.stops = [
             stop for stop in self.stops if stop.name in active_stop_names
         ]
-        self.parallel_route_gap = parallel_route_gap
-        self._route_order = {
-            route.id: index for index, route in enumerate(self.routes)
-        }
-        self._edge_directions: dict[Edge, tuple[str, str]] = {}
-        self._edge_routes = self._build_edge_routes()
 
     def layout(self) -> dict[str, Point]:
         positions = {

@@ -1,7 +1,7 @@
 from lk_metro.GD.Point import Point
 
 
-class PGDStationSvgMixin:
+class StationSvgMixin:
     def _stop_svg_lines(
         self,
         positions: dict[str, Point],

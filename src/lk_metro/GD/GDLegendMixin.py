@@ -20,13 +20,9 @@ class GDLegendMixin:
 
     def _title_and_legend_svg_lines(self) -> list[str]:
         legend_x, legend_title_y = self._legend_origin()
-        title_x = self.padding + self.LOGO_WIDTH + 4
         footer_y = self._content_dimensions()[1] - 2
-        title_y = self.TITLE_HEIGHT / 2 + self.TITLE_FONT_SIZE / 3
         lines = [
             self._logo_svg_line(),
-            f'<text class="map-title" x="{title_x}" y="{title_y}">'
-            f"{html.escape(self.MAP_SUBTITLE)}</text>",
             f'<text class="legend-label" x="{legend_x}" '
             f'y="{legend_title_y}" font-weight="bold">'
             f"{html.escape(self.LEGEND_TITLE)}</text>",
@@ -45,7 +41,9 @@ class GDLegendMixin:
     ) -> list[str]:
         lines = []
         for index, route in enumerate(self.legend_routes):
-            y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            y_coordinate = (
+                legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            )
             lines.extend(
                 [
                     f'<rect class="legend-swatch" x="{legend_x}" '

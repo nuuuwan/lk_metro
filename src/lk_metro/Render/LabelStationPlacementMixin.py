@@ -1,10 +1,10 @@
 from lk_metro.GD.Point import Point
-from lk_metro.PGD._PlacementContext import _PlacementContext
-from lk_metro.PGD._StationPlacement import _StationPlacement
-from lk_metro.PGD.PGDTypes import LabelOption, Tick
+from lk_metro.Render._PlacementContext import _PlacementContext
+from lk_metro.Render._StationPlacement import _StationPlacement
+from lk_metro.Render.Types import LabelOption, Tick
 
 
-class PGDLabelStationPlacementMixin:
+class LabelStationPlacementMixin:
     def _place_station_labels(
         self,
         context: _PlacementContext,

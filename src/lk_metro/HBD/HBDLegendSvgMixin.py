@@ -8,7 +8,9 @@ class HBDLegendSvgMixin:
         legend_x, legend_title_y = self._legend_origin()
         lines = [self._logo_svg_line()]
         for index, route in enumerate(self.legend_routes):
-            y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            y_coordinate = (
+                legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            )
             lines.extend(
                 [
                     f'<rect class="legend-swatch" x="{legend_x}" '

@@ -1,9 +1,9 @@
 import html
 
-from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Render.Types import Bounds
 
 
-class PGDLabelTextMixin:
+class LabelTextMixin:
     def _label_svg_line(
         self,
         stop_name: str,
