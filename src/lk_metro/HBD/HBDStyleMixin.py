@@ -4,6 +4,8 @@ from typing import ClassVar
 class HBDStyleMixin:
     DATA_FILE: ClassVar[str] = "harry_beck.json"
     UNIT_SCALE: ClassVar[float] = 8.0
+    MAP_PADDING = 12
+    LABEL_CANVAS_PADDING = MAP_PADDING / 2
     MAP_TITLE = "LANKA METRO"
     TITLE_HEIGHT = 12
     LOGO_WIDTH = 36
@@ -27,11 +29,12 @@ class HBDStyleMixin:
     WARN_LABEL_OVERLAPS = True
     LABEL_OFFSET = 0.95
     LABEL_HALO_WIDTH = 0.2
-    STATION_TICK_LENGTH = 0.58
+    STATION_TICK_LENGTH = LABEL_FONT_SIZE / 2
     STATION_TICK_STROKE_WIDTH = 0.42
     ROTATE_LABELS = False
     RIVER_PATH = (
-        "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 " + "L 98,54 L 160,54"
+        "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 "
+        + "L 98,54 L 160,54"
     )
     DIRECTIONS: ClassVar[tuple[str, ...]] = (
         "E",

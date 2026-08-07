@@ -31,7 +31,15 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
                     )
                 )
                 start_distance += math.dist(first, second)
-        return options
+        return [
+            (
+                option[0],
+                option[1],
+                min(option[2], start_distance - option[2]),
+                *option[3:],
+            )
+            for option in options
+        ]
 
     def _route_part_label_options(
         self,

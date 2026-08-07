@@ -31,19 +31,20 @@ class HBDRouteLabelPlacementMixin(HBDRouteLabelCandidatesMixin):
         (
             bounds,
             _,
-            start_distance,
+            terminus_distance,
             own_distance,
             other_distance,
             line_hits,
         ) = option
         overlaps = [self._overlap_area(bounds, other) for other in occupied]
-        canvas = (0.0, 0.0, float(self.width), float(self.height))
+        edge = self.LABEL_CANVAS_PADDING
+        canvas = (edge, edge, self.width - edge, self.height - edge)
         return (
             sum(area > 0 for area in overlaps),
             sum(overlaps),
             line_hits,
             self._outside_area(bounds, canvas),
-            start_distance,
+            terminus_distance,
             own_distance,
             -other_distance,
         )

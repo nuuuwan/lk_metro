@@ -25,14 +25,26 @@ class HBDTickOrientationMixin:
         label_position: Point,
         label_bounds: Bounds,
     ) -> tuple[Point, Point]:
-        label_side = self._tick_toward_label(tick, position, label_position)[
-            1
-        ]
+        label_edge = self._label_edge(position, label_position, label_bounds)
         opposite = position
         if position not in tick:
-            opposite = tick[1] if tick[0] == label_side else tick[0]
-        label_edge = self._label_edge(position, label_position, label_bounds)
+            label_vector = (
+                label_edge[0] - position[0],
+                label_edge[1] - position[1],
+            )
+            vector_length = self._point_length(label_vector)
+            opposite_length = self.STATION_TICK_LENGTH - vector_length
+            opposite = (
+                position[0]
+                - label_vector[0] / vector_length * opposite_length,
+                position[1]
+                - label_vector[1] / vector_length * opposite_length,
+            )
         return opposite, label_edge
+
+    @staticmethod
+    def _point_length(point: Point) -> float:
+        return (point[0] ** 2 + point[1] ** 2) ** 0.5
 
     @staticmethod
     def _label_edge(
@@ -62,27 +74,3 @@ class HBDTickOrientationMixin:
             position[0] + fraction * x_delta,
             position[1] + fraction * y_delta,
         )
-
-    @staticmethod
-    def _tick_toward_label(
-        tick: tuple[Point, Point],
-        position: Point,
-        label_position: Point,
-    ) -> tuple[Point, Point]:
-        outer = tick[1] if tick[1] != position else tick[0]
-        reflected = (
-            2 * position[0] - outer[0],
-            2 * position[1] - outer[1],
-        )
-        label_vector = (
-            label_position[0] - position[0],
-            label_position[1] - position[1],
-        )
-        selected = max(
-            (outer, reflected),
-            key=lambda point: (
-                (point[0] - position[0]) * label_vector[0]
-                + (point[1] - position[1]) * label_vector[1]
-            ),
-        )
-        return position, selected

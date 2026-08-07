@@ -10,6 +10,7 @@ class HBDInitMixin:
         super().__init__(
             routes,
             stops,
+            padding=self.MAP_PADDING,
             parallel_route_gap=self.PARALLEL_ROUTE_GAP,
         )
         self.legend_routes = routes
