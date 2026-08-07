@@ -15,9 +15,7 @@ class PGDLabelTextMixin:
         line_height = self._label_font_size(stop_name) * 1.05
         first_offset = -(len(label_lines) - 1) * line_height / 2
         label_class = (
-            "label terminal-label"
-            if self._is_terminus(stop_name)
-            else "label"
+            "label terminal-label" if self._is_terminus(stop_name) else "label"
         )
         tspans = "".join(
             f'<tspan x="{label_x}" dy="'
@@ -41,7 +39,7 @@ class PGDLabelTextMixin:
 
     def _stop_label_placement(
         self,
-        stop_name: str,
+        _stop_name: str,
         position: tuple[float, float],
     ) -> tuple[float, float, str]:
         return position[0], position[1], "middle"
@@ -64,21 +62,14 @@ class PGDLabelTextMixin:
     def _route_name_font_size(self) -> float:
         return self.LABEL_FONT_SIZE
 
-    def _terminal_label_font_size(self) -> float:
-        return self.LABEL_FONT_SIZE
-
     def _is_terminus(self, stop_name: str) -> bool:
         return any(
             stop_name in (route.stops[0], route.stops[-1])
             for route in self.routes
         )
 
-    def _label_font_size(self, stop_name: str) -> float:
-        return (
-            self._terminal_label_font_size()
-            if self._is_terminus(stop_name)
-            else self.LABEL_FONT_SIZE
-        )
+    def _label_font_size(self, _stop_name: str) -> float:
+        return self.LABEL_FONT_SIZE
 
     def _stop_label(self, stop_name: str) -> str:
         return stop_name

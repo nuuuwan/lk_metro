@@ -23,7 +23,6 @@ class HBDStyleMixin:
     INTERCHANGE_RADIUS = 1.014
     INTERCHANGE_STROKE_WIDTH = 0.34
     LABEL_FONT_SIZE = 1.8
-    TERMINAL_LABEL_FONT_SIZE = LABEL_FONT_SIZE
     ROUTE_NAME_FONT_SIZE = 3.2
     WARN_LABEL_OVERLAPS = True
     LABEL_OFFSET = 0.95
@@ -32,7 +31,7 @@ class HBDStyleMixin:
     STATION_TICK_STROKE_WIDTH = 0.42
     ROTATE_LABELS = False
     RIVER_PATH = (
-        "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 " "L 98,54 L 160,54"
+        "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 " + "L 98,54 L 160,54"
     )
     DIRECTIONS: ClassVar[tuple[str, ...]] = (
         "E",

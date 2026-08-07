@@ -34,8 +34,6 @@ class PGDSvgMarkupMixin:
             f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
             f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
             f"fill: {self.LABEL_COLOR}; dominant-baseline: middle; }}",
-            f".terminal-label {{ font-size: "
-            f"{self._terminal_label_font_size()}px; font-weight: bold; }}",
             f".route-name {{ font: bold {self._route_name_font_size()}px "
             f"{self.FONT_FAMILY}; paint-order: stroke fill; stroke: white; "
             "stroke-width: 0.7; stroke-linejoin: round; }",

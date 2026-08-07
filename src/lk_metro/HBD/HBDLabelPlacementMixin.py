@@ -1,8 +1,6 @@
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDLabelCandidatesMixin import (
-    HBDLabelCandidatesMixin,
-    LabelOption,
-)
+from lk_metro.HBD.HBDLabelCandidatesMixin import (HBDLabelCandidatesMixin,
+                                                  LabelOption)
 from lk_metro.PGD.PGDTypes import Bounds
 
 
@@ -15,6 +13,7 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
     ) -> None:
         occupied = []
         self._stop_label_placements = {}
+        self._stop_label_bounds_by_name = {}
         stop_names = sorted(
             (stop.name for stop in self.stops),
             key=lambda name: self._label_priority(name, memberships),
@@ -37,6 +36,7 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
                 min(range(len(options)), key=scores.__getitem__)
             ]
             occupied.append(selected[0])
+            self._stop_label_bounds_by_name[stop_name] = selected[0]
             self._stop_label_placements[stop_name] = (*selected[1], "middle")
         self._stop_label_bounds = occupied
 

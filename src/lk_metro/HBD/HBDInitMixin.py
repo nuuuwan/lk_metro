@@ -63,8 +63,5 @@ class HBDInitMixin:
     def _label_lines(self, label: str) -> tuple[str, ...]:
         return tuple(label.split())
 
-    def _terminal_label_font_size(self) -> float:
-        return self.TERMINAL_LABEL_FONT_SIZE
-
     def _route_name_font_size(self) -> float:
         return self.ROUTE_NAME_FONT_SIZE
