@@ -43,6 +43,10 @@ class HBDLabelPlacementMixin(
             self._stop_label_placements[stop_name] = (*selected[1], "middle")
             prefer_positive = not prefer_positive
         self._stop_label_bounds = occupied
+        if self.WARN_LABEL_OVERLAPS:
+            self._warn_label_overlaps(
+                list(self._stop_label_bounds_by_name.items())
+            )
 
     def _label_option_score(
         self,

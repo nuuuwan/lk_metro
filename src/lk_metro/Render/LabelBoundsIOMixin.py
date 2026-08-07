@@ -15,11 +15,11 @@ class LabelBoundsIOMixin:
         for index, (first_name, first_bounds) in enumerate(placed_labels):
             for second_name, second_bounds in placed_labels[index + 1:]:
                 overlap = self._overlap_area(first_bounds, second_bounds)
-                if overlap > 0.01:
+                if overlap > 0:
                     log.warn(
                         "Label overlap: "
                         f"{first_name!r} overlaps {second_name!r} "
-                        f"by {overlap:.2f} square units"
+                        f"by {overlap:.6g} square units"
                     )
 
     def write_svg(self, path: str | Path) -> Path:
