@@ -85,10 +85,8 @@ def main() -> None:
                 log.info(
                     f"Harry Beck complexity: {route_id} = {complexity} segments"
                 )
-            log.info(
-                f"Harry Beck complexity: total = {
-                    diagram.complexity} segments"
-            )
+            log.info(f"Harry Beck complexity: total = {
+                    diagram.complexity} segments")
 
 
 if __name__ == "__main__":
