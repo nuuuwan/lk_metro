@@ -6,10 +6,10 @@ from .AbstractData import AbstractData
 
 @dataclass
 class Route(AbstractData):
-	DATA_FILE: ClassVar[str] = "routes.json"
+    DATA_FILE: ClassVar[str] = "routes.json"
 
-	id: str
-	name: str
-	distance_km: float
-	stops: list[str]
-	color: str
+    id: str
+    name: str
+    distance_km: float
+    stops: list[str]
+    color: str

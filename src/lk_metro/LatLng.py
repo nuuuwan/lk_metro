@@ -8,7 +8,6 @@ from urllib.request import Request, urlopen
 
 from utils_future import Log
 
-
 log = Log("LatLng")
 
 
@@ -53,10 +52,9 @@ class LatLng:
 
     NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
     USER_AGENT = "lk_metro/1.0 (https://github.com/nuuuwan/lk_metro)"
-    CACHE_FILE = Path(tempfile.gettempdir()) / "lk_metro" / "latlng_cache.json"
-
-
-    
+    CACHE_FILE = (
+        Path(tempfile.gettempdir()) / "lk_metro" / "latlng_cache.json"
+    )
 
     @classmethod
     def from_name(cls, name: str) -> "LatLng":
@@ -99,7 +97,9 @@ class LatLng:
                 lng=float(results[0]["lon"]),
             )
         except (KeyError, TypeError, ValueError) as error:
-            raise ValueError("Nominatim returned an invalid location") from error
+            raise ValueError(
+                "Nominatim returned an invalid location"
+            ) from error
 
         cache[cache_key] = {"lat": location.lat, "lng": location.lng}
         cls._write_cache(cache)
@@ -134,13 +134,17 @@ class LatLng:
             raise
 
 
-
 if __name__ == "__main__":
     import sys
-    name = sys.argv[1] if len(sys.argv) > 1 else input("Enter a location name: ")
+
+    name = (
+        sys.argv[1] if len(sys.argv) > 1 else input("Enter a location name: ")
+    )
     latlng = LatLng.from_name(name)
     log.info(f"Location: {name}")
     log.info(f"Latitude: {latlng}")
-    google_maps_url = f"https://www.google.com/maps/search/?api=1&query={latlng.lat},{latlng.lng}"
+    google_maps_url = f"https://www.google.com/maps/search/?api=1&query={
+        latlng.lat},{
+        latlng.lng}"
     log.info(f"Google Maps URL: {google_maps_url}")
-    os.system(f"open -a firefox '{google_maps_url}'") 
+    os.system(f"open -a firefox '{google_maps_url}'")
