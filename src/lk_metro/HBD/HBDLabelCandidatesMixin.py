@@ -1,28 +1,70 @@
+import math
+
 from lk_metro.GD.Point import Point
 from lk_metro.PGD.PGDTypes import Bounds
+from lk_metro.Route import Route
+
+LabelOption = tuple[Bounds, Point]
 
 
 class HBDLabelCandidatesMixin:
-    def _corner_label_options(
+    def _side_label_options(
         self,
         stop_name: str,
         position: Point,
-    ) -> list[tuple[Bounds, Point, str]]:
-        label = self._stop_label(stop_name)
+        segments: dict[str, list[list[Point]]],
+        route_ids: set[str],
+    ) -> list[LabelOption]:
         font_size = self._label_font_size(stop_name)
+        label = self._stop_label(stop_name)
+        half_width = self._label_width(label, font_size) / 2
         half_height = self._label_half_height(label, font_size)
+        routes_by_id = {route.id: route for route in self.routes}
         options = []
-        for text_anchor, x_direction in (("start", 1.0), ("end", -1.0)):
-            for y_direction in (1.0, -1.0):
-                anchor = (
-                    position[0],
-                    position[1] + y_direction * half_height,
+        for route_id in sorted(route_ids):
+            normal = self._route_normal(
+                stop_name, routes_by_id[route_id], segments[route_id]
+            )
+            clearance = (
+                abs(normal[0]) * half_width
+                + abs(normal[1]) * half_height
+                + self.ROUTE_STROKE_WIDTH / 2
+                + self.LABEL_OFFSET
+            )
+            for side in (-1.0, 1.0):
+                center = (
+                    position[0] + normal[0] * clearance * side,
+                    position[1] + normal[1] * clearance * side,
                 )
-                bounds = self._label_bounds(
-                    anchor,
-                    label,
-                    (x_direction, 0.0),
-                    font_size,
+                bounds = (
+                    center[0] - half_width,
+                    center[1] - half_height,
+                    center[0] + half_width,
+                    center[1] + half_height,
                 )
-                options.append((bounds, anchor, text_anchor))
+                options.append((bounds, center))
         return options
+
+    def _route_normal(
+        self,
+        stop_name: str,
+        route: Route,
+        route_segments: list[list[Point]],
+    ) -> Point:
+        stop_index = route.stops.index(stop_name)
+        candidates = self._tick_candidate_segments(route_segments, stop_index)
+        first, second = next(
+            pair
+            for pair in candidates
+            if not math.isclose(math.dist(*pair), 0)
+        )
+        x_delta = second[0] - first[0]
+        y_delta = second[1] - first[1]
+        length = math.hypot(x_delta, y_delta)
+        return -y_delta / length, x_delta / length
+
+    def _label_width(self, label: str, font_size: float) -> float:
+        return max(
+            font_size,
+            max(map(len, self._label_lines(label))) * font_size * 0.52,
+        )

@@ -34,6 +34,8 @@ class PGDLabelTextMixin:
     def _prepare_stop_labels(
         self,
         positions: dict[str, tuple[float, float]],
+        segments: dict[str, list[list[tuple[float, float]]]],
+        memberships: dict[str, set[str]],
     ) -> None:
         pass
 

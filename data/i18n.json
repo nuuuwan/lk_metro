@@ -1,0 +1,562 @@
+[
+  {
+    "name_en": "Anderson Flat",
+    "name_si": "ඇන්ඩර්සන් ෆ්ලැට්ස්",
+    "name_ta": "ஆண்டர்சன் பிளாட்ஸ்"
+  },
+  {
+    "name_en": "Arangala Junction",
+    "name_si": "අරංගල හන්දිය",
+    "name_ta": "அரங்கல சந்தி"
+  },
+  {
+    "name_en": "Army Hospital Borella",
+    "name_si": "යුද හමුදා රෝහල බොරැල්ල",
+    "name_ta": "இராணுவ மருத்துவமனை பொரள்ளை"
+  },
+  {
+    "name_en": "Athurugiriya Hospital",
+    "name_si": "අතුරුගිරිය රෝහල",
+    "name_ta": "அதுருகிரிய மருத்துவமனை"
+  },
+  {
+    "name_en": "Athurugiriya Town",
+    "name_si": "අතුරුගිරිය නගරය",
+    "name_ta": "அதுருகிரிய நகரம்"
+  },
+  {
+    "name_en": "Bambalapitiya",
+    "name_si": "බම්බලපිටිය",
+    "name_ta": "பம்பலப்பிட்டி"
+  },
+  {
+    "name_en": "Battaramulla Junction",
+    "name_si": "බත්තරමුල්ල හන්දිය",
+    "name_ta": "பத்தரமுல்லை சந்தி"
+  },
+  {
+    "name_en": "Boralesgamuwa",
+    "name_si": "බොරලැස්ගමුව",
+    "name_ta": "பொரலஸ்கமுவ"
+  },
+  {
+    "name_en": "Borella",
+    "name_si": "බොරැල්ල",
+    "name_ta": "பொரள்ளை"
+  },
+  {
+    "name_en": "BRC Junction",
+    "name_si": "බී.ආර්.සී. හන්දිය",
+    "name_ta": "பி.ஆர்.சி. சந்தி"
+  },
+  {
+    "name_en": "Campbell Park",
+    "name_si": "කැම්බල් පිටිය",
+    "name_ta": "கெம்பல் பூங்கா"
+  },
+  {
+    "name_en": "Cancer Hospital 01",
+    "name_si": "පිළිකා රෝහල 01",
+    "name_ta": "புற்றுநோய் மருத்துவமனை 01"
+  },
+  {
+    "name_en": "Castle Hospital",
+    "name_si": "කාස්ල් රෝහල",
+    "name_ta": "காசல் மருத்துவமனை"
+  },
+  {
+    "name_en": "Colombo Fort",
+    "name_si": "කොළඹ කොටුව",
+    "name_ta": "கொழும்பு கோட்டை"
+  },
+  {
+    "name_en": "CTB Junction",
+    "name_si": "ලංගම හන්දිය",
+    "name_ta": "சி.டபிள்யூ.பி. சந்தி"
+  },
+  {
+    "name_en": "Dehiwala",
+    "name_si": "දෙහිවල",
+    "name_ta": "தெஹிவளை"
+  },
+  {
+    "name_en": "Delkanda Junction",
+    "name_si": "දෙල්කඳ හන්දිය",
+    "name_ta": "தெல்கந்த சந்தி"
+  },
+  {
+    "name_en": "Dematagoda",
+    "name_si": "දෙමටගොඩ",
+    "name_ta": "தெமட்டகொட"
+  },
+  {
+    "name_en": "Egoda Uyana",
+    "name_si": "එගොඩ උයන",
+    "name_ta": "எகொட உயன"
+  },
+  {
+    "name_en": "Ekala",
+    "name_si": "ඒකල",
+    "name_ta": "ஏகல"
+  },
+  {
+    "name_en": "Gamini Hall",
+    "name_si": "ගාමිණී ශාලාව",
+    "name_ta": "காமிணி ஹால்"
+  },
+  {
+    "name_en": "German Tec Angulana",
+    "name_si": "ජර්මන් ටෙක් අඟුලාන",
+    "name_ta": "ஜெர்மன் டெக் அங்குலான"
+  },
+  {
+    "name_en": "Golumadama Junction",
+    "name_si": "ගොළුමඩම හන්දිය",
+    "name_ta": "கொளுமடம சந்தி"
+  },
+  {
+    "name_en": "Havelock",
+    "name_si": "හැව්ලොක්",
+    "name_ta": "ஹவ்லோக்"
+  },
+  {
+    "name_en": "Hedges Ct",
+    "name_si": "හෙජස් කෝට්",
+    "name_ta": "ஹெட்ஜஸ் கோர்ட்"
+  },
+  {
+    "name_en": "Hekitta Junction",
+    "name_si": "හෙකිත්ත හන්දිය",
+    "name_ta": "ஹெகித்த சந்தி"
+  },
+  {
+    "name_en": "Hendala",
+    "name_si": "හැඳල",
+    "name_ta": "ஹெண்டல"
+  },
+  {
+    "name_en": "Hirdaramani",
+    "name_si": "හීර්දරාමනි",
+    "name_ta": "ஹிர்தாராமணி"
+  },
+  {
+    "name_en": "Hokandara Junction",
+    "name_si": "හෝකන්දර හන්දිය",
+    "name_ta": "ஹோகந்தர சந்தி"
+  },
+  {
+    "name_en": "Independence Arcade",
+    "name_si": "නිදහස් චතුරස්‍ර ආකේඩ්",
+    "name_ta": "சுதந்திர சதுக்க ஆர்கேட்"
+  },
+  {
+    "name_en": "Independence Square",
+    "name_si": "නිදහස් චතුරස්‍රය",
+    "name_ta": "சுதந்திர சதுக்கம்"
+  },
+  {
+    "name_en": "Isurupaya",
+    "name_si": "ඉසුරුපාය",
+    "name_ta": "இசுருபாய"
+  },
+  {
+    "name_en": "Ja Ela",
+    "name_si": "ජා-ඇල",
+    "name_ta": "ஜா-எல"
+  },
+  {
+    "name_en": "Jawatta Road",
+    "name_si": "ජාවත්ත පාර",
+    "name_ta": "ஜாவத்தை வீதி"
+  },
+  {
+    "name_en": "Jayanthi Mawatha",
+    "name_si": "ජයන්ති මාවත",
+    "name_ta": "ஜெயந்தி மாவத்தை"
+  },
+  {
+    "name_en": "Kadawatha",
+    "name_si": "කඩවත",
+    "name_ta": "கடவத்தை"
+  },
+  {
+    "name_en": "Kalalgoda Junction",
+    "name_si": "කලල්ගොඩ හන්දිය",
+    "name_ta": "கலல்கொட சந்தி"
+  },
+  {
+    "name_en": "Kalubowila Hospital",
+    "name_si": "කළුබෝවිල රෝහල",
+    "name_ta": "களுபோவில மருத்துவமனை"
+  },
+  {
+    "name_en": "Kandana",
+    "name_si": "කන්දන",
+    "name_ta": "கந்தானை"
+  },
+  {
+    "name_en": "Katubedda Junction",
+    "name_si": "කටුබැද්ද හන්දිය",
+    "name_ta": "கட்டுபெத்தை சந்தி"
+  },
+  {
+    "name_en": "Kelaniya Campus",
+    "name_si": "කැලණිය විශ්වවිද්‍යාලය",
+    "name_ta": "களனி பல்கலைக்கழகம்"
+  },
+  {
+    "name_en": "Kesbewa",
+    "name_si": "කැස්බෑව",
+    "name_ta": "கெஸ்பேவ"
+  },
+  {
+    "name_en": "Kiribathgoda",
+    "name_si": "කිරිබත්ගොඩ",
+    "name_ta": "கிரிபத்கொட"
+  },
+  {
+    "name_en": "Kirulapone",
+    "name_si": "කිරුළපන",
+    "name_ta": "கிருலப்பனை"
+  },
+  {
+    "name_en": "Kollupitiya",
+    "name_si": "කොල්ලුපිටිය",
+    "name_ta": "கொள்ளுப்பிட்டி"
+  },
+  {
+    "name_en": "Koralawella",
+    "name_si": "කොරළවැල්ල",
+    "name_ta": "கொரளவெல்ல"
+  },
+  {
+    "name_en": "Koswaththa",
+    "name_si": "කොස්වත්ත",
+    "name_ta": "கொஸ்வத்தை"
+  },
+  {
+    "name_en": "Kottawa",
+    "name_si": "කොට්ටාව",
+    "name_ta": "கொட்டாவ"
+  },
+  {
+    "name_en": "Lake House",
+    "name_si": "ලේක් හවුස්",
+    "name_ta": "லேக் ஹவுஸ்"
+  },
+  {
+    "name_en": "Lanka Fiber Fabrica",
+    "name_si": "ලංකා ෆයිබර් ෆැබ්රිකා",
+    "name_ta": "லங்கா பைபர் பாப்ரிகா"
+  },
+  {
+    "name_en": "Liberty",
+    "name_si": "ලිබර්ටි",
+    "name_ta": "லிபர்ட்டி"
+  },
+  {
+    "name_en": "Mabola",
+    "name_si": "මාබෝල",
+    "name_ta": "மாபோல"
+  },
+  {
+    "name_en": "Mahabage",
+    "name_si": "මහබාගේ",
+    "name_ta": "மகாபாகே"
+  },
+  {
+    "name_en": "Mahanama Junction",
+    "name_si": "මහානාම හන්දිය",
+    "name_ta": "மகாநாம சந்தி"
+  },
+  {
+    "name_en": "Mahara Junction",
+    "name_si": "මහර හන්දිය",
+    "name_ta": "மஹர சந்தி"
+  },
+  {
+    "name_en": "Maharagama Cargills Food City",
+    "name_si": "මහරගම කාගිල්ස් ෆුඩ් සිටි",
+    "name_ta": "மகரகம கார்கில்ஸ் புட் சிட்டி"
+  },
+  {
+    "name_en": "Maharagama",
+    "name_si": "මහරගම",
+    "name_ta": "மகரகம"
+  },
+  {
+    "name_en": "Makumbura",
+    "name_si": "මාකුඹුර",
+    "name_ta": "மாகும்புற"
+  },
+  {
+    "name_en": "Malabe Bus Stand",
+    "name_si": "මාලබේ බස් නැවතුම්පොළ",
+    "name_ta": "மாலபே பேருந்து நிலையம்"
+  },
+  {
+    "name_en": "Maliban Junction",
+    "name_si": "මැලිබන් හන්දිය",
+    "name_ta": "மலிபன் சந்தி"
+  },
+  {
+    "name_en": "Maradana Railway",
+    "name_si": "මරදාන දුම්රිය ස්ථානය",
+    "name_ta": "மருதானை புகையிரத நிலையம்"
+  },
+  {
+    "name_en": "Mendis Lane Rawathawatta",
+    "name_si": "මෙන්ඩිස් පාර රාවතාවත්ත",
+    "name_ta": "மெண்டிஸ் வீதி ராவத்தவத்தை"
+  },
+  {
+    "name_en": "Millennium City",
+    "name_si": "මිලෙනියම් සිටි",
+    "name_ta": "மிலேனியம் சிட்டி"
+  },
+  {
+    "name_en": "Moratuwa",
+    "name_si": "මොරටුව",
+    "name_ta": "மொறட்டுவை"
+  },
+  {
+    "name_en": "Mount Lavinia",
+    "name_si": "ගල්කිස්ස",
+    "name_ta": "கல்கிஸ்ஸ"
+  },
+  {
+    "name_en": "NAITA",
+    "name_si": "නයිටා (NAITA)",
+    "name_ta": "நைட்டா (NAITA)"
+  },
+  {
+    "name_en": "Narahenpita",
+    "name_si": "නාරාහේන්පිට",
+    "name_ta": "நாரஹேன்பிட்டி"
+  },
+  {
+    "name_en": "Nawaloka",
+    "name_si": "නවලෝක",
+    "name_ta": "நவலோக"
+  },
+  {
+    "name_en": "Nawinna",
+    "name_si": "නාවින්න",
+    "name_ta": "நாவின்ன"
+  },
+  {
+    "name_en": "Near Lalanka Head Office",
+    "name_si": "ලලංකා ප්‍රධාන කාර්යාලය අසල",
+    "name_ta": "லலங்கா தலைமை அலுவலகம் அருகில்"
+  },
+  {
+    "name_en": "Nelum Pokuna",
+    "name_si": "නෙළුම් පොකුණ",
+    "name_ta": "நௌம் பொகுண"
+  },
+  {
+    "name_en": "Nisaco Mall",
+    "name_si": "නිසාකෝ මෝල්",
+    "name_ta": "நிசாக்கோ மோல்"
+  },
+  {
+    "name_en": "Nugegoda 01",
+    "name_si": "නුගේගොඩ 01",
+    "name_ta": "நுகேகொடை 01"
+  },
+  {
+    "name_en": "Orugodawatta",
+    "name_si": "ඔරුගොඩවත්ත",
+    "name_ta": "ஒறுகொடவத்தை"
+  },
+  {
+    "name_en": "Palam Junction",
+    "name_si": "පාලම් හන්දිය",
+    "name_ta": "பாலம் சந்தி"
+  },
+  {
+    "name_en": "Palam Thuna Junction",
+    "name_si": "පාලම් තුන හන්දිය",
+    "name_ta": "பாலம் துன சந்தி"
+  },
+  {
+    "name_en": "Panadura Base Hospital",
+    "name_si": "පානදූර මූලික රෝහල",
+    "name_ta": "பாணந்துறை ஆதார வைத்தியசாலை"
+  },
+  {
+    "name_en": "Panadura",
+    "name_si": "පානදූර",
+    "name_ta": "பாணந்துறை"
+  },
+  {
+    "name_en": "Pannipitiya Railway",
+    "name_si": "පන්නිපිටිය දුම්රිය ස්ථානය",
+    "name_ta": "பன்னிப்பிட்டிய புகையிரத நிலையம்"
+  },
+  {
+    "name_en": "New Kelani Bridge",
+    "name_si": "නව කැලණි පාලම",
+    "name_ta": "புதிய களனி பாலம்"
+  },
+  {
+    "name_en": "Peliyagoda",
+    "name_si": "පෑලියගොඩ",
+    "name_ta": "பேலியகொடை"
+  },
+  {
+    "name_en": "Pepiliyana",
+    "name_si": "පැපිලියාන",
+    "name_ta": "பெப்பிலியான"
+  },
+  {
+    "name_en": "Pettah",
+    "name_si": "පිටකොටුව",
+    "name_ta": "புறக்கோட்டை"
+  },
+  {
+    "name_en": "Piliyandala Bus Stand",
+    "name_si": "පිළියන්දල බස් නැවතුම්පොළ",
+    "name_ta": "பிலியந்தலை பேருந்து நிலையம்"
+  },
+  {
+    "name_en": "Public Library",
+    "name_si": "මහජන පුස්තකාලය",
+    "name_ta": "பொது நூலகம்"
+  },
+  {
+    "name_en": "Rajagiriya",
+    "name_si": "රාජගිරිය",
+    "name_ta": "ராஜகிரிய"
+  },
+  {
+    "name_en": "Rathmalana Tec",
+    "name_si": "රත්මලාන ටෙක්",
+    "name_ta": "ரத்மலானை டெக்"
+  },
+  {
+    "name_en": "Raththanapitiya",
+    "name_si": "රත්තනපිටිය",
+    "name_ta": "ரத்தனபிட்டிய"
+  },
+  {
+    "name_en": "Regal Cinema",
+    "name_si": "රීගල් සිනමාහල",
+    "name_ta": "ரீகல் சினிமா"
+  },
+  {
+    "name_en": "Royal Institute",
+    "name_si": "රෝයල් ඉන්ස්ටිටියුට්",
+    "name_ta": "ரோயல் இன்ஸ்டிடியூட்"
+  },
+  {
+    "name_en": "Sethsiripaya",
+    "name_si": "සෙත්සිරිපාය",
+    "name_ta": "செத்சிறிபாய"
+  },
+  {
+    "name_en": "Singer Mega - Colombo 8",
+    "name_si": "සිංගර් මෙගා - කොළඹ 08",
+    "name_ta": "சிங்கர் மெகா - கொழும்பு 8"
+  },
+  {
+    "name_en": "Thalahena Junction",
+    "name_si": "තලහේන හන්දිය",
+    "name_ta": "தலஹேன சந்தி"
+  },
+  {
+    "name_en": "Thalangama Depot",
+    "name_si": "තලංගම ඩිපෝව",
+    "name_ta": "தலங்கம டிப்போ"
+  },
+  {
+    "name_en": "Thalangama Junction",
+    "name_si": "තලංගම හන්දිය",
+    "name_ta": "தலங்கம சந்தி"
+  },
+  {
+    "name_en": "Thalawathugoda",
+    "name_si": "තලවතුගොඩ",
+    "name_ta": "தலவத்துகொட"
+  },
+  {
+    "name_en": "Thimbirigasyaya",
+    "name_si": "තිඹිරිගස්යාය",
+    "name_ta": "திம்பிரிகஸ்யாய"
+  },
+  {
+    "name_en": "Thorana Junction",
+    "name_si": "තොරණ හන්දිය",
+    "name_ta": "தோரண சந்தி"
+  },
+  {
+    "name_en": "Thummulla",
+    "name_si": "තුම්මුල්ල",
+    "name_ta": "தும்முல்லை"
+  },
+  {
+    "name_en": "Town Hall",
+    "name_si": "නගර සභාව",
+    "name_ta": "நகர மண்டபம்"
+  },
+  {
+    "name_en": "Town Hall - Vision Care",
+    "name_si": "ටවුන් හෝල් - විෂන් කෙයාර්",
+    "name_ta": "நகர மண்டபம் - விஷன் கேர்"
+  },
+  {
+    "name_en": "Union Place",
+    "name_si": "යුනියන් පෙදෙස",
+    "name_ta": "யூனியன் பிளேஸ்"
+  },
+  {
+    "name_en": "VTA / AAT",
+    "name_si": "VTA / AAT",
+    "name_ta": "VTA / AAT"
+  },
+  {
+    "name_en": "W.A. Silva Mawatha",
+    "name_si": "ඩබ්ලිව්. ඒ. සිල්වා මාවත",
+    "name_ta": "டபிள்யூ. ஏ. சில்வா மாவத்தை"
+  },
+  {
+    "name_en": "Wattala",
+    "name_si": "වත්තල",
+    "name_ta": "வத்தளை"
+  },
+  {
+    "name_en": "Weerasinghe Mawatha",
+    "name_si": "වීරසිංහ මාවත",
+    "name_ta": "வீரசிங்க மாவத்தை"
+  },
+  {
+    "name_en": "Weligampitiya",
+    "name_si": "වැලිගම්පිටිය",
+    "name_ta": "வெலிகம்பிட்டிய"
+  },
+  {
+    "name_en": "Wellawatta",
+    "name_si": "වැල්ලවත්ත",
+    "name_ta": "வெள்ளவத்தை"
+  },
+  {
+    "name_en": "Werahera",
+    "name_si": "වේරහැර",
+    "name_ta": "வேரஹெர"
+  },
+  {
+    "name_en": "Wijerama Junction",
+    "name_si": "විජේරාම හන්දිය",
+    "name_ta": "விஜேராம சந்தி"
+  },
+  {
+    "name_en": "Wijerama",
+    "name_si": "විජේරාම",
+    "name_ta": "விஜேராம"
+  },
+  {
+    "name_en": "William Junction",
+    "name_si": "විලියම් හන්දිය",
+    "name_ta": "வில்லியம் சந்தி"
+  }
+]
