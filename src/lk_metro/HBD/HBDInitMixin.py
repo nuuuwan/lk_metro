@@ -13,6 +13,7 @@ class HBDInitMixin:
         language: str | None = None,
     ) -> None:
         self.language = language
+        self._missing_translation_warnings: set[str] = set()
         data_dir = Path(__file__).resolve().parents[3] / "data"
         self._translations = self._load_translations(data_dir, language)
         super().__init__(

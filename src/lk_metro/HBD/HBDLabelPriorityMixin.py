@@ -34,7 +34,7 @@ class HBDLabelPriorityMixin:
         stop_name: str,
         memberships: dict[str, set[str]],
         congestion: int,
-    ) -> tuple[int, int, str]:
+    ) -> tuple[int, int, int, str]:
         if self._is_terminus(stop_name):
             tier = 0
         elif len(memberships[stop_name]) > 1:
@@ -43,4 +43,7 @@ class HBDLabelPriorityMixin:
             tier = 2
         else:
             tier = 3
-        return tier, -congestion, stop_name
+        longest_line = max(
+            map(len, self._label_lines(self._stop_label(stop_name)))
+        )
+        return tier, -congestion, -longest_line, stop_name

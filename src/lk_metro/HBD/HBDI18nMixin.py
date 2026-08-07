@@ -1,11 +1,16 @@
 import json
 from pathlib import Path
 
+from utils_future import Log
+
 from lk_metro.Route import Route
+
+log = Log("HBD")
 
 
 class HBDI18nMixin:
     LANGUAGES = ("si", "ta")
+    LANGUAGE_NAMES = {"si": "Sinhala", "ta": "Tamil"}
 
     def _load_translations(
         self,
@@ -20,13 +25,24 @@ class HBDI18nMixin:
             (data_dir / "i18n.json").read_text(encoding="utf-8")
         )
         field = f"name_{language}"
-        return {record["name_en"]: record[field] for record in records}
+        return {
+            record["name_en"]: record[field]
+            for record in records
+            if isinstance(record.get(field), str) and record[field]
+        }
 
     def _stop_label(self, stop_name: str) -> str:
-        return self._translations.get(stop_name, stop_name)
+        return self._translated_text(stop_name)
 
     def _translated_text(self, text: str) -> str:
-        return self._translations.get(text, text)
+        translated = self._translations.get(text)
+        if translated is not None or self.language is None:
+            return translated or text
+        if text not in self._missing_translation_warnings:
+            language_name = self.LANGUAGE_NAMES[self.language]
+            log.warning(f"Missing {language_name} translation for {text!r}")
+            self._missing_translation_warnings.add(text)
+        return text
 
     def _footer_text(self) -> str:
         text = self._translated_text(self.FOOTER_TEXT)
