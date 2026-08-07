@@ -11,7 +11,7 @@ class HBDSvgMixin:
             x_coordinate,
             y_coordinate,
             angle,
-        ) in self.ROUTE_NAME_POSITIONS.items():
+        ) in self._route_name_positions.items():
             route = routes_by_id[route_id]
             transform = f' transform="rotate({angle} {x_coordinate} '
             transform += f'{y_coordinate})"'
@@ -27,31 +27,10 @@ class HBDSvgMixin:
     def _route_name_bounds(
         self,
     ) -> list[tuple[str, tuple[float, float, float, float]]]:
-        text_width = 4 * self.ROUTE_NAME_FONT_SIZE * 0.6
-        half_height = self.ROUTE_NAME_FONT_SIZE * 0.6
-        bounds = []
-        for route_id, (
-            x_coordinate,
-            y_coordinate,
-            angle,
-        ) in self.ROUTE_NAME_POSITIONS.items():
-            half_width = text_width / 2
-            if angle:
-                half_width, rotated_half_height = half_height, half_width
-            else:
-                rotated_half_height = half_height
-            bounds.append(
-                (
-                    f"route ID {route_id}",
-                    (
-                        x_coordinate - half_width,
-                        y_coordinate - rotated_half_height,
-                        x_coordinate + half_width,
-                        y_coordinate + rotated_half_height,
-                    ),
-                )
-            )
-        return bounds
+        return [
+            (f"route ID {route_id}", bounds)
+            for route_id, bounds in self._route_name_bounds_by_id.items()
+        ]
 
     def _background_svg_lines(self) -> list[str]:
         return [

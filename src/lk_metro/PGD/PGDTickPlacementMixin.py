@@ -27,6 +27,13 @@ class PGDTickPlacementMixin:
                 memberships,
                 routes_by_id,
             )
+        return self._orient_station_ticks(ticks, positions)
+
+    def _orient_station_ticks(
+        self,
+        ticks: dict[str, Tick],
+        positions: dict[str, Point],
+    ) -> dict[str, Tick]:
         return ticks
 
     def _station_tick_for_stop(

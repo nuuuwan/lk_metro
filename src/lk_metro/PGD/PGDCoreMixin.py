@@ -73,10 +73,11 @@ class PGDCoreMixin:
         segments = self.route_segments(positions)
         lines = self._svg_header_lines()
         lines.extend(self._route_svg_lines(segments))
-        lines.extend(self._route_name_svg_lines())
         memberships = self._route_memberships()
-        station_ticks = self.station_ticks(positions, segments, memberships)
         self._prepare_stop_labels(positions, segments, memberships)
+        station_ticks = self.station_ticks(positions, segments, memberships)
+        self._prepare_route_names(segments)
+        lines.extend(self._route_name_svg_lines())
         lines.extend(
             self._stop_svg_lines(positions, memberships, station_ticks)
         )

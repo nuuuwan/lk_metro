@@ -378,7 +378,7 @@ text { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 <text class="station-name" x="70.0" y="107.25125" text-anchor="end">Boralesgamuwa</text>
 <rect class="station-code" x="28.1" y="85.1" width="3.8" height="1.8" rx="0.9" fill="#72b043"/>
 <text class="station-code-text" x="30.0" y="86.0" text-anchor="middle">6/10</text>
-<text class="station-name" x="31.029999999999998" y="88.765" text-anchor="start">Anderson Flat</text>
+<text class="station-name" x="31.029999999999998" y="88.765" text-anchor="start">Anderson Flats</text>
 <rect class="station-code" x="12.1" y="61.1" width="3.8" height="1.8" rx="0.9" fill="#72b043"/>
 <text class="station-code-text" x="14.0" y="62.0" text-anchor="middle">6/3</text>
 <text class="station-name" x="14.728319984622143" y="64.78456998462215" text-anchor="start">Public Library</text>

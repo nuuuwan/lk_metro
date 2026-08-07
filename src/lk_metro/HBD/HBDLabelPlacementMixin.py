@@ -30,6 +30,7 @@ class HBDLabelPlacementMixin(HBDLabelCandidatesMixin):
             )
             occupied.append(selected[0])
             self._stop_label_placements[stop_name] = (*selected[1], "middle")
+        self._stop_label_bounds = occupied
 
     def _label_priority(
         self,

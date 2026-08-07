@@ -34,15 +34,6 @@ class HBDStyleMixin:
     RIVER_PATH = (
         "M -4,17 L 33,17 L 38,22 L 44,28 L 44,34 L 78,34 " "L 98,54 L 160,54"
     )
-    ROUTE_NAME_POSITIONS: ClassVar[dict[str, tuple[float, float, float]]] = {
-        "CM01": (110.0, 98.5, 0.0),
-        "CM02": (126.0, 74.5, 0.0),
-        "CM03": (58.0, 26.5, 0.0),
-        "CM04": (108.0, 122.5, 0.0),
-        "CM05": (94.0, 10.0, 0.0),
-        "CM06": (8.5, 82.0, -90.0),
-        "CM08": (78.0, 106.5, 0.0),
-    }
     DIRECTIONS: ClassVar[tuple[str, ...]] = (
         "E",
         "SE",

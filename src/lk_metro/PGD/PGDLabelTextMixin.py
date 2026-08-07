@@ -46,6 +46,12 @@ class PGDLabelTextMixin:
     ) -> tuple[float, float, str]:
         return position[0], position[1], "middle"
 
+    def _prepare_route_names(
+        self,
+        segments: dict[str, list[list[tuple[float, float]]]],
+    ) -> None:
+        pass
+
     def _background_svg_lines(self) -> list[str]:
         return []
 

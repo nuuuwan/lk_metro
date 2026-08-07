@@ -1,10 +1,22 @@
 [
   {
-    "xy": [52, 13],
-    "stops": ["CTB Junc.", "Ja Ela"]
+    "xy": [
+      52,
+      13
+    ],
+    "stops": [
+      "CTB Junc.",
+      "Ja Ela"
+    ]
   },
   {
-    "xy": [65, 87],
-    "stops": ["Mahanama Junc.", "Panadura Base Hosp."]
+    "xy": [
+      65,
+      87
+    ],
+    "stops": [
+      "Mahanama Junc.",
+      "Panadura Base Hosp."
+    ]
   }
 ]

@@ -3,7 +3,7 @@ from typing import Self
 
 class LatLngCustomMixin:
     CUSTOM_LATLNG = {
-        "Anderson Flat": (6.890321583694404, 79.8730423696894),
+        "Anderson Flats": (6.890321583694404, 79.8730423696894),
         "Army Hospital Borella": (6.9022, 79.8789),
         "Athurugiriya Hospital": (6.8922, 79.9428),
         "Borella 02 - YMBA": (6.9142, 79.8778),
