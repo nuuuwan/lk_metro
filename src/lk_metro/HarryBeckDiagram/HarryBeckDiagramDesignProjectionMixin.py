@@ -1,7 +1,15 @@
-from .HarryBeckDiagramDesignEdgesMixin import HarryBeckDiagramDesignEdgesMixin
-from .HarryBeckDiagramDesignReadMixin import HarryBeckDiagramDesignReadMixin
-from .HarryBeckDiagramDesignSegmentsMixin import \
-    HarryBeckDiagramDesignSegmentsMixin
+from lk_metro.HarryBeckDiagram.\
+    HarryBeckDiagramDesignEdgesMixin import (
+        HarryBeckDiagramDesignEdgesMixin,
+    )
+from lk_metro.HarryBeckDiagram.\
+    HarryBeckDiagramDesignReadMixin import (
+        HarryBeckDiagramDesignReadMixin,
+    )
+from lk_metro.HarryBeckDiagram.\
+    HarryBeckDiagramDesignSegmentsMixin import (
+        HarryBeckDiagramDesignSegmentsMixin,
+    )
 
 
 class HarryBeckDiagramDesignProjectionMixin(

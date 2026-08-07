@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
-from .AbstractData import AbstractData
+from lk_metro.AbstractData import AbstractData
 
 
 @dataclass

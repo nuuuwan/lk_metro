@@ -1,7 +1,11 @@
-from .ParallelGeographicDiagramLabelInterchangeCandidatesMixin import \
-    ParallelGeographicDiagramLabelInterchangeCandidatesMixin
-from .ParallelGeographicDiagramLabelInterchangePlacementMixin import \
-    ParallelGeographicDiagramLabelInterchangePlacementMixin
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramLabelInterchangeCandidatesMixin import (
+        ParallelGeographicDiagramLabelInterchangeCandidatesMixin,
+    )
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramLabelInterchangePlacementMixin import (
+        ParallelGeographicDiagramLabelInterchangePlacementMixin,
+    )
 
 
 class ParallelGeographicDiagramLabelInterchangeMixin(

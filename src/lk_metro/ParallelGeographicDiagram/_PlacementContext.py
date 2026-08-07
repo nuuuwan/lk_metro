@@ -1,7 +1,10 @@
 from dataclasses import dataclass
 
-from ..GeographicDiagram import Point
-from .ParallelGeographicDiagramTypes import Bounds
+from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Bounds,
+    )
 
 
 @dataclass

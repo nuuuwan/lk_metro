@@ -1,8 +1,8 @@
 from dataclasses import replace
 from pathlib import Path
 
-from ..Route import Route
-from ..Stop import Stop
+from lk_metro.Route import Route
+from lk_metro.Stop.Stop import Stop
 
 
 class HarryBeckDiagramInitMixin:

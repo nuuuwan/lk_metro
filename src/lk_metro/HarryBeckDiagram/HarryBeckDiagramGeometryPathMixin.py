@@ -1,4 +1,4 @@
-from ..GeographicDiagram import Point
+from lk_metro.GeographicDiagram.Point import Point
 
 
 class HarryBeckDiagramGeometryPathMixin:

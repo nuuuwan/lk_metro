@@ -1,6 +1,6 @@
 import html
 
-from ..GeographicDiagram import Point
+from lk_metro.GeographicDiagram.Point import Point
 
 
 class HarryBeckDiagramSvgMixin:

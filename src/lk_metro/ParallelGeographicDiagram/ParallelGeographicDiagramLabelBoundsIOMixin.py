@@ -2,7 +2,10 @@ from pathlib import Path
 
 from utils_future import Log
 
-from .ParallelGeographicDiagramTypes import Bounds
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Bounds,
+    )
 
 log = Log("ParallelGeographicDiagram")
 

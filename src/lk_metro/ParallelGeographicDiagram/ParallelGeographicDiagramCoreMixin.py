@@ -1,8 +1,11 @@
-from ..DiagramStyle import PARALLEL_ROUTE_GAP
-from ..GeographicDiagram import Point
-from ..Route import Route
-from ..Stop import Stop
-from .ParallelGeographicDiagramTypes import Edge
+from lk_metro.DiagramStyle import PARALLEL_ROUTE_GAP
+from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.Route import Route
+from lk_metro.Stop.Stop import Stop
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Edge,
+    )
 
 
 class ParallelGeographicDiagramCoreMixin:

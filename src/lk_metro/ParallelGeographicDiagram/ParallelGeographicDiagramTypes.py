@@ -1,4 +1,4 @@
-from ..GeographicDiagram import Point
+from lk_metro.GeographicDiagram.Point import Point
 
 Edge = tuple[str, str]
 Bounds = tuple[float, float, float, float]

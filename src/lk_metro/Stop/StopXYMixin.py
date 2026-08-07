@@ -1,7 +1,7 @@
 from typing import ClassVar
 
-from .StopXYBuildMixin import StopXYBuildMixin
-from .StopXYIOMixin import StopXYIOMixin
+from lk_metro.Stop.StopXYBuildMixin import StopXYBuildMixin
+from lk_metro.Stop.StopXYIOMixin import StopXYIOMixin
 
 
 class StopXYMixin(StopXYBuildMixin, StopXYIOMixin):

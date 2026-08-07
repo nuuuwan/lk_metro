@@ -1,6 +1,12 @@
-from ..GeographicDiagram import Point
-from ._PlacementContext import _PlacementContext
-from .ParallelGeographicDiagramTypes import Bounds
+from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.ParallelGeographicDiagram.\
+    _PlacementContext import (
+        _PlacementContext,
+    )
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Bounds,
+    )
 
 
 class ParallelGeographicDiagramLabelInterchangePlacementMixin:

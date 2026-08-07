@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
-from ..AbstractData import AbstractData
-from .StopReadMixin import StopReadMixin
-from .StopXYMixin import StopXYMixin
+from lk_metro.AbstractData import AbstractData
+from lk_metro.Stop.StopReadMixin import StopReadMixin
+from lk_metro.Stop.StopXYMixin import StopXYMixin
 
 
 @dataclass

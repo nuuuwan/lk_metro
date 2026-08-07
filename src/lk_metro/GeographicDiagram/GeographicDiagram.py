@@ -1,17 +1,30 @@
-from ..DiagramStyle import (INTERCHANGE_RADIUS, INTERCHANGE_STROKE_WIDTH,
-                            LABEL_FONT_SIZE, LABEL_OFFSET, ROUTE_STROKE_WIDTH,
-                            STATION_TICK_LENGTH, STATION_TICK_STROKE_WIDTH)
-from ..Route import Route
-from ..Stop import Stop
-from .GeographicDiagramIOMixin import GeographicDiagramIOMixin
-from .GeographicDiagramLayoutMixin import GeographicDiagramLayoutMixin
-from .GeographicDiagramLegendMixin import GeographicDiagramLegendMixin
-from .GeographicDiagramStopsMixin import GeographicDiagramStopsMixin
-from .GeographicDiagramSvgMixin import GeographicDiagramSvgMixin
-from .GeographicDiagramValidationMixin import GeographicDiagramValidationMixin
+from lk_metro.GeographicDiagram.GeographicDiagramIOMixin import (
+    GeographicDiagramIOMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramLayoutMixin import (
+    GeographicDiagramLayoutMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramLegendMixin import (
+    GeographicDiagramLegendMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramStopsMixin import (
+    GeographicDiagramStopsMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramStyleMixin import (
+    GeographicDiagramStyleMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramSvgMixin import (
+    GeographicDiagramSvgMixin,
+)
+from lk_metro.GeographicDiagram.GeographicDiagramValidationMixin import (
+    GeographicDiagramValidationMixin,
+)
+from lk_metro.Route import Route
+from lk_metro.Stop.Stop import Stop
 
 
 class GeographicDiagram(
+    GeographicDiagramStyleMixin,
     GeographicDiagramLayoutMixin,
     GeographicDiagramLegendMixin,
     GeographicDiagramIOMixin,
@@ -19,38 +32,6 @@ class GeographicDiagram(
     GeographicDiagramSvgMixin,
     GeographicDiagramValidationMixin,
 ):
-    MAP_TITLE = "Lanka Metro"
-    MAP_SUBTITLE = "GEOGRAPHIC MAP"
-    DESCRIPTION_LINES = (
-        "Routes follow the geographic positions of their stops,",
-        "preserving the network's real-world shape and orientation.",
-    )
-    FOOTER_TEXT = (
-        "Data from https://lankametro.lk · Design and Visualisation by "
-        "https://github.com/nuuuwan"
-    )
-    LEGEND_TITLE = "Routes"
-    TITLE_HEIGHT = 12
-    LOGO_WIDTH = 36
-    LOGO_ASPECT_RATIO = 607 / 190
-    LEGEND_WIDTH = 58
-    LEGEND_LINE_HEIGHT = 3.5
-    LEGEND_FONT_SIZE = 1.55
-    TITLE_FONT_SIZE = 3.8
-    BACKGROUND_COLOR = "#ffffff"
-    TEXT_COLOR = "#991f1d"
-    LABEL_COLOR = "#000000"
-    FONT_FAMILY = "sans-serif"
-    SHOW_GRID = False
-    ROUTE_STROKE_WIDTH = ROUTE_STROKE_WIDTH
-    INTERCHANGE_RADIUS = INTERCHANGE_RADIUS
-    INTERCHANGE_STROKE_WIDTH = INTERCHANGE_STROKE_WIDTH
-    STATION_TICK_LENGTH = STATION_TICK_LENGTH
-    STATION_TICK_STROKE_WIDTH = STATION_TICK_STROKE_WIDTH
-    LABEL_FONT_SIZE = LABEL_FONT_SIZE
-    LABEL_OFFSET = LABEL_OFFSET
-    LABEL_HALO_WIDTH = 0.0
-
     def __init__(
         self,
         routes: list[Route],

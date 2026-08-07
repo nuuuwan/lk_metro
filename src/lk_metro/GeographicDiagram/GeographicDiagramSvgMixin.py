@@ -1,4 +1,4 @@
-from ..DiagramStyle import GRID_MAJOR_INTERVAL, GRID_SPACING
+from lk_metro.DiagramStyle import GRID_MAJOR_INTERVAL, GRID_SPACING
 
 
 class GeographicDiagramSvgMixin:

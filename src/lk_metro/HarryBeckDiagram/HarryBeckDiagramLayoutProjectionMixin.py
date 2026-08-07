@@ -2,7 +2,7 @@ import math
 
 from utils_future import Log
 
-from ..GeographicDiagram import Point
+from lk_metro.GeographicDiagram.Point import Point
 
 log = Log("HarryBeckDiagram")
 

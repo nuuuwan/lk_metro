@@ -1,7 +1,11 @@
-from .ParallelGeographicDiagramRouteBuildMixin import \
-    ParallelGeographicDiagramRouteBuildMixin
-from .ParallelGeographicDiagramRouteGeometryMixin import \
-    ParallelGeographicDiagramRouteGeometryMixin
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramRouteBuildMixin import (
+        ParallelGeographicDiagramRouteBuildMixin,
+    )
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramRouteGeometryMixin import (
+        ParallelGeographicDiagramRouteGeometryMixin,
+    )
 
 
 class ParallelGeographicDiagramRouteOffsetMixin(

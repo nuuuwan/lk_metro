@@ -1,7 +1,10 @@
 import math
 
-from ..GeographicDiagram import Point
-from .ParallelGeographicDiagramTypes import Edge
+from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Edge,
+    )
 
 
 class ParallelGeographicDiagramPathMixin:

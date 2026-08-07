@@ -1,7 +1,17 @@
-from ..GeographicDiagram import Point
-from ._PlacementContext import _PlacementContext
-from ._StationPlacement import _StationPlacement
-from .ParallelGeographicDiagramTypes import LabelOption, Tick
+from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.ParallelGeographicDiagram.\
+    _PlacementContext import (
+        _PlacementContext,
+    )
+from lk_metro.ParallelGeographicDiagram.\
+    _StationPlacement import (
+        _StationPlacement,
+    )
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        LabelOption,
+        Tick,
+    )
 
 
 class ParallelGeographicDiagramLabelStationPlacementMixin:

@@ -1,6 +1,9 @@
 import html
 
-from .ParallelGeographicDiagramTypes import Bounds
+from lk_metro.ParallelGeographicDiagram.\
+    ParallelGeographicDiagramTypes import (
+        Bounds,
+    )
 
 
 class ParallelGeographicDiagramLabelTextMixin:
@@ -14,7 +17,9 @@ class ParallelGeographicDiagramLabelTextMixin:
         line_height = self._label_font_size(stop_name) * 1.05
         first_offset = -(len(label_lines) - 1) * line_height / 2
         label_class = (
-            "label terminal-label" if self._is_terminus(stop_name) else "label"
+            "label terminal-label"
+            if self._is_terminus(stop_name)
+            else "label"
         )
         tspans = "".join(
             f'<tspan x="{label_x}" dy="'

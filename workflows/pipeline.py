@@ -7,11 +7,13 @@ from pathlib import Path
 
 from utils_future import File, Log
 
-from lk_metro.GeographicDiagram import GeographicDiagram
-from lk_metro.HarryBeckDiagram import HarryBeckDiagram
-from lk_metro.ParallelGeographicDiagram import ParallelGeographicDiagram
+from lk_metro.GeographicDiagram.GeographicDiagram import GeographicDiagram
+from lk_metro.HarryBeckDiagram.HarryBeckDiagram import HarryBeckDiagram
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagram import (
+    ParallelGeographicDiagram,
+)
 from lk_metro.Route import Route
-from lk_metro.Stop import Stop
+from lk_metro.Stop.Stop import Stop
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR / "src"))
@@ -84,7 +86,8 @@ def main() -> None:
                     f"Harry Beck complexity: {route_id} = {complexity} segments"
                 )
             log.info(
-                f"Harry Beck complexity: total = {diagram.complexity} segments"
+                f"Harry Beck complexity: total = {
+                    diagram.complexity} segments"
             )
 
 
