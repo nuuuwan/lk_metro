@@ -1,13 +1,11 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDRouteLabelGeometryMixin import HBDRouteLabelGeometryMixin
-from lk_metro.PGD.PGDTypes import Bounds
-
-RouteLabelOption = tuple[Bounds, Point, float, float, int]
+from lk_metro.HBD.HBDRouteLabelOptionMixin import (HBDRouteLabelOptionMixin,
+                                                   RouteLabelOption)
 
 
-class HBDRouteLabelCandidatesMixin(HBDRouteLabelGeometryMixin):
+class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
     def _route_label_options(
         self,
         route_id: str,
@@ -17,6 +15,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelGeometryMixin):
         half_height = self.ROUTE_NAME_FONT_SIZE * 0.6
         other_parts = self._route_parts(segments, route_id)
         options = []
+        start_distance = 0.0
         for path in segments[route_id]:
             for first, second in zip(path, path[1:]):
                 if first == second:
@@ -28,8 +27,10 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelGeometryMixin):
                         half_width,
                         half_height,
                         other_parts,
+                        start_distance,
                     )
                 )
+                start_distance += math.dist(first, second)
         return options
 
     def _route_part_label_options(
@@ -39,6 +40,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelGeometryMixin):
         half_width: float,
         half_height: float,
         other_parts: list[tuple[Point, Point]],
+        start_distance: float,
     ) -> list[RouteLabelOption]:
         x_delta = second[0] - first[0]
         y_delta = second[1] - first[1]
@@ -68,33 +70,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelGeometryMixin):
                         half_height,
                         clearance,
                         other_parts,
+                        start_distance + fraction * length,
                     )
                 )
         return options
-
-    def _route_label_option(
-        self,
-        center: Point,
-        half_width: float,
-        half_height: float,
-        clearance: float,
-        other_parts: list[tuple[Point, Point]],
-    ) -> RouteLabelOption:
-        bounds = (
-            center[0] - half_width,
-            center[1] - half_height,
-            center[0] + half_width,
-            center[1] + half_height,
-        )
-        other_distance = min(
-            (
-                self._point_segment_distance(center, *part)
-                for part in other_parts
-            ),
-            default=float("inf"),
-        )
-        line_hits = sum(
-            self._segment_intersects_bounds(*part, bounds)
-            for part in other_parts
-        )
-        return bounds, center, clearance, other_distance, line_hits

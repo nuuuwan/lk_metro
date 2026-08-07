@@ -134,7 +134,7 @@
 <circle class="interchange" cx="186.39817880641192" cy="200.1357741510713" r="0.78"/>
 <text class="label" x="186.39817880641192" y="200.1357741510713" text-anchor="middle"><tspan x="186.39817880641192" dy="0.0">Makumbura</tspan></text>
 <line class="station" x1="173.12494319420713" y1="152.10465049298264" x2="172.80844666550118" y2="152.3492521023745" stroke="#ffd400"/>
-<text class="label" x="172.96669492985416" y="152.22695129767857" text-anchor="middle"><tspan x="172.96669492985416" dy="-0.8400000000000001">Malabe</tspan><tspan x="172.96669492985416" dy="0.8400000000000001">Bus</tspan><tspan x="172.96669492985416" dy="0.8400000000000001">Stand</tspan></text>
+<text class="label" x="172.96669492985416" y="152.22695129767857" text-anchor="middle"><tspan x="172.96669492985416" dy="0.0">Malabe</tspan></text>
 <line class="station" x1="113.42754440761689" y1="214.85476487622847" x2="113.744938381709" y2="214.61132891912675" stroke="#f57c00"/>
 <text class="label" x="113.58624139466295" y="214.7330468976776" text-anchor="middle"><tspan x="113.58624139466295" dy="-0.42000000000000004">Maliban</tspan><tspan x="113.58624139466295" dy="0.8400000000000001">Junc.</tspan></text>
 <line class="station" x1="106.79804271213504" y1="133.66439894700267" x2="106.40623564995377" y2="133.744942264695" stroke="#0070a8"/>
@@ -184,7 +184,7 @@
 <circle class="interchange" cx="99.79823451700888" cy="130.86842737752883" r="0.78"/>
 <text class="label" x="99.79823451700888" y="130.86842737752883" text-anchor="middle"><tspan x="99.79823451700888" dy="0.0">Pettah</tspan></text>
 <line class="station" x1="151.45315399822084" y1="227.4551144174755" x2="151.3030873243962" y2="227.8258973639647" stroke="#006b3f"/>
-<text class="label" x="151.37812066130851" y="227.6405058907201" text-anchor="middle"><tspan x="151.37812066130851" dy="-0.8400000000000001">Piliyandala</tspan><tspan x="151.37812066130851" dy="0.8400000000000001">Bus</tspan><tspan x="151.37812066130851" dy="0.8400000000000001">Stand</tspan></text>
+<text class="label" x="151.37812066130851" y="227.6405058907201" text-anchor="middle"><tspan x="151.37812066130851" dy="0.0">Piliyandala</tspan></text>
 <line class="station" x1="102.20383531856253" y1="146.3426232924687" x2="102.19079377831709" y2="145.9428359512133" stroke="#72b043"/>
 <text class="label" x="102.1973145484398" y="146.142729621841" text-anchor="middle"><tspan x="102.1973145484398" dy="-0.42000000000000004">Public</tspan><tspan x="102.1973145484398" dy="0.8400000000000001">Library</tspan></text>
 <circle class="interchange" cx="130.16820043600865" cy="148.0904860985812" r="0.78"/>

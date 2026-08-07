@@ -1,6 +1,7 @@
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDRouteLabelCandidatesMixin import (
-    HBDRouteLabelCandidatesMixin, RouteLabelOption)
+from lk_metro.HBD.HBDRouteLabelCandidatesMixin import \
+    HBDRouteLabelCandidatesMixin
+from lk_metro.HBD.HBDRouteLabelOptionMixin import RouteLabelOption
 from lk_metro.PGD.PGDTypes import Bounds
 
 
@@ -26,8 +27,15 @@ class HBDRouteLabelPlacementMixin(HBDRouteLabelCandidatesMixin):
         self,
         option: RouteLabelOption,
         occupied: list[Bounds],
-    ) -> tuple[int, float, int, float, float, float]:
-        bounds, _, own_distance, other_distance, line_hits = option
+    ) -> tuple[int, float, int, float, float, float, float]:
+        (
+            bounds,
+            _,
+            start_distance,
+            own_distance,
+            other_distance,
+            line_hits,
+        ) = option
         overlaps = [self._overlap_area(bounds, other) for other in occupied]
         canvas = (0.0, 0.0, float(self.width), float(self.height))
         return (
@@ -35,6 +43,7 @@ class HBDRouteLabelPlacementMixin(HBDRouteLabelCandidatesMixin):
             sum(overlaps),
             line_hits,
             self._outside_area(bounds, canvas),
+            start_distance,
             own_distance,
             -other_distance,
         )
