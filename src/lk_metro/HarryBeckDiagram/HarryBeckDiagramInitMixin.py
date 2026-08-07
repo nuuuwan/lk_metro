@@ -61,13 +61,7 @@ class HarryBeckDiagramInitMixin:
         return stop_name
 
     def _label_lines(self, label: str) -> tuple[str, ...]:
-        lines = []
-        for word in label.split():
-            if lines and len(lines[-1]) + len(word) + 1 <= 12:
-                lines[-1] = f"{lines[-1]} {word}"
-            else:
-                lines.append(word)
-        return tuple(lines)
+        return tuple(label.split())
 
     def _terminal_label_font_size(self) -> float:
         return self.TERMINAL_LABEL_FONT_SIZE

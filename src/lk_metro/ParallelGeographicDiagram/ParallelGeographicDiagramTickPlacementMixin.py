@@ -27,9 +27,7 @@ class ParallelGeographicDiagramTickPlacementMixin:
                 memberships,
                 routes_by_id,
             )
-        return self._avoid_label_overlaps(
-            positions, ticks, memberships, segments
-        )
+        return ticks
 
     def _station_tick_for_stop(
         self,

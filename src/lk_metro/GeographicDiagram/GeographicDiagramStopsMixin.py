@@ -36,9 +36,30 @@ class GeographicDiagramStopsMixin:
                     f'stroke="{route_colors[route_id]}"/>'
                 )
             lines.append(
-                f'<text class="label" '
-                f'x="{x_coordinate + self.LABEL_OFFSET}" '
-                f'y="{y_coordinate - self.LABEL_OFFSET}">'
-                f'{html.escape(stop.name)}</text>'
+                self._stop_label_svg_line(
+                    stop.name,
+                    x_coordinate,
+                    y_coordinate,
+                )
             )
         return lines
+
+    def _stop_label_svg_line(
+        self,
+        stop_name: str,
+        x_coordinate: float,
+        y_coordinate: float,
+    ) -> str:
+        words = stop_name.split()
+        line_height = self.LABEL_FONT_SIZE * 1.05
+        first_offset = -(len(words) - 1) * line_height / 2
+        tspans = "".join(
+            f'<tspan x="{x_coordinate}" dy="'
+            f'{first_offset if index == 0 else line_height}">'
+            f'{html.escape(word)}</tspan>'
+            for index, word in enumerate(words)
+        )
+        return (
+            f'<text class="label" x="{x_coordinate}" y="{y_coordinate}" '
+            f'text-anchor="middle">{tspans}</text>'
+        )

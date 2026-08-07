@@ -9,8 +9,6 @@ class ParallelGeographicDiagramLabelTextMixin:
         stop_name: str,
         label_x: float,
         label_y: float,
-        text_anchor: str,
-        label_transform: str,
     ) -> str:
         label_lines = self._label_lines(self._stop_label(stop_name))
         line_height = self._label_font_size(stop_name) * 1.05
@@ -28,7 +26,7 @@ class ParallelGeographicDiagramLabelTextMixin:
         )
         return (
             f'<text class="{label_class}" x="{label_x}" y="{label_y}" '
-            f'text-anchor="{text_anchor}"{label_transform}>'
+            f'text-anchor="middle">'
             f"{tspans}</text>"
         )
 
@@ -64,4 +62,4 @@ class ParallelGeographicDiagramLabelTextMixin:
         return stop_name
 
     def _label_lines(self, label: str) -> tuple[str, ...]:
-        return (label,)
+        return tuple(label.split())
