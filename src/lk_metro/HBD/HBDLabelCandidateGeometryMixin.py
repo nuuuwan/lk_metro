@@ -9,16 +9,10 @@ class HBDLabelCandidateGeometryMixin:
         stop_name: str,
         route_ids: set[str],
     ) -> tuple[float, ...]:
-        if len(route_ids) == 1:
-            distance = self.STATION_TICK_LENGTH
-            if self._is_terminus(stop_name):
-                distance /= 2
-            return (distance,)
-        base_distance = self.ROUTE_STROKE_WIDTH / 2 + self.LABEL_OFFSET
-        return tuple(
-            base_distance * scale
-            for scale in (1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 7.0, 9.0)
-        )
+        distance = self.STATION_TICK_LENGTH
+        if len(route_ids) == 1 and self._is_terminus(stop_name):
+            distance /= 2
+        return (distance,)
 
     @staticmethod
     def _label_directions(
