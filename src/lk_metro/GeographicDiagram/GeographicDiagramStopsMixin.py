@@ -25,9 +25,7 @@ class GeographicDiagramStopsMixin:
                     f'r="{self.INTERCHANGE_RADIUS}"/>'
                 )
             else:
-                first, second = self._station_tick(
-                    stop.name, positions, paths
-                )
+                first, second = self._station_tick(stop.name, positions, paths)
                 route_id = next(iter(memberships[stop.name]))
                 lines.append(
                     f'<line class="station" x1="{first[0]}" '
@@ -56,7 +54,7 @@ class GeographicDiagramStopsMixin:
         tspans = "".join(
             f'<tspan x="{x_coordinate}" dy="'
             f'{first_offset if index == 0 else line_height}">'
-            f'{html.escape(word)}</tspan>'
+            f"{html.escape(word)}</tspan>"
             for index, word in enumerate(words)
         )
         return (
