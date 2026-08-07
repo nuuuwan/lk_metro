@@ -1,10 +1,11 @@
 import json
 from pathlib import Path
+from typing import Self
 
 
 class StopReadMixin:
     @classmethod
-    def read_all(cls) -> list["Stop"]:
+    def read_all(cls) -> list[Self]:
         data_dir = Path(__file__).resolve().parents[3] / "data"
         stops_path = data_dir / cls.DATA_FILE
         xy_path = data_dir / cls.XY_DATA_FILE
@@ -53,7 +54,7 @@ class StopReadMixin:
         stop_records: list[object],
         coordinates_by_name: dict[str, list[float]],
         stops_path: Path,
-    ) -> list["Stop"]:
+    ) -> list[Self]:
         stops = []
         for index, record in enumerate(stop_records):
             if not isinstance(record, dict) or set(record) != {

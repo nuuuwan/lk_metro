@@ -1,4 +1,5 @@
 import json
+from typing import Self
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -8,7 +9,7 @@ class LatLngFetchMixin:
     USER_AGENT = "lk_metro/1.0 (https://github.com/nuuuwan/lk_metro)"
 
     @classmethod
-    def _fetch_location(cls, query_name: str) -> "LatLng":
+    def _fetch_location(cls, query_name: str) -> Self:
         query = urlencode({"q": query_name, "format": "jsonv2", "limit": 1})
         request = Request(
             f"{cls.NOMINATIM_URL}?{query}",

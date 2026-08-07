@@ -20,8 +20,9 @@ class GeographicDiagramStopsMixin:
             x_coordinate, y_coordinate = positions[stop.name]
             if len(memberships[stop.name]) > 1:
                 lines.append(
-                    f'<circle class="interchange" cx="{x_coordinate}" cy="{y_coordinate}" r="{
-                        self.INTERCHANGE_RADIUS}"/>'
+                    f'<circle class="interchange" cx="{x_coordinate}" '
+                    f'cy="{y_coordinate}" '
+                    f'r="{self.INTERCHANGE_RADIUS}"/>'
                 )
             else:
                 first, second = self._station_tick(
@@ -29,20 +30,15 @@ class GeographicDiagramStopsMixin:
                 )
                 route_id = next(iter(memberships[stop.name]))
                 lines.append(
-                    f'<line class="station" x1="{
-                        first[0]}" y1="{
-                        first[1]}" x2="{
-                        second[0]}" y2="{
-                        second[1]}" stroke="{
-                        route_colors[route_id]}"/>'
+                    f'<line class="station" x1="{first[0]}" '
+                    f'y1="{first[1]}" x2="{second[0]}" '
+                    f'y2="{second[1]}" '
+                    f'stroke="{route_colors[route_id]}"/>'
                 )
             lines.append(
-                f'<text class="label" x="{
-                    x_coordinate +
-                    self.LABEL_OFFSET}" y="{
-                    y_coordinate -
-                    self.LABEL_OFFSET}">{
-                    html.escape(
-                        stop.name)}</text>'
+                f'<text class="label" '
+                f'x="{x_coordinate + self.LABEL_OFFSET}" '
+                f'y="{y_coordinate - self.LABEL_OFFSET}">'
+                f'{html.escape(stop.name)}</text>'
             )
         return lines

@@ -3,6 +3,7 @@ from ..DiagramStyle import (INTERCHANGE_RADIUS, INTERCHANGE_STROKE_WIDTH,
                             STATION_TICK_LENGTH, STATION_TICK_STROKE_WIDTH)
 from ..Route import Route
 from ..Stop import Stop
+from .GeographicDiagramIOMixin import GeographicDiagramIOMixin
 from .GeographicDiagramLayoutMixin import GeographicDiagramLayoutMixin
 from .GeographicDiagramLegendMixin import GeographicDiagramLegendMixin
 from .GeographicDiagramStopsMixin import GeographicDiagramStopsMixin
@@ -13,6 +14,7 @@ from .GeographicDiagramValidationMixin import GeographicDiagramValidationMixin
 class GeographicDiagram(
     GeographicDiagramLayoutMixin,
     GeographicDiagramLegendMixin,
+    GeographicDiagramIOMixin,
     GeographicDiagramStopsMixin,
     GeographicDiagramSvgMixin,
     GeographicDiagramValidationMixin,
@@ -23,7 +25,10 @@ class GeographicDiagram(
         "Routes follow the geographic positions of their stops,",
         "preserving the network's real-world shape and orientation.",
     )
-    FOOTER_TEXT = "Data from https://lankametro.lk · Design and Visualisation by https://github.com/nuuuwan"
+    FOOTER_TEXT = (
+        "Data from https://lankametro.lk · Design and Visualisation by "
+        "https://github.com/nuuuwan"
+    )
     LEGEND_TITLE = "Routes"
     TITLE_HEIGHT = 12
     LOGO_WIDTH = 36

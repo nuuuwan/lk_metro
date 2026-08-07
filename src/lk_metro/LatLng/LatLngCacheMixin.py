@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 from pathlib import Path
+from typing import Self
 
 
 class LatLngCacheMixin:
@@ -14,7 +15,7 @@ class LatLngCacheMixin:
         cls,
         cache: dict[str, dict[str, float]],
         cache_key: str,
-    ) -> "LatLng | None":
+    ) -> Self | None:
         cached_location = cache.get(cache_key)
         if cached_location is None:
             return None

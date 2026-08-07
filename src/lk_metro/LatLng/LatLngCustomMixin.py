@@ -1,3 +1,6 @@
+from typing import Self
+
+
 class LatLngCustomMixin:
     CUSTOM_LATLNG = {
         "Anderson Flat": (6.890321583694404, 79.8730423696894),
@@ -33,7 +36,7 @@ class LatLngCustomMixin:
     }
 
     @classmethod
-    def from_name(cls, name: str) -> "LatLng":
+    def from_name(cls, name: str) -> Self:
         name = name.strip()
         if not name:
             raise ValueError("name must not be empty")
