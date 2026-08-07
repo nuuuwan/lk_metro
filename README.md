@@ -34,14 +34,6 @@ The Lanka Metro diagram follows that principle. Routes are reduced to horizontal
 
 The result is less useful for judging distance, but much better for understanding the network as a system. Each route can be followed from end to end, changes are visible at a glance, and the dense centre no longer has to fit into its real-world footprint. The geographic maps remain important companions: they explain *where* the system is. The Beck-style map explains *how to use it*.
 
-## A Singapore-Inspired System Map
-
-The same schematic geometry can support a different visual language. This version draws on Singapore's system-map conventions: a strong header, rounded route bands, white station markers, colored station-code badges, prominent interchange rings, and a compact publication legend. Because the source data does not include bilingual names or official station codes, codes are derived from each route ID and the stop's position along that route.
-
-![Singapore-inspired system map of the Lanka Metro network](images/lk_metro_singapore.png)
-
-This treatment demonstrates that the Beck layout is not tied to the visual identity of the London Underground. The underlying abstraction is portable: once geography has been reduced to a clear network topology, typography, markers, line weights, and information hierarchy can be adapted for a particular transport authority and audience.
-
 ## How the Maps Are Built
 
 The network data is stored as JSON in `data/`. Route records define each service, its color, and its ordered stops. Stop records provide geographic coordinates, while generated XY coordinates support the parallel layout.
@@ -51,7 +43,6 @@ The three renderers build progressively on one another:
 - `GeographicDiagram` projects latitude and longitude with Web Mercator, scales the result into the drawing area, and renders routes, station ticks, interchanges, labels, title, and legend.
 - `ParallelGeographicDiagram` uses planar stop coordinates, offsets routes that share an edge, rounds corners with quadratic curves, and searches candidate positions to reduce label collisions.
 - `HarryBeckDiagram` reads the design in `data/harry_beck.json`. Compact direction sequences describe east, southeast, south, and the other five octilinear directions. These instructions are projected from known origin stops onto a regular grid; optional blank points allow bends between stations. The renderer also checks for non-octilinear edges, overlapping stops, position conflicts, and crossings without a shared interchange.
-- `SingaporeTubeDiagram` inherits the Harry Beck geometry and replaces its presentation layer with coded station badges, route-colored station markers, a system-map header, an island field, and a multi-column line legend.
 
 Every map is assembled as SVG, including its white background, route geometry, typography, logo, legend, description, and source note. The workflow then scales each SVG and rasterizes a 6000-pixel PNG for publication.
 

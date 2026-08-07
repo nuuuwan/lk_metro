@@ -11,7 +11,6 @@ from lk_metro.GeographicDiagram import GeographicDiagram
 from lk_metro.HarryBeckDiagram import HarryBeckDiagram
 from lk_metro.ParallelGeographicDiagram import ParallelGeographicDiagram
 from lk_metro.Route import Route
-from lk_metro.SingaporeTubeDiagram import SingaporeTubeDiagram
 from lk_metro.Stop import Stop
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -70,7 +69,6 @@ def main() -> None:
             "lk_metro_parallel_geographic",
         ),
         (HarryBeckDiagram(routes, stops), "lk_metro_harry_beck"),
-        (SingaporeTubeDiagram(routes, stops), "lk_metro_singapore"),
     )
 
     for diagram, filename in outputs:
