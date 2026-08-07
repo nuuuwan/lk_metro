@@ -1,786 +1,450 @@
 [
   {
-    "name": "Anderson Flat",
-    "xy": [
-      35,
-      53
-    ]
+    "name": "Anderson Flats",
+    "xy": [35, 53]
   },
   {
-    "name": "Arangala Junction",
-    "xy": [
-      83,
-      51
-    ]
+    "name": "Arangala Junc.",
+    "xy": [83, 51]
   },
   {
-    "name": "Army Hospital Borella",
-    "xy": [
-      39,
-      45
-    ]
+    "name": "Army Hosp. Borella",
+    "xy": [39, 45]
   },
   {
-    "name": "Athurugiriya Hospital",
-    "xy": [
-      87,
-      58
-    ]
+    "name": "Athurugiriya Hosp.",
+    "xy": [87, 58]
   },
   {
     "name": "Athurugiriya Town",
-    "xy": [
-      87,
-      60
-    ]
+    "xy": [87, 60]
   },
   {
     "name": "Bambalapitiya",
-    "xy": [
-      17,
-      48
-    ]
+    "xy": [17, 48]
   },
   {
-    "name": "Battaramulla Junction",
-    "xy": [
-      71,
-      44
-    ]
+    "name": "Battaramulla Junc.",
+    "xy": [71, 44]
   },
   {
     "name": "Boralesgamuwa",
-    "xy": [
-      62,
-      72
-    ]
+    "xy": [62, 72]
   },
   {
     "name": "Borella",
-    "xy": [
-      40,
-      33
-    ]
+    "xy": [40, 33]
   },
   {
-    "name": "BRC Junction",
-    "xy": [
-      28,
-      54
-    ]
+    "name": "BRC Junc.",
+    "xy": [28, 54]
   },
   {
     "name": "Campbell Park",
-    "xy": [
-      39,
-      30
-    ]
+    "xy": [39, 30]
   },
   {
-    "name": "Cancer Hospital 01",
-    "xy": [
-      72,
-      74
-    ]
+    "name": "Cancer Hosp. 01",
+    "xy": [72, 74]
   },
   {
-    "name": "Castle Hospital",
-    "xy": [
-      46,
-      38
-    ]
+    "name": "Castle Hosp.",
+    "xy": [46, 38]
   },
   {
     "name": "Colombo Fort",
-    "xy": [
-      14,
-      24
-    ]
+    "xy": [14, 24]
   },
   {
-    "name": "CTB Junction",
-    "xy": [
-      52,
-      13
-    ]
+    "name": "CTB Junc.",
+    "xy": [52, 13]
   },
   {
     "name": "Dehiwala",
-    "xy": [
-      27,
-      68
-    ]
+    "xy": [27, 68]
   },
   {
-    "name": "Delkanda Junction",
-    "xy": [
-      61,
-      65
-    ]
+    "name": "Delkanda Junc.",
+    "xy": [61, 65]
   },
   {
     "name": "Dematagoda",
-    "xy": [
-      41,
-      26
-    ]
+    "xy": [41, 26]
   },
   {
     "name": "Egoda Uyana",
-    "xy": [
-      53,
-      85
-    ]
+    "xy": [53, 85]
   },
   {
     "name": "Ekala",
-    "xy": [
-      67,
-      12
-    ]
+    "xy": [67, 12]
   },
   {
     "name": "Gamini Hall",
-    "xy": [
-      20,
-      28
-    ]
+    "xy": [20, 28]
   },
   {
-    "name": "German Tec Angulana",
-    "xy": [
-      48,
-      80
-    ]
+    "name": "German Tech Angulana",
+    "xy": [48, 80]
   },
   {
-    "name": "Golumadama Junction",
-    "xy": [
-      44,
-      79
-    ]
+    "name": "Golumadama Junc.",
+    "xy": [44, 79]
   },
   {
     "name": "Havelock",
-    "xy": [
-      31,
-      57
-    ]
+    "xy": [31, 57]
   },
   {
-    "name": "Hedges Ct",
-    "xy": [
-      26,
-      30
-    ]
+    "name": "Hedges Ct.",
+    "xy": [26, 30]
   },
   {
-    "name": "Hekitta Junction",
-    "xy": [
-      46,
-      20
-    ]
+    "name": "Hekitta Junc.",
+    "xy": [46, 20]
   },
   {
     "name": "Hendala",
-    "xy": [
-      50,
-      17
-    ]
+    "xy": [50, 17]
   },
   {
     "name": "Hirdaramani",
-    "xy": [
-      32,
-      50
-    ]
+    "xy": [32, 50]
   },
   {
-    "name": "Hokandara Junction",
-    "xy": [
-      85,
-      54
-    ]
+    "name": "Hokandara Junc.",
+    "xy": [85, 54]
   },
   {
     "name": "Independence Arcade",
-    "xy": [
-      30,
-      43
-    ]
+    "xy": [30, 43]
   },
   {
-    "name": "Independence Square",
-    "xy": [
-      29,
-      41
-    ]
+    "name": "Independence Sq.",
+    "xy": [29, 41]
   },
   {
     "name": "Isurupaya",
-    "xy": [
-      77,
-      52
-    ]
+    "xy": [77, 52]
   },
   {
     "name": "Ja Ela",
-    "xy": [
-      52,
-      13
-    ]
+    "xy": [52, 13]
   },
   {
-    "name": "Jawatta Road",
-    "xy": [
-      28,
-      47
-    ]
+    "name": "Jawatta Rd.",
+    "xy": [28, 47]
   },
   {
-    "name": "Jayanthi Mawatha",
-    "xy": [
-      54,
-      85
-    ]
+    "name": "Jayanthi Mw.",
+    "xy": [54, 85]
   },
   {
     "name": "Kadawatha",
-    "xy": [
-      82,
-      17
-    ]
+    "xy": [82, 17]
   },
   {
-    "name": "Kalalgoda Junction",
-    "xy": [
-      78,
-      63
-    ]
+    "name": "Kalalgoda Junc.",
+    "xy": [78, 63]
   },
   {
-    "name": "Kalubowila Hospital",
-    "xy": [
-      30,
-      65
-    ]
+    "name": "Kalubowila Hosp.",
+    "xy": [30, 65]
   },
   {
     "name": "Kandana",
-    "xy": [
-      59,
-      15
-    ]
+    "xy": [59, 15]
   },
   {
-    "name": "Katubedda Junction",
-    "xy": [
-      49,
-      81
-    ]
+    "name": "Katubedda Junc.",
+    "xy": [49, 81]
   },
   {
     "name": "Kelaniya Campus",
-    "xy": [
-      69,
-      21
-    ]
+    "xy": [69, 21]
   },
   {
     "name": "Kesbewa",
-    "xy": [
-      80,
-      82
-    ]
+    "xy": [80, 82]
   },
   {
     "name": "Kiribathgoda",
-    "xy": [
-      76,
-      20
-    ]
+    "xy": [76, 20]
   },
   {
     "name": "Kirulapone",
-    "xy": [
-      36,
-      57
-    ]
+    "xy": [36, 57]
   },
   {
     "name": "Kollupitiya",
-    "xy": [
-      13,
-      37
-    ]
+    "xy": [13, 37]
   },
   {
     "name": "Koralawella",
-    "xy": [
-      47,
-      84
-    ]
+    "xy": [47, 84]
   },
   {
     "name": "Koswaththa",
-    "xy": [
-      57,
-      46
-    ]
+    "xy": [57, 46]
   },
   {
     "name": "Kottawa",
-    "xy": [
-      84,
-      72
-    ]
+    "xy": [84, 72]
   },
   {
     "name": "Lake House",
-    "xy": [
-      13,
-      25
-    ]
+    "xy": [13, 25]
   },
   {
-    "name": "Lanka Fiber Fabrica",
-    "xy": [
-      70,
-      78
-    ]
+    "name": "Lanka Fiber",
+    "xy": [70, 78]
   },
   {
     "name": "Liberty",
-    "xy": [
-      15,
-      35
-    ]
+    "xy": [15, 35]
   },
   {
     "name": "Mabola",
-    "xy": [
-      58,
-      16
-    ]
+    "xy": [58, 16]
   },
   {
     "name": "Mahabage",
-    "xy": [
-      60,
-      15
-    ]
+    "xy": [60, 15]
   },
   {
-    "name": "Mahanama Junction",
-    "xy": [
-      65,
-      87
-    ]
+    "name": "Mahanama Junc.",
+    "xy": [65, 87]
   },
   {
-    "name": "Mahara Junction",
-    "xy": [
-      79,
-      18
-    ]
+    "name": "Mahara Junc.",
+    "xy": [79, 18]
   },
   {
     "name": "Maharagama Cargills Food City",
-    "xy": [
-      75,
-      71
-    ]
+    "xy": [75, 71]
   },
   {
     "name": "Maharagama",
-    "xy": [
-      76,
-      70
-    ]
+    "xy": [76, 70]
   },
   {
     "name": "Makumbura",
-    "xy": [
-      85,
-      73
-    ]
+    "xy": [85, 73]
   },
   {
     "name": "Malabe Bus Stand",
-    "xy": [
-      83,
-      42
-    ]
+    "xy": [83, 42]
   },
   {
-    "name": "Maliban Junction",
-    "xy": [
-      35,
-      77
-    ]
+    "name": "Maliban Junc.",
+    "xy": [35, 77]
   },
   {
     "name": "Maradana Railway",
-    "xy": [
-      24,
-      28
-    ]
+    "xy": [24, 28]
   },
   {
-    "name": "Mendis Lane Rawathawatta",
-    "xy": [
-      45,
-      83
-    ]
+    "name": "Mendis Ln. Rawathawatta",
+    "xy": [45, 83]
   },
   {
     "name": "Millennium City",
-    "xy": [
-      88,
-      56
-    ]
+    "xy": [88, 56]
   },
   {
     "name": "Moratuwa",
-    "xy": [
-      43,
-      83
-    ]
+    "xy": [43, 83]
   },
   {
     "name": "Mount Lavinia",
-    "xy": [
-      22,
-      74
-    ]
+    "xy": [22, 74]
   },
   {
     "name": "NAITA",
-    "xy": [
-      59,
-      40
-    ]
+    "xy": [59, 40]
   },
   {
     "name": "Narahenpita",
-    "xy": [
-      38,
-      50
-    ]
+    "xy": [38, 50]
   },
   {
     "name": "Nawaloka",
-    "xy": [
-      15,
-      29
-    ]
+    "xy": [15, 29]
   },
   {
     "name": "Nawinna",
-    "xy": [
-      70,
-      67
-    ]
+    "xy": [70, 67]
   },
   {
     "name": "Near Lalanka Head Office",
-    "xy": [
-      33,
-      76
-    ]
+    "xy": [33, 76]
   },
   {
     "name": "Nelum Pokuna",
-    "xy": [
-      24,
-      35
-    ]
+    "xy": [24, 35]
   },
   {
     "name": "Nisaco Mall",
-    "xy": [
-      86,
-      59
-    ]
+    "xy": [86, 59]
   },
   {
-    "name": "Nugegoda 01",
-    "xy": [
-      48,
-      63
-    ]
+    "name": "Nugegoda",
+    "xy": [48, 63]
   },
   {
     "name": "Orugodawatta",
-    "xy": [
-      50,
-      24
-    ]
+    "xy": [50, 24]
   },
   {
-    "name": "Palam Junction",
-    "xy": [
-      63,
-      86
-    ]
+    "name": "Palam Junc.",
+    "xy": [63, 86]
   },
   {
-    "name": "Palam Thuna Junction",
-    "xy": [
-      73,
-      49
-    ]
+    "name": "Palam Thuna Junc.",
+    "xy": [73, 49]
   },
   {
-    "name": "Panadura Base Hospital",
-    "xy": [
-      65,
-      87
-    ]
+    "name": "Panadura Base Hosp.",
+    "xy": [65, 87]
   },
   {
     "name": "Panadura",
-    "xy": [
-      63,
-      88
-    ]
+    "xy": [63, 88]
   },
   {
     "name": "Pannipitiya Railway",
-    "xy": [
-      81,
-      70
-    ]
+    "xy": [81, 70]
   },
   {
-    "name": "New Kelani Bridge",
-    "xy": [
-      43,
-      23
-    ]
+    "name": "New Kelani Br.",
+    "xy": [43, 23]
   },
   {
     "name": "Peliyagoda",
-    "xy": [
-      42,
-      22
-    ]
+    "xy": [42, 22]
   },
   {
     "name": "Pepiliyana",
-    "xy": [
-      51,
-      67
-    ]
+    "xy": [51, 67]
   },
   {
     "name": "Pettah",
-    "xy": [
-      16,
-      26
-    ]
+    "xy": [16, 26]
   },
   {
     "name": "Piliyandala Bus Stand",
-    "xy": [
-      74,
-      80
-    ]
+    "xy": [74, 80]
   },
   {
     "name": "Public Library",
-    "xy": [
-      18,
-      34
-    ]
+    "xy": [18, 34]
   },
   {
     "name": "Rajagiriya",
-    "xy": [
-      56,
-      39
-    ]
+    "xy": [56, 39]
   },
   {
     "name": "Rathmalana Tec",
-    "xy": [
-      41,
-      78
-    ]
+    "xy": [41, 78]
   },
   {
     "name": "Raththanapitiya",
-    "xy": [
-      57,
-      69
-    ]
+    "xy": [57, 69]
   },
   {
     "name": "Regal Cinema",
-    "xy": [
-      12,
-      27
-    ]
+    "xy": [12, 27]
   },
   {
     "name": "Royal Institute",
-    "xy": [
-      34,
-      59
-    ]
+    "xy": [34, 59]
   },
   {
     "name": "Sethsiripaya",
-    "xy": [
-      68,
-      43
-    ]
+    "xy": [68, 43]
   },
   {
-    "name": "Singer Mega - Colombo 8",
-    "xy": [
-      37,
-      37
-    ]
+    "name": "Singer Mega",
+    "xy": [37, 37]
   },
   {
-    "name": "Thalahena Junction",
-    "xy": [
-      80,
-      39
-    ]
+    "name": "Thalahena Junc.",
+    "xy": [80, 39]
   },
   {
     "name": "Thalangama Depot",
-    "xy": [
-      74,
-      41
-    ]
+    "xy": [74, 41]
   },
   {
-    "name": "Thalangama Junction",
-    "xy": [
-      72,
-      55
-    ]
+    "name": "Thalangama Junc.",
+    "xy": [72, 55]
   },
   {
     "name": "Thalawathugoda",
-    "xy": [
-      78,
-      61
-    ]
+    "xy": [78, 61]
   },
   {
     "name": "Thimbirigasyaya",
-    "xy": [
-      23,
-      52
-    ]
+    "xy": [23, 52]
   },
   {
-    "name": "Thorana Junction",
-    "xy": [
-      61,
-      22
-    ]
+    "name": "Thorana Junc.",
+    "xy": [61, 22]
   },
   {
     "name": "Thummulla",
-    "xy": [
-      20,
-      46
-    ]
+    "xy": [20, 46]
   },
   {
     "name": "Town Hall",
-    "xy": [
-      25,
-      32
-    ]
+    "xy": [25, 32]
   },
   {
     "name": "Town Hall - Vision Care",
-    "xy": [
-      26,
-      33
-    ]
+    "xy": [26, 33]
   },
   {
     "name": "Union Place",
-    "xy": [
-      19,
-      31
-    ]
+    "xy": [19, 31]
   },
   {
     "name": "VTA / AAT",
-    "xy": [
-      37,
-      48
-    ]
+    "xy": [37, 48]
   },
   {
-    "name": "W.A. Silva Mawatha",
-    "xy": [
-      21,
-      61
-    ]
+    "name": "W.A. Silva Mw.",
+    "xy": [21, 61]
   },
   {
     "name": "Wattala",
-    "xy": [
-      54,
-      19
-    ]
+    "xy": [54, 19]
   },
   {
-    "name": "Weerasinghe Mawatha",
-    "xy": [
-      67,
-      76
-    ]
+    "name": "Weerasinghe Mw.",
+    "xy": [67, 76]
   },
   {
     "name": "Weligampitiya",
-    "xy": [
-      55,
-      14
-    ]
+    "xy": [55, 14]
   },
   {
     "name": "Wellawatta",
-    "xy": [
-      17,
-      62
-    ]
+    "xy": [17, 62]
   },
   {
     "name": "Werahera",
-    "xy": [
-      64,
-      75
-    ]
+    "xy": [64, 75]
   },
   {
-    "name": "Wijerama Junction",
-    "xy": [
-      66,
-      66
-    ]
+    "name": "Wijerama Junc.",
+    "xy": [66, 66]
   },
   {
     "name": "Wijerama",
-    "xy": [
-      33,
-      36
-    ]
+    "xy": [33, 36]
   },
   {
-    "name": "William Junction",
-    "xy": [
-      22,
-      64
-    ]
+    "name": "Williams Junc.",
+    "xy": [22, 64]
   }
 ]
