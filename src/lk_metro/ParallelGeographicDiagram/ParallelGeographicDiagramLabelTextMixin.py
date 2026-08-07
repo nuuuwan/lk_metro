@@ -10,6 +10,7 @@ class ParallelGeographicDiagramLabelTextMixin:
         stop_name: str,
         label_x: float,
         label_y: float,
+        text_anchor: str,
     ) -> str:
         label_lines = self._label_lines(self._stop_label(stop_name))
         line_height = self._label_font_size(stop_name) * 1.05
@@ -27,9 +28,22 @@ class ParallelGeographicDiagramLabelTextMixin:
         )
         return (
             f'<text class="{label_class}" x="{label_x}" y="{label_y}" '
-            f'text-anchor="middle">'
+            f'text-anchor="{text_anchor}">'
             f"{tspans}</text>"
         )
+
+    def _prepare_stop_labels(
+        self,
+        positions: dict[str, tuple[float, float]],
+    ) -> None:
+        pass
+
+    def _stop_label_placement(
+        self,
+        stop_name: str,
+        position: tuple[float, float],
+    ) -> tuple[float, float, str]:
+        return position[0], position[1], "middle"
 
     def _background_svg_lines(self) -> list[str]:
         return []

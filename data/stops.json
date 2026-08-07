@@ -240,8 +240,8 @@
     "latlng": [6.8195146, 79.8736648]
   },
   {
-    "name": "Maradana",
-    "latlng": [6.9284312, 79.8648608]
+    "name": "Maradana Railway",
+    "latlng": [6.928927469456978, 79.86416585840868]
   },
   {
     "name": "Mendis Lane Rawathawatta",
@@ -315,6 +315,10 @@
     "name": "Pannipitiya",
     "latlng": [6.8464397, 79.9486254]
   },
+  {
+    "name": "Pannipitiya Railway",
+    "latlng": [6.846801372868706, 79.94847130846496],
+  }
   {
     "name": "Peliyagoda (New Kelani Bridge)",
     "latlng": [6.9554478, 79.8829057]
@@ -398,6 +402,10 @@
   {
     "name": "Town Hall",
     "latlng": [6.9173013, 79.864813]
+  },
+  {
+    "name": "Town Hall - Vision Care",
+    "latlng": [6.917096448315182, 79.8655390536384]
   },
   {
     "name": "Union Place",

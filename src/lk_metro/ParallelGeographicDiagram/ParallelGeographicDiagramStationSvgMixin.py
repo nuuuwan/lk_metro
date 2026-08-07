@@ -43,10 +43,15 @@ class ParallelGeographicDiagramStationSvgMixin:
                 station_ticks,
                 route_colors,
             )
+        label_x, label_y, text_anchor = self._stop_label_placement(
+            stop_name,
+            (x_coordinate, y_coordinate),
+        )
         label = self._label_svg_line(
             stop_name,
-            x_coordinate,
-            y_coordinate,
+            label_x,
+            label_y,
+            text_anchor,
         )
         return [marker, label]
 

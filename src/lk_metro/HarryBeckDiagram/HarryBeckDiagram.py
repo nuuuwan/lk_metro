@@ -4,6 +4,8 @@ from lk_metro.HarryBeckDiagram.HarryBeckDiagramGeometryRoutesMixin import \
     HarryBeckDiagramGeometryRoutesMixin
 from lk_metro.HarryBeckDiagram.HarryBeckDiagramInitMixin import \
     HarryBeckDiagramInitMixin
+from lk_metro.HarryBeckDiagram.HarryBeckDiagramLabelPlacementMixin import \
+    HarryBeckDiagramLabelPlacementMixin
 from lk_metro.HarryBeckDiagram.HarryBeckDiagramLegendLayoutMixin import \
     HarryBeckDiagramLegendLayoutMixin
 from lk_metro.HarryBeckDiagram.HarryBeckDiagramProjectionOpsMixin import \
@@ -20,6 +22,7 @@ from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagram import \
 
 class HarryBeckDiagram(
     HarryBeckDiagramStyleMixin,
+    HarryBeckDiagramLabelPlacementMixin,
     HarryBeckDiagramInitMixin,
     HarryBeckDiagramSvgMixin,
     HarryBeckDiagramLegendLayoutMixin,
