@@ -1,3 +1,5 @@
+from datetime import date
+
 from lk_metro.DiagramStyle import (INTERCHANGE_RADIUS,
                                    INTERCHANGE_STROKE_WIDTH, LABEL_FONT_SIZE,
                                    LABEL_OFFSET, ROUTE_STROKE_WIDTH,
@@ -16,6 +18,7 @@ class GDStyleMixin:
         "Data from https://lankametro.lk · Design and Visualisation by "
         "https://github.com/nuuuwan"
     )
+    MAP_VERSION = date.today().strftime("v%Y-%m-%d")
     LEGEND_TITLE = "Routes"
     TITLE_HEIGHT = 12
     LOGO_WIDTH = 36

@@ -18,7 +18,7 @@ class HBDLegendSvgMixin:
                     f'fill="{route.color}"/>',
                     f'<text class="legend-route-label" x="{legend_x + 8}" '
                     f'y="{y_coordinate}">{html.escape(route.id)}: '
-                    f"{html.escape(route.name)}</text>",
+                    f"{html.escape(self._legend_route_name(route))}</text>",
                 ]
             )
         note_y = (
@@ -35,13 +35,13 @@ class HBDLegendSvgMixin:
             f'<text class="{self._note_class(is_heading)}" '
             f'x="{legend_x}" y="{note_y + index * 2.4}"'
             f'{" font-weight=\"bold\"" if is_heading else ""}>'
-            f"{html.escape(text)}</text>"
+            f"{html.escape(self._translated_text(text))}</text>"
             for index, (text, is_heading) in enumerate(note_lines)
         )
         footer_y = self._svg_dimensions()[1] - self._content_offset()[1] - 2
         lines.append(
             f'<text class="footer-label" x="{self.padding}" '
-            f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
+            f'y="{footer_y}">{html.escape(self._footer_text())}</text>'
         )
         return lines
 

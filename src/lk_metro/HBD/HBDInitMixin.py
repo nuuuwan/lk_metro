@@ -6,7 +6,15 @@ from lk_metro.Stop.Stop import Stop
 
 
 class HBDInitMixin:
-    def __init__(self, routes: list[Route], stops: list[Stop]) -> None:
+    def __init__(
+        self,
+        routes: list[Route],
+        stops: list[Stop],
+        language: str | None = None,
+    ) -> None:
+        self.language = language
+        data_dir = Path(__file__).resolve().parents[3] / "data"
+        self._translations = self._load_translations(data_dir, language)
         super().__init__(
             routes,
             stops,
@@ -14,8 +22,7 @@ class HBDInitMixin:
             parallel_route_gap=self.PARALLEL_ROUTE_GAP,
         )
         self.legend_routes = routes
-        self.design_path = Path(__file__).resolve().parents[3] / "data"
-        self.design_path = self.design_path / self.DATA_FILE
+        self.design_path = data_dir / self.DATA_FILE
         self._origin_positions, self._segments_by_route, designed_stops = (
             self._read_design()
         )
@@ -57,9 +64,6 @@ class HBDInitMixin:
             )
             for name in designed_stop_names
         ]
-
-    def _stop_label(self, stop_name: str) -> str:
-        return stop_name
 
     def _label_lines(self, label: str) -> tuple[str, ...]:
         return tuple(label.split())

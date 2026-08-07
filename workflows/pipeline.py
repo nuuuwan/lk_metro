@@ -69,6 +69,8 @@ def main() -> None:
             "lk_metro_parallel_geographic",
         ),
         (HBD(routes, stops), "lk_metro_harry_beck"),
+        (HBD(routes, stops, language="si"), "lk_metro_harry_beck_si"),
+        (HBD(routes, stops, language="ta"), "lk_metro_harry_beck_ta"),
     )
 
     for diagram, filename in outputs:

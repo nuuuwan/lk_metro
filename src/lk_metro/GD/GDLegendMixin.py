@@ -33,9 +33,12 @@ class GDLegendMixin:
             *self._legend_route_svg_lines(legend_x, legend_title_y),
             *self._legend_note_svg_lines(legend_x, legend_title_y),
             f'<text class="footer-label" x="{self.padding}" '
-            f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>',
+            f'y="{footer_y}">{html.escape(self._footer_text())}</text>',
         ]
         return lines
+
+    def _footer_text(self) -> str:
+        return f"{self.FOOTER_TEXT} · {self.MAP_VERSION}"
 
     def _legend_route_svg_lines(
         self, legend_x: float, legend_title_y: float

@@ -1,5 +1,6 @@
 from lk_metro.HBD.HBDDesignProjectionMixin import HBDDesignProjectionMixin
 from lk_metro.HBD.HBDGeometryRoutesMixin import HBDGeometryRoutesMixin
+from lk_metro.HBD.HBDI18nMixin import HBDI18nMixin
 from lk_metro.HBD.HBDInitMixin import HBDInitMixin
 from lk_metro.HBD.HBDLabelPlacementMixin import HBDLabelPlacementMixin
 from lk_metro.HBD.HBDLegendLayoutMixin import HBDLegendLayoutMixin
@@ -16,6 +17,7 @@ from lk_metro.PGD.PGD import PGD
 
 class HBD(
     HBDStyleMixin,
+    HBDI18nMixin,
     HBDLabelPlacementMixin,
     HBDTickOrientationMixin,
     HBDRouteLabelPlacementMixin,
