@@ -10,13 +10,13 @@ class HBDDesignSegmentsMixin:
     def _segments_from_directions(
         route_id: str,
         designed_stops: list[str],
-        directions: list[tuple[str, bool, float]],
+        directions: list[tuple[str, bool]],
     ) -> list[dict[str, object]]:
         segments = []
         current_stop = designed_stops[0]
         next_stop_index = 1
         blank_index = 0
-        for direction, is_blank, scale in directions:
+        for direction, is_blank in directions:
             if is_blank:
                 blank_index += 1
                 next_stop = f"__blank__:{route_id}:{blank_index}"
@@ -24,11 +24,7 @@ class HBDDesignSegmentsMixin:
                 next_stop = designed_stops[next_stop_index]
                 next_stop_index += 1
             segments.append(
-                {
-                    "direction": direction,
-                    "scale": scale,
-                    "stops": [current_stop, next_stop],
-                }
+                {"direction": direction, "stops": [current_stop, next_stop]}
             )
             current_stop = next_stop
         return segments
@@ -63,14 +59,14 @@ class HBDDesignSegmentsMixin:
         route_id: str,
         direction_sequence: object,
         expected_count: int,
-    ) -> list[tuple[str, bool, float]]:
+    ) -> list[tuple[str, bool]]:
         directions = []
         if not isinstance(direction_sequence, str) or not direction_sequence:
             raise ValueError(
                 f"Harry Beck route {route_id} has no direction sequence"
             )
         for token in direction_sequence.split("-"):
-            match = re.fullmatch(r"(\d+)?(b)?(h)?(E|SE|S|SW|W|NW|N|NE)", token)
+            match = re.fullmatch(r"(\d+)?(b)?(E|SE|S|SW|W|NW|N|NE)", token)
             if match is None or int(match.group(1) or 1) == 0:
                 raise ValueError(
                     f"Harry Beck route {route_id} has invalid direction "
@@ -78,16 +74,9 @@ class HBDDesignSegmentsMixin:
                 )
             repeat_count = int(match.group(1) or 1)
             directions.extend(
-                [
-                    (
-                        match.group(4),
-                        match.group(2) == "b",
-                        0.5 if match.group(3) == "h" else 1.0,
-                    )
-                ]
-                * repeat_count
+                [(match.group(3), match.group(2) == "b")] * repeat_count
             )
-        direction_count = sum(not is_blank for _, is_blank, _ in directions)
+        direction_count = sum(not is_blank for _, is_blank in directions)
         if direction_count != expected_count:
             raise ValueError(
                 f"Harry Beck route {route_id} requires "

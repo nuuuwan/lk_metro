@@ -32,14 +32,8 @@ class HBDProjectionFlowMixin:
             for segment in route["segments"]:
                 direction_index = self.DIRECTIONS.index(segment["direction"])
                 x_delta, y_delta = self.DIRECTION_VECTORS[direction_index]
-                scale = segment.get("scale", 1.0)
                 pending.append(
-                    (
-                        route["id"],
-                        segment["stops"],
-                        x_delta * scale,
-                        y_delta * scale,
-                    )
+                    (route["id"], segment["stops"], x_delta, y_delta)
                 )
         return pending
 
