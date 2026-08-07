@@ -44,9 +44,7 @@ class HBDDesignSegmentsMixin:
         dict[str, list[str]],
     ]:
         if not segments_by_route:
-            log.warn(
-                "Harry Beck design must contain at least one valid route"
-            )
+            log.warn("Harry Beck design must contain at least one valid route")
             fallback_route = self.routes[0]
             designed_stops = fallback_route.stops
             segments_by_route[fallback_route.id] = [
@@ -72,9 +70,7 @@ class HBDDesignSegmentsMixin:
                 f"Harry Beck route {route_id} has no direction sequence"
             )
         for token in direction_sequence.split("-"):
-            match = re.fullmatch(
-                r"(\d+)?(b)?(h)?(E|SE|S|SW|W|NW|N|NE)", token
-            )
+            match = re.fullmatch(r"(\d+)?(b)?(h)?(E|SE|S|SW|W|NW|N|NE)", token)
             if match is None or int(match.group(1) or 1) == 0:
                 raise ValueError(
                     f"Harry Beck route {route_id} has invalid direction "
@@ -91,9 +87,7 @@ class HBDDesignSegmentsMixin:
                 ]
                 * repeat_count
             )
-        direction_count = sum(
-            not is_blank for _, is_blank, _ in directions
-        )
+        direction_count = sum(not is_blank for _, is_blank, _ in directions)
         if direction_count != expected_count:
             raise ValueError(
                 f"Harry Beck route {route_id} requires "
