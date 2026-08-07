@@ -40,7 +40,7 @@ class HBDLegendSvgMixin:
         )
         footer_y = self._svg_dimensions()[1] - self._content_offset()[1] - 2
         lines.append(
-            f'<text class="legend-route-label" x="{self.padding}" '
+            f'<text class="footer-label" x="{self.padding}" '
             f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>'
         )
         return lines

@@ -32,7 +32,7 @@ class GDLegendMixin:
             f'{html.escape(self.LEGEND_TITLE)}</text>',
             *self._legend_route_svg_lines(legend_x, legend_title_y),
             *self._legend_note_svg_lines(legend_x, legend_title_y),
-            f'<text class="legend-route-label" x="{self.padding}" '
+            f'<text class="footer-label" x="{self.padding}" '
             f'y="{footer_y}">{html.escape(self.FOOTER_TEXT)}</text>',
         ]
         return lines
