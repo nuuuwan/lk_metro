@@ -1,10 +1,7 @@
 from dataclasses import dataclass
 
-from lk_metro.ParallelGeographicDiagram.\
-    ParallelGeographicDiagramTypes import (
-        LabelOption,
-        Tick,
-    )
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import (
+    LabelOption, Tick)
 
 
 @dataclass

@@ -1,11 +1,7 @@
-from lk_metro.HarryBeckDiagram.\
-    HarryBeckDiagramGeometryErrorsMixin import (
-        HarryBeckDiagramGeometryErrorsMixin,
-    )
-from lk_metro.HarryBeckDiagram.\
-    HarryBeckDiagramGeometryPathMixin import (
-        HarryBeckDiagramGeometryPathMixin,
-    )
+from lk_metro.HarryBeckDiagram.HarryBeckDiagramGeometryErrorsMixin import \
+    HarryBeckDiagramGeometryErrorsMixin
+from lk_metro.HarryBeckDiagram.HarryBeckDiagramGeometryPathMixin import \
+    HarryBeckDiagramGeometryPathMixin
 
 
 class HarryBeckDiagramGeometryRoutesMixin(

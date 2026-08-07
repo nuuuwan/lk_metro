@@ -1,8 +1,5 @@
-from lk_metro.DiagramStyle import (
-    PARALLEL_ROUTE_GAP,
-    STATION_TICK_LENGTH,
-    STATION_TICK_STROKE_WIDTH,
-)
+from lk_metro.DiagramStyle import (PARALLEL_ROUTE_GAP, STATION_TICK_LENGTH,
+                                   STATION_TICK_STROKE_WIDTH)
 
 
 class ParallelGeographicDiagramStyleMixin:

@@ -1,24 +1,17 @@
-from lk_metro.GeographicDiagram.GeographicDiagramIOMixin import (
-    GeographicDiagramIOMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramLayoutMixin import (
-    GeographicDiagramLayoutMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramLegendMixin import (
-    GeographicDiagramLegendMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramStopsMixin import (
-    GeographicDiagramStopsMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramStyleMixin import (
-    GeographicDiagramStyleMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramSvgMixin import (
-    GeographicDiagramSvgMixin,
-)
-from lk_metro.GeographicDiagram.GeographicDiagramValidationMixin import (
-    GeographicDiagramValidationMixin,
-)
+from lk_metro.GeographicDiagram.GeographicDiagramIOMixin import \
+    GeographicDiagramIOMixin
+from lk_metro.GeographicDiagram.GeographicDiagramLayoutMixin import \
+    GeographicDiagramLayoutMixin
+from lk_metro.GeographicDiagram.GeographicDiagramLegendMixin import \
+    GeographicDiagramLegendMixin
+from lk_metro.GeographicDiagram.GeographicDiagramStopsMixin import \
+    GeographicDiagramStopsMixin
+from lk_metro.GeographicDiagram.GeographicDiagramStyleMixin import \
+    GeographicDiagramStyleMixin
+from lk_metro.GeographicDiagram.GeographicDiagramSvgMixin import \
+    GeographicDiagramSvgMixin
+from lk_metro.GeographicDiagram.GeographicDiagramValidationMixin import \
+    GeographicDiagramValidationMixin
 from lk_metro.Route import Route
 from lk_metro.Stop.Stop import Stop
 

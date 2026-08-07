@@ -25,7 +25,9 @@ class GeographicDiagramStopsMixin:
                     f'r="{self.INTERCHANGE_RADIUS}"/>'
                 )
             else:
-                first, second = self._station_tick(stop.name, positions, paths)
+                first, second = self._station_tick(
+                    stop.name, positions, paths
+                )
                 route_id = next(iter(memberships[stop.name]))
                 lines.append(
                     f'<line class="station" x1="{first[0]}" '

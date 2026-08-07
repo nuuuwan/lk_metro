@@ -1,16 +1,9 @@
-from lk_metro.ParallelGeographicDiagram.\
-    _PlacementContext import (
-        _PlacementContext,
-    )
-from lk_metro.ParallelGeographicDiagram.\
-    _StationPlacement import (
-        _StationPlacement,
-    )
-from lk_metro.ParallelGeographicDiagram.\
-    ParallelGeographicDiagramTypes import (
-        Bounds,
-        LabelOption,
-    )
+from lk_metro.ParallelGeographicDiagram._PlacementContext import \
+    _PlacementContext
+from lk_metro.ParallelGeographicDiagram._StationPlacement import \
+    _StationPlacement
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import (
+    Bounds, LabelOption)
 
 
 class ParallelGeographicDiagramLabelRefineFlowMixin:

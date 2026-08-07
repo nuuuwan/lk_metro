@@ -9,9 +9,8 @@ from utils_future import File, Log
 
 from lk_metro.GeographicDiagram.GeographicDiagram import GeographicDiagram
 from lk_metro.HarryBeckDiagram.HarryBeckDiagram import HarryBeckDiagram
-from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagram import (
-    ParallelGeographicDiagram,
-)
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagram import \
+    ParallelGeographicDiagram
 from lk_metro.Route import Route
 from lk_metro.Stop.Stop import Stop
 

@@ -1,9 +1,7 @@
 import html
 
-from lk_metro.ParallelGeographicDiagram.\
-    ParallelGeographicDiagramTypes import (
-        Bounds,
-    )
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import \
+    Bounds
 
 
 class ParallelGeographicDiagramLabelTextMixin:

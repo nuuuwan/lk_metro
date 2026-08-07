@@ -1,11 +1,9 @@
 import math
 
 from lk_metro.GeographicDiagram.Point import Point
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import \
+    Tick
 from lk_metro.Route import Route
-from lk_metro.ParallelGeographicDiagram.\
-    ParallelGeographicDiagramTypes import (
-        Tick,
-    )
 
 
 class ParallelGeographicDiagramTickPlacementMixin:
