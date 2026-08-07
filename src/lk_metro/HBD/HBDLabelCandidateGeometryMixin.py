@@ -12,7 +12,7 @@ class HBDLabelCandidateGeometryMixin:
         distance = self.STATION_TICK_LENGTH
         if len(route_ids) == 1 and self._is_terminus(stop_name):
             distance /= 2
-        return (distance,)
+        return (distance, distance + self.LABEL_FONT_SIZE / 2)
 
     @staticmethod
     def _label_directions(
@@ -37,9 +37,7 @@ class HBDLabelCandidateGeometryMixin:
         half_width: float,
         half_height: float,
     ) -> float:
-        x_radius = (
-            half_width / abs(direction[0]) if direction[0] else math.inf
-        )
+        x_radius = half_width / abs(direction[0]) if direction[0] else math.inf
         y_radius = (
             half_height / abs(direction[1]) if direction[1] else math.inf
         )

@@ -12,7 +12,7 @@ LabelState = tuple[dict[str, LabelPlacement], dict[str, Bounds]]
 
 
 class HBDLabelCacheMixin:
-    LABEL_CACHE_VERSION = 1
+    LABEL_CACHE_VERSION = 2
     LABEL_CACHE_DIR = Path(tempfile.gettempdir()) / "lk_metro"
 
     def _label_cache_path(self) -> Path:
