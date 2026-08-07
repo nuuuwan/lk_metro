@@ -1,6 +1,8 @@
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDLabelCandidatesMixin import (HBDLabelCandidatesMixin,
-                                                  LabelOption)
+from lk_metro.HBD.HBDLabelCandidatesMixin import (
+    HBDLabelCandidatesMixin,
+    LabelOption,
+)
 from lk_metro.HBD.HBDLabelPriorityMixin import HBDLabelPriorityMixin
 from lk_metro.Render.Types import Bounds
 
