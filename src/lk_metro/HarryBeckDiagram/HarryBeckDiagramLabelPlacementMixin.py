@@ -1,8 +1,10 @@
 from lk_metro.GeographicDiagram.Point import Point
-from lk_metro.HarryBeckDiagram.HarryBeckDiagramLabelCandidatesMixin import \
-    HarryBeckDiagramLabelCandidatesMixin
-from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import \
-    Bounds
+from lk_metro.HarryBeckDiagram.HarryBeckDiagramLabelCandidatesMixin import (
+    HarryBeckDiagramLabelCandidatesMixin,
+)
+from lk_metro.ParallelGeographicDiagram.ParallelGeographicDiagramTypes import (
+    Bounds,
+)
 
 
 class HarryBeckDiagramLabelPlacementMixin(
