@@ -13,7 +13,7 @@ class LabelBoundsIOMixin:
         placed_labels: list[tuple[str, Bounds]],
     ) -> None:
         for index, (first_name, first_bounds) in enumerate(placed_labels):
-            for second_name, second_bounds in placed_labels[index + 1:]:
+            for second_name, second_bounds in placed_labels[index + 1 :]:
                 overlap = self._overlap_area(first_bounds, second_bounds)
                 if overlap > self.WARN_LABEL_OVERLAPS_TOLERANCE:
                     log.warning(

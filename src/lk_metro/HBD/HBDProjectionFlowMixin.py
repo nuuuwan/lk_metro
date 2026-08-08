@@ -186,7 +186,9 @@ class HBDProjectionFlowMixin:
             cls._nearest_ellipse_angle(point, center, radii)
             for point in points
         ]
-        angles = cls._spread_close_ellipse_angles(angles)
+        angles, direction = cls._ordered_ellipse_angles(
+            points, center, radii, angles
+        )
         positions = [
             [
                 center[0] + x_radius * math.cos(angle),
@@ -194,10 +196,6 @@ class HBDProjectionFlowMixin:
             ]
             for angle in angles
         ]
-        direction = sum(
-            cls._wrapped_angle(second - first)
-            for first, second in zip(angles, angles[1:] + angles[:1])
-        )
         circle = (
             math.degrees(angles[0]) % 360,
             x_radius,
@@ -207,22 +205,73 @@ class HBDProjectionFlowMixin:
         return center, circle, positions, angles
 
     @classmethod
-    def _spread_close_ellipse_angles(
+    def _ordered_ellipse_angles(
+        cls,
+        points: list[list[float]],
+        center: list[float],
+        radii: tuple[float, float],
+        angles: list[float],
+    ) -> tuple[list[float], int]:
+        candidates = []
+        for direction in (1, -1):
+            ordered = cls._spread_ordered_angles(angles, direction)
+            error = sum(
+                cls._ellipse_distance_squared(
+                    point, center, radii, angle
+                )
+                for point, angle in zip(points, ordered)
+            )
+            candidates.append((error, ordered, direction))
+        _, ordered, direction = min(candidates, key=lambda item: item[0])
+        return ordered, direction
+
+    @classmethod
+    def _spread_ordered_angles(
         cls,
         angles: list[float],
+        direction: int,
     ) -> list[float]:
         minimum_gap = math.radians(cls.CIRCLE_MIN_STOP_GAP_DEGREES)
-        spread_angles = angles[:]
-        for index, first in enumerate(angles):
-            next_index = (index + 1) % len(angles)
-            delta = cls._wrapped_angle(angles[next_index] - first)
-            if abs(delta) >= minimum_gap:
-                continue
-            direction = 1 if delta >= 0 else -1
-            adjustment = (minimum_gap - abs(delta)) / 2
-            spread_angles[index] -= direction * adjustment
-            spread_angles[next_index] += direction * adjustment
-        return spread_angles
+        count = len(angles)
+        ordered = [
+            angle
+            + round(
+                (angles[0] + direction * index * 2 * math.pi / count - angle)
+                / (2 * math.pi)
+            )
+            * 2
+            * math.pi
+            for index, angle in enumerate(angles)
+        ]
+        for _ in range(count * 16):
+            changed = sum(
+                cls._relax_ordered_angle_gap(
+                    ordered, index, direction, minimum_gap
+                )
+                for index in range(count)
+            ) > 0
+            if not changed:
+                break
+        return ordered
+
+    @staticmethod
+    def _relax_ordered_angle_gap(
+        angles: list[float],
+        index: int,
+        direction: int,
+        minimum_gap: float,
+    ) -> bool:
+        next_index = (index + 1) % len(angles)
+        second = angles[next_index]
+        if next_index == 0:
+            second += direction * 2 * math.pi
+        progress = direction * (second - angles[index])
+        if progress >= minimum_gap:
+            return False
+        adjustment = (minimum_gap - progress) / 2
+        angles[index] -= direction * adjustment
+        angles[next_index] += direction * adjustment
+        return True
 
     @classmethod
     def _nearest_ellipse_angle(
