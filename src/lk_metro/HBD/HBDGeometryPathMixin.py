@@ -112,18 +112,20 @@ class HBDGeometryPathMixin:
         )
         segments = self._segments_by_route[route_id]
         edge_count = len(segments)
+        route_angles = self._circle_route_angles.get(route_id)
         sample_count = 8
         paths = []
         for index, segment in enumerate(segments):
             first, second = segment["stops"]
             path = [positions[first]]
             for sample in range(1, sample_count):
-                angle = math.radians(
-                    start_degrees
-                    + direction
-                    * (index + sample / sample_count)
-                    * 360
-                    / edge_count
+                angle = self._circle_sample_angle(
+                    start_degrees,
+                    direction,
+                    edge_count,
+                    index,
+                    sample / sample_count,
+                    route_angles,
                 )
                 path.append(
                     (
@@ -134,3 +136,24 @@ class HBDGeometryPathMixin:
             path.append(positions[second])
             paths.append(path)
         return paths
+
+    @staticmethod
+    def _circle_sample_angle(
+        start_degrees: float,
+        direction: int,
+        edge_count: int,
+        index: int,
+        fraction: float,
+        route_angles: list[float] | None,
+    ) -> float:
+        if route_angles is None:
+            return math.radians(
+                start_degrees
+                + direction * (index + fraction) * 360 / edge_count
+            )
+        start = route_angles[index]
+        end = route_angles[(index + 1) % edge_count]
+        delta = (end - start) % (2 * math.pi)
+        if direction < 0:
+            delta = -((start - end) % (2 * math.pi))
+        return start + delta * fraction

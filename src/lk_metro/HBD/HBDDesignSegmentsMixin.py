@@ -8,6 +8,43 @@ log = Log("HBD")
 
 class HBDDesignSegmentsMixin:
     @staticmethod
+    def _parse_fitted_shape(
+        route_id: str,
+        sequence: object,
+    ) -> tuple[object, tuple[float, float] | None, bool]:
+        if not isinstance(sequence, str):
+            return sequence, None, False
+        number = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)"
+        ellipse_match = re.fullmatch(
+            rf"(.*)/Ellipse\(\s*({number})\s*,\s*({number})\s*\)",
+            sequence,
+        )
+        circle_match = re.fullmatch(
+            rf"(.*)/Circle(?:\(\s*({number})\s*\))?",
+            sequence,
+        )
+        if ellipse_match is not None:
+            sequence = ellipse_match.group(1)
+            radii = tuple(map(float, ellipse_match.groups()[1:]))
+        elif circle_match is not None:
+            sequence = circle_match.group(1)
+            radius = (
+                float(circle_match.group(2))
+                if circle_match.group(2) is not None
+                else None
+            )
+            radii = (radius, radius) if radius is not None else None
+        else:
+            return sequence, None, False
+        if radii is not None and any(
+            not math.isfinite(radius) or radius <= 0 for radius in radii
+        ):
+            raise ValueError(
+                f"Harry Beck route {route_id} fitted radii must be positive"
+            )
+        return sequence, radii, True
+
+    @staticmethod
     def _parse_circle(
         route_id: str,
         sequence: object,

@@ -75,27 +75,51 @@ class HBDDesignReadMixin:
         segments_by_route = {}
         designed_stops_by_route = {}
         self._circle_routes: dict[str, tuple[float, float, float, bool]] = {}
+        fitted_records = {
+            route_id: self._parse_fitted_shape(str(route_id), sequence)
+            for route_id, sequence in records.items()
+        }
+        self._fitted_circle_routes = {
+            route_id: radii
+            for route_id, (_, radii, is_fitted) in fitted_records.items()
+            if is_fitted
+        }
         for route_id, sequence in records.items():
             if route_id not in routes_by_id:
                 log.warn(f"Harry Beck route {route_id!r} does not exist")
                 continue
             designed_stops = routes_by_id[route_id].stops
-            circle = self._parse_circle(route_id, sequence)
-            if circle is not None:
-                if designed_stops[0] != designed_stops[-1]:
-                    raise ValueError(
-                        f"Harry Beck route {route_id} circle must be closed"
-                    )
-                self._circle_routes[route_id] = circle
-                segments_by_route[route_id] = self._segments_from_circle(
-                    designed_stops
-                )
-            else:
-                directions = self._parse_directions(
-                    route_id, sequence, len(designed_stops) - 1
-                )
-                segments_by_route[route_id] = self._segments_from_directions(
-                    route_id, designed_stops, directions
-                )
+            sequence = fitted_records[route_id][0]
+            segments_by_route[route_id] = self._read_route_segments(
+                route_id, sequence, designed_stops
+            )
             designed_stops_by_route[route_id] = designed_stops
         return segments_by_route, designed_stops_by_route
+
+    def _read_route_segments(
+        self,
+        route_id: str,
+        sequence: object,
+        designed_stops: list[str],
+    ) -> list[dict[str, object]]:
+        circle = self._parse_circle(route_id, sequence)
+        if circle is not None:
+            if designed_stops[0] != designed_stops[-1]:
+                raise ValueError(
+                    f"Harry Beck route {route_id} circle must be closed"
+                )
+            self._circle_routes[route_id] = circle
+            return self._segments_from_circle(designed_stops)
+        if (
+            route_id in self._fitted_circle_routes
+            and designed_stops[0] != designed_stops[-1]
+        ):
+            raise ValueError(
+                f"Harry Beck route {route_id} fitted shape must be closed"
+            )
+        directions = self._parse_directions(
+            route_id, sequence, len(designed_stops) - 1
+        )
+        return self._segments_from_directions(
+            route_id, designed_stops, directions
+        )
