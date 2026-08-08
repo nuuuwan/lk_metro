@@ -9,6 +9,8 @@ class HBDStyleMixin:
     MAP_TITLE = "LANKA METRO"
     TITLE_HEIGHT = 12
     LOGO_WIDTH = 36
+    SHOW_LEGEND = True
+    SHOW_DESCRIPTION = True
     LEGEND_WIDTH = 0
     LEGEND_LINE_HEIGHT = 3.5
     LEGEND_FONT_SIZE = 1.55
@@ -20,6 +22,7 @@ class HBDStyleMixin:
         "'Gill Sans', sans-serif"
     )
     SHOW_GRID = True
+    CIRCLE_MIN_STOP_GAP_DEGREES = 20.0
     ROUTE_STROKE_WIDTH = 1.0
     PARALLEL_ROUTE_GAP = 1.0
     INTERCHANGE_RADIUS = 1.014

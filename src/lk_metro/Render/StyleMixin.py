@@ -1,5 +1,8 @@
-from lk_metro.DiagramStyle import (PARALLEL_ROUTE_GAP, STATION_TICK_LENGTH,
-                                   STATION_TICK_STROKE_WIDTH)
+from lk_metro.DiagramStyle import (
+    PARALLEL_ROUTE_GAP,
+    STATION_TICK_LENGTH,
+    STATION_TICK_STROKE_WIDTH,
+)
 
 
 class StyleMixin:
@@ -13,6 +16,7 @@ class StyleMixin:
     ROUTE_CURVE_RADIUS = 1.5
     ROTATE_LABELS = True
     WARN_LABEL_OVERLAPS = False
+    WARN_LABEL_OVERLAPS_TOLERANCE = 100.0
     LABEL_BASELINE_COMPENSATION = 0.25
     LABEL_DIRECTIONS = (
         (1.0, 0.0),

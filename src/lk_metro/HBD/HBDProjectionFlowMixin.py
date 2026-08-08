@@ -48,9 +48,30 @@ class HBDProjectionFlowMixin:
     ) -> dict[str, list[float]]:
         routes_by_id = {route["id"]: route for route in design_routes}
         fitted_positions = self._fit_circle_routes(routes_by_id, projected)
-        return self._reflow_around_circles(
+        reflowed = self._reflow_around_circles(
             origin_positions, design_routes, fitted_positions
         )
+        circle_stops = {
+            stop
+            for route_id in self._circle_routes
+            for segment in routes_by_id[route_id]["segments"]
+            for stop in segment["stops"]
+        }
+        return self._snap_non_circle_positions(reflowed, circle_stops)
+
+    @staticmethod
+    def _snap_non_circle_positions(
+        positions: dict[str, list[float]],
+        circle_stops: set[str],
+    ) -> dict[str, list[float]]:
+        return {
+            stop: (
+                point
+                if stop in circle_stops
+                else [round(point[0]), round(point[1])]
+            )
+            for stop, point in positions.items()
+        }
 
     def _fit_circle_routes(
         self,
@@ -165,6 +186,7 @@ class HBDProjectionFlowMixin:
             cls._nearest_ellipse_angle(point, center, radii)
             for point in points
         ]
+        angles = cls._spread_close_ellipse_angles(angles)
         positions = [
             [
                 center[0] + x_radius * math.cos(angle),
@@ -185,6 +207,24 @@ class HBDProjectionFlowMixin:
         return center, circle, positions, angles
 
     @classmethod
+    def _spread_close_ellipse_angles(
+        cls,
+        angles: list[float],
+    ) -> list[float]:
+        minimum_gap = math.radians(cls.CIRCLE_MIN_STOP_GAP_DEGREES)
+        spread_angles = angles[:]
+        for index, first in enumerate(angles):
+            next_index = (index + 1) % len(angles)
+            delta = cls._wrapped_angle(angles[next_index] - first)
+            if abs(delta) >= minimum_gap:
+                continue
+            direction = 1 if delta >= 0 else -1
+            adjustment = (minimum_gap - abs(delta)) / 2
+            spread_angles[index] -= direction * adjustment
+            spread_angles[next_index] += direction * adjustment
+        return spread_angles
+
+    @classmethod
     def _nearest_ellipse_angle(
         cls,
         point: list[float],
@@ -193,8 +233,7 @@ class HBDProjectionFlowMixin:
     ) -> float:
         sample_count = 256
         angles = [
-            index * 2 * math.pi / sample_count
-            for index in range(sample_count)
+            index * 2 * math.pi / sample_count for index in range(sample_count)
         ]
         best_index = min(
             range(sample_count),
