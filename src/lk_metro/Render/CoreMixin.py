@@ -78,8 +78,11 @@ class CoreMixin:
         self._prepare_stop_labels(positions, segments, memberships)
         self.station_ticks(positions, segments, memberships)
         self._prepare_route_names(segments)
+        lines.extend(
+            self._stop_marker_svg_lines(positions, memberships, segments)
+        )
         lines.extend(self._route_name_svg_lines())
-        lines.extend(self._stop_svg_lines(positions, memberships, segments))
+        lines.extend(self._stop_label_svg_lines(positions))
         lines.extend(
             ["</g>", *self._title_and_legend_svg_lines(), "</g>", "</svg>"]
         )

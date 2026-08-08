@@ -2,7 +2,7 @@ from lk_metro.GD.Point import Point
 
 
 class StationSvgMixin:
-    def _stop_svg_lines(
+    def _stop_marker_svg_lines(
         self,
         positions: dict[str, Point],
         memberships: dict[str, set[str]],
@@ -12,7 +12,7 @@ class StationSvgMixin:
         route_colors = {route.id: route.color for route in self.routes}
         for stop in self.stops:
             lines.extend(
-                self._single_stop_svg_lines(
+                self._single_stop_marker_svg_lines(
                     stop.name,
                     positions,
                     memberships,
@@ -22,7 +22,7 @@ class StationSvgMixin:
             )
         return lines
 
-    def _single_stop_svg_lines(
+    def _single_stop_marker_svg_lines(
         self,
         stop_name: str,
         positions: dict[str, Point],
@@ -32,44 +32,50 @@ class StationSvgMixin:
     ) -> list[str]:
         x_coordinate, y_coordinate = positions[stop_name]
         if len(memberships[stop_name]) > 1:
-            markers = self._interchange_marker_svg_lines(
+            return self._interchange_marker_svg_lines(
                 stop_name,
                 memberships[stop_name],
-                route_colors,
                 segments,
             )
-        else:
-            markers = [
-                self._station_marker_svg_line(
-                    stop_name,
-                    (x_coordinate, y_coordinate),
-                    memberships,
-                    route_colors,
+        return [
+            self._station_marker_svg_line(
+                stop_name,
+                (x_coordinate, y_coordinate),
+                memberships,
+                route_colors,
+            )
+        ]
+
+    def _stop_label_svg_lines(
+        self,
+        positions: dict[str, Point],
+    ) -> list[str]:
+        lines = []
+        for stop in self.stops:
+            x_coordinate, y_coordinate = positions[stop.name]
+            label_x, label_y, text_anchor = self._stop_label_placement(
+                stop.name,
+                (x_coordinate, y_coordinate),
+            )
+            lines.append(
+                self._label_svg_line(
+                    stop.name,
+                    label_x,
+                    label_y,
+                    text_anchor,
                 )
-            ]
-        label_x, label_y, text_anchor = self._stop_label_placement(
-            stop_name,
-            (x_coordinate, y_coordinate),
-        )
-        label = self._label_svg_line(
-            stop_name,
-            label_x,
-            label_y,
-            text_anchor,
-        )
-        return [*markers, label]
+            )
+        return lines
 
     def _interchange_marker_svg_lines(
         self,
         stop_name: str,
         route_ids: set[str],
-        route_colors: dict[str, str],
         segments: dict[str, list[list[Point]]],
     ) -> list[str]:
         return [
-            f'<circle class="route-interchange" cx="{position[0]}" '
-            f'cy="{position[1]}" r="{self.INTERCHANGE_RADIUS}" '
-            f'stroke="{route_colors[route_id]}"/>'
+            f'<circle class="interchange" cx="{position[0]}" '
+            f'cy="{position[1]}" r="{self.INTERCHANGE_RADIUS}"/>'
             for route_id in sorted(route_ids, key=self._route_order.get)
             for position in [
                 self._route_stop_position(stop_name, route_id, segments)
