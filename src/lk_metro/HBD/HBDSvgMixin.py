@@ -33,6 +33,8 @@ class HBDSvgMixin:
         ]
 
     def _background_svg_lines(self) -> list[str]:
+        if "New Kelani Br." not in self._logical_positions:
+            return []
         bridge_x, bridge_y = self._logical_positions["New Kelani Br."]
         bridge_x = (
             bridge_x - self._grid_min_x
