@@ -14,6 +14,9 @@ class HBDSvgMixin:
         center_y = (
             center[1] - self._grid_min_y
         ) * self.UNIT_SCALE + self.padding
+        x_offset, y_offset = self._route_offsets.get(route.id, (0.0, 0.0))
+        center_x += x_offset * self.ROUTE_STROKE_WIDTH
+        center_y += y_offset * self.ROUTE_STROKE_WIDTH
         x_radius = self._circle_routes[route.id][1] * self.UNIT_SCALE
         y_radius = self._circle_routes[route.id][2] * self.UNIT_SCALE
         return (

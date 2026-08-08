@@ -1,14 +1,36 @@
 {
   "origin_stops": {
-    "Colombo Fort": [0, 0]
+    "Colombo Fort": [0, 0],
+    "Thummulla": [4, 4]
   },
   "routes": {
-    "CM01": "2W-N-3NW-N-6W-2N-NW-2W",
-    "CM02": "S-SW-6W-2N-5W-N-W-2W-N-W-N",
-    "CM03": "9W-2N-NW-E-5N-NE-4E",
-    "CM08": "3SW-5W-3NW-5N-NW-2W-N-E",
-    "CM04": "3S-SW-W-SW-3S-4SE-10E-NE-N",
-    "CM05": "N-5W-6N-NE-9E",
-    "CM06": "NE-E-NE-3S-E-SW-E-NE-S-SW-2W-NW-2N/Ellipse(2,2)"
+    "CM01": {
+      "path": "2W-N-3NW-N-6W-2N-NW-2W",
+      "offset": [0, 0]
+    },
+    "CM02": {
+      "path": "S-SW-6W-2N-5W-N-W-2W-N-W-N",
+      "offset": [1, 0]
+    },
+    "CM03": {
+      "path": "9W-2N-NW-E-5N-NE-4E",
+      "offset": [-1, -1]
+    },
+    "CM04": {
+      "path": "3S-SW-W-SW-3S-4SE-10E-NE-N",
+      "offset": [0, -1]
+    },
+    "CM05": {
+      "path": "N-5W-6N-NE-9E",
+      "offset": [-2, 1]
+    },
+    "CM06": {
+      "path": "NE-E-NE-3S-E-SW-E-NE-S-SW-2W-NW-2N/Ellipse(2,2)",
+      "offset": [0, 2]
+    },
+    "CM08": {
+      "path": "3SW-5W-3NW-5N-NW-2W-N-NE",
+      "offset": [1, -2]
+    }
   }
 }

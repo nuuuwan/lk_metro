@@ -30,7 +30,8 @@ class SvgMarkupMixin:
             "stroke-linejoin: round; }",
             f".station {{ fill: white; stroke-width: "
             f"{self.STATION_TICK_STROKE_WIDTH}; }}",
-            f".interchange {{ fill: white; stroke: #000000; "
+            ".interchange-fill { fill: white; stroke: none; }",
+            f".interchange-boundary {{ fill: none; stroke: #000000; "
             f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
             f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "
             f"fill: {self.LABEL_COLOR}; dominant-baseline: middle; }}",
