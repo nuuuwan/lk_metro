@@ -22,10 +22,7 @@ class HBDLayoutProjectionMixin:
         )
         self._logical_positions = projected
         self._validate_projected_geometry(projected)
-        min_x = min(point[0] for point in projected.values())
-        max_x = max(point[0] for point in projected.values())
-        min_y = min(point[1] for point in projected.values())
-        max_y = max(point[1] for point in projected.values())
+        min_x, max_x, min_y, max_y = self._layout_bounds(projected)
         self._grid_min_x = min_x
         self._grid_min_y = min_y
         self.width = math.ceil(
@@ -41,6 +38,37 @@ class HBDLayoutProjectionMixin:
             )
             for name, point in projected.items()
         }
+
+    def _layout_bounds(
+        self,
+        projected: dict[str, list[float]],
+    ) -> tuple[float, float, float, float]:
+        circle_extents = [
+            (
+                center[0] - self._circle_routes[route_id][1],
+                center[0] + self._circle_routes[route_id][1],
+                center[1] - self._circle_routes[route_id][2],
+                center[1] + self._circle_routes[route_id][2],
+            )
+            for route_id, center in self._circle_centers.items()
+        ]
+        min_x = min(
+            [point[0] for point in projected.values()]
+            + [extent[0] for extent in circle_extents]
+        )
+        max_x = max(
+            [point[0] for point in projected.values()]
+            + [extent[1] for extent in circle_extents]
+        )
+        min_y = min(
+            [point[1] for point in projected.values()]
+            + [extent[2] for extent in circle_extents]
+        )
+        max_y = max(
+            [point[1] for point in projected.values()]
+            + [extent[3] for extent in circle_extents]
+        )
+        return min_x, max_x, min_y, max_y
 
     def _validate_projected_geometry(
         self,

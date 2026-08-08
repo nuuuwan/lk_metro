@@ -56,9 +56,12 @@ class SvgMarkupMixin:
     ) -> list[str]:
         lines = []
         for route in self.routes:
-            path_data = self._route_path_data(segments[route.id])
-            lines.append(
-                f'<path class="route" d="{path_data}" stroke="{route.color}" '
-                f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
-            )
+            lines.append(self._route_svg_line(route, segments[route.id]))
         return lines
+
+    def _route_svg_line(self, route, segments: list[list[Point]]) -> str:
+        path_data = self._route_path_data(segments)
+        return (
+            f'<path class="route" d="{path_data}" stroke="{route.color}" '
+            f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
+        )

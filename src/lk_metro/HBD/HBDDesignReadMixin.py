@@ -74,16 +74,28 @@ class HBDDesignReadMixin:
         routes_by_id = {route.id: route for route in self.routes}
         segments_by_route = {}
         designed_stops_by_route = {}
+        self._circle_routes: dict[str, tuple[float, float, float, bool]] = {}
         for route_id, sequence in records.items():
             if route_id not in routes_by_id:
                 log.warn(f"Harry Beck route {route_id!r} does not exist")
                 continue
             designed_stops = routes_by_id[route_id].stops
-            directions = self._parse_directions(
-                route_id, sequence, len(designed_stops) - 1
-            )
-            segments_by_route[route_id] = self._segments_from_directions(
-                route_id, designed_stops, directions
-            )
+            circle = self._parse_circle(route_id, sequence)
+            if circle is not None:
+                if designed_stops[0] != designed_stops[-1]:
+                    raise ValueError(
+                        f"Harry Beck route {route_id} circle must be closed"
+                    )
+                self._circle_routes[route_id] = circle
+                segments_by_route[route_id] = self._segments_from_circle(
+                    designed_stops
+                )
+            else:
+                directions = self._parse_directions(
+                    route_id, sequence, len(designed_stops) - 1
+                )
+                segments_by_route[route_id] = self._segments_from_directions(
+                    route_id, designed_stops, directions
+                )
             designed_stops_by_route[route_id] = designed_stops
         return segments_by_route, designed_stops_by_route

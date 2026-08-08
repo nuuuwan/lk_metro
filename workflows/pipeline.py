@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 
 
 PNG_SIZE = 6000
+GENERATE_LOCALIZED_IMAGES = False
 log = Log("pipeline")
 
 
@@ -59,15 +60,20 @@ def main() -> None:
     Stop.generate_xy()
     routes = Route.read_all()
     stops = Stop.read_all()
-    outputs = (
+    outputs = [
         (
             GD(routes, stops, width=300, height=300),
             "lk_metro_geographic",
         ),
         (HBD(routes, stops), "lk_metro_harry_beck"),
-        (HBD(routes, stops, language="si"), "lk_metro_harry_beck_si"),
-        (HBD(routes, stops, language="ta"), "lk_metro_harry_beck_ta"),
-    )
+    ]
+    if GENERATE_LOCALIZED_IMAGES:
+        outputs.extend(
+            [
+                (HBD(routes, stops, language="si"), "lk_metro_harry_beck_si"),
+                (HBD(routes, stops, language="ta"), "lk_metro_harry_beck_ta"),
+            ]
+        )
 
     for diagram, filename in outputs:
         svg_path = images_dir / f"{filename}.svg"

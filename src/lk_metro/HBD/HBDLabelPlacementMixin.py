@@ -16,45 +16,24 @@ class HBDLabelPlacementMixin(
     def _prepare_stop_labels(
         self,
         positions: dict[str, Point],
-        segments: dict[str, list[list[Point]]],
-        memberships: dict[str, set[str]],
+        _segments: dict[str, list[list[Point]]],
+        _memberships: dict[str, set[str]],
     ) -> None:
-        if self._load_cached_stop_labels():
-            return
-        occupied = []
-        prefer_positive = True
-        self._stop_label_placements = {}
+        self._stop_label_placements = {
+            name: (*position, "middle") for name, position in positions.items()
+        }
         self._stop_label_bounds_by_name = {}
-        pending = {stop.name for stop in self.stops}
-        while pending:
-            candidates = {
-                name: self._stop_label_candidates(
-                    name,
-                    positions,
-                    segments,
-                    memberships,
-                    occupied,
-                    prefer_positive,
-                )
-                for name in pending
-            }
-            stop_name = min(
-                pending,
-                key=lambda name: self._label_priority(
-                    name,
-                    memberships,
-                    sum(not any(score) for score in candidates[name][1]),
-                ),
+        for stop_name, position in positions.items():
+            font_size = self._label_font_size(stop_name)
+            half_width = self._label_width(stop_name, font_size) / 2
+            half_height = self._label_half_height(stop_name, font_size)
+            self._stop_label_bounds_by_name[stop_name] = (
+                position[0] - half_width,
+                position[1] - half_height,
+                position[0] + half_width,
+                position[1] + half_height,
             )
-            options, scores = candidates[stop_name]
-            selected = options[
-                min(range(len(options)), key=scores.__getitem__)
-            ]
-            occupied.append(selected[0])
-            self._stop_label_bounds_by_name[stop_name] = selected[0]
-            self._stop_label_placements[stop_name] = (*selected[1], "middle")
-            pending.remove(stop_name)
-            prefer_positive = not prefer_positive
+        occupied = list(self._stop_label_bounds_by_name.values())
         self._finalize_stop_labels(occupied)
 
     def _finalize_stop_labels(self, occupied: list[Bounds]) -> None:

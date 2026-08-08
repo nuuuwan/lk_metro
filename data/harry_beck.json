@@ -1,8 +1,14 @@
 {
   "origin_stops": {
-    "Town Hall": [0, 0]
+    "Colombo Fort": [0, 0]
   },
   "routes": {
-    "CM06": "NE-E-NE-3S-E-SW-E-NE-S-SW-2W-bW-NW-2N"
+    "CM01": "2W-N-3NW-N-6W-2N-NW-2W",
+    "CM02": "S-SW-6W-2N-5W-N-bW-W-2W-N-W-N",
+    "CM03": "4W-S-3W-2NW-8N-NE-4E",
+    "CM04": "3S-bSW-SW-NW-bW-SW-3S-4SE-10E-NE-N",
+    "CM05": "N-5W-6N-NE-9E",
+    "CM06": "NE-E-NE-3S-E-SW-E-NE-S-SW-2W-NW-3N",
+    "CM08": "2SW-W-SW-W-NW-2W-4NW-2N-NE-N-NW-2W-N-E"
   }
 }

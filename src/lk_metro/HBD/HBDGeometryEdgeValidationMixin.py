@@ -9,6 +9,8 @@ class HBDGeometryEdgeValidationMixin:
         errors = []
         edges = []
         for route in self.routes:
+            if route.id in self._circle_routes:
+                continue
             for segment in self._segments_by_route[route.id]:
                 first, second = segment["stops"]
                 edges.append((route.id, first, second))

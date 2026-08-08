@@ -6,17 +6,9 @@ class HBDTickOrientationMixin:
     def _orient_station_ticks(
         self,
         ticks: dict[str, tuple[Point, Point]],
-        positions: dict[str, Point],
+        _positions: dict[str, Point],
     ) -> dict[str, tuple[Point, Point]]:
-        return {
-            name: self._tick_to_label(
-                tick,
-                positions[name],
-                self._stop_label_placements[name][:2],
-                self._stop_label_bounds_by_name[name],
-            )
-            for name, tick in ticks.items()
-        }
+        return ticks
 
     def _tick_to_label(
         self,

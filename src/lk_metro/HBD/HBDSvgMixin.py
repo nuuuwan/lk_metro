@@ -4,6 +4,24 @@ from lk_metro.GD.Point import Point
 
 
 class HBDSvgMixin:
+    def _route_svg_line(self, route, segments: list[list[Point]]) -> str:
+        if route.id not in self._circle_routes:
+            return super()._route_svg_line(route, segments)
+        center = self._circle_centers[route.id]
+        center_x = (
+            center[0] - self._grid_min_x
+        ) * self.UNIT_SCALE + self.padding
+        center_y = (
+            center[1] - self._grid_min_y
+        ) * self.UNIT_SCALE + self.padding
+        x_radius = self._circle_routes[route.id][1] * self.UNIT_SCALE
+        y_radius = self._circle_routes[route.id][2] * self.UNIT_SCALE
+        return (
+            f'<ellipse class="route" cx="{center_x:g}" cy="{center_y:g}" '
+            f'rx="{x_radius:g}" ry="{y_radius:g}" stroke="{route.color}" '
+            f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
+        )
+
     def _route_name_svg_lines(self) -> list[str]:
         routes_by_id = {route.id: route for route in self.routes}
         lines = []
@@ -74,10 +92,14 @@ class HBDSvgMixin:
     @property
     def complexity_by_route(self) -> dict[str, int]:
         return {
-            route.id: sum(
-                index == 0
-                or segment["direction"] != segments[index - 1]["direction"]
-                for index, segment in enumerate(segments)
+            route.id: (
+                1
+                if route.id in self._circle_routes
+                else sum(
+                    index == 0
+                    or segment["direction"] != segments[index - 1]["direction"]
+                    for index, segment in enumerate(segments)
+                )
             )
             for route in self.routes
             for segments in [self._segments_by_route[route.id]]

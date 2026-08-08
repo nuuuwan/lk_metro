@@ -1,3 +1,4 @@
+import math
 import re
 
 from utils_future import Log
@@ -6,6 +7,84 @@ log = Log("HBD")
 
 
 class HBDDesignSegmentsMixin:
+    @staticmethod
+    def _parse_circle(
+        route_id: str,
+        sequence: object,
+    ) -> tuple[float, float, float, bool] | None:
+        if not isinstance(sequence, str):
+            return None
+        number = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)"
+        circle_match = re.fullmatch(
+            rf"circle\(\s*({number})\s*,\s*({number})"
+            rf"(?:\s*,\s*(True|False))?\s*\)",
+            sequence,
+        )
+        ellipse_match = re.fullmatch(
+            rf"ellipse\(\s*({number})\s*,\s*({number})\s*,\s*({number})"
+            rf"(?:\s*,\s*(True|False))?\s*\)",
+            sequence,
+        )
+        if ellipse_match is not None:
+            start_degrees, x_radius, y_radius = map(
+                float, ellipse_match.groups()[:3]
+            )
+            result = HBDDesignSegmentsMixin._validated_ellipse(
+                route_id,
+                start_degrees,
+                x_radius,
+                y_radius,
+                ellipse_match.group(4) == "True",
+            )
+        elif circle_match is not None:
+            start_degrees, radius = map(float, circle_match.groups()[:2])
+            result = HBDDesignSegmentsMixin._validated_ellipse(
+                route_id,
+                start_degrees,
+                radius,
+                radius,
+                circle_match.group(3) == "True",
+            )
+        else:
+            result = None
+        return result
+
+    @staticmethod
+    def _validated_ellipse(
+        route_id: str,
+        start_degrees: float,
+        x_radius: float,
+        y_radius: float,
+        is_clockwise: bool,
+    ) -> tuple[float, float, float, bool]:
+        if not all(
+            math.isfinite(value)
+            for value in (start_degrees, x_radius, y_radius)
+        ):
+            raise ValueError(
+                f"Harry Beck route {route_id} has invalid ellipse"
+            )
+        if x_radius <= 0 or y_radius <= 0:
+            raise ValueError(
+                f"Harry Beck route {route_id} ellipse radii must be positive"
+            )
+        return start_degrees % 360, x_radius, y_radius, is_clockwise
+
+    @staticmethod
+    def _segments_from_circle(
+        designed_stops: list[str],
+    ) -> list[dict[str, object]]:
+        return [
+            {
+                "circle": True,
+                "circle_index": index,
+                "stops": [first, second],
+            }
+            for index, (first, second) in enumerate(
+                zip(designed_stops, designed_stops[1:])
+            )
+        ]
+
     @staticmethod
     def _segments_from_directions(
         route_id: str,
