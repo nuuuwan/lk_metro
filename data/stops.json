@@ -1,450 +1,562 @@
 [
   {
     "name": "Anderson Flats",
+    "road": "Park Road",
     "latlng": [6.8898257, 79.8724561]
   },
   {
     "name": "Arangala Junc.",
+    "road": "Malabe - Athurugiriya Road (B240)",
     "latlng": [6.8908252, 79.9646202]
   },
   {
     "name": "Army Hosp. Borella",
+    "road": "Elvitigala Mawatha (AC8)",
     "latlng": [6.900019417426329, 79.87705519904726]
   },
   {
     "name": "Athurugiriya Hosp.",
+    "road": "Kaduwela - Athurugiriya Road (B174)",
     "latlng": [6.881193694506418, 79.99213143727899]
   },
   {
     "name": "Athurugiriya Town",
+    "road": "Malabe - Athurugiriya Road (B240)",
     "latlng": [6.8772464, 79.9899292]
   },
   {
     "name": "Bambalapitiya",
+    "road": "Galle Road (A2)",
     "latlng": [6.895916816129338, 79.85680089999516]
   },
   {
     "name": "Battaramulla Junc.",
+    "road": "Kaduwela Road (New Kandy Road) (B240)",
     "latlng": [6.9028671, 79.920271]
   },
   {
     "name": "Boralesgamuwa",
+    "road": "Colombo-Piliyandala-Horana Road (B84)",
     "latlng": [6.8410598, 79.9017028]
   },
   {
     "name": "Borella",
+    "road": "Dr. Danister de Silva Mawatha (Baseline Road) (AC5)",
     "latlng": [6.9148334, 79.8776]
   },
   {
     "name": "BRC Junc.",
+    "road": "Sri Sambuddhatwa Jayanthi Mawatha (Havelock Road) (A4)",
     "latlng": [6.88644, 79.866051]
   },
   {
     "name": "Campbell Park",
+    "road": "Dr. Danister de Silva Mawatha (Baseline Road) (AC5)",
     "latlng": [6.9200218, 79.8771405]
   },
   {
     "name": "Cancer Hosp. 01",
+    "road": "Hospital Road",
     "latlng": [6.8373188, 79.9202858]
   },
   {
     "name": "Castle Hosp.",
+    "road": "Dudley Senanayake Mawatha (Castle Street) (A0)",
     "latlng": [6.9098412, 79.8847381]
   },
   {
     "name": "Colombo Fort",
+    "road": "Olcott Mawatha (A1)",
     "latlng": [6.9337271, 79.8500803]
   },
   {
     "name": "CTB Junc.",
+    "road": "Gampaha-Ja Ela Road (A33)",
     "latlng": [7.080981779937416, 79.89082408925789]
   },
   {
     "name": "Dehiwala",
+    "road": "Galle Road (A2)",
     "latlng": [6.8512785, 79.8659769]
   },
   {
     "name": "Delkanda Junc.",
+    "road": "High Level Road (A4)",
     "latlng": [6.8629794, 79.9014385]
   },
   {
     "name": "Dematagoda",
+    "road": "Dr. Danister de Silva Mawatha (Baseline Road) (AC5)",
     "latlng": [6.9327474, 79.8803715]
   },
   {
     "name": "Egoda Uyana",
+    "road": "Galle Road New Deviation (AB11)",
     "latlng": [6.7429591, 79.8917317]
   },
   {
     "name": "Ekala",
+    "road": "Ekala-Kotadeniyawa Road (B111)",
     "latlng": [7.1013158, 79.91027]
   },
   {
     "name": "Gamini Hall",
+    "road": "T. B. Jayah Mawatha",
     "latlng": [6.9270849, 79.8618303]
   },
   {
     "name": "German Tech Angulana",
+    "road": "Galle Road (A2)",
     "latlng": [6.8028482, 79.8876012]
   },
   {
     "name": "Golumadama Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.8080465, 79.8839023]
   },
   {
     "name": "Havelock",
+    "road": "H. Sri Nissanka Mawatha (Maya Avenue) (A4)",
     "latlng": [6.881725040590715, 79.86977934325675]
   },
   {
     "name": "Hedges Ct.",
+    "road": "Hedges Court",
     "latlng": [6.9219063, 79.8656198]
   },
   {
     "name": "Hekitta Junc.",
+    "road": "Hekitta Road (B459)",
     "latlng": [6.982248, 79.8841858]
   },
   {
     "name": "Hendala",
+    "road": "Hendala Road (B151)",
     "latlng": [6.9964063, 79.8897564]
   },
   {
     "name": "Hirdaramani",
+    "road": "Ven. Murutthettuwe Ananda Nahimi Mawatha (Thimbirigasyaya Road)",
     "latlng": [6.893517249498667, 79.8701073806511]
   },
   {
     "name": "Hokandara Junc.",
+    "road": "Malabe - Athurugiriya Road (B240)",
     "latlng": [6.8858622, 79.9687786]
   },
   {
     "name": "Independence Arcade",
+    "road": "Independence Avenue (AC1)",
     "latlng": [6.9029236, 79.868679]
   },
   {
     "name": "Independence Sq.",
+    "road": "Independence Avenue (AC1)",
     "latlng": [6.9041807, 79.8677752]
   },
   {
     "name": "Isurupaya",
+    "road": "D. P. Wijesinghe Mawatha (B645)",
     "latlng": [6.8906999, 79.9303791]
   },
   {
     "name": "Ja Ela",
+    "road": "Negombo Road (A3)",
     "latlng": [7.077552560202973, 79.89114089731264]
   },
   {
     "name": "Jawatta Rd.",
+    "road": "Jawatta Road",
     "latlng": [6.8975105, 79.8666977]
   },
   {
     "name": "Jayanthi Mw.",
+    "road": "Galle Road New Deviation (AB11)",
     "latlng": [6.735825076462729, 79.89452218532622]
   },
   {
     "name": "Kadawatha",
+    "road": "Colombo-Kandy Road (A1)",
     "latlng": [7.002137, 79.9512274]
   },
   {
     "name": "Kalalgoda Junc.",
+    "road": "New Hospital Road (AB5)",
     "latlng": [6.8658996, 79.9312943]
   },
   {
     "name": "Kalubowila Hosp.",
+    "road": "Hospital Road (B229)",
     "latlng": [6.8637023, 79.8684372]
   },
   {
     "name": "Kandana",
+    "road": "Negombo Road (A3)",
     "latlng": [7.0494955, 79.8982002]
   },
   {
     "name": "Katubedda Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.797428, 79.888573]
   },
   {
     "name": "Kelaniya Campus",
+    "road": "Colombo-Kandy Road (A1)",
     "latlng": [6.974219, 79.9153877]
   },
   {
     "name": "Kesbewa",
+    "road": "Colombo-Horana Road (B84)",
     "latlng": [6.7957403, 79.940848]
   },
   {
     "name": "Kiribathgoda",
+    "road": "Colombo-Kandy Road (A1)",
     "latlng": [6.978151, 79.9269935]
   },
   {
     "name": "Kirulapone",
+    "road": "High Level Road (A4)",
     "latlng": [6.8823047, 79.8753371]
   },
   {
     "name": "Kollupitiya",
+    "road": "Galle Road (A2)",
     "latlng": [6.911360310908329, 79.84961018006854]
   },
   {
     "name": "Koralawella",
+    "road": "Galle Road New Deviation (AB11)",
     "latlng": [6.7584521, 79.8859023]
   },
   {
     "name": "Kottawa",
+    "road": "High Level Road (A4)",
     "latlng": [6.8430139, 79.9655312]
   },
   {
     "name": "Lake House",
+    "road": "D. R. Wijewardene Mawatha (AC6)",
     "latlng": [6.93288, 79.847176]
   },
   {
     "name": "Lanka Fiber",
+    "road": "Colombo-Horana Road (B84)",
     "latlng": [6.8105, 79.917]
   },
   {
     "name": "Liberty",
+    "road": "R. A. de Mel Mawatha",
     "latlng": [6.91192090877616, 79.85159609079953]
   },
   {
     "name": "Mabola",
+    "road": "Negombo Road (A3)",
     "latlng": [7.0021721, 79.8978635]
   },
   {
     "name": "Mahabage",
+    "road": "Negombo Road (A3)",
     "latlng": [7.0226597, 79.9009421]
   },
   {
     "name": "Mahanama Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.72508284457432, 79.90661039778067]
   },
   {
     "name": "Mahara Junc.",
+    "road": "Colombo-Kandy Road (A1)",
     "latlng": [6.991134, 79.939418]
   },
   {
     "name": "Maharagama Cargills Food City",
+    "road": "Dehiwela-Maharagama Road (B94)",
     "latlng": [6.8452764, 79.926325]
   },
   {
     "name": "Maharagama",
+    "road": "High Level Road (A4)",
     "latlng": [6.8472783, 79.9266082]
   },
   {
     "name": "Makumbura",
+    "road": "High Level Road (A4)",
     "latlng": [6.8392272, 79.9726949]
   },
   {
     "name": "Malabe",
+    "road": "Kaduwela Road (New Kandy Road) (B240)",
     "latlng": [6.903919, 79.954427]
   },
   {
     "name": "Maliban Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.8195146, 79.8736648]
   },
   {
     "name": "Maradana Railway",
+    "road": "Panchikawatte Road (AC22)",
     "latlng": [6.928927469456978, 79.86416585840868]
   },
   {
     "name": "Mendis Ln. Rawathawatta",
+    "road": "Galle Road (A2)",
     "latlng": [6.7825662, 79.8841703]
   },
   {
     "name": "Millennium City",
+    "road": "Kaduwela - Athurugiriya Road (B174)",
     "latlng": [6.8828652, 79.9994577]
   },
   {
     "name": "Moratuwa",
+    "road": "Galle Road New Deviation (AB11)",
     "latlng": [6.7746821, 79.8826095]
   },
   {
     "name": "Mount Lavinia",
+    "road": "Galle Road (A2)",
     "latlng": [6.831684, 79.8625654]
   },
   {
     "name": "NAITA",
+    "road": "Sri Jayewardenepura Mawatha (A0)",
     "latlng": [6.90751508271171, 79.89997639062317]
   },
   {
     "name": "Narahenpita",
+    "road": "Elvitigala Mawatha (AC8)",
     "latlng": [6.892352081236511, 79.87699939804031]
   },
   {
     "name": "Nawaloka",
+    "road": "Dr. Colvin R. de Silva Mawatha (Union Place)",
     "latlng": [6.9227947, 79.8533349]
   },
   {
     "name": "Nawinna",
+    "road": "Old Kottawa Road (B291)",
     "latlng": [6.8568945, 79.9177709]
   },
   {
     "name": "Lalanka Ratmalana",
+    "road": "Galle Road (A2)",
     "latlng": [6.822315342565905, 79.87150136420114]
   },
   {
     "name": "Nelum Pokuna",
+    "road": "Ananda Coomaraswamy Mawatha (A0)",
     "latlng": [6.9114983, 79.8639136]
   },
   {
     "name": "Nisaco Mall",
+    "road": "Malabe - Athurugiriya Road (B240)",
     "latlng": [6.8807335, 79.9838565]
   },
   {
     "name": "Nugegoda",
+    "road": "High Level Road (A4)",
     "latlng": [6.8699688, 79.8882835]
   },
   {
     "name": "Orugodawatta",
+    "road": "Dr. Danister de Silva Mawatha (Baseline Road) (AC5)",
     "latlng": [6.9484085, 79.8887333]
   },
   {
     "name": "Palam Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.7266891780513705, 79.90528926317276]
   },
   {
     "name": "Palam Thuna Junc.",
+    "road": "Denzil Kobbekaduwa Mawatha (AB15)",
     "latlng": [6.8949993, 79.9243138]
   },
   {
     "name": "Panadura Base Hosp.",
+    "road": "Galle Road (A2)",
     "latlng": [6.7218203, 79.9067629]
   },
   {
     "name": "Panadura",
+    "road": "Arthur V. Dias Mawatha (Main Street) (AB27)",
     "latlng": [6.712456, 79.9044731]
   },
   {
     "name": "Pannipitiya Railway",
+    "road": "Talawatugoda Road (B47)",
     "latlng": [6.846801372868706, 79.94847130846496]
   },
   {
     "name": "New Kelani Br.",
+    "road": "New Kelani Bridge Road (A1)",
     "latlng": [6.9554478, 79.8829057]
   },
   {
     "name": "Peliyagoda",
+    "road": "Negombo Road (A3)",
     "latlng": [6.9633651, 79.8818947]
   },
   {
     "name": "Pepiliyana",
+    "road": "Colombo-Piliyandala-Horana Road (B84)",
     "latlng": [6.8564851, 79.8906015]
   },
   {
     "name": "Pettah",
+    "road": "Olcott Mawatha (A1)",
     "latlng": [6.9327568, 79.854912]
   },
   {
     "name": "Piliyandala",
+    "road": "Colombo-Horana Road (B84)",
     "latlng": [6.8020833, 79.9250648]
   },
   {
     "name": "Public Library",
+    "road": "Ananda Coomaraswamy Mawatha (A0)",
     "latlng": [6.912133958994005, 79.85817494209255]
   },
   {
     "name": "Rajagiriya",
+    "road": "Sri Jayewardenepura Mawatha (A0)",
     "latlng": [6.9095041, 79.8962176]
   },
   {
     "name": "Rathmalana Tech",
+    "road": "Galle Road (A2)",
     "latlng": [6.814194501163807, 79.8791828959662]
   },
   {
     "name": "Raththanapitiya",
+    "road": "Colombo-Piliyandala-Horana Road (B84)",
     "latlng": [6.8483963, 79.8977298]
   },
   {
     "name": "Regal Cinema",
+    "road": "Sir Chittampalam A. Gardiner Mawatha (A4)",
     "latlng": [6.931616995741729, 79.8469231897815]
   },
   {
     "name": "Royal Institute",
+    "road": "H. Sri Nissanka Mawatha (Maya Avenue) (A4)",
     "latlng": [6.879014748618401, 79.87127359272628]
   },
   {
     "name": "Sethsiripaya",
+    "road": "Polduwa Road (B653)",
     "latlng": [6.903434, 79.9152719]
   },
   {
     "name": "Singer Mega",
+    "road": "Dudley Senanayake Mawatha (Castle Street) (A0)",
     "latlng": [6.9109621, 79.8765045]
   },
   {
     "name": "Thalahena Junc.",
+    "road": "Kaduwela Road (New Kandy Road) (B240)",
     "latlng": [6.9079798, 79.9451386]
   },
   {
     "name": "Thalangama",
+    "road": "Kaduwela Road (New Kandy Road) (B240)",
     "latlng": [6.9067802, 79.9261129]
   },
   {
     "name": "Thalawathugoda",
+    "road": "Pannipitiya Road (B47)",
     "latlng": [6.8763201, 79.9353613]
   },
   {
     "name": "Thimbirigasyaya",
+    "road": "Sri Sambuddhatwa Jayanthi Mawatha (Havelock Road) (A4)",
     "latlng": [6.890381243958108, 79.86381410579264]
   },
   {
     "name": "Thorana Junc.",
+    "road": "Colombo-Kandy Road (A1)",
     "latlng": [6.967648718750613, 79.90163727921274]
   },
   {
     "name": "Thummulla",
+    "road": "Philip Gunawardene Mawatha (Reid Avenue) (A4)",
     "latlng": [6.898811324558185, 79.86055778250385]
   },
   {
     "name": "Town Hall",
+    "road": "De Soysa Circus",
     "latlng": [6.9173013, 79.864813]
   },
   {
     "name": "Town Hall - Vision Care",
+    "road": "Ward Place",
     "latlng": [6.917096448315182, 79.8655390536384]
   },
   {
     "name": "Union Place",
+    "road": "Dr. Colvin R. de Silva Mawatha (Union Place)",
     "latlng": [6.919582476939113, 79.85937744924864]
   },
   {
     "name": "VTA / AAT",
+    "road": "Elvitigala Mawatha (AC8)",
     "latlng": [6.8966414, 79.8769024]
   },
   {
     "name": "W.A. Silva Mw.",
+    "road": "W. A. Silva Mawatha (High Street) (AC32)",
     "latlng": [6.8758493, 79.8621511]
   },
   {
     "name": "Wattala",
+    "road": "Negombo Road (A3)",
     "latlng": [6.9898705, 79.8927094]
   },
   {
     "name": "Weerasinghe Mw.",
+    "road": "Weerasinghe Mawatha",
     "latlng": [6.8206289, 79.9129397]
   },
   {
     "name": "Weligampitiya",
+    "road": "Negombo Road (A3)",
     "latlng": [7.0692495, 79.8947761]
   },
   {
     "name": "Wellawatta",
+    "road": "Galle Road (A2)",
     "latlng": [6.8750845, 79.8575082]
   },
   {
     "name": "Werahera",
+    "road": "Colombo-Horana Road (B84)",
     "latlng": [6.8270506, 79.9057376]
   },
   {
     "name": "Wijerama Junc.",
+    "road": "High Level Road (A4)",
     "latlng": [6.8577676, 79.9084281]
   },
   {
     "name": "Wijerama",
+    "road": "Wijerama Mawatha (McCarthy Road)",
     "latlng": [6.911454038634594, 79.87094260078008]
   },
   {
     "name": "Williams Junc.",
+    "road": "Galle Road (A2)",
     "latlng": [6.8639742, 79.8635756]
   },
   {
     "name": "Independence Square",
+    "road": "Independence Avenue (AC1)",
     "latlng": [6.904499714709575, 79.86782078887845]
   },
   {
     "name": "Jawatta",
+    "road": "Jawatta Road",
     "latlng": [6.896581847458841, 79.86680639662895]
   }
 ]

@@ -10,5 +10,6 @@ from lk_metro.Stop.StopXYMixin import StopXYMixin
 class Stop(StopReadMixin, StopXYMixin, AbstractData):
     DATA_FILE: ClassVar[str] = "stops.json"
     name: str
+    road: str
     latlng: list[float]
     xy: list[float]

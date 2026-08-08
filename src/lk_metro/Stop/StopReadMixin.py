@@ -59,6 +59,7 @@ class StopReadMixin:
         for index, record in enumerate(stop_records):
             if not isinstance(record, dict) or set(record) != {
                 "name",
+                "road",
                 "latlng",
             }:
                 raise ValueError(

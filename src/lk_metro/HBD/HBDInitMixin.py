@@ -61,7 +61,8 @@ class HBDInitMixin:
         stops_by_name = {stop.name: stop for stop in stops}
         self.stops = [
             stops_by_name.get(
-                name, Stop(name=name, latlng=[0.0, 0.0], xy=[0.0, 0.0])
+                name,
+                Stop(name=name, road="", latlng=[0.0, 0.0], xy=[0.0, 0.0]),
             )
             for name in designed_stop_names
         ]
