@@ -18,6 +18,10 @@ class RouteBuildMixin:
                 edge_routes[edge].append(route.id)
         return edge_routes
 
+    @staticmethod
+    def _parallel_lane_index(route_index: int) -> int:
+        return route_index
+
     def _route_edge_path(
         self,
         first_name: str,
@@ -39,9 +43,7 @@ class RouteBuildMixin:
         )
         path = self._base_route_edge_path(*canonical)
         if len(route_ids) > 1:
-            offset_index = (
-                route_ids.index(route_id) - (len(route_ids) - 1) / 2
-            )
+            offset_index = self._parallel_lane_index(route_ids.index(route_id))
             path = self._offset_path(
                 path, offset_index * self.parallel_route_gap
             )

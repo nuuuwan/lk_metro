@@ -216,9 +216,7 @@ class HBDProjectionFlowMixin:
         for direction in (1, -1):
             ordered = cls._spread_ordered_angles(angles, direction)
             error = sum(
-                cls._ellipse_distance_squared(
-                    point, center, radii, angle
-                )
+                cls._ellipse_distance_squared(point, center, radii, angle)
                 for point, angle in zip(points, ordered)
             )
             candidates.append((error, ordered, direction))
@@ -244,12 +242,15 @@ class HBDProjectionFlowMixin:
             for index, angle in enumerate(angles)
         ]
         for _ in range(count * 16):
-            changed = sum(
-                cls._relax_ordered_angle_gap(
-                    ordered, index, direction, minimum_gap
+            changed = (
+                sum(
+                    cls._relax_ordered_angle_gap(
+                        ordered, index, direction, minimum_gap
+                    )
+                    for index in range(count)
                 )
-                for index in range(count)
-            ) > 0
+                > 0
+            )
             if not changed:
                 break
         return ordered
