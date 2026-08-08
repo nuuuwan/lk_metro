@@ -97,9 +97,9 @@ class HBDGeometryPathMixin:
         route_id: str,
         positions: dict[str, Point],
     ) -> list[list[Point]]:
-        start_degrees, x_radius, y_radius, is_clockwise = (
-            self._circle_routes[route_id]
-        )
+        start_degrees, x_radius, y_radius, is_clockwise = self._circle_routes[
+            route_id
+        ]
         direction = -1 if is_clockwise else 1
         x_radius *= self.UNIT_SCALE
         y_radius *= self.UNIT_SCALE

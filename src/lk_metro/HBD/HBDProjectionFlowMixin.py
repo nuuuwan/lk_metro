@@ -29,20 +29,82 @@ class HBDProjectionFlowMixin:
                     position_routes,
                 )
                 continue
-            pending_segments = self._pending_segments([route])
-            while pending_segments:
-                remaining = self._project_available_segments(
-                    pending_segments,
-                    projected,
-                    position_routes,
-                )
-                if len(remaining) == len(pending_segments):
-                    self._add_fallback_origin(
-                        remaining[0], projected, position_routes
-                    )
-                else:
-                    pending_segments = remaining
+            self._project_linear_route(route, projected, position_routes)
         return projected
+
+    def _project_linear_route(
+        self,
+        route: dict[str, object],
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> None:
+        route_id = route["id"]
+        segments = route["segments"]
+        stops = [segments[0]["stops"][0]] + [
+            segment["stops"][1] for segment in segments
+        ]
+        deltas = [
+            self.DIRECTION_VECTORS[self.DIRECTIONS.index(segment["direction"])]
+            for segment in segments
+        ]
+        anchor_index = next(
+            (index for index, stop in enumerate(stops) if stop in projected),
+            None,
+        )
+        if anchor_index is None:
+            anchor_index = 0
+            self._add_fallback_origin(
+                (route_id, stops[:2], *deltas[0]),
+                projected,
+                position_routes,
+            )
+        position_routes[stops[anchor_index]].add(route_id)
+        self._project_route_direction(
+            route_id,
+            stops,
+            deltas,
+            range(anchor_index, len(deltas)),
+            1,
+            projected,
+            position_routes,
+        )
+        self._project_route_direction(
+            route_id,
+            stops,
+            deltas,
+            range(anchor_index - 1, -1, -1),
+            -1,
+            projected,
+            position_routes,
+        )
+
+    def _project_route_direction(
+        self,
+        route_id: str,
+        stops: list[str],
+        deltas: list[tuple[int, int]],
+        edge_indices: range,
+        step: int,
+        projected: dict[str, list[float]],
+        position_routes: dict[str, set[str]],
+    ) -> None:
+        for edge_index in edge_indices:
+            source_index = edge_index if step > 0 else edge_index + 1
+            target_index = source_index + step
+            source = stops[source_index]
+            target = stops[target_index]
+            x_delta, y_delta = deltas[edge_index]
+            expected = [
+                projected[source][0] + step * x_delta,
+                projected[source][1] + step * y_delta,
+            ]
+            self._record_projected_stop(
+                target,
+                expected,
+                route_id,
+                projected,
+                position_routes,
+            )
 
     def _project_circle_routes(
         self,

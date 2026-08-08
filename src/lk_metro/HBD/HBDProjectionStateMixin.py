@@ -19,7 +19,7 @@ class HBDProjectionStateMixin:
             position_routes[stop] = {route_id}
             return
         if all(
-            math.isclose(actual, candidate)
+            math.isclose(actual, candidate, abs_tol=1e-9)
             for actual, candidate in zip(projected[stop], expected)
         ):
             position_routes[stop].add(route_id)
@@ -32,6 +32,7 @@ class HBDProjectionStateMixin:
             f"(route {retained_routes}) and "
             f"{self._format_stop_at(stop, expected)} (route {route_id})"
         )
+        position_routes[stop].add(route_id)
 
     @staticmethod
     def _add_fallback_origin(
