@@ -28,8 +28,8 @@ class SvgMarkupMixin:
             "stroke-width: 0.5; }",
             ".route { fill: none; stroke-linecap: butt; "
             "stroke-linejoin: round; }",
-            f".station {{ stroke-width: {self.STATION_TICK_STROKE_WIDTH}; "
-            "stroke-linecap: square; }",
+            f".station {{ fill: white; stroke-width: "
+            f"{self.STATION_TICK_STROKE_WIDTH}; }}",
             f".interchange {{ fill: white; stroke: #000000; "
             f"stroke-width: {self.INTERCHANGE_STROKE_WIDTH}; }}",
             f".label {{ font: {self.LABEL_FONT_SIZE}px {self.FONT_FAMILY}; "

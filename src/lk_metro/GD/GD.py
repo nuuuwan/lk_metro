@@ -58,11 +58,10 @@ class GD(
 
     def to_svg(self) -> str:
         positions = self.layout()
-        paths = self.route_paths(positions)
         segments = self.route_segments(positions)
         lines = self._svg_header_lines()
         lines.extend(self._route_svg_lines(segments))
-        lines.extend(self._stop_svg_lines(positions, paths))
+        lines.extend(self._stop_svg_lines(positions))
         lines.extend(
             ["</g>", *self._title_and_legend_svg_lines(), "</g>", "</svg>"]
         )

@@ -5,7 +5,6 @@ class GDStopsMixin:
     def _stop_svg_lines(
         self,
         positions: dict[str, tuple[float, float]],
-        paths: dict[str, list[tuple[float, float]]],
     ) -> list[str]:
         lines = []
         routes_to_draw = self.routes
@@ -25,14 +24,10 @@ class GDStopsMixin:
                     f'r="{self.INTERCHANGE_RADIUS}"/>'
                 )
             else:
-                first, second = self._station_tick(
-                    stop.name, positions, paths
-                )
                 route_id = next(iter(memberships[stop.name]))
                 lines.append(
-                    f'<line class="station" x1="{first[0]}" '
-                    f'y1="{first[1]}" x2="{second[0]}" '
-                    f'y2="{second[1]}" '
+                    f'<circle class="station" cx="{x_coordinate}" '
+                    f'cy="{y_coordinate}" r="{self.STATION_RADIUS}" '
                     f'stroke="{route_colors[route_id]}"/>'
                 )
             lines.append(

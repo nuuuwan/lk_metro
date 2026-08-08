@@ -6,7 +6,6 @@ class StationSvgMixin:
         self,
         positions: dict[str, Point],
         memberships: dict[str, set[str]],
-        station_ticks: dict[str, tuple[Point, Point]],
     ) -> list[str]:
         lines = []
         route_colors = {route.id: route.color for route in self.routes}
@@ -16,7 +15,6 @@ class StationSvgMixin:
                     stop.name,
                     positions,
                     memberships,
-                    station_ticks,
                     route_colors,
                 )
             )
@@ -27,7 +25,6 @@ class StationSvgMixin:
         stop_name: str,
         positions: dict[str, Point],
         memberships: dict[str, set[str]],
-        station_ticks: dict[str, tuple[Point, Point]],
         route_colors: dict[str, str],
     ) -> list[str]:
         x_coordinate, y_coordinate = positions[stop_name]
@@ -39,8 +36,8 @@ class StationSvgMixin:
         else:
             marker = self._station_marker_svg_line(
                 stop_name,
+                (x_coordinate, y_coordinate),
                 memberships,
-                station_ticks,
                 route_colors,
             )
         label_x, label_y, text_anchor = self._stop_label_placement(
@@ -58,14 +55,13 @@ class StationSvgMixin:
     def _station_marker_svg_line(
         self,
         stop_name: str,
+        position: Point,
         memberships: dict[str, set[str]],
-        station_ticks: dict[str, tuple[Point, Point]],
         route_colors: dict[str, str],
     ) -> str:
-        first, second = station_ticks[stop_name]
         route_id = next(iter(memberships[stop_name]))
         return (
-            f'<line class="station" x1="{first[0]}" y1="{first[1]}" '
-            f'x2="{second[0]}" y2="{second[1]}" '
+            f'<circle class="station" cx="{position[0]}" cy="{position[1]}" '
+            f'r="{self.STATION_RADIUS}" '
             f'stroke="{route_colors[route_id]}"/>'
         )
