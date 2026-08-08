@@ -3,6 +3,7 @@ import subprocess
 import sys
 import tempfile
 import xml.etree.ElementTree as ET
+from datetime import date
 from pathlib import Path
 
 from utils_future import File, Log
@@ -53,7 +54,7 @@ def generate_png(svg_path: Path, png_path: Path) -> None:
 
 
 def main() -> None:
-    images_dir = ROOT_DIR / "images"
+    images_dir = ROOT_DIR / "images" / date.today().isoformat()
     images_dir.mkdir(parents=True, exist_ok=True)
     Stop.generate_xy()
     routes = Route.read_all()
