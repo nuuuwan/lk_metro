@@ -216,7 +216,23 @@ class HBDGeometryPathMixin:
                 first, second, edge, positions
             )
 
-        return sorted(self._edge_routes[edge], key=cmp_to_key(compare))
+        route_ids = sorted(self._edge_routes[edge], key=cmp_to_key(compare))
+        for override in getattr(self, "PARALLEL_ROUTE_ORDER_OVERRIDES", ()):
+            override_ids = [
+                route_id for route_id in override if route_id in route_ids
+            ]
+            if len(override_ids) < 2:
+                continue
+            insertion_index = min(
+                route_ids.index(route_id) for route_id in override_ids
+            )
+            route_ids = [
+                route_id
+                for route_id in route_ids
+                if route_id not in override_ids
+            ]
+            route_ids[insertion_index:insertion_index] = override_ids
+        return route_ids
 
     def _compare_parallel_routes(
         self,
