@@ -15,7 +15,7 @@ class GDStyleMixin:
     )
     FOOTER_TEXT = (
         "Data from https://lankametro.lk · Design and Visualisation by "
-        "https://github.com/nuuuwan"
+        "@nuuuwan"
     )
     MAP_VERSION = datetime.now().strftime("v%Y-%m-%d %H:%M")
     LEGEND_TITLE = "Routes"

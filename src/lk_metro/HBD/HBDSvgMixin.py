@@ -16,11 +16,28 @@ class HBDSvgMixin:
             return super()._station_marker_svg_line(
                 stop_name, position, memberships, route_colors
             )
+        route_id = next(iter(memberships[stop_name]))
         return (
             f'<line class="station" x1="{tick[0][0]}" y1="{tick[0][1]}" '
             f'x2="{tick[1][0]}" y2="{tick[1][1]}" '
-            f'stroke="{self.STATION_TICK_COLOR}" stroke-linecap="square"/>'
+            f'stroke="{route_colors[route_id]}" stroke-linecap="square"/>'
         )
+
+    def _label_svg_line(
+        self,
+        stop_name: str,
+        label_x: float,
+        label_y: float,
+        text_anchor: str,
+    ) -> str:
+        line = super()._label_svg_line(
+            stop_name, label_x, label_y, text_anchor
+        )
+        angle = getattr(self, "_stop_label_angles", {}).get(stop_name)
+        if angle is None:
+            return line
+        transform = f' transform="rotate({angle:g} {label_x:g} {label_y:g})"'
+        return line.replace("<text ", f"<text{transform} ", 1)
 
     def _route_svg_line(self, route, segments: list[list[Point]]) -> str:
         if route.id not in self._circle_routes:

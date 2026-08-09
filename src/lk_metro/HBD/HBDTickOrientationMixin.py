@@ -11,49 +11,68 @@ class HBDTickOrientationMixin:
         positions: dict[str, Point],
     ) -> dict[str, tuple[Point, Point]]:
         oriented = {
-            stop_name: self._center_station_tick(tick, positions[stop_name])
+            stop_name: self._one_sided_station_tick(
+                tick, positions[stop_name]
+            )
             for stop_name, tick in ticks.items()
         }
         self._station_ticks = oriented
+        self._stop_label_angles = {}
         for stop_name, tick in oriented.items():
-            self._place_label_above_tick(stop_name, tick)
+            self._place_label_along_tick(stop_name, tick)
         self._finalize_stop_labels(
             list(self._stop_label_bounds_by_name.values())
         )
         return oriented
 
-    def _center_station_tick(
+    def _one_sided_station_tick(
         self,
         tick: tuple[Point, Point],
         position: Point,
     ) -> tuple[Point, Point]:
-        x_delta = tick[1][0] - tick[0][0]
-        y_delta = tick[1][1] - tick[0][1]
-        scale = self.STATION_TICK_LENGTH / (2 * math.hypot(x_delta, y_delta))
-        x_offset = x_delta * scale
-        y_offset = y_delta * scale
-        return (
-            (position[0] - x_offset, position[1] - y_offset),
-            (position[0] + x_offset, position[1] + y_offset),
+        x_delta = tick[1][0] - position[0]
+        y_delta = tick[1][1] - position[1]
+        length = math.hypot(x_delta, y_delta)
+        direction = (x_delta / length, y_delta / length)
+        inner = (
+            position[0] + direction[0] * self.ROUTE_STROKE_WIDTH / 2,
+            position[1] + direction[1] * self.ROUTE_STROKE_WIDTH / 2,
+        )
+        return inner, (
+            inner[0] + direction[0] * self.STATION_TICK_LENGTH,
+            inner[1] + direction[1] * self.STATION_TICK_LENGTH,
         )
 
-    def _place_label_above_tick(
+    def _place_label_along_tick(
         self,
         stop_name: str,
         tick: tuple[Point, Point],
     ) -> None:
         font_size = self._label_font_size(stop_name)
-        half_width = self._label_width(stop_name, font_size) / 2
+        label_width = self._label_width(stop_name, font_size)
         half_height = self._label_half_height(stop_name, font_size)
-        label_x = (tick[0][0] + tick[1][0]) / 2
-        label_y = min(tick[0][1], tick[1][1])
-        label_y -= half_height + self.LABEL_HALO_WIDTH
-        self._stop_label_placements[stop_name] = (label_x, label_y, "middle")
+        x_delta = tick[1][0] - tick[0][0]
+        y_delta = tick[1][1] - tick[0][1]
+        length = math.hypot(x_delta, y_delta)
+        direction = (x_delta / length, y_delta / length)
+        label_position = (
+            tick[1][0] + direction[0] * self.LABEL_HALO_WIDTH,
+            tick[1][1] + direction[1] * self.LABEL_HALO_WIDTH,
+        )
+        self._stop_label_placements[stop_name] = (
+            *label_position,
+            "start",
+        )
+        self._stop_label_angles[stop_name] = math.degrees(
+            math.atan2(direction[1], direction[0])
+        )
         self._stop_label_bounds_by_name[stop_name] = (
-            label_x - half_width,
-            label_y - half_height,
-            label_x + half_width,
-            label_y + half_height,
+            self._rotated_label_bounds(
+                label_position,
+                direction,
+                label_width,
+                half_height,
+            )
         )
 
     def _tick_to_label(
