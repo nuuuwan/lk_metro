@@ -36,7 +36,7 @@ class HBDGeometryPathMixin:
     def _circle_paths_by_edge(
         self,
         paths_by_route: dict[str, list[list[Point]]],
-    ) -> dict[tuple[str, str], list[Point]]:
+    ) -> dict[tuple[str, str], tuple[str, list[Point]]]:
         circle_paths = {}
         for route_id in self._circle_routes:
             for segment, path in zip(
@@ -46,9 +46,12 @@ class HBDGeometryPathMixin:
                 first, second = segment["stops"]
                 edge = self._edge_key(first, second)
                 circle_paths[edge] = (
-                    path
-                    if (first, second) == self._edge_directions[edge]
-                    else list(reversed(path))
+                    route_id,
+                    (
+                        path
+                        if (first, second) == self._edge_directions[edge]
+                        else list(reversed(path))
+                    ),
                 )
         return circle_paths
 
@@ -56,26 +59,37 @@ class HBDGeometryPathMixin:
         self,
         route_id: str,
         paths: list[list[Point]],
-        circle_paths_by_edge: dict[tuple[str, str], list[Point]],
+        circle_paths_by_edge: dict[tuple[str, str], tuple[str, list[Point]]],
     ) -> list[list[Point]]:
         if route_id in self._circle_routes:
             return paths
         return [
-            self._circle_path_for_segment(segment, path, circle_paths_by_edge)
+            self._circle_path_for_segment(
+                route_id, segment, path, circle_paths_by_edge
+            )
             for segment, path in zip(self._segments_by_route[route_id], paths)
         ]
 
     def _circle_path_for_segment(
         self,
+        route_id: str,
         segment: dict[str, object],
         path: list[Point],
-        circle_paths_by_edge: dict[tuple[str, str], list[Point]],
+        circle_paths_by_edge: dict[tuple[str, str], tuple[str, list[Point]]],
     ) -> list[Point]:
         first, second = segment["stops"]
         edge = self._edge_key(first, second)
-        circle_path = circle_paths_by_edge.get(edge)
-        if circle_path is None:
+        circle_record = circle_paths_by_edge.get(edge)
+        if circle_record is None:
             return path
+        circle_route_id, circle_path = circle_record
+        if route_id != circle_route_id:
+            route_offset = self._parallel_lane_offsets[edge][route_id]
+            circle_offset = self._parallel_lane_offsets[edge][circle_route_id]
+            circle_path = self._offset_path(
+                circle_path,
+                (route_offset - circle_offset) * self.parallel_route_gap,
+            )
         return (
             circle_path[:]
             if (first, second) == self._edge_directions[edge]
