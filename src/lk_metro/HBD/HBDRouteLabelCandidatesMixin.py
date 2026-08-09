@@ -1,8 +1,10 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDRouteLabelOptionMixin import (HBDRouteLabelOptionMixin,
-                                                   RouteLabelOption)
+from lk_metro.HBD.HBDRouteLabelOptionMixin import (
+    HBDRouteLabelOptionMixin,
+    RouteLabelOption,
+)
 
 
 class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
@@ -58,7 +60,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
             abs(normal[0]) * half_width
             + abs(normal[1]) * half_height
             + self.ROUTE_STROKE_WIDTH / 2
-            + 0.2
+            + self.ROUTE_NAME_GAP
         )
         options = []
         for fraction in (0.15, 0.3, 0.5, 0.7, 0.85):
