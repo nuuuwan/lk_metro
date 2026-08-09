@@ -77,7 +77,16 @@ class HBDLabelPlacementMixin(
         segments: dict[str, list[list[Point]]],
     ) -> LabelScore:
         bounds = option[0]
-        overlaps = [self._overlap_area(bounds, other) for other in occupied]
+        padding = self.LABEL_COLLISION_PADDING
+        collision_bounds = (
+            bounds[0] - padding,
+            bounds[1] - padding,
+            bounds[2] + padding,
+            bounds[3] + padding,
+        )
+        overlaps = [
+            self._overlap_area(collision_bounds, other) for other in occupied
+        ]
         route_padding = self.ROUTE_STROKE_WIDTH / 2
         route_bounds = (
             bounds[0] - route_padding,

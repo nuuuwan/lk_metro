@@ -83,9 +83,10 @@ class HBDGeometryPathMixin:
         if circle_record is None:
             return path
         circle_route_id, circle_path = circle_record
-        if route_id != circle_route_id:
-            route_offset = self._parallel_lane_offsets[edge][route_id]
-            circle_offset = self._parallel_lane_offsets[edge][circle_route_id]
+        edge_offsets = self._parallel_lane_offsets.get(edge)
+        if route_id != circle_route_id and edge_offsets is not None:
+            route_offset = edge_offsets[route_id]
+            circle_offset = edge_offsets[circle_route_id]
             circle_path = self._offset_path(
                 circle_path,
                 (route_offset - circle_offset) * self.parallel_route_gap,
@@ -113,6 +114,7 @@ class HBDGeometryPathMixin:
                 if (
                     self.SHOW_PARALLEL_LINES
                     and len(self._edge_routes[edge]) > 1
+                    and edge in self._parallel_lane_offsets
                 ):
                     offset_index = self._parallel_lane_offsets[edge][route_id]
                     path = self._offset_path(
@@ -237,6 +239,11 @@ class HBDGeometryPathMixin:
             edge
             for edge, route_ids in self._edge_routes.items()
             if len(route_ids) > 1
+            and not math.isclose(
+                math.hypot(*self._edge_vector(edge, positions)),
+                0.0,
+                abs_tol=1e-9,
+            )
         }
         offsets = {}
         while remaining:

@@ -69,12 +69,12 @@ class HBDRouteLabelGeometryMixin:
     @staticmethod
     def _route_parts(
         segments: dict[str, list[list[Point]]],
-        excluded_route_id: str,
+        excluded_route_id: str | None = None,
     ) -> list[tuple[Point, Point]]:
         return [
             (first, second)
             for route_id, route_segments in segments.items()
-            if route_id != excluded_route_id
+            if excluded_route_id is None or route_id != excluded_route_id
             for path in route_segments
             for first, second in zip(path, path[1:])
             if first != second

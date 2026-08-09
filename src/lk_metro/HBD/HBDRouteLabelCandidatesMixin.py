@@ -13,7 +13,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
     ) -> list[RouteLabelOption]:
         half_width = len(route_id) * self.ROUTE_NAME_FONT_SIZE * 0.3
         half_height = self.ROUTE_NAME_FONT_SIZE * 0.6
-        other_parts = self._route_parts(segments, route_id)
+        route_parts = self._route_parts(segments)
         options = []
         start_distance = 0.0
         for path in segments[route_id]:
@@ -26,7 +26,7 @@ class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):
                         second,
                         half_width,
                         half_height,
-                        other_parts,
+                        route_parts,
                         start_distance,
                     )
                 )

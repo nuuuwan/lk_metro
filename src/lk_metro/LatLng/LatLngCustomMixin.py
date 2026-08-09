@@ -19,10 +19,10 @@ class LatLngCustomMixin:
         "Lake House Bus Stop": (6.9329, 79.8472),
         "Lanka Fiber Fabrica": (6.8833, 79.9167),
         "Mahara Junction": (7.0101, 79.9213),
-        "Maharagama Cargills Food City": (6.8497, 79.9261),
+        "Maharagama Cargills": (6.8497, 79.9261),
         "Malabe Bus Stand": (6.9036, 79.9547),
         "Near Lalanka Head Office": (6.8833, 79.8750),
-        "Panadura Base Hospital": (6.7139, 79.9078),
+        "Panadura Hospital": (6.7139, 79.9078),
         "Peliyagoda (New Kelani Bridge)": (6.9589, 79.8794),
         "Piliyandala Bus Stand Stop": (6.8017, 79.9228),
         "Rathmalana Tec": (6.8206, 79.8833),
@@ -31,7 +31,7 @@ class LatLngCustomMixin:
         "Thalahena Junction": (6.9083, 79.9389),
         "Thalawathugoda": (6.8778, 79.9306),
         "Town Hall - Vision Care": (6.9158, 79.8625),
-        "VTA / AAT": (6.8856, 79.8731),
+        "VTA": (6.8856, 79.8731),
         "Wellawaththa": (6.8738, 79.8610),
     }
 

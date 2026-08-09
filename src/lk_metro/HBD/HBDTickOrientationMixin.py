@@ -51,7 +51,13 @@ class HBDTickOrientationMixin:
             )
             options, scores = candidates[stop_name]
             selected = options[
-                min(range(len(options)), key=scores.__getitem__)
+                min(
+                    range(len(options)),
+                    key=lambda index: (
+                        scores[index],
+                        math.dist(positions[stop_name], options[index][1]),
+                    ),
+                )
             ]
             self._stop_label_bounds_by_name[stop_name] = selected[0]
             self._stop_label_placements[stop_name] = (*selected[1], "middle")
