@@ -4,6 +4,24 @@ from lk_metro.GD.Point import Point
 
 
 class HBDSvgMixin:
+    def _station_marker_svg_line(
+        self,
+        stop_name: str,
+        position: Point,
+        memberships: dict[str, set[str]],
+        route_colors: dict[str, str],
+    ) -> str:
+        tick = getattr(self, "_station_ticks", {}).get(stop_name)
+        if tick is None:
+            return super()._station_marker_svg_line(
+                stop_name, position, memberships, route_colors
+            )
+        return (
+            f'<line class="station" x1="{tick[0][0]}" y1="{tick[0][1]}" '
+            f'x2="{tick[1][0]}" y2="{tick[1][1]}" '
+            f'stroke="{self.STATION_TICK_COLOR}" stroke-linecap="square"/>'
+        )
+
     def _route_svg_line(self, route, segments: list[list[Point]]) -> str:
         if route.id not in self._circle_routes:
             return super()._route_svg_line(route, segments)

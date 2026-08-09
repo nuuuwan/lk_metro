@@ -32,8 +32,9 @@ class HBDLabelPlacementMixin(
                 position[0] + half_width,
                 position[1] + half_height,
             )
-        occupied = list(self._stop_label_bounds_by_name.values())
-        self._finalize_stop_labels(occupied)
+        self._stop_label_bounds = list(
+            self._stop_label_bounds_by_name.values()
+        )
 
     def _finalize_stop_labels(self, occupied: list[Bounds]) -> None:
         self._stop_label_bounds = occupied
