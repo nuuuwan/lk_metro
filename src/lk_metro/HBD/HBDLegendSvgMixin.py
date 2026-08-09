@@ -45,12 +45,13 @@ class HBDLegendSvgMixin:
         first_y = legend_title_y + 4
         last_y = first_y + len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
         half_height = self.LEGEND_FONT_SIZE / 2
+        height = last_y - first_y + 2 * (half_height + vertical_padding)
         return (
             f'<rect class="info-panel legend-background" '
             f'x="{legend_x - left_padding:g}" '
             f'y="{first_y - half_height - vertical_padding:g}" '
             f'width="{width + left_padding + right_padding:g}" '
-            f'height="{last_y - first_y + 2 * half_height + 2 * vertical_padding:g}" '
+            f'height="{height:g}" '
             f'rx="1.5" '
             f'fill="{self.INFO_PANEL_COLOR}"/>'
         )
@@ -60,15 +61,18 @@ class HBDLegendSvgMixin:
         logo_height = self.LOGO_WIDTH / self.LOGO_ASPECT_RATIO
         logo_top = (self.TITLE_HEIGHT - logo_height) / 2
         logo_bottom = logo_top + logo_height
+        unofficial = html.escape(self._translated_text("THE UNOFFICIAL"))
+        map_label = html.escape(self._translated_text("MAP"))
         return [
             f'<text class="map-title" x="{center_x:g}" '
             f'y="{logo_top - 0.9:g}" '
             'text-anchor="middle" dominant-baseline="middle" '
-            'letter-spacing="0.5">THE UNOFFICIAL</text>',
+            f'letter-spacing="0.5">{unofficial}</text>',
             self._logo_svg_line(),
             f'<text class="map-title" x="{center_x:g}" '
             f'y="{logo_bottom + 0.9:g}" text-anchor="middle" '
-            'dominant-baseline="middle" letter-spacing="0.5">MAP</text>',
+            'dominant-baseline="middle" letter-spacing="0.5">'
+            f'{map_label}</text>',
         ]
 
     def _legend_interchange_svg_lines(
@@ -123,11 +127,14 @@ class HBDLegendSvgMixin:
         fort_x, fort_y = self._background_stop_position("Colombo Fort")
         note_x = fort_x - 4
         note_y = fort_y - 14
-        note_lines = (
-            "Inspired by Harry Beck's iconic 1933 diagram",
-            "of the London Underground. By prioritising",
-            "connections over geography, this format makes",
-            "routes and interchanges easier to follow.",
+        note_lines = tuple(
+            self._translated_text(text)
+            for text in (
+                "Inspired by Harry Beck's iconic 1933 diagram",
+                "of the London Underground. By prioritising",
+                "connections over geography, this format makes",
+                "routes and interchanges easier to follow.",
+            )
         )
         left_padding = self.INFO_PANEL_PADDING
         right_padding = self.INFO_PANEL_PADDING / 4
@@ -152,7 +159,7 @@ class HBDLegendSvgMixin:
             f'font-family="{self.FONT_FAMILY}" '
             f'font-size="{self.DESCRIPTION_FONT_SIZE:g}" '
             f'fill="{self.DESCRIPTION_COLOR}">'
-            f"{html.escape(self._translated_text(text))}</text>"
+            f"{html.escape(text)}</text>"
             for index, text in enumerate(note_lines)
         )
         return lines

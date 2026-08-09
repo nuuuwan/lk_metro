@@ -24,7 +24,6 @@ class HBDLabelCacheMixin:
     def _label_cache_path(self) -> Path:
         state = {
             "version": self.LABEL_CACHE_VERSION,
-            "language": self.language,
             "positions": self._label_positions,
             "segments": self._label_segments,
             "memberships": {

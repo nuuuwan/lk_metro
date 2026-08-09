@@ -254,6 +254,17 @@ class HBDGeometryPathMixin:
                 component, key=lambda edge: len(self._edge_routes[edge])
             )
             route_order = self._parallel_route_ids(anchor, positions)
+            component_route_ids = {
+                route_id
+                for edge in component
+                for route_id in self._edge_routes[edge]
+            }
+            route_order.extend(
+                sorted(
+                    component_route_ids - set(route_order),
+                    key=self._route_order.__getitem__,
+                )
+            )
             anchor_normal = self._edge_normal(anchor, positions)
             for edge in component:
                 normal = self._edge_normal(edge, positions)
