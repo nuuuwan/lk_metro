@@ -10,7 +10,7 @@ The maps in this project explore that difference using the proposed Lanka Metro 
 
 The geographic map places every stop using its latitude and longitude. A Web Mercator projection converts those coordinates into a flat drawing, while a single uniform scale preserves the network's overall shape and orientation.
 
-![Geographic map of the Lanka Metro network](images/2026-08-08/lk_metro_geographic.png)
+![Geographic map of the Lanka Metro network](images/lk_metro_geographic.png)
 
 This view is valuable because it explains the system in relation to the city. Long north-south routes look long, nearby stops remain nearby, and the reader can recognize the broad footprint of the network. It is a useful planning map and an honest picture of where the infrastructure lies.
 
@@ -22,6 +22,6 @@ Harry Beck's great insight in the 1930s was that an urban railway diagram should
 
 The Lanka Metro diagram follows that principle. Routes are reduced to horizontal, vertical, and 45-degree segments. Stops are distributed at regular intervals, shared corridors are separated, and interchange symbols are given enough space to remain legible. The centre can expand and the outskirts can contract because neither is constrained by geographic scale.
 
-![Harry Beck-style diagram of the Lanka Metro network](images/2026-08-08/lk_metro_harry_beck.png)
+![Harry Beck-style diagram of the Lanka Metro network](images/lk_metro_harry_beck.png)
 
 The result is less useful for judging distance, but much better for understanding the network as a system. Each route can be followed from end to end, changes are visible at a glance, and the dense centre no longer has to fit into its real-world footprint. The geographic maps remain important companions: they explain *where* the system is. The Beck-style map explains *how to use it*.
