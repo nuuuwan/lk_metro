@@ -63,16 +63,18 @@ class HBDLegendSvgMixin:
         logo_bottom = logo_top + logo_height
         unofficial = html.escape(self._translated_text("THE UNOFFICIAL"))
         map_label = html.escape(self._translated_text("MAP"))
+        letter_spacing = 0.5 if self.language is None else 0
         return [
             f'<text class="map-title" x="{center_x:g}" '
             f'y="{logo_top - 0.9:g}" '
             'text-anchor="middle" dominant-baseline="middle" '
-            f'letter-spacing="0.5">{unofficial}</text>',
+            f'letter-spacing="{letter_spacing:g}">{unofficial}</text>',
             self._logo_svg_line(),
             f'<text class="map-title" x="{center_x:g}" '
             f'y="{logo_bottom + 0.9:g}" text-anchor="middle" '
-            'dominant-baseline="middle" letter-spacing="0.5">'
-            f'{map_label}</text>',
+            'dominant-baseline="middle" '
+            f'letter-spacing="{letter_spacing:g}">'
+            f"{map_label}</text>",
         ]
 
     def _legend_interchange_svg_lines(
@@ -107,9 +109,7 @@ class HBDLegendSvgMixin:
     ) -> list[str]:
         lines = []
         for index, route in enumerate(self.legend_routes):
-            y_coordinate = (
-                legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
-            )
+            y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
             lines.extend(
                 [
                     f'<rect class="legend-swatch" x="{legend_x}" '

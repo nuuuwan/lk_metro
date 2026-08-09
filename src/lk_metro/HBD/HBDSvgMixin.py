@@ -112,9 +112,7 @@ class HBDSvgMixin:
 
     def _interchange_capsule_svg(self, stop_name: str) -> str:
         points = self._interchange_route_points(stop_name)
-        first, second, inner_width = self._interchange_capsule_geometry(
-            points
-        )
+        first, second, inner_width = self._interchange_capsule_geometry(points)
         outer_width = inner_width + 2 * self.INTERCHANGE_STROKE_WIDTH
         coordinates = (
             f'x1="{first[0]:g}" y1="{first[1]:g}" '
@@ -140,8 +138,7 @@ class HBDSvgMixin:
         axis = self._interchange_capsule_axis(points, center)
         normal = (-axis[1], axis[0])
         projections = [
-            (point[0] - center[0]) * axis[0]
-            + (point[1] - center[1]) * axis[1]
+            (point[0] - center[0]) * axis[0] + (point[1] - center[1]) * axis[1]
             for point in points
         ]
         half_length = (max(projections) - min(projections)) / 2
@@ -174,9 +171,7 @@ class HBDSvgMixin:
     def _interchange_route_points(self, stop_name: str) -> list[Point]:
         position = self._label_positions[stop_name]
         return [
-            self._nearest_route_point(
-                self._label_segments[route_id], position
-            )
+            self._nearest_route_point(self._label_segments[route_id], position)
             for route_id in self._label_memberships[stop_name]
         ]
 
@@ -209,8 +204,7 @@ class HBDSvgMixin:
         if math.isclose(length_squared, 0.0, abs_tol=1e-9):
             return first
         projection = (
-            (point[0] - first[0]) * delta[0]
-            + (point[1] - first[1]) * delta[1]
+            (point[0] - first[0]) * delta[0] + (point[1] - first[1]) * delta[1]
         ) / length_squared
         fraction = min(1.0, max(0.0, projection))
         return (
@@ -226,8 +220,7 @@ class HBDSvgMixin:
         x_variance = sum((point[0] - center[0]) ** 2 for point in points)
         y_variance = sum((point[1] - center[1]) ** 2 for point in points)
         covariance = sum(
-            (point[0] - center[0]) * (point[1] - center[1])
-            for point in points
+            (point[0] - center[0]) * (point[1] - center[1]) for point in points
         )
         if math.isclose(x_variance + y_variance, 0.0, abs_tol=1e-9):
             return (0.0, 1.0)
@@ -266,8 +259,7 @@ class HBDSvgMixin:
     ) -> list[str]:
         routes = sorted(self.routes, key=lambda route: route.id == "CM02")
         return [
-            self._route_svg_line(route, segments[route.id])
-            for route in routes
+            self._route_svg_line(route, segments[route.id]) for route in routes
         ]
 
     def _route_name_svg_lines(self) -> list[str]:
@@ -326,10 +318,41 @@ class HBDSvgMixin:
             - self._content_offset()[1]
             - self.TITLE_HEIGHT
         )
+        caption_y = canvas_bottom - self.GITHUB_QR_MARGIN
         y_coordinate = (
-            canvas_bottom - self.GITHUB_QR_MARGIN - self.GITHUB_QR_SIZE
+            caption_y
+            - self.GITHUB_QR_CAPTION_FONT_SIZE
+            - self.GITHUB_QR_CAPTION_GAP
+            - self.GITHUB_QR_SIZE
         )
-        modules = " ".join(
+        modules = self._qr_modules_path(
+            matrix, module_size, x_coordinate, y_coordinate
+        )
+        caption = html.escape(self._translated_text("Code"))
+        return [
+            f'<a class="github-qr" href="{html.escape(self.GITHUB_REPO_URL)}" '
+            'aria-label="Lanka Metro GitHub repository">',
+            f'<rect x="{x_coordinate:g}" y="{y_coordinate:g}" '
+            f'width="{self.GITHUB_QR_SIZE:g}" '
+            f'height="{self.GITHUB_QR_SIZE:g}" rx="0.5" fill="#ffffff"/>',
+            f'<path d="{modules}" fill="#000000"/>',
+            f'<text class="github-qr-caption" '
+            f'x="{x_coordinate + self.GITHUB_QR_SIZE / 2:g}" '
+            f'y="{caption_y:g}" text-anchor="middle" '
+            f'font-family="{self.FONT_FAMILY}" '
+            f'font-size="{self.GITHUB_QR_CAPTION_FONT_SIZE:g}" '
+            f'fill="#000000">{caption}</text>',
+            "</a>",
+        ]
+
+    @staticmethod
+    def _qr_modules_path(
+        matrix: list[list[bool]],
+        module_size: float,
+        x_coordinate: float,
+        y_coordinate: float,
+    ) -> str:
+        return " ".join(
             f"M {x_coordinate + column * module_size:g},"
             f"{y_coordinate + row * module_size:g} "
             f"h {module_size:g} v {module_size:g} "
@@ -338,15 +361,6 @@ class HBDSvgMixin:
             for column, is_dark in enumerate(values)
             if is_dark
         )
-        return [
-            f'<a class="github-qr" href="{html.escape(self.GITHUB_REPO_URL)}" '
-            'aria-label="Lanka Metro GitHub repository">',
-            f'<rect x="{x_coordinate:g}" y="{y_coordinate:g}" '
-            f'width="{self.GITHUB_QR_SIZE:g}" '
-            f'height="{self.GITHUB_QR_SIZE:g}" rx="0.5" fill="#ffffff"/>',
-            f'<path d="{modules}" fill="{self.TEXT_COLOR}"/>',
-            "</a>",
-        ]
 
     def _viharamahadevi_park_svg_lines(self) -> list[str]:
         required = ("Town Hall", "Nelum Pokuna", "Public Library")
@@ -361,9 +375,7 @@ class HBDSvgMixin:
             (nelum_pokuna[0] - 1, nelum_pokuna[1] + 5),
             (public_library[0] + 2, public_library[1] - 1),
         )
-        return self._green_space_svg_lines(
-            "viharamahadevi-park", points, None
-        )
+        return self._green_space_svg_lines("viharamahadevi-park", points, None)
 
     def _borella_cemetery_svg_lines(self) -> list[str]:
         borella = self._background_stop_position("Borella")
@@ -528,6 +540,7 @@ class HBDSvgMixin:
             f"L {self.width + 4:g},{lower_y:g}"
         )
         label_x = (bridge_x + diagonal_half_span + self.width + 4) / 2
+        label = html.escape(self._translated_text("Kelani River"))
         return [
             f'<path d="{river_path}" fill="none" '
             f'stroke="{self.WATER_FEATURE_COLOR}" '
@@ -535,17 +548,15 @@ class HBDSvgMixin:
             'stroke-linejoin="round"/>',
             f'<text x="{label_x:g}" y="{lower_y:g}" text-anchor="middle" '
             'dominant-baseline="middle" '
-            'font-family="Gill Sans, sans-serif" font-size="1.6" '
-            'font-style="italic" fill="#287f98">Kelani River</text>',
+            f'font-family="{self.FONT_FAMILY}" font-size="1.6" '
+            f'font-style="italic" fill="#287f98">{label}</text>',
         ]
 
     def _background_stop_position(self, stop_name: str) -> Point:
         x_coordinate, y_coordinate = self._logical_positions[stop_name]
         return (
-            (x_coordinate - self._grid_min_x) * self.UNIT_SCALE
-            + self.padding,
-            (y_coordinate - self._grid_min_y) * self.UNIT_SCALE
-            + self.padding,
+            (x_coordinate - self._grid_min_x) * self.UNIT_SCALE + self.padding,
+            (y_coordinate - self._grid_min_y) * self.UNIT_SCALE + self.padding,
         )
 
     def _water_area_svg_lines(
@@ -562,12 +573,13 @@ class HBDSvgMixin:
         ]
         if label is None or label_position is None:
             return lines
+        translated_label = html.escape(self._translated_text(label))
         lines.append(
             f'<text class="water-label" x="{label_position[0]:g}" '
             f'y="{label_position[1]:g}" text-anchor="middle" '
             'dominant-baseline="middle" '
-            'font-family="Gill Sans, sans-serif" font-size="1.6" '
-            f'font-style="italic" fill="#287f98">{label}</text>'
+            f'font-family="{self.FONT_FAMILY}" font-size="1.6" '
+            f'font-style="italic" fill="#287f98">{translated_label}</text>'
         )
         return lines
 
@@ -584,6 +596,7 @@ class HBDSvgMixin:
         ]
         if label is None:
             return lines
+        translated_label = html.escape(self._translated_text(label))
         label_x = sum(point[0] for point in points) / len(points)
         label_y = sum(point[1] for point in points) / len(points)
         lines.append(
@@ -593,7 +606,7 @@ class HBDSvgMixin:
             f'font-family="Gill Sans, sans-serif" '
             f'font-size="{self.GREEN_SPACE_LABEL_FONT_SIZE:g}" '
             f'font-style="italic" fill="{self.GREEN_SPACE_LABEL_COLOR}">'
-            f"{label}</text>"
+            f"{translated_label}</text>"
         )
         return lines
 
@@ -646,8 +659,7 @@ class HBDSvgMixin:
                 if route.id in self._circle_routes
                 else sum(
                     index == 0
-                    or segment["direction"]
-                    != segments[index - 1]["direction"]
+                    or segment["direction"] != segments[index - 1]["direction"]
                     for index, segment in enumerate(segments)
                 )
             )

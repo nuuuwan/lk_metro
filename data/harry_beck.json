@@ -1,18 +1,17 @@
 {
   "origin_stops": {
     "Colombo Fort": [-3, -3],
-    "Pettah": [-2, -4],
     "Town Hall": [0, 0],
     "Singer Mega": [4, -1],
     "Thummulla": [1, 1]
   },
   "routes": {
-    "CM01": "2W-N-3NW-N-6W-N-NW-W-SW",
+    "CM01": "2W-N-3NW-N-6W-N-bN-NW-3W",
     "CM02": "S-SW-6W-2N-5W-N-3bW-W-2W-N-W-N",
     "CM03": "9W-2N-NW-E-5N-NE-4E",
     "CM04": "3S-SW-W-SW-3S-4SE-10E-NE-N",
     "CM05": "N-5W-6N-NE-9E",
     "CM06": "NE-E-NE-3S-E-SW-E-NE-S-SW-2W-NW-2N/Ellipse(2,2)",
-    "CM08": "3SW-5W-3NW-5N-NW-2W-N-NE"
+    "CM08": "3SW-5W-3NW-N-2NW-2N-NW-2W-N-NE"
   }
 }

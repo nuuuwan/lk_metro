@@ -213,8 +213,7 @@ class HBDGeometryPathMixin:
             second_end[1] - second_start[1],
         )
         denominator = (
-            first_delta[0] * second_delta[1]
-            - first_delta[1] * second_delta[0]
+            first_delta[0] * second_delta[1] - first_delta[1] * second_delta[0]
         )
         if math.isclose(denominator, 0.0, abs_tol=1e-9):
             return None
@@ -223,8 +222,7 @@ class HBDGeometryPathMixin:
             second_start[1] - first_start[1],
         )
         fraction = (
-            start_delta[0] * second_delta[1]
-            - start_delta[1] * second_delta[0]
+            start_delta[0] * second_delta[1] - start_delta[1] * second_delta[0]
         ) / denominator
         return (
             first_start[0] + fraction * first_delta[0],
@@ -253,17 +251,8 @@ class HBDGeometryPathMixin:
             anchor = max(
                 component, key=lambda edge: len(self._edge_routes[edge])
             )
-            route_order = self._parallel_route_ids(anchor, positions)
-            component_route_ids = {
-                route_id
-                for edge in component
-                for route_id in self._edge_routes[edge]
-            }
-            route_order.extend(
-                sorted(
-                    component_route_ids - set(route_order),
-                    key=self._route_order.__getitem__,
-                )
+            route_order = self._parallel_component_route_ids(
+                component, anchor, positions
             )
             anchor_normal = self._edge_normal(anchor, positions)
             for edge in component:
@@ -276,6 +265,26 @@ class HBDGeometryPathMixin:
                     for route_id in self._edge_routes[edge]
                 }
         return offsets
+
+    def _parallel_component_route_ids(
+        self,
+        component: list[tuple[str, str]],
+        anchor: tuple[str, str],
+        positions: dict[str, Point],
+    ) -> list[str]:
+        route_order = self._parallel_route_ids(anchor, positions)
+        component_route_ids = {
+            route_id
+            for edge in component
+            for route_id in self._edge_routes[edge]
+        }
+        route_order.extend(
+            sorted(
+                component_route_ids - set(route_order),
+                key=self._route_order.__getitem__,
+            )
+        )
+        return route_order
 
     def _parallel_corridor_component(
         self,

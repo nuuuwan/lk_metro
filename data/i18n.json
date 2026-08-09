@@ -512,8 +512,8 @@
   },
   {
     "name_en": "VTA",
-    "name_si": "VTA",
-    "name_ta": "VTA"
+    "name_si": "වීටීඒ",
+    "name_ta": "விடிஏ"
   },
   {
     "name_en": "WA Silva Mw.",
@@ -561,23 +561,78 @@
     "name_ta": "வில்லியம் சந்."
   },
   {
-    "name_en": "Inspired by Harry Beck's iconic diagrammatic",
-    "name_si": "1933 දී ප්‍රථම වරට ප්‍රකාශයට පත් වූ",
-    "name_ta": "1933 இல் முதன்முதலில் வெளியிடப்பட்ட"
+    "name_en": "THE UNOFFICIAL",
+    "name_si": "නිල නොවන",
+    "name_ta": "அதிகாரப்பூர்வமற்ற"
   },
   {
-    "name_en": "map of the London Underground, first published",
-    "name_si": "හැරී බෙක්ගේ සුවිශේෂී ලන්ඩන් භූගත",
-    "name_ta": "ஹாரி பெக்கின் புகழ்பெற்ற லண்டன் நிலத்தடி"
+    "name_en": "MAP",
+    "name_si": "සිතියම",
+    "name_ta": "வரைபடம்"
   },
   {
-    "name_en": "in 1933.",
-    "name_si": "දුම්රිය රූපසටහන් සිතියමෙන් ආභාසය ලැබීය.",
-    "name_ta": "ரயில் வரைபடத்தால் ஈர்க்கப்பட்டது."
+    "name_en": "Inspired by Harry Beck's iconic 1933 diagram",
+    "name_si": "හැරී බෙක්ගේ සුප්‍රකට 1933 ලන්ඩන්",
+    "name_ta": "ஹாரி பெக்கின் புகழ்பெற்ற 1933 இலண்டன்"
   },
   {
-    "name_en": "Data from [https://lankametro.lk](https://lankametro.lk) · Design and Visualisation by [https://github.com/nuuuwan](https://github.com/nuuuwan)",
-    "name_si": "දත්ත: [https://lankametro.lk](https://lankametro.lk) · නිර්මාණය සහ දෘශ්‍යකරණය: [https://github.com/nuuuwan](https://github.com/nuuuwan)",
-    "name_ta": "தரவு: [https://lankametro.lk](https://lankametro.lk) · வடிவமைப்பு மற்றும் காட்சிப்படுத்தல்: [https://github.com/nuuuwan](https://github.com/nuuuwan)"
+    "name_en": "of the London Underground. By prioritising",
+    "name_si": "භූගත දුම්රිය රූපසටහනෙන් ආභාසය ලබා,",
+    "name_ta": "நிலத்தடி தொடருந்து வரைபடத்தால் ஈர்க்கப்பட்டு,"
+  },
+  {
+    "name_en": "connections over geography, this format makes",
+    "name_si": "භූගෝලයට වඩා සම්බන්ධතා ප්‍රමුඛ කරමින්,",
+    "name_ta": "புவியியலை விட இணைப்புகளுக்கு முன்னுரிமை அளித்து,"
+  },
+  {
+    "name_en": "routes and interchanges easier to follow.",
+    "name_si": "මාර්ග හා හුවමාරු පහසුවෙන් පෙන්වයි.",
+    "name_ta": "வழித்தடங்களையும் மாறுதல்களையும் எளிதாக்குகிறது."
+  },
+  {
+    "name_en": "Data from https://lankametro.lk · Design and Visualisation by @nuuuwan",
+    "name_si": "දත්ත https://lankametro.lk වෙතින් · නිර්මාණය සහ දෘශ්‍යකරණය @nuuuwan විසිනි",
+    "name_ta": "தரவு https://lankametro.lk இலிருந்து · வடிவமைப்பு மற்றும் காட்சிப்படுத்தல் @nuuuwan"
+  },
+  {
+    "name_en": "Interchange: transfer between routes",
+    "name_si": "හුවමාරුව: මාර්ග අතර මාරුවීම",
+    "name_ta": "மாறுநிலையம்: வழித்தடங்களுக்கு இடையே மாறவும்"
+  },
+  {
+    "name_en": "Code",
+    "name_si": "කේතය",
+    "name_ta": "குறியீடு"
+  },
+  {
+    "name_en": "Indian Ocean",
+    "name_si": "ඉන්දියන් සාගරය",
+    "name_ta": "இந்தியப் பெருங்கடல்"
+  },
+  {
+    "name_en": "Diyawanna Lake",
+    "name_si": "දියවන්නා වැව",
+    "name_ta": "தியவன்னா ஏரி"
+  },
+  {
+    "name_en": "Bolgoda Lake",
+    "name_si": "බොල්ගොඩ වැව",
+    "name_ta": "பொல்கொட ஏரி"
+  },
+  {
+    "name_en": "Kelani River",
+    "name_si": "කැලණි ගඟ",
+    "name_ta": "களனி ஆறு"
+  },
+  {
+    "name_en": "Borella Cemetery",
+    "name_si": "බොරැල්ල කනත්ත",
+    "name_ta": "பொரளை மயானம்"
+  },
+  {
+    "name_en": "Royal Colombo Golf Course",
+    "name_si": "රාජකීය කොළඹ ගොල්ෆ් පිටිය",
+    "name_ta": "ராயல் கொழும்பு கோல்ஃப் மைதானம்"
   }
 ]

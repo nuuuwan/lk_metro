@@ -37,6 +37,8 @@ class HBDStyleMixin:
     GITHUB_REPO_URL = "https://github.com/nuuuwan/lk_metro"
     GITHUB_QR_SIZE = 14.0
     GITHUB_QR_MARGIN = 2.0
+    GITHUB_QR_CAPTION_FONT_SIZE = 1.5
+    GITHUB_QR_CAPTION_GAP = 0.75
     FORCE_45_DEGREE_LINES = True
     SHOW_PARALLEL_LINES = True
     PARALLEL_ROUTE_GAP = ROUTE_STROKE_WIDTH + 0.2

@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 
 
 PNG_SIZE = 6000
-GENERATE_LOCALIZED_IMAGES = False
+GENERATE_LOCALIZED_IMAGES = True
 log = Log("pipeline")
 
 
