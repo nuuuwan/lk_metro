@@ -1,23 +1,23 @@
 [
   {
-    "name": "Anderson Flats",
+    "name": "Anderson Fls.",
     "xy": [
-      36,
-      54
+      35,
+      53
     ]
   },
   {
     "name": "Arangala Junc.",
     "xy": [
       83,
-      52
+      51
     ]
   },
   {
-    "name": "Army Hosp. Borella",
+    "name": "Army Hosp.",
     "xy": [
       40,
-      46
+      45
     ]
   },
   {
@@ -28,7 +28,7 @@
     ]
   },
   {
-    "name": "Athurugiriya Town",
+    "name": "Athurugiriya",
     "xy": [
       87,
       60
@@ -44,14 +44,14 @@
   {
     "name": "Battaramulla Junc.",
     "xy": [
-      72,
-      45
+      71,
+      44
     ]
   },
   {
     "name": "Boralesgamuwa",
     "xy": [
-      63,
+      62,
       72
     ]
   },
@@ -65,28 +65,28 @@
   {
     "name": "BRC Junc.",
     "xy": [
-      28,
+      27,
       54
     ]
   },
   {
-    "name": "Campbell Park",
+    "name": "Campbell Pk.",
     "xy": [
-      41,
-      30
+      40,
+      31
     ]
   },
   {
-    "name": "Cancer Hosp. 01",
+    "name": "Cancer Hosp.",
     "xy": [
       72,
-      74
+      73
     ]
   },
   {
     "name": "Castle Hosp.",
     "xy": [
-      48,
+      47,
       38
     ]
   },
@@ -121,8 +121,8 @@
   {
     "name": "Dematagoda",
     "xy": [
-      43,
-      26
+      42,
+      27
     ]
   },
   {
@@ -143,11 +143,11 @@
     "name": "Gamini Hall",
     "xy": [
       20,
-      28
+      29
     ]
   },
   {
-    "name": "German Tech Angulana",
+    "name": "German Tech",
     "xy": [
       49,
       80
@@ -156,14 +156,14 @@
   {
     "name": "Golumadama Junc.",
     "xy": [
-      46,
+      45,
       79
     ]
   },
   {
     "name": "Havelock",
     "xy": [
-      33,
+      32,
       57
     ]
   },
@@ -184,8 +184,8 @@
   {
     "name": "Hendala",
     "xy": [
-      52,
-      17
+      51,
+      18
     ]
   },
   {
@@ -203,16 +203,16 @@
     ]
   },
   {
-    "name": "Independence Arcade",
+    "name": "Arcade",
     "xy": [
-      32,
+      31,
       44
     ]
   },
   {
     "name": "Independence Sq.",
     "xy": [
-      30,
+      29,
       42
     ]
   },
@@ -226,7 +226,7 @@
   {
     "name": "Ja Ela",
     "xy": [
-      54,
+      53,
       13
     ]
   },
@@ -282,7 +282,7 @@
   {
     "name": "Kelaniya Campus",
     "xy": [
-      70,
+      69,
       21
     ]
   },
@@ -304,14 +304,14 @@
     "name": "Kirulapone",
     "xy": [
       37,
-      57
+      56
     ]
   },
   {
     "name": "Kollupitiya",
     "xy": [
       13,
-      37
+      36
     ]
   },
   {
@@ -325,7 +325,7 @@
     "name": "Kottawa",
     "xy": [
       84,
-      72
+      71
     ]
   },
   {
@@ -346,20 +346,20 @@
     "name": "Liberty",
     "xy": [
       15,
-      35
+      34
     ]
   },
   {
     "name": "Mabola",
     "xy": [
-      59,
+      58,
       16
     ]
   },
   {
     "name": "Mahabage",
     "xy": [
-      61,
+      60,
       15
     ]
   },
@@ -378,7 +378,7 @@
     ]
   },
   {
-    "name": "Maharagama Cargills Food City",
+    "name": "Maharagama Cargills",
     "xy": [
       75,
       71
@@ -388,7 +388,7 @@
     "name": "Maharagama",
     "xy": [
       76,
-      70
+      69
     ]
   },
   {
@@ -401,29 +401,29 @@
   {
     "name": "Malabe",
     "xy": [
-      83,
-      43
+      82,
+      42
     ]
   },
   {
     "name": "Maliban Junc.",
     "xy": [
-      37,
+      36,
       77
     ]
   },
   {
-    "name": "Maradana Railway",
+    "name": "Maradana R.way",
     "xy": [
       24,
       28
     ]
   },
   {
-    "name": "Mendis Ln. Rawathawatta",
+    "name": "Mendis Ln.",
     "xy": [
       46,
-      83
+      82
     ]
   },
   {
@@ -476,7 +476,7 @@
     ]
   },
   {
-    "name": "Lalanka Ratmalana",
+    "name": "Ratmalana",
     "xy": [
       35,
       76
@@ -490,17 +490,17 @@
     ]
   },
   {
-    "name": "Nisaco Mall",
+    "name": "Nisaco",
     "xy": [
       86,
-      59
+      58
     ]
   },
   {
     "name": "Nugegoda",
     "xy": [
-      50,
-      63
+      49,
+      62
     ]
   },
   {
@@ -521,11 +521,11 @@
     "name": "Palam Thuna Junc.",
     "xy": [
       73,
-      50
+      49
     ]
   },
   {
-    "name": "Panadura Base Hosp.",
+    "name": "Panadura Hosp.",
     "xy": [
       66,
       87
@@ -539,7 +539,7 @@
     ]
   },
   {
-    "name": "Pannipitiya Railway",
+    "name": "Pannipitiya R.way",
     "xy": [
       81,
       70
@@ -548,7 +548,7 @@
   {
     "name": "New Kelani Br.",
     "xy": [
-      45,
+      44,
       23
     ]
   },
@@ -576,7 +576,7 @@
   {
     "name": "Piliyandala",
     "xy": [
-      74,
+      73,
       80
     ]
   },
@@ -584,14 +584,14 @@
     "name": "Public Library",
     "xy": [
       18,
-      34
+      33
     ]
   },
   {
     "name": "Rajagiriya",
     "xy": [
       57,
-      39
+      38
     ]
   },
   {
@@ -618,7 +618,7 @@
   {
     "name": "Royal Institute",
     "xy": [
-      35,
+      34,
       59
     ]
   },
@@ -647,14 +647,14 @@
     "name": "Thalangama",
     "xy": [
       74,
-      41
+      40
     ]
   },
   {
     "name": "Thalawathugoda",
     "xy": [
       78,
-      61
+      60
     ]
   },
   {
@@ -686,28 +686,21 @@
     ]
   },
   {
-    "name": "Town Hall - Vision Care",
-    "xy": [
-      26,
-      33
-    ]
-  },
-  {
-    "name": "Union Place",
+    "name": "Union Pl.",
     "xy": [
       19,
       31
     ]
   },
   {
-    "name": "VTA / AAT",
+    "name": "VTA",
     "xy": [
-      39,
-      48
+      38,
+      47
     ]
   },
   {
-    "name": "W.A. Silva Mw.",
+    "name": "WA Silva Mw.",
     "xy": [
       21,
       61
@@ -730,14 +723,14 @@
   {
     "name": "Weligampitiya",
     "xy": [
-      57,
+      56,
       14
     ]
   },
   {
     "name": "Wellawatta",
     "xy": [
-      17,
+      18,
       62
     ]
   },
@@ -758,8 +751,8 @@
   {
     "name": "Wijerama",
     "xy": [
-      34,
-      36
+      33,
+      35
     ]
   },
   {
