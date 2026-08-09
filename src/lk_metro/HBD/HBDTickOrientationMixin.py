@@ -31,11 +31,11 @@ class HBDTickOrientationMixin:
         self,
         positions: dict[str, Point],
     ) -> None:
-        for stop_name, tick in self._station_ticks.items():
+        for stop_name in self._station_ticks:
             if self._is_terminus(stop_name):
                 continue
             start, end = self._station_tick_endpoints(
-                stop_name, positions[stop_name], tick
+                stop_name, positions[stop_name]
             )
             length = math.dist(start, end)
             if length <= self.MAX_STATION_TICK_LENGTH:
@@ -62,9 +62,7 @@ class HBDTickOrientationMixin:
     def _refine_stop_labels(self, positions: dict[str, Point]) -> None:
         stop_names = [stop.name for stop in self.stops]
         for pass_index in range(4):
-            names = (
-                stop_names if pass_index % 2 == 0 else reversed(stop_names)
-            )
+            names = stop_names if pass_index % 2 == 0 else reversed(stop_names)
             for stop_name in names:
                 occupied = [
                     bounds
