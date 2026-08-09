@@ -1,10 +1,8 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDRouteLabelOptionMixin import (
-    HBDRouteLabelOptionMixin,
-    RouteLabelOption,
-)
+from lk_metro.HBD.HBDRouteLabelOptionMixin import (HBDRouteLabelOptionMixin,
+                                                   RouteLabelOption)
 
 
 class HBDRouteLabelCandidatesMixin(HBDRouteLabelOptionMixin):

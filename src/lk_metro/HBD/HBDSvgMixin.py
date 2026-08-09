@@ -119,7 +119,9 @@ class HBDSvgMixin:
             return super()._station_marker_svg_line(
                 stop_name, position, memberships, route_colors
             )
-        first, second = self._station_tick_endpoints(stop_name, position, tick)
+        first, second = self._station_tick_endpoints(
+            stop_name, position, tick
+        )
         route_id = next(iter(memberships[stop_name]))
         return (
             f'<line class="station" x1="{first[0]}" y1="{first[1]}" '
@@ -135,10 +137,20 @@ class HBDSvgMixin:
     ) -> tuple[Point, Point]:
         if self._is_terminus(stop_name):
             outward = tick[1]
+            vector = (
+                outward[0] - position[0],
+                outward[1] - position[1],
+            )
+            length = math.hypot(*vector)
+            half_length = min(length, self.MAX_STATION_TICK_LENGTH / 2)
+            offset = (
+                vector[0] / length * half_length,
+                vector[1] / length * half_length,
+            )
             return (
-                2 * position[0] - outward[0],
-                2 * position[1] - outward[1],
-            ), outward
+                position[0] - offset[0],
+                position[1] - offset[1],
+            ), (position[0] + offset[0], position[1] + offset[1])
         route_id = next(iter(self._label_memberships[stop_name]))
         route_point = self._nearest_smoothed_route_point(
             self._label_segments[route_id], position
@@ -180,7 +192,11 @@ class HBDSvgMixin:
             samples.append(incoming)
             samples.extend(
                 self._cubic_point(
-                    incoming, first_control, second_control, outgoing, step / 8
+                    incoming,
+                    first_control,
+                    second_control,
+                    outgoing,
+                    step / 8,
                 )
                 for step in range(1, 9)
             )
@@ -206,7 +222,9 @@ class HBDSvgMixin:
 
     def _interchange_capsule_svg(self, stop_name: str) -> str:
         points = self._interchange_route_points(stop_name)
-        first, second, inner_width = self._interchange_capsule_geometry(points)
+        first, second, inner_width = self._interchange_capsule_geometry(
+            points
+        )
         outer_width = inner_width + 2 * self.INTERCHANGE_STROKE_WIDTH
         coordinates = (
             f'x1="{first[0]:g}" y1="{first[1]:g}" '
@@ -232,7 +250,8 @@ class HBDSvgMixin:
         axis = self._interchange_capsule_axis(points, center)
         normal = (-axis[1], axis[0])
         projections = [
-            (point[0] - center[0]) * axis[0] + (point[1] - center[1]) * axis[1]
+            (point[0] - center[0]) * axis[0]
+            + (point[1] - center[1]) * axis[1]
             for point in points
         ]
         half_length = (max(projections) - min(projections)) / 2
@@ -265,7 +284,9 @@ class HBDSvgMixin:
     def _interchange_route_points(self, stop_name: str) -> list[Point]:
         position = self._label_positions[stop_name]
         return [
-            self._nearest_route_point(self._label_segments[route_id], position)
+            self._nearest_route_point(
+                self._label_segments[route_id], position
+            )
             for route_id in self._label_memberships[stop_name]
         ]
 
@@ -298,7 +319,8 @@ class HBDSvgMixin:
         if math.isclose(length_squared, 0.0, abs_tol=1e-9):
             return first
         projection = (
-            (point[0] - first[0]) * delta[0] + (point[1] - first[1]) * delta[1]
+            (point[0] - first[0]) * delta[0]
+            + (point[1] - first[1]) * delta[1]
         ) / length_squared
         fraction = min(1.0, max(0.0, projection))
         return (
@@ -314,7 +336,8 @@ class HBDSvgMixin:
         x_variance = sum((point[0] - center[0]) ** 2 for point in points)
         y_variance = sum((point[1] - center[1]) ** 2 for point in points)
         covariance = sum(
-            (point[0] - center[0]) * (point[1] - center[1]) for point in points
+            (point[0] - center[0]) * (point[1] - center[1])
+            for point in points
         )
         if math.isclose(x_variance + y_variance, 0.0, abs_tol=1e-9):
             return (0.0, 1.0)
@@ -353,7 +376,8 @@ class HBDSvgMixin:
     ) -> list[str]:
         routes = sorted(self.routes, key=lambda route: route.id == "CM02")
         return [
-            self._route_svg_line(route, segments[route.id]) for route in routes
+            self._route_svg_line(route, segments[route.id])
+            for route in routes
         ]
 
     def _route_name_svg_lines(self) -> list[str]:
@@ -469,7 +493,9 @@ class HBDSvgMixin:
             (nelum_pokuna[0] - 1, nelum_pokuna[1] + 5),
             (public_library[0] + 2, public_library[1] - 1),
         )
-        return self._green_space_svg_lines("viharamahadevi-park", points, None)
+        return self._green_space_svg_lines(
+            "viharamahadevi-park", points, None
+        )
 
     def _borella_cemetery_svg_lines(self) -> list[str]:
         borella = self._background_stop_position("Borella")
@@ -649,8 +675,10 @@ class HBDSvgMixin:
     def _background_stop_position(self, stop_name: str) -> Point:
         x_coordinate, y_coordinate = self._logical_positions[stop_name]
         return (
-            (x_coordinate - self._grid_min_x) * self.UNIT_SCALE + self.padding,
-            (y_coordinate - self._grid_min_y) * self.UNIT_SCALE + self.padding,
+            (x_coordinate - self._grid_min_x) * self.UNIT_SCALE
+            + self.padding,
+            (y_coordinate - self._grid_min_y) * self.UNIT_SCALE
+            + self.padding,
         )
 
     def _water_area_svg_lines(
@@ -753,7 +781,8 @@ class HBDSvgMixin:
                 if route.id in self._circle_routes
                 else sum(
                     index == 0
-                    or segment["direction"] != segments[index - 1]["direction"]
+                    or segment["direction"]
+                    != segments[index - 1]["direction"]
                     for index, segment in enumerate(segments)
                 )
             )

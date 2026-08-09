@@ -22,9 +22,42 @@ class HBDTickOrientationMixin:
         )
         self._station_ticks = oriented
         self._refine_stop_labels(positions)
+        self._cap_station_tick_lengths(positions)
         occupied = list(self._stop_label_bounds_by_name.values())
         self._finalize_stop_labels(occupied)
         return oriented
+
+    def _cap_station_tick_lengths(
+        self,
+        positions: dict[str, Point],
+    ) -> None:
+        for stop_name, tick in self._station_ticks.items():
+            if self._is_terminus(stop_name):
+                continue
+            start, end = self._station_tick_endpoints(
+                stop_name, positions[stop_name], tick
+            )
+            length = math.dist(start, end)
+            if length <= self.MAX_STATION_TICK_LENGTH:
+                continue
+            fraction = (length - self.MAX_STATION_TICK_LENGTH) / length
+            shift = (
+                (start[0] - end[0]) * fraction,
+                (start[1] - end[1]) * fraction,
+            )
+            placement = self._stop_label_placements[stop_name]
+            self._stop_label_placements[stop_name] = (
+                placement[0] + shift[0],
+                placement[1] + shift[1],
+                placement[2],
+            )
+            bounds = self._stop_label_bounds_by_name[stop_name]
+            self._stop_label_bounds_by_name[stop_name] = (
+                bounds[0] + shift[0],
+                bounds[1] + shift[1],
+                bounds[2] + shift[0],
+                bounds[3] + shift[1],
+            )
 
     def _refine_stop_labels(self, positions: dict[str, Point]) -> None:
         stop_names = [stop.name for stop in self.stops]

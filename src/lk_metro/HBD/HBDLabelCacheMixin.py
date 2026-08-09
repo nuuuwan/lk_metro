@@ -18,7 +18,7 @@ LabelState = tuple[
 
 
 class HBDLabelCacheMixin:
-    LABEL_CACHE_VERSION = 11
+    LABEL_CACHE_VERSION = 12
     LABEL_CACHE_DIR = Path(tempfile.gettempdir()) / "lk_metro"
 
     def _label_cache_path(self) -> Path:
@@ -47,6 +47,7 @@ class HBDLabelCacheMixin:
                 "halo_width": self.LABEL_HALO_WIDTH,
                 "route_stroke_width": self.ROUTE_STROKE_WIDTH,
                 "tick_length": self.STATION_TICK_LENGTH,
+                "max_tick_length": self.MAX_STATION_TICK_LENGTH,
             },
         }
         encoded = json.dumps(state, sort_keys=True).encode()
