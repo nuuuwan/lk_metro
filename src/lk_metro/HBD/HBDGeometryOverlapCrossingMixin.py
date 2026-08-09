@@ -1,8 +1,12 @@
 from collections import defaultdict
 
+from lk_metro.HBD.HBDGeometryEdgeValidationMixin import GeometryWarning
+
 
 class HBDGeometryOverlapCrossingMixin:
-    def _overlap_errors(self, positions: dict[str, list[float]]) -> list[str]:
+    def _overlap_errors(
+        self, positions: dict[str, list[float]]
+    ) -> list[GeometryWarning]:
         errors = []
         stops_by_position = defaultdict(list)
         for stop_name, position in positions.items():
@@ -15,8 +19,12 @@ class HBDGeometryOverlapCrossingMixin:
                     for name in labels
                 )
                 errors.append(
-                    f"stops {formatted} overlap at "
-                    f"({position[0]:g}, {position[1]:g})"
+                    (
+                        "stop overlap",
+                        tuple(labels),
+                        f"{formatted} overlap at "
+                        f"({position[0]:g}, {position[1]:g})",
+                    )
                 )
         return errors
 
@@ -24,7 +32,7 @@ class HBDGeometryOverlapCrossingMixin:
         self,
         positions: dict[str, list[float]],
         edges: list[tuple[str, str, str]],
-    ) -> list[str]:
+    ) -> list[GeometryWarning]:
         errors = []
         for index, (first_route, first_start, first_end) in enumerate(edges):
             for second_route, second_start, second_end in edges[index + 1:]:
@@ -38,25 +46,40 @@ class HBDGeometryOverlapCrossingMixin:
                 )
                 if point is None:
                     continue
-                first_start_label = self._format_stop_at(
-                    first_start,
-                    positions[first_start],
-                )
-                first_end_label = self._format_stop_at(
-                    first_end, positions[first_end]
-                )
-                second_start_label = self._format_stop_at(
-                    second_start,
-                    positions[second_start],
-                )
-                second_end_label = self._format_stop_at(
-                    second_end,
-                    positions[second_end],
-                )
                 errors.append(
-                    f"route {first_route} edge {first_start_label} "
-                    f"to {first_end_label} crosses route {second_route} edge "
-                    f"{second_start_label} to {second_end_label} "
-                    f"at ({point[0]:g}, {point[1]:g}) without a shared stop"
+                    self._crossing_warning(
+                        first_route,
+                        first_start,
+                        first_end,
+                        second_route,
+                        second_start,
+                        second_end,
+                        point,
+                        positions,
+                    )
                 )
         return errors
+
+    def _crossing_warning(
+        self,
+        first_route: str,
+        first_start: str,
+        first_end: str,
+        second_route: str,
+        second_start: str,
+        second_end: str,
+        point: tuple[float, float],
+        positions: dict[str, list[float]],
+    ) -> GeometryWarning:
+        labels = {
+            stop: self._format_stop_at(stop, positions[stop])
+            for stop in (first_start, first_end, second_start, second_end)
+        }
+        return (
+            "route crossing",
+            (first_start, first_end, second_start, second_end),
+            f"route {first_route} edge {labels[first_start]} to "
+            f"{labels[first_end]} crosses route {second_route} edge "
+            f"{labels[second_start]} to {labels[second_end]} at "
+            f"({point[0]:g}, {point[1]:g}) without a shared stop",
+        )

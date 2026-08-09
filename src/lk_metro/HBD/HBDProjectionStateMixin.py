@@ -24,14 +24,6 @@ class HBDProjectionStateMixin:
         ):
             position_routes[stop].add(route_id)
             return
-        retained_routes = "/".join(sorted(position_routes[stop]))
-        retained_routes = retained_routes or "origin"
-        log.warn(
-            "Harry Beck position conflict: "
-            f"{self._format_stop_at(stop, projected[stop])} "
-            f"(route {retained_routes}) and "
-            f"{self._format_stop_at(stop, expected)} (route {route_id})"
-        )
         position_routes[stop].add(route_id)
 
     @staticmethod
@@ -42,9 +34,9 @@ class HBDProjectionStateMixin:
     ) -> None:
         route_id, stops, _, _ = segment
         fallback_origin = stops[0]
-        log.warn(
-            "Harry Beck stops are not connected to an origin; "
-            f"placing {fallback_origin!r} separately"
+        log.warning(
+            f"[disconnected stop][{fallback_origin}] "
+            "not connected to an origin; placing it separately"
         )
         projected[fallback_origin] = [
             max(point[0] for point in projected.values()) + 2.0,

@@ -77,8 +77,9 @@ class HBDLayoutProjectionMixin:
         edges, errors = self._edge_geometry_errors(positions)
         errors.extend(self._overlap_errors(positions))
         errors.extend(self._crossing_errors(positions, edges))
-        for error in errors:
-            log.warn(f"Harry Beck geometry: {error}")
+        for warning_type, stop_names, description in errors:
+            names = ", ".join(stop_names)
+            log.warning(f"[{warning_type}][{names}] {description}")
 
     def _edge_geometry_error(
         self,
@@ -88,7 +89,7 @@ class HBDLayoutProjectionMixin:
         x_delta: float,
         y_delta: float,
         positions: dict[str, list[float]],
-    ) -> str:
+    ) -> tuple[str, tuple[str, ...], str]:
         if math.isclose(x_delta, 0.0) and math.isclose(y_delta, 0.0):
             message = "has zero length (angle undefined)"
         else:
@@ -99,5 +100,7 @@ class HBDLayoutProjectionMixin:
         first_label = self._format_stop_at(first, positions[first])
         second_label = self._format_stop_at(second, positions[second])
         return (
-            f"route {route_id} edge {first_label} to {second_label} {message}"
+            "line angle",
+            (first, second),
+            f"route {route_id} edge {first_label} to {second_label} {message}",
         )

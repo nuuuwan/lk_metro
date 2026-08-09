@@ -1,11 +1,13 @@
 import math
 
+GeometryWarning = tuple[str, tuple[str, ...], str]
+
 
 class HBDGeometryEdgeValidationMixin:
     def _edge_geometry_errors(
         self,
         positions: dict[str, list[float]],
-    ) -> tuple[list[tuple[str, str, str]], list[str]]:
+    ) -> tuple[list[tuple[str, str, str]], list[GeometryWarning]]:
         errors = []
         edges = []
         for route in self.routes:

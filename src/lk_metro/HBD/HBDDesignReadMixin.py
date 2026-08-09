@@ -20,10 +20,10 @@ class HBDDesignReadMixin:
         )
         records = design.get("routes") if isinstance(design, dict) else None
         if not isinstance(origin_records, dict) or not origin_records:
-            log.warn("Harry Beck design must contain origin stops")
+            log.warning("[design][] must contain origin stops")
             origin_records = {}
         if not isinstance(records, dict):
-            log.warn("Harry Beck design must contain routes")
+            log.warning("[design][] must contain routes")
             records = {}
         origin_positions = self._read_origin_positions(origin_records)
         segments, designed_stops = self._read_design_routes(records)
@@ -36,7 +36,7 @@ class HBDDesignReadMixin:
             with self.design_path.open(encoding="utf-8") as file:
                 return json.load(file)
         except (OSError, json.JSONDecodeError) as error:
-            log.warn(f"Could not read Harry Beck design: {error}")
+            log.warning(f"[design][] could not read design: {error}")
             return {}
 
     @staticmethod
@@ -46,7 +46,7 @@ class HBDDesignReadMixin:
         origin_positions = {}
         for name, coordinates in origin_records.items():
             if not isinstance(coordinates, list) or len(coordinates) != 2:
-                log.warn(f"Harry Beck origin stop {name!r} is invalid")
+                log.warning(f"[origin stop][{name}] has invalid coordinates")
                 continue
             x_coordinate, y_coordinate = coordinates
             if (
@@ -59,7 +59,7 @@ class HBDDesignReadMixin:
                 or not math.isfinite(x_coordinate)
                 or not math.isfinite(y_coordinate)
             ):
-                log.warn(f"Harry Beck origin stop {name!r} is invalid")
+                log.warning(f"[origin stop][{name}] is invalid")
                 continue
             origin_positions[name] = [
                 float(x_coordinate),
@@ -89,7 +89,9 @@ class HBDDesignReadMixin:
         }
         for route_id, sequence in route_records.items():
             if route_id not in routes_by_id:
-                log.warn(f"Harry Beck route {route_id!r} does not exist")
+                log.warning(
+                    f"[design route][] route {route_id!r} does not exist"
+                )
                 continue
             designed_stops = routes_by_id[route_id].stops
             sequence = fitted_records[route_id][0]

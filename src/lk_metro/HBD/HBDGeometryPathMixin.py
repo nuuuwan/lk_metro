@@ -1,4 +1,6 @@
 import math
+from collections import Counter
+from functools import cmp_to_key
 
 from lk_metro.GD.Point import Point
 
@@ -9,6 +11,11 @@ class HBDGeometryPathMixin:
         positions: dict[str, Point] | None = None,
     ) -> dict[str, list[list[Point]]]:
         positions = positions or self.layout()
+        self._parallel_lane_offsets = (
+            self._build_parallel_lane_offsets(positions)
+            if self.SHOW_PARALLEL_LINES
+            else {}
+        )
         paths_by_route = {}
         for route in self.routes:
             if route.id in self._circle_routes:
@@ -89,9 +96,53 @@ class HBDGeometryPathMixin:
                 ref_first, ref_second = self._edge_directions[edge]
                 is_ref = first == ref_first and second == ref_second
                 path = [positions[ref_first], positions[ref_second]]
+                if (
+                    self.SHOW_PARALLEL_LINES
+                    and len(self._edge_routes[edge]) > 1
+                ):
+                    offset_index = self._parallel_lane_offsets[edge][route_id]
+                    path = self._offset_path(
+                        path, offset_index * self.parallel_route_gap
+                    )
                 paths.append(path if is_ref else list(reversed(path)))
                 edges.append(edge)
-        return self._join_linear_route_paths(paths, edges)
+        paths = self._join_linear_route_paths(paths, edges)
+        if not self.FORCE_45_DEGREE_LINES:
+            return paths
+        return [self._force_45_degree_path(path) for path in paths]
+
+    @staticmethod
+    def _force_45_degree_path(path: list[Point]) -> list[Point]:
+        first, second = path[0], path[-1]
+        x_delta = second[0] - first[0]
+        y_delta = second[1] - first[1]
+        if (
+            math.isclose(x_delta, 0.0, abs_tol=1e-9)
+            or math.isclose(y_delta, 0.0, abs_tol=1e-9)
+            or math.isclose(abs(x_delta), abs(y_delta), abs_tol=1e-9)
+        ):
+            return path
+        if abs(x_delta) > abs(y_delta):
+            diagonal_x = math.copysign(abs(y_delta) / 2, x_delta)
+            first_bend = (
+                first[0] + diagonal_x,
+                first[1] + y_delta / 2,
+            )
+            second_bend = (
+                second[0] - diagonal_x,
+                second[1] - y_delta / 2,
+            )
+        else:
+            diagonal_y = math.copysign(abs(x_delta) / 2, y_delta)
+            first_bend = (
+                first[0] + x_delta / 2,
+                first[1] + diagonal_y,
+            )
+            second_bend = (
+                second[0] - x_delta / 2,
+                second[1] - diagonal_y,
+            )
+        return [first, first_bend, second_bend, second]
 
     def _join_linear_route_paths(
         self,
@@ -164,6 +215,73 @@ class HBDGeometryPathMixin:
             first_start[1] + fraction * first_delta[1],
         )
 
+    def _build_parallel_lane_offsets(
+        self,
+        positions: dict[str, Point],
+    ) -> dict[tuple[str, str], dict[str, int]]:
+        remaining = {
+            edge
+            for edge, route_ids in self._edge_routes.items()
+            if len(route_ids) > 1
+        }
+        offsets = {}
+        while remaining:
+            component = self._parallel_corridor_component(
+                remaining.pop(), remaining, positions
+            )
+            anchor = max(
+                component, key=lambda edge: len(self._edge_routes[edge])
+            )
+            route_order = self._parallel_route_ids(anchor, positions)
+            anchor_normal = self._edge_normal(anchor, positions)
+            for edge in component:
+                normal = self._edge_normal(edge, positions)
+                orientation = (
+                    1 if self._dot(anchor_normal, normal) >= 0 else -1
+                )
+                offsets[edge] = {
+                    route_id: orientation * route_order.index(route_id)
+                    for route_id in self._edge_routes[edge]
+                }
+        return offsets
+
+    def _parallel_corridor_component(
+        self,
+        first: tuple[str, str],
+        remaining: set[tuple[str, str]],
+        positions: dict[str, Point],
+    ) -> list[tuple[str, str]]:
+        component = []
+        pending = [first]
+        while pending:
+            edge = pending.pop()
+            component.append(edge)
+            neighbors = {
+                candidate
+                for candidate in remaining
+                if self._edges_continue_straight(edge, candidate, positions)
+            }
+            remaining.difference_update(neighbors)
+            pending.extend(neighbors)
+        return component
+
+    def _edges_continue_straight(
+        self,
+        first: tuple[str, str],
+        second: tuple[str, str],
+        positions: dict[str, Point],
+    ) -> bool:
+        if not set(first) & set(second):
+            return False
+        first_vector = self._edge_vector(first, positions)
+        second_vector = self._edge_vector(second, positions)
+        return math.isclose(
+            first_vector[0] * second_vector[1]
+            - first_vector[1] * second_vector[0],
+            0.0,
+            abs_tol=1e-9,
+        )
+
     def _edge_vector(
         self,
         edge: tuple[str, str],
@@ -183,6 +301,110 @@ class HBDGeometryPathMixin:
         vector = self._edge_vector(edge, positions)
         length = math.hypot(*vector)
         return (-vector[1] / length, vector[0] / length)
+
+    @staticmethod
+    def _dot(first: Point, second: Point) -> float:
+        return first[0] * second[0] + first[1] * second[1]
+
+    def _parallel_route_ids(
+        self,
+        edge: tuple[str, str],
+        positions: dict[str, Point],
+    ) -> list[str]:
+        def compare(first: str, second: str) -> int:
+            return self._compare_parallel_routes(
+                first, second, edge, positions
+            )
+
+        route_ids = sorted(self._edge_routes[edge], key=cmp_to_key(compare))
+        for override in self.PARALLEL_ROUTE_ORDER_OVERRIDES:
+            override_ids = [
+                route_id for route_id in override if route_id in route_ids
+            ]
+            if len(override_ids) < 2:
+                continue
+            insertion_index = min(
+                route_ids.index(route_id) for route_id in override_ids
+            )
+            route_ids = [
+                route_id
+                for route_id in route_ids
+                if route_id not in override_ids
+            ]
+            route_ids[insertion_index:insertion_index] = override_ids
+        return route_ids
+
+    def _compare_parallel_routes(
+        self,
+        first: str,
+        second: str,
+        edge: tuple[str, str],
+        positions: dict[str, Point],
+    ) -> int:
+        score = self._parallel_pair_side_score(first, second, edge, positions)
+        if math.isclose(score, 0.0, abs_tol=1e-9):
+            return self._route_order[first] - self._route_order[second]
+        return -1 if score < 0 else 1
+
+    def _parallel_pair_side_score(
+        self,
+        first_route: str,
+        second_route: str,
+        edge: tuple[str, str],
+        positions: dict[str, Point],
+    ) -> float:
+        shared_edges = {
+            candidate
+            for candidate, route_ids in self._edge_routes.items()
+            if first_route in route_ids and second_route in route_ids
+        }
+        degree = Counter(stop for shared in shared_edges for stop in shared)
+        endpoints = [stop for stop, count in degree.items() if count == 1]
+        ref_first, ref_second = self._edge_directions[edge]
+        normal = self._path_normals(
+            [positions[ref_first], positions[ref_second]]
+        )[0]
+        return sum(
+            self._parallel_branch_offset(
+                first_route, endpoint, shared_edges, normal, positions
+            )
+            - self._parallel_branch_offset(
+                second_route, endpoint, shared_edges, normal, positions
+            )
+            for endpoint in endpoints
+        )
+
+    def _parallel_branch_offset(
+        self,
+        route_id: str,
+        endpoint: str,
+        shared_edges: set[tuple[str, str]],
+        normal: Point,
+        positions: dict[str, Point],
+    ) -> float:
+        segments = self._segments_by_route[route_id]
+        route_stops = [segments[0]["stops"][0]] + [
+            segment["stops"][1] for segment in segments
+        ]
+        for neighbor in self._route_neighbors(route_stops, endpoint):
+            if self._edge_key(endpoint, neighbor) in shared_edges:
+                continue
+            return sum(
+                (positions[neighbor][axis] - positions[endpoint][axis])
+                * normal[axis]
+                for axis in range(2)
+            )
+        return 0.0
+
+    @staticmethod
+    def _route_neighbors(route_stops: list[str], stop: str) -> list[str]:
+        return [
+            route_stops[neighbor_index]
+            for index, candidate in enumerate(route_stops)
+            if candidate == stop
+            for neighbor_index in (index - 1, index + 1)
+            if 0 <= neighbor_index < len(route_stops)
+        ]
 
     def _circle_route_segments(
         self,

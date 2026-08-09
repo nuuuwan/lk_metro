@@ -17,7 +17,7 @@ class LabelBoundsIOMixin:
                 overlap = self._overlap_area(first_bounds, second_bounds)
                 if overlap > self.WARN_LABEL_OVERLAPS_TOLERANCE:
                     log.warning(
-                        "Label overlap: "
+                        f"[label overlap][{first_name}, {second_name}] "
                         f"{first_name!r} overlaps {second_name!r} "
                         f"by {overlap:.6g} square units"
                     )
