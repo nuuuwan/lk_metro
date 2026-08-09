@@ -1,9 +1,19 @@
 import html
+import math
 
 from lk_metro.GD.Point import Point
 
 
 class HBDSvgMixin:
+    SEA_COAST_STOPS = (
+        "Williams Junc.",
+        "Dehiwala",
+        "Mount Lavinia",
+        "Lalanka Ratmalana",
+        "Maliban Junc.",
+        "Rathmalana Tech",
+    )
+
     def _station_marker_svg_line(
         self,
         stop_name: str,
@@ -13,6 +23,8 @@ class HBDSvgMixin:
     ) -> str:
         tick = getattr(self, "_station_ticks", {}).get(stop_name)
         if tick is None:
+            if len(memberships[stop_name]) > 1:
+                return self._interchange_capsule_svg(stop_name)
             return super()._station_marker_svg_line(
                 stop_name, position, memberships, route_colors
             )
@@ -23,22 +35,155 @@ class HBDSvgMixin:
             f'stroke="{route_colors[route_id]}" stroke-linecap="square"/>'
         )
 
+    def _interchange_capsule_svg(self, stop_name: str) -> str:
+        points = self._interchange_route_points(stop_name)
+        first, second, inner_width = self._interchange_capsule_geometry(
+            points
+        )
+        outer_width = inner_width + 2 * self.INTERCHANGE_STROKE_WIDTH
+        coordinates = (
+            f'x1="{first[0]:g}" y1="{first[1]:g}" '
+            f'x2="{second[0]:g}" y2="{second[1]:g}"'
+        )
+        return (
+            f'<g class="interchange-capsule">'
+            f'<line {coordinates} stroke="#000000" '
+            f'stroke-width="{outer_width:g}" stroke-linecap="round"/>'
+            f'<line {coordinates} stroke="#ffffff" '
+            f'stroke-width="{inner_width:g}" stroke-linecap="round"/>'
+            "</g>"
+        )
+
+    def _interchange_capsule_geometry(
+        self,
+        points: list[Point],
+    ) -> tuple[Point, Point, float]:
+        center = (
+            sum(point[0] for point in points) / len(points),
+            sum(point[1] for point in points) / len(points),
+        )
+        axis = self._interchange_capsule_axis(points, center)
+        normal = (-axis[1], axis[0])
+        projections = [
+            (point[0] - center[0]) * axis[0]
+            + (point[1] - center[1]) * axis[1]
+            for point in points
+        ]
+        half_length = (max(projections) - min(projections)) / 2
+        axis_center = (
+            center[0] + (max(projections) + min(projections)) * axis[0] / 2,
+            center[1] + (max(projections) + min(projections)) * axis[1] / 2,
+        )
+        half_width = self.STATION_RADIUS + max(
+            abs(
+                (point[0] - axis_center[0]) * normal[0]
+                + (point[1] - axis_center[1]) * normal[1]
+            )
+            for point in points
+        )
+        first = (
+            axis_center[0] - axis[0] * half_length,
+            axis_center[1] - axis[1] * half_length,
+        )
+        second = (
+            axis_center[0] + axis[0] * half_length,
+            axis_center[1] + axis[1] * half_length,
+        )
+        return first, second, 2 * half_width
+
+    def _interchange_route_points(self, stop_name: str) -> list[Point]:
+        position = self._label_positions[stop_name]
+        return [
+            self._nearest_route_point(
+                self._label_segments[route_id], position
+            )
+            for route_id in self._label_memberships[stop_name]
+        ]
+
+    @staticmethod
+    def _nearest_route_point(
+        route_segments: list[list[Point]],
+        position: Point,
+    ) -> Point:
+        path_segments = [
+            (first, second)
+            for path in route_segments
+            for first, second in zip(path, path[1:])
+        ]
+        return min(
+            (
+                HBDSvgMixin._closest_point_on_segment(position, first, second)
+                for first, second in path_segments
+            ),
+            key=lambda point: math.dist(point, position),
+        )
+
+    @staticmethod
+    def _closest_point_on_segment(
+        point: Point,
+        first: Point,
+        second: Point,
+    ) -> Point:
+        delta = second[0] - first[0], second[1] - first[1]
+        length_squared = delta[0] ** 2 + delta[1] ** 2
+        if math.isclose(length_squared, 0.0, abs_tol=1e-9):
+            return first
+        projection = (
+            (point[0] - first[0]) * delta[0]
+            + (point[1] - first[1]) * delta[1]
+        ) / length_squared
+        fraction = min(1.0, max(0.0, projection))
+        return (
+            first[0] + fraction * delta[0],
+            first[1] + fraction * delta[1],
+        )
+
+    @staticmethod
+    def _interchange_capsule_axis(
+        points: list[Point],
+        center: Point,
+    ) -> Point:
+        x_variance = sum((point[0] - center[0]) ** 2 for point in points)
+        y_variance = sum((point[1] - center[1]) ** 2 for point in points)
+        covariance = sum(
+            (point[0] - center[0]) * (point[1] - center[1])
+            for point in points
+        )
+        if math.isclose(x_variance + y_variance, 0.0, abs_tol=1e-9):
+            return (0.0, 1.0)
+        angle = math.atan2(2 * covariance, x_variance - y_variance) / 2
+        return math.cos(angle), math.sin(angle)
+
     def _route_svg_line(self, route, segments: list[list[Point]]) -> str:
         if route.id not in self._circle_routes:
-            return super()._route_svg_line(route, segments)
-        center = self._circle_centers[route.id]
-        center_x = (
-            center[0] - self._grid_min_x
-        ) * self.UNIT_SCALE + self.padding
-        center_y = (
-            center[1] - self._grid_min_y
-        ) * self.UNIT_SCALE + self.padding
-        x_radius = self._circle_routes[route.id][1] * self.UNIT_SCALE
-        y_radius = self._circle_routes[route.id][2] * self.UNIT_SCALE
+            path_data = self._route_path_data(segments)
+            geometry = f'path d="{path_data}"'
+        else:
+            center = self._circle_centers[route.id]
+            center_x = (
+                center[0] - self._grid_min_x
+            ) * self.UNIT_SCALE + self.padding
+            center_y = (
+                center[1] - self._grid_min_y
+            ) * self.UNIT_SCALE + self.padding
+            x_radius = self._circle_routes[route.id][1] * self.UNIT_SCALE
+            y_radius = self._circle_routes[route.id][2] * self.UNIT_SCALE
+            geometry = (
+                f'ellipse cx="{center_x:g}" cy="{center_y:g}" '
+                f'rx="{x_radius:g}" ry="{y_radius:g}"'
+            )
+        clearance_width = self.ROUTE_STROKE_WIDTH + 2 * self.FEATURE_ROUTE_GAP
         return (
-            f'<ellipse class="route" cx="{center_x:g}" cy="{center_y:g}" '
-            f'rx="{x_radius:g}" ry="{y_radius:g}" stroke="{route.color}" '
-            f'stroke-width="{self.ROUTE_STROKE_WIDTH}"/>'
+            f'<g class="route-with-clearance">'
+            f'<{geometry} class="route-clearance" stroke="#ffffff" '
+            'fill="none" '
+            f'stroke-width="{clearance_width:g}" stroke-linecap="round" '
+            f'stroke-linejoin="round"/>'
+            f'<{geometry} class="route" stroke="{route.color}" '
+            'fill="none" '
+            f'stroke-width="{self.ROUTE_STROKE_WIDTH:g}" '
+            f'stroke-linecap="round" stroke-linejoin="round"/>'
+            "</g>"
         )
 
     def _route_name_svg_lines(self) -> list[str]:
@@ -70,15 +215,188 @@ class HBDSvgMixin:
         ]
 
     def _background_svg_lines(self) -> list[str]:
+        return [
+            *self._sea_svg_lines(),
+            *self._beira_lake_svg_lines(),
+            *self._diyawanna_lake_svg_lines(),
+            *self._bolgoda_lake_svg_lines(),
+            *self._kelani_river_svg_lines(),
+            *self._viharamahadevi_park_svg_lines(),
+            *self._borella_cemetery_svg_lines(),
+            *self._royal_colombo_golf_course_svg_lines(),
+        ]
+
+    def _viharamahadevi_park_svg_lines(self) -> list[str]:
+        required = ("Town Hall", "Nelum Pokuna", "Public Library")
+        if not all(name in self._logical_positions for name in required):
+            return []
+        town_hall = self._background_stop_position("Town Hall")
+        nelum_pokuna = self._background_stop_position("Nelum Pokuna")
+        public_library = self._background_stop_position("Public Library")
+        points = (
+            (town_hall[0] + 1, town_hall[1] - 2),
+            (nelum_pokuna[0] - 1, nelum_pokuna[1] + 1),
+            (nelum_pokuna[0] - 1, nelum_pokuna[1] + 5),
+            (public_library[0] + 2, public_library[1] - 1),
+        )
+        return self._green_space_svg_lines(
+            "viharamahadevi-park", points, "Viharamahadevi Park"
+        )
+
+    def _borella_cemetery_svg_lines(self) -> list[str]:
+        borella = self._background_stop_position("Borella")
+        castle_hospital = self._background_stop_position("Castle Hosp.")
+        points = (
+            (borella[0] + 2, castle_hospital[1] + 2),
+            (castle_hospital[0] + 5, castle_hospital[1] + 2),
+            (castle_hospital[0] + 5, castle_hospital[1] + 8),
+            (castle_hospital[0], castle_hospital[1] + 11),
+            (borella[0] + 2, castle_hospital[1] + 9),
+        )
+        return self._green_space_svg_lines(
+            "borella-cemetery", points, "Borella Cemetery"
+        )
+
+    def _royal_colombo_golf_course_svg_lines(self) -> list[str]:
+        castle_hospital = self._background_stop_position("Castle Hosp.")
+        army_hospital = self._background_stop_position("Army Hosp. Borella")
+        points = (
+            (army_hospital[0] + 2, castle_hospital[1] + 13),
+            (castle_hospital[0] + 7, castle_hospital[1] + 10),
+            (castle_hospital[0] + 8, army_hospital[1] - 2),
+            (army_hospital[0] + 3, army_hospital[1] - 1),
+        )
+        return self._green_space_svg_lines(
+            "royal-colombo-golf-course",
+            points,
+            "Royal Colombo Golf Course",
+        )
+
+    def _sea_svg_lines(self) -> list[str]:
+        required = (
+            "New Kelani Br.",
+            "Colombo Fort",
+            "Kollupitiya",
+            "Wellawatta",
+        ) + self.SEA_COAST_STOPS
+        if not all(name in self._logical_positions for name in required):
+            return []
+        self._background_stop_position("New Kelani Br.")
+        fort = self._background_stop_position("Colombo Fort")
+        kollupitiya = self._background_stop_position("Kollupitiya")
+        wellawatta = self._background_stop_position("Wellawatta")
+        coast = tuple(
+            self._background_stop_position(name)
+            for name in self.SEA_COAST_STOPS
+        )
+        north_y = -self.TITLE_HEIGHT - self._content_offset()[1]
+        points = (
+            (-4, north_y),
+            (fort[0] - 6, north_y),
+            (fort[0] - 6, fort[1] + 4),
+            (kollupitiya[0] - 6, kollupitiya[1]),
+            (wellawatta[0] - 5, wellawatta[1]),
+            *((point[0] - 5, point[1]) for point in coast),
+            (coast[-1][0] - 5, 153),
+            (self.width + 4, 153),
+            (self.width + 4, self.height + 4),
+            (-4, self.height + 4),
+        )
+        return self._water_area_svg_lines(
+            "sea", points, "Indian Ocean", (9, wellawatta[1] + 8)
+        )
+
+    def _beira_lake_svg_lines(self) -> list[str]:
+        required = (
+            "Town Hall",
+            "Gamini Hall",
+            "Regal Cinema",
+            "Nawaloka",
+            "Union Place",
+        )
+        if not all(name in self._logical_positions for name in required):
+            return []
+        town_hall = self._background_stop_position("Town Hall")
+        gamini_hall = self._background_stop_position("Gamini Hall")
+        regal_cinema = self._background_stop_position("Regal Cinema")
+        nawaloka = self._background_stop_position("Nawaloka")
+        union_place = self._background_stop_position("Union Place")
+        points = (
+            (regal_cinema[0] + 1.5, regal_cinema[1] + 1.5),
+            (gamini_hall[0] - 0.5, gamini_hall[1] + 1.5),
+            (town_hall[0] - 2, town_hall[1] - 1.5),
+            (union_place[0] + 0.5, union_place[1] - 1.5),
+            (nawaloka[0] + 1.5, nawaloka[1] - 1.5),
+        )
+        label_position = (
+            sum(point[0] for point in points) / len(points),
+            sum(point[1] for point in points) / len(points),
+        )
+        return self._water_area_svg_lines(
+            "beira-lake", points, "Beira Lake", label_position
+        )
+
+    def _diyawanna_lake_svg_lines(self) -> list[str]:
+        required = ("Palam Thuna Junc.", "Isurupaya", "Thalawathugoda")
+        if not all(name in self._logical_positions for name in required):
+            return []
+        palam_thuna = self._background_stop_position("Palam Thuna Junc.")
+        isurupaya = self._background_stop_position("Isurupaya")
+        thalawathugoda = self._background_stop_position("Thalawathugoda")
+        points = (
+            (palam_thuna[0] - 3, palam_thuna[1] + 3),
+            (palam_thuna[0] + 1, palam_thuna[1] + 3),
+            (isurupaya[0] + 3, isurupaya[1] + 3),
+            (thalawathugoda[0] + 3, thalawathugoda[1] + 3),
+            (thalawathugoda[0] + 1, thalawathugoda[1] + 7),
+            (isurupaya[0] + 1, isurupaya[1] + 7),
+            (palam_thuna[0] - 3, palam_thuna[1] + 7),
+        )
+        label_position = (
+            sum(point[0] for point in points) / len(points),
+            sum(point[1] for point in points) / len(points),
+        )
+        return self._water_area_svg_lines(
+            "diyawanna-lake", points, "Diyawanna Lake", label_position
+        )
+
+    def _bolgoda_lake_svg_lines(self) -> list[str]:
+        required = (
+            "Raththanapitiya",
+            "Lanka Fiber",
+            "Jayanthi Mw.",
+            "Palam Junc.",
+        )
+        if not all(name in self._logical_positions for name in required):
+            return []
+        raththanapitiya = self._background_stop_position("Raththanapitiya")
+        lanka_fiber = self._background_stop_position("Lanka Fiber")
+        jayanthi = self._background_stop_position("Jayanthi Mw.")
+        palam = self._background_stop_position("Palam Junc.")
+        outlet_left = jayanthi[0] + 2
+        outlet_right = palam[0] - 2
+        points = (
+            (raththanapitiya[0], raththanapitiya[1] + 2),
+            (lanka_fiber[0], lanka_fiber[1] + 2),
+            (outlet_right, palam[1] - 7),
+            (outlet_right, 153),
+            (outlet_left, 153),
+            (outlet_left, jayanthi[1] - 2),
+            (lanka_fiber[0] + 2, lanka_fiber[1] + 7),
+            (raththanapitiya[0], raththanapitiya[1] + 7),
+        )
+        label_position = (
+            sum(point[0] for point in points) / len(points),
+            sum(point[1] for point in points) / len(points),
+        )
+        return self._water_area_svg_lines(
+            "bolgoda-lake", points, "Bolgoda Lake", label_position
+        )
+
+    def _kelani_river_svg_lines(self) -> list[str]:
         if "New Kelani Br." not in self._logical_positions:
             return []
-        bridge_x, bridge_y = self._logical_positions["New Kelani Br."]
-        bridge_x = (
-            bridge_x - self._grid_min_x
-        ) * self.UNIT_SCALE + self.padding
-        bridge_y = (
-            bridge_y - self._grid_min_y
-        ) * self.UNIT_SCALE + self.padding
+        bridge_x, bridge_y = self._background_stop_position("New Kelani Br.")
         diagonal_half_span = 26
         upper_y = bridge_y - diagonal_half_span
         lower_y = bridge_y + diagonal_half_span
@@ -90,10 +408,8 @@ class HBDSvgMixin:
         )
         label_x = (bridge_x + diagonal_half_span + self.width + 4) / 2
         return [
-            f'<path d="{river_path}" fill="none" stroke="#66b9d0" '
-            'stroke-width="4.2" stroke-linecap="round" '
-            'stroke-linejoin="round"/>',
-            f'<path d="{river_path}" fill="none" stroke="#d9f1f7" '
+            f'<path d="{river_path}" fill="none" '
+            f'stroke="{self.WATER_FEATURE_COLOR}" '
             'stroke-width="3.5" stroke-linecap="round" '
             'stroke-linejoin="round"/>',
             f'<text x="{label_x:g}" y="{lower_y:g}" text-anchor="middle" '
@@ -101,6 +417,90 @@ class HBDSvgMixin:
             'font-family="Gill Sans, sans-serif" font-size="1.6" '
             'font-style="italic" fill="#287f98">Kelani River</text>',
         ]
+
+    def _background_stop_position(self, stop_name: str) -> Point:
+        x_coordinate, y_coordinate = self._logical_positions[stop_name]
+        return (
+            (x_coordinate - self._grid_min_x) * self.UNIT_SCALE
+            + self.padding,
+            (y_coordinate - self._grid_min_y) * self.UNIT_SCALE
+            + self.padding,
+        )
+
+    def _water_area_svg_lines(
+        self,
+        css_class: str,
+        points: tuple[Point, ...],
+        label: str,
+        label_position: Point,
+    ) -> list[str]:
+        path = self._rounded_closed_path(points)
+        return [
+            f'<path class="water-feature {css_class}" d="{path}" '
+            f'fill="{self.WATER_FEATURE_COLOR}"/>',
+            f'<text class="water-label" x="{label_position[0]:g}" '
+            f'y="{label_position[1]:g}" text-anchor="middle" '
+            'dominant-baseline="middle" '
+            'font-family="Gill Sans, sans-serif" font-size="1.6" '
+            f'font-style="italic" fill="#287f98">{label}</text>',
+        ]
+
+    def _green_space_svg_lines(
+        self,
+        css_class: str,
+        points: tuple[Point, ...],
+        label: str,
+    ) -> list[str]:
+        path = self._rounded_closed_path(points)
+        label_x = sum(point[0] for point in points) / len(points)
+        label_y = sum(point[1] for point in points) / len(points)
+        return [
+            f'<path class="green-space {css_class}" d="{path}" '
+            f'fill="{self.GREEN_SPACE_COLOR}"/>',
+            f'<text class="green-space-label" x="{label_x:g}" '
+            f'y="{label_y:g}" text-anchor="middle" '
+            'dominant-baseline="middle" '
+            f'font-family="Gill Sans, sans-serif" '
+            f'font-size="{self.GREEN_SPACE_LABEL_FONT_SIZE:g}" '
+            f'font-style="italic" fill="{self.GREEN_SPACE_LABEL_COLOR}">'
+            f"{label}</text>",
+        ]
+
+    def _rounded_closed_path(self, points: tuple[Point, ...]) -> str:
+        corners = []
+        for index, current in enumerate(points):
+            previous = points[index - 1]
+            following = points[(index + 1) % len(points)]
+            previous_length = math.dist(current, previous)
+            following_length = math.dist(current, following)
+            offset = min(
+                self.FEATURE_CORNER_RADIUS,
+                previous_length / 2,
+                following_length / 2,
+            )
+            incoming = (
+                current[0]
+                + (previous[0] - current[0]) * offset / previous_length,
+                current[1]
+                + (previous[1] - current[1]) * offset / previous_length,
+            )
+            outgoing = (
+                current[0]
+                + (following[0] - current[0]) * offset / following_length,
+                current[1]
+                + (following[1] - current[1]) * offset / following_length,
+            )
+            corners.append((incoming, current, outgoing))
+        commands = [f"M {corners[0][0][0]:g},{corners[0][0][1]:g}"]
+        for incoming, corner, outgoing in corners:
+            if incoming != corners[0][0]:
+                commands.append(f"L {incoming[0]:g},{incoming[1]:g}")
+            commands.append(
+                f"Q {corner[0]:g},{corner[1]:g} "
+                f"{outgoing[0]:g},{outgoing[1]:g}"
+            )
+        commands.append("Z")
+        return " ".join(commands)
 
     def _svg_dimensions(self) -> tuple[int, int]:
         return super()._svg_dimensions()

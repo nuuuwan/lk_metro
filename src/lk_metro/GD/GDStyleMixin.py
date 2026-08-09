@@ -28,6 +28,9 @@ class GDStyleMixin:
     FOOTER_FONT_SIZE = 1.0
     TITLE_FONT_SIZE = 10
     BACKGROUND_COLOR = "#ffffff"
+    SHOW_BASEMAP = True
+    BASEMAP_OPACITY = 0.3
+    BASEMAP_ZOOM = 12
     TEXT_COLOR = "#991f1d"
     LABEL_COLOR = "#000000"
     FONT_FAMILY = "sans-serif"

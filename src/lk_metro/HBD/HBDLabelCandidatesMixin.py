@@ -28,8 +28,18 @@ class HBDLabelCandidatesMixin(HBDLabelCandidateGeometryMixin):
             normal = self._route_normal(
                 stop_name, routes_by_id[route_id], segments[route_id]
             )
-            edge_distances = self._label_edge_distances(stop_name, route_ids)
             for direction in self._label_directions(normal, prefer_positive):
+                edge_distances = self._label_edge_distances(
+                    stop_name, route_ids
+                )
+                if len(route_ids) > 1:
+                    distance = self._interchange_label_edge_distance(
+                        stop_name, position, direction
+                    )
+                    edge_distances = (
+                        distance,
+                        distance + self.LABEL_FONT_SIZE / 2,
+                    )
                 radius = self._label_radius(
                     direction, half_width, half_height
                 )
@@ -47,6 +57,27 @@ class HBDLabelCandidatesMixin(HBDLabelCandidateGeometryMixin):
                     )
                     options.append((bounds, center))
         return options
+
+    def _interchange_label_edge_distance(
+        self,
+        stop_name: str,
+        position: Point,
+        direction: Point,
+    ) -> float:
+        points = self._interchange_route_points(stop_name)
+        first, second, inner_width = self._interchange_capsule_geometry(
+            points
+        )
+        capsule_radius = inner_width / 2 + self.INTERCHANGE_STROKE_WIDTH
+        return (
+            max(
+                (point[0] - position[0]) * direction[0]
+                + (point[1] - position[1]) * direction[1]
+                for point in (first, second)
+            )
+            + capsule_radius
+            + self.LABEL_HALO_WIDTH
+        )
 
     def _route_normal(
         self,

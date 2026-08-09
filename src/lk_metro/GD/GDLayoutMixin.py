@@ -34,6 +34,9 @@ class GDLayoutMixin:
             self.padding
             + (self.height - self.padding * 2 - y_range * scale) / 2
         )
+        self._mercator_bounds = (min_x, min_y, max_x, max_y)
+        self._mercator_scale = scale
+        self._mercator_offset = (x_offset, y_offset)
         return {
             name: (
                 x_offset + (point[0] - min_x) * scale,

@@ -1,4 +1,5 @@
 from lk_metro.DiagramStyle import PARALLEL_ROUTE_GAP
+from lk_metro.GD.GDBasemapMixin import GDBasemapMixin
 from lk_metro.GD.GDIOMixin import GDIOMixin
 from lk_metro.GD.GDLayoutMixin import GDLayoutMixin
 from lk_metro.GD.GDLegendMixin import GDLegendMixin
@@ -17,6 +18,7 @@ from lk_metro.Stop.Stop import Stop
 class GD(
     GDStyleMixin,
     GDLayoutMixin,
+    GDBasemapMixin,
     GDLegendMixin,
     GDIOMixin,
     GDRoutePathMixin,

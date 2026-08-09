@@ -17,6 +17,7 @@ class HBDLabelPlacementMixin(
         segments: dict[str, list[list[Point]]],
         memberships: dict[str, set[str]],
     ) -> None:
+        self._label_positions = positions
         self._label_segments = segments
         self._label_memberships = memberships
         self._stop_label_placements = {

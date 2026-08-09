@@ -27,6 +27,9 @@ class GDSvgMixin:
             f".footer-label {{ font: {self.FOOTER_FONT_SIZE}px "
             f"{self.FONT_FAMILY}; fill: {self.LABEL_COLOR}; "
             "dominant-baseline: middle; }",
+            f".basemap-attribution {{ font: {self.FOOTER_FONT_SIZE}px "
+            f"{self.FONT_FAMILY}; fill: #333333; "
+            "paint-order: stroke; stroke: white; stroke-width: 0.25; }",
         ]
 
     def _svg_header_lines(self) -> list[str]:
@@ -44,6 +47,7 @@ class GDSvgMixin:
             f'fill="{self.BACKGROUND_COLOR}"/>',
             f'<g transform="translate({content_x} {content_y})">',
             f'<g transform="translate(0 {self.TITLE_HEIGHT})">',
+            *self._basemap_svg_lines(),
             *(self._grid_svg_lines() if self.SHOW_GRID else []),
         ]
 

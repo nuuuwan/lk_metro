@@ -13,17 +13,51 @@ class HBDTickOrientationMixin:
         ticks: dict[str, Tick],
         positions: dict[str, Point],
     ) -> dict[str, Tick]:
-        occupied = [
-            bounds
-            for stop_name, bounds in self._stop_label_bounds_by_name.items()
-            if stop_name not in ticks
-        ]
+        occupied: list[Bounds] = []
+        self._place_interchange_labels(positions, occupied)
         oriented = self._select_tick_label_candidates(
             ticks, positions, occupied
         )
         self._station_ticks = oriented
         self._finalize_stop_labels(occupied)
         return oriented
+
+    def _place_interchange_labels(
+        self,
+        positions: dict[str, Point],
+        occupied: list[Bounds],
+    ) -> None:
+        pending = {
+            stop_name
+            for stop_name, route_ids in self._label_memberships.items()
+            if len(route_ids) > 1
+        }
+        prefer_positive = True
+        while pending:
+            candidates = {
+                stop_name: self._stop_label_candidates(
+                    stop_name,
+                    positions,
+                    self._label_segments,
+                    self._label_memberships,
+                    occupied,
+                    prefer_positive,
+                )
+                for stop_name in pending
+            }
+            stop_name = self._next_tick_label_name(
+                pending,
+                {name: scores for name, (_, scores) in candidates.items()},
+            )
+            options, scores = candidates[stop_name]
+            selected = options[
+                min(range(len(options)), key=scores.__getitem__)
+            ]
+            self._stop_label_bounds_by_name[stop_name] = selected[0]
+            self._stop_label_placements[stop_name] = (*selected[1], "middle")
+            occupied.append(selected[0])
+            pending.remove(stop_name)
+            prefer_positive = not prefer_positive
 
     def _select_tick_label_candidates(
         self,
