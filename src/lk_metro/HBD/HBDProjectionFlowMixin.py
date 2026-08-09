@@ -47,7 +47,9 @@ class HBDProjectionFlowMixin:
         projected: dict[str, list[float]],
     ) -> dict[str, list[float]]:
         routes_by_id = {route["id"]: route for route in design_routes}
-        fitted_positions = self._fit_circle_routes(routes_by_id, projected)
+        fitted_positions = self._fit_circle_routes(
+            routes_by_id, projected, origin_positions
+        )
         reflowed = self._reflow_around_circles(
             origin_positions, design_routes, fitted_positions
         )
@@ -77,6 +79,7 @@ class HBDProjectionFlowMixin:
         self,
         routes_by_id: dict[str, dict[str, object]],
         projected: dict[str, list[float]],
+        origin_positions: dict[str, list[float]],
     ) -> dict[str, list[float]]:
         fitted_positions = {}
         for route_id in self._fitted_circle_routes:
@@ -86,11 +89,38 @@ class HBDProjectionFlowMixin:
                 [projected[stop] for stop in stops],
                 self._fitted_circle_routes[route_id],
             )
+            center, positions = self._anchor_fitted_circle(
+                stops, center, positions, origin_positions
+            )
             self._circle_centers[route_id] = center
             self._circle_routes[route_id] = circle
             self._circle_route_angles[route_id] = angles
             fitted_positions.update(zip(stops, positions))
         return fitted_positions
+
+    @staticmethod
+    def _anchor_fitted_circle(
+        stops: list[str],
+        center: list[float],
+        positions: list[list[float]],
+        origin_positions: dict[str, list[float]],
+    ) -> tuple[list[float], list[list[float]]]:
+        anchors = [stop for stop in stops if stop in origin_positions]
+        if len(anchors) != 1:
+            return center, positions
+        anchor = anchors[0]
+        anchor_index = stops.index(anchor)
+        offset = [
+            origin_positions[anchor][axis] - positions[anchor_index][axis]
+            for axis in range(2)
+        ]
+        return (
+            [center[axis] + offset[axis] for axis in range(2)],
+            [
+                [point[axis] + offset[axis] for axis in range(2)]
+                for point in positions
+            ],
+        )
 
     def _reflow_around_circles(
         self,
@@ -99,8 +129,9 @@ class HBDProjectionFlowMixin:
         fitted_positions: dict[str, list[float]],
     ) -> dict[str, list[float]]:
         routes_by_id = {route["id"]: route for route in design_routes}
-        reflowed = {name: point[:] for name, point in origin_positions.items()}
-        reflowed.update(fitted_positions)
+        reflowed = self._merge_origin_positions(
+            origin_positions, fitted_positions
+        )
         position_routes = {name: set() for name in reflowed}
         for route_id in self._fitted_circle_routes:
             route = routes_by_id[route_id]
@@ -110,6 +141,16 @@ class HBDProjectionFlowMixin:
         for route in design_routes:
             self._reflow_route(route, reflowed, position_routes)
         return reflowed
+
+    @staticmethod
+    def _merge_origin_positions(
+        origin_positions: dict[str, list[float]],
+        fitted_positions: dict[str, list[float]],
+    ) -> dict[str, list[float]]:
+        merged = {name: point[:] for name, point in origin_positions.items()}
+        for name, point in fitted_positions.items():
+            merged.setdefault(name, point)
+        return merged
 
     def _reflow_route(
         self,

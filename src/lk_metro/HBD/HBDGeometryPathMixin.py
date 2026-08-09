@@ -18,13 +18,10 @@ class HBDGeometryPathMixin:
             paths_by_route[route.id] = paths
         circle_paths_by_edge = self._circle_paths_by_edge(paths_by_route)
         return {
-            route.id: self._offset_route_paths(
+            route.id: self._follow_circle_paths(
                 route.id,
-                self._follow_circle_paths(
-                    route.id,
-                    paths_by_route[route.id],
-                    circle_paths_by_edge,
-                ),
+                paths_by_route[route.id],
+                circle_paths_by_edge,
             )
             for route in self.routes
         }
@@ -77,19 +74,6 @@ class HBDGeometryPathMixin:
             if (first, second) == self._edge_directions[edge]
             else list(reversed(circle_path))
         )
-
-    def _offset_route_paths(
-        self,
-        route_id: str,
-        paths: list[list[Point]],
-    ) -> list[list[Point]]:
-        x_offset, y_offset = self._route_offsets.get(route_id, (0.0, 0.0))
-        x_offset *= self.ROUTE_STROKE_WIDTH
-        y_offset *= self.ROUTE_STROKE_WIDTH
-        return [
-            [(point[0] + x_offset, point[1] + y_offset) for point in path]
-            for path in paths
-        ]
 
     def _linear_route_segments(
         self,

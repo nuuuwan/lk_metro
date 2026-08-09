@@ -76,22 +76,18 @@ class HBDDesignReadMixin:
         designed_stops_by_route = {}
         self._circle_routes: dict[str, tuple[float, float, float, bool]] = {}
         route_records = {
-            str(route_id): self._read_route_record(str(route_id), record)
-            for route_id, record in records.items()
-        }
-        self._route_offsets = {
-            route_id: offset for route_id, (_, offset) in route_records.items()
+            str(route_id): record for route_id, record in records.items()
         }
         fitted_records = {
             route_id: self._parse_fitted_shape(str(route_id), sequence)
-            for route_id, (sequence, _) in route_records.items()
+            for route_id, sequence in route_records.items()
         }
         self._fitted_circle_routes = {
             route_id: radii
             for route_id, (_, radii, is_fitted) in fitted_records.items()
             if is_fitted
         }
-        for route_id, (sequence, _) in route_records.items():
+        for route_id, sequence in route_records.items():
             if route_id not in routes_by_id:
                 log.warn(f"Harry Beck route {route_id!r} does not exist")
                 continue
@@ -102,33 +98,6 @@ class HBDDesignReadMixin:
             )
             designed_stops_by_route[route_id] = designed_stops
         return segments_by_route, designed_stops_by_route
-
-    @staticmethod
-    def _read_route_record(
-        route_id: str,
-        record: object,
-    ) -> tuple[object, tuple[float, float]]:
-        if isinstance(record, str):
-            return record, (0.0, 0.0)
-        if not isinstance(record, dict):
-            raise ValueError(f"Harry Beck route {route_id} is invalid")
-        sequence = record.get("path")
-        offset = record.get("offset", [0.0, 0.0])
-        if not isinstance(offset, list) or len(offset) != 2:
-            raise ValueError(
-                f"Harry Beck route {route_id} offset must be [x, y]"
-            )
-        x_offset, y_offset = offset
-        if any(
-            isinstance(value, bool)
-            or not isinstance(value, (int, float))
-            or not math.isfinite(value)
-            for value in offset
-        ):
-            raise ValueError(
-                f"Harry Beck route {route_id} offset must be finite numbers"
-            )
-        return sequence, (float(x_offset), float(y_offset))
 
     def _read_route_segments(
         self,

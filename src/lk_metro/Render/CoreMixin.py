@@ -73,9 +73,6 @@ class CoreMixin:
         positions = self.layout()
         segments = self.route_segments(positions)
         memberships = self._route_memberships()
-        self._align_interchange_route_segments(
-            positions, memberships, segments
-        )
         lines = self._svg_header_lines()
         lines.extend(self._route_svg_lines(segments))
         self._prepare_stop_labels(positions, segments, memberships)
