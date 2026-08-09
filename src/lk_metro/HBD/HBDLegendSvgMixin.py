@@ -12,7 +12,9 @@ class HBDLegendSvgMixin:
                 self._legend_route_svg_lines(legend_x, legend_title_y)
             )
         if self.SHOW_DESCRIPTION:
-            lines.extend(self._description_svg_lines(legend_x, legend_title_y))
+            lines.extend(
+                self._description_svg_lines(legend_x, legend_title_y)
+            )
         center_x = self._content_dimensions()[0] / 2
         footer_y = self._svg_dimensions()[1] - self._content_offset()[1] - 2
         lines.append(
@@ -26,7 +28,9 @@ class HBDLegendSvgMixin:
     ) -> list[str]:
         lines = []
         for index, route in enumerate(self.legend_routes):
-            y_coordinate = legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            y_coordinate = (
+                legend_title_y + 4 + index * self.LEGEND_LINE_HEIGHT
+            )
             lines.extend(
                 [
                     f'<rect class="legend-swatch" x="{legend_x}" '

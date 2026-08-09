@@ -43,7 +43,9 @@ class RouteBuildMixin:
         )
         path = self._base_route_edge_path(*canonical)
         if len(route_ids) > 1:
-            offset_index = self._parallel_lane_index(route_ids.index(route_id))
+            offset_index = self._parallel_lane_index(
+                route_ids.index(route_id)
+            )
             path = self._offset_path(
                 path, offset_index * self.parallel_route_gap
             )

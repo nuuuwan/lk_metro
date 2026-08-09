@@ -1,8 +1,6 @@
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDLabelCandidatesMixin import (
-    HBDLabelCandidatesMixin,
-    LabelOption,
-)
+from lk_metro.HBD.HBDLabelCandidatesMixin import (HBDLabelCandidatesMixin,
+                                                  LabelOption)
 from lk_metro.HBD.HBDLabelPriorityMixin import HBDLabelPriorityMixin
 from lk_metro.Render.Types import Bounds
 
@@ -20,7 +18,8 @@ class HBDLabelPlacementMixin(
         _memberships: dict[str, set[str]],
     ) -> None:
         self._stop_label_placements = {
-            name: (*position, "middle") for name, position in positions.items()
+            name: (*position, "middle")
+            for name, position in positions.items()
         }
         self._stop_label_bounds_by_name = {}
         for stop_name, position in positions.items():

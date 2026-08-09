@@ -156,7 +156,9 @@ class HBDDesignSegmentsMixin:
         dict[str, list[str]],
     ]:
         if not segments_by_route:
-            log.warn("Harry Beck design must contain at least one valid route")
+            log.warn(
+                "Harry Beck design must contain at least one valid route"
+            )
             fallback_route = self.routes[0]
             designed_stops = fallback_route.stops
             segments_by_route[fallback_route.id] = [

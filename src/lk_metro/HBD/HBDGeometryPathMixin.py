@@ -146,7 +146,8 @@ class HBDGeometryPathMixin:
             second_end[1] - second_start[1],
         )
         denominator = (
-            first_delta[0] * second_delta[1] - first_delta[1] * second_delta[0]
+            first_delta[0] * second_delta[1]
+            - first_delta[1] * second_delta[0]
         )
         if math.isclose(denominator, 0.0, abs_tol=1e-9):
             return None
@@ -155,7 +156,8 @@ class HBDGeometryPathMixin:
             second_start[1] - first_start[1],
         )
         fraction = (
-            start_delta[0] * second_delta[1] - start_delta[1] * second_delta[0]
+            start_delta[0] * second_delta[1]
+            - start_delta[1] * second_delta[0]
         ) / denominator
         return (
             first_start[0] + fraction * first_delta[0],

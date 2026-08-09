@@ -97,7 +97,8 @@ class HBDSvgMixin:
                 if route.id in self._circle_routes
                 else sum(
                     index == 0
-                    or segment["direction"] != segments[index - 1]["direction"]
+                    or segment["direction"]
+                    != segments[index - 1]["direction"]
                     for index, segment in enumerate(segments)
                 )
             )

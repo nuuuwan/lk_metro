@@ -1,9 +1,8 @@
 import math
 
 from lk_metro.GD.Point import Point
-from lk_metro.HBD.HBDLabelCandidateGeometryMixin import (
-    HBDLabelCandidateGeometryMixin,
-)
+from lk_metro.HBD.HBDLabelCandidateGeometryMixin import \
+    HBDLabelCandidateGeometryMixin
 from lk_metro.Render.Types import Bounds
 from lk_metro.Route import Route
 
@@ -31,7 +30,9 @@ class HBDLabelCandidatesMixin(HBDLabelCandidateGeometryMixin):
             )
             edge_distances = self._label_edge_distances(stop_name, route_ids)
             for direction in self._label_directions(normal, prefer_positive):
-                radius = self._label_radius(direction, half_width, half_height)
+                radius = self._label_radius(
+                    direction, half_width, half_height
+                )
                 for edge_distance in edge_distances:
                     clearance = edge_distance + radius
                     center = (

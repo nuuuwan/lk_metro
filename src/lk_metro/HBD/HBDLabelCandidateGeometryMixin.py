@@ -37,7 +37,9 @@ class HBDLabelCandidateGeometryMixin:
         half_width: float,
         half_height: float,
     ) -> float:
-        x_radius = half_width / abs(direction[0]) if direction[0] else math.inf
+        x_radius = (
+            half_width / abs(direction[0]) if direction[0] else math.inf
+        )
         y_radius = (
             half_height / abs(direction[1]) if direction[1] else math.inf
         )

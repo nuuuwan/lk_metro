@@ -324,7 +324,8 @@ class HBDProjectionFlowMixin:
     ) -> float:
         sample_count = 256
         angles = [
-            index * 2 * math.pi / sample_count for index in range(sample_count)
+            index * 2 * math.pi / sample_count
+            for index in range(sample_count)
         ]
         best_index = min(
             range(sample_count),
@@ -412,7 +413,9 @@ class HBDProjectionFlowMixin:
             segment["stops"][1] for segment in segments
         ]
         deltas = [
-            self.DIRECTION_VECTORS[self.DIRECTIONS.index(segment["direction"])]
+            self.DIRECTION_VECTORS[
+                self.DIRECTIONS.index(segment["direction"])
+            ]
             for segment in segments
         ]
         anchor_index = next(
@@ -554,7 +557,9 @@ class HBDProjectionFlowMixin:
                 -y_radius * math.sin(math.radians(angle)),
             ]
             for index in range(stop_count)
-            for angle in [start_degrees + direction * index * 360 / edge_count]
+            for angle in [
+                start_degrees + direction * index * 360 / edge_count
+            ]
         ]
 
     @staticmethod

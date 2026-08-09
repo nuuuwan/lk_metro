@@ -1,15 +1,10 @@
 from datetime import datetime
 
-from lk_metro.DiagramStyle import (
-    INTERCHANGE_RADIUS,
-    INTERCHANGE_STROKE_WIDTH,
-    LABEL_FONT_SIZE,
-    LABEL_OFFSET,
-    ROUTE_STROKE_WIDTH,
-    STATION_RADIUS,
-    STATION_TICK_LENGTH,
-    STATION_TICK_STROKE_WIDTH,
-)
+from lk_metro.DiagramStyle import (INTERCHANGE_RADIUS,
+                                   INTERCHANGE_STROKE_WIDTH, LABEL_FONT_SIZE,
+                                   LABEL_OFFSET, ROUTE_STROKE_WIDTH,
+                                   STATION_RADIUS, STATION_TICK_LENGTH,
+                                   STATION_TICK_STROKE_WIDTH)
 
 
 class GDStyleMixin:
