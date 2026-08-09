@@ -6,7 +6,7 @@
   "routes": {
     "CM01": {
       "path": "2W-N-3NW-N-6W-2N-NW-2W",
-      "offset": [0, 0]
+      "offset": [0, -1]
     },
     "CM02": {
       "path": "S-SW-6W-2N-5W-N-W-2W-N-W-N",
@@ -14,7 +14,7 @@
     },
     "CM03": {
       "path": "9W-2N-NW-E-5N-NE-4E",
-      "offset": [-1, -1]
+      "offset": [-1, 0]
     },
     "CM04": {
       "path": "3S-SW-W-SW-3S-4SE-10E-NE-N",
