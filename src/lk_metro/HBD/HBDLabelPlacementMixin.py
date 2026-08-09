@@ -21,11 +21,13 @@ class HBDLabelPlacementMixin(
         self._label_segments = segments
         self._label_memberships = memberships
         self._stop_label_placements = {
-            name: (*position, "middle")
-            for name, position in positions.items()
+            stop.name: (*positions[stop.name], "middle")
+            for stop in self.stops
         }
         self._stop_label_bounds_by_name = {}
-        for stop_name, position in positions.items():
+        for stop in self.stops:
+            stop_name = stop.name
+            position = positions[stop_name]
             font_size = self._label_font_size(stop_name)
             half_width = self._label_width(stop_name, font_size) / 2
             half_height = self._label_half_height(stop_name, font_size)
@@ -63,9 +65,10 @@ class HBDLabelPlacementMixin(
             memberships[stop_name],
             prefer_positive,
         )
-        route_segments = segments if len(memberships[stop_name]) > 1 else {}
         scores = [
-            self._label_option_score(option, occupied, route_segments)
+            self._label_option_score(
+                option, positions[stop_name], occupied, segments
+            )
             for option in options
         ]
         return options, scores
@@ -73,6 +76,7 @@ class HBDLabelPlacementMixin(
     def _label_option_score(
         self,
         option: LabelOption,
+        position: Point,
         occupied: list[Bounds],
         segments: dict[str, list[list[Point]]],
     ) -> LabelScore:
@@ -106,9 +110,11 @@ class HBDLabelPlacementMixin(
         edge = self.LABEL_CANVAS_PADDING
         canvas = (edge, edge, self.width - edge, self.height - edge)
         return (
-            route_overlaps + label_overlaps,
             route_overlaps,
             label_overlaps,
+            self._point_length(
+                (option[1][0] - position[0], option[1][1] - position[1])
+            ),
             sum(overlaps),
             self._outside_area(bounds, canvas),
         )

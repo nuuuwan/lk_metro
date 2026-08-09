@@ -32,23 +32,25 @@ class HBDLegendSvgMixin:
         legend_x: float,
         legend_title_y: float,
     ) -> str:
-        padding = self.INFO_PANEL_PADDING
+        left_padding = self.INFO_PANEL_PADDING
+        right_padding = self.INFO_PANEL_PADDING / 4
+        vertical_padding = self.INFO_PANEL_PADDING
         labels = [
             f"{route.id}: {self._legend_route_name(route)}"
             for route in self.legend_routes
         ] + [self._translated_text("Interchange: transfer between routes")]
         width = 8 + max(
-            len(label) * self.LEGEND_FONT_SIZE * 0.52 for label in labels
+            len(label) * self.LEGEND_FONT_SIZE * 0.48 for label in labels
         )
         first_y = legend_title_y + 4
         last_y = first_y + len(self.legend_routes) * self.LEGEND_LINE_HEIGHT
         half_height = self.LEGEND_FONT_SIZE / 2
         return (
             f'<rect class="info-panel legend-background" '
-            f'x="{legend_x - padding:g}" '
-            f'y="{first_y - half_height - padding:g}" '
-            f'width="{width + 2 * padding:g}" '
-            f'height="{last_y - first_y + 2 * half_height + 2 * padding:g}" '
+            f'x="{legend_x - left_padding:g}" '
+            f'y="{first_y - half_height - vertical_padding:g}" '
+            f'width="{width + left_padding + right_padding:g}" '
+            f'height="{last_y - first_y + 2 * half_height + 2 * vertical_padding:g}" '
             f'rx="1.5" '
             f'fill="{self.INFO_PANEL_COLOR}"/>'
         )
@@ -127,19 +129,21 @@ class HBDLegendSvgMixin:
             "connections over geography, this format makes",
             "routes and interchanges easier to follow.",
         )
-        padding = self.INFO_PANEL_PADDING / 2
+        left_padding = self.INFO_PANEL_PADDING
+        right_padding = self.INFO_PANEL_PADDING / 4
+        vertical_padding = self.INFO_PANEL_PADDING
         half_height = self.DESCRIPTION_FONT_SIZE / 2
         text_width = max(
-            len(text) * self.DESCRIPTION_FONT_SIZE * 0.52
+            len(text) * self.DESCRIPTION_FONT_SIZE * 0.48
             for text in note_lines
         )
         text_height = (len(note_lines) - 1) * 2.6 + 2 * half_height
         lines = [
             f'<rect class="info-panel description-background" '
-            f'x="{note_x - padding:g}" '
-            f'y="{note_y - half_height - padding:g}" '
-            f'width="{text_width + 2 * padding:g}" '
-            f'height="{text_height + 2 * padding:g}" rx="1.5" '
+            f'x="{note_x - left_padding:g}" '
+            f'y="{note_y - half_height - vertical_padding:g}" '
+            f'width="{text_width + left_padding + right_padding:g}" '
+            f'height="{text_height + 2 * vertical_padding:g}" rx="1.5" '
             f'fill="{self.INFO_PANEL_COLOR}"/>'
         ]
         lines.extend(

@@ -12,7 +12,9 @@ class HBDLabelCandidateGeometryMixin:
         distance = self.STATION_TICK_LENGTH
         if len(route_ids) == 1 and self._is_terminus(stop_name):
             distance /= 2
-        return (distance, distance + self.LABEL_FONT_SIZE / 2)
+        return tuple(
+            distance + index * self.LABEL_FONT_SIZE / 2 for index in range(8)
+        )
 
     @staticmethod
     def _label_directions(
@@ -22,9 +24,9 @@ class HBDLabelCandidateGeometryMixin:
         base_angle = math.atan2(normal[1], normal[0])
         preferred = (0.0, math.pi) if prefer_positive else (math.pi, 0.0)
         angle_offsets = preferred + tuple(
-            index * math.pi / 64
-            for index in range(128)
-            if index not in (0, 64)
+            index * math.pi / 16
+            for index in range(32)
+            if index not in (0, 16)
         )
         return tuple(
             (math.cos(base_angle + offset), math.sin(base_angle + offset))

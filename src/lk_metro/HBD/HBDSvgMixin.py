@@ -1,6 +1,8 @@
 import html
 import math
 
+import qrcode
+
 from lk_metro.GD.Point import Point
 
 
@@ -13,6 +15,79 @@ class HBDSvgMixin:
         "Maliban Junc.",
         "Rathmalana Tech",
     )
+
+    def _route_path_data(self, segments: list[list[Point]]) -> str:
+        points = []
+        for segment in segments:
+            if points and points[-1] == segment[0]:
+                points.extend(segment[1:])
+            else:
+                points.extend(segment)
+        points = [
+            point
+            for index, point in enumerate(points)
+            if index == 0 or point != points[index - 1]
+        ]
+        first = points[0]
+        commands = [f"M {first[0]:g},{first[1]:g}"]
+        for index, point in enumerate(points[1:-1], start=1):
+            commands.extend(
+                self._rounded_route_corner_commands(
+                    points[index - 1], point, points[index + 1]
+                )
+            )
+        end = points[-1]
+        commands.append(f"L {end[0]:g},{end[1]:g}")
+        return " ".join(commands)
+
+    def _rounded_route_corner_commands(
+        self,
+        before: Point,
+        point: Point,
+        after: Point,
+    ) -> list[str]:
+        before_length = math.dist(before, point)
+        after_length = math.dist(point, after)
+        if math.isclose(before_length, 0) or math.isclose(after_length, 0):
+            return []
+        incoming_vector = self._unit_vector(point, before, before_length)
+        outgoing_vector = self._unit_vector(point, after, after_length)
+        cross_product = (
+            incoming_vector[0] * outgoing_vector[1]
+            - incoming_vector[1] * outgoing_vector[0]
+        )
+        if math.isclose(cross_product, 0, abs_tol=1e-9):
+            return [f"L {point[0]:g},{point[1]:g}"]
+        offset = min(
+            self.ROUTE_CORNER_RADIUS, before_length / 2, after_length / 2
+        )
+        incoming = (
+            point[0] + incoming_vector[0] * offset,
+            point[1] + incoming_vector[1] * offset,
+        )
+        outgoing = (
+            point[0] + outgoing_vector[0] * offset,
+            point[1] + outgoing_vector[1] * offset,
+        )
+        control_distance = offset * 0.55
+        first_control = (
+            incoming[0] - incoming_vector[0] * control_distance,
+            incoming[1] - incoming_vector[1] * control_distance,
+        )
+        second_control = (
+            outgoing[0] - outgoing_vector[0] * control_distance,
+            outgoing[1] - outgoing_vector[1] * control_distance,
+        )
+        return [
+            f"L {incoming[0]:g},{incoming[1]:g}",
+            f"C {first_control[0]:g},{first_control[1]:g} "
+            f"{second_control[0]:g},{second_control[1]:g} "
+            f"{outgoing[0]:g},{outgoing[1]:g}",
+        ]
+
+    @staticmethod
+    def _unit_vector(start: Point, end: Point, length: float) -> Point:
+        return ((end[0] - start[0]) / length, (end[1] - start[1]) / length)
 
     def _station_marker_svg_line(
         self,
@@ -233,6 +308,44 @@ class HBDSvgMixin:
             *self._viharamahadevi_park_svg_lines(),
             *self._borella_cemetery_svg_lines(),
             *self._royal_colombo_golf_course_svg_lines(),
+            *self._github_qr_svg_lines(),
+        ]
+
+    def _github_qr_svg_lines(self) -> list[str]:
+        qr_code = qrcode.QRCode(
+            error_correction=qrcode.constants.ERROR_CORRECT_M,
+            border=4,
+        )
+        qr_code.add_data(self.GITHUB_REPO_URL)
+        qr_code.make(fit=True)
+        matrix = qr_code.get_matrix()
+        module_size = self.GITHUB_QR_SIZE / len(matrix)
+        x_coordinate = -self._content_offset()[0] + self.GITHUB_QR_MARGIN
+        canvas_bottom = (
+            self._svg_dimensions()[1]
+            - self._content_offset()[1]
+            - self.TITLE_HEIGHT
+        )
+        y_coordinate = (
+            canvas_bottom - self.GITHUB_QR_MARGIN - self.GITHUB_QR_SIZE
+        )
+        modules = " ".join(
+            f"M {x_coordinate + column * module_size:g},"
+            f"{y_coordinate + row * module_size:g} "
+            f"h {module_size:g} v {module_size:g} "
+            f"h {-module_size:g} Z"
+            for row, values in enumerate(matrix)
+            for column, is_dark in enumerate(values)
+            if is_dark
+        )
+        return [
+            f'<a class="github-qr" href="{html.escape(self.GITHUB_REPO_URL)}" '
+            'aria-label="Lanka Metro GitHub repository">',
+            f'<rect x="{x_coordinate:g}" y="{y_coordinate:g}" '
+            f'width="{self.GITHUB_QR_SIZE:g}" '
+            f'height="{self.GITHUB_QR_SIZE:g}" rx="0.5" fill="#ffffff"/>',
+            f'<path d="{modules}" fill="{self.TEXT_COLOR}"/>',
+            "</a>",
         ]
 
     def _viharamahadevi_park_svg_lines(self) -> list[str]:
@@ -337,11 +450,11 @@ class HBDSvgMixin:
         nawaloka = self._background_stop_position("Nawaloka")
         union_place = self._background_stop_position("Union Pl.")
         points = (
-            (regal_cinema[0] + 3, regal_cinema[1] + 3),
-            (gamini_hall[0] - 2, gamini_hall[1] + 3),
-            (town_hall[0] - 3.5, town_hall[1] - 2.5),
-            (union_place[0] + 2, union_place[1] - 3),
-            (nawaloka[0] + 3, nawaloka[1] - 3),
+            (regal_cinema[0] + 6, regal_cinema[1] + 6),
+            (gamini_hall[0] - 5, gamini_hall[1] + 6),
+            (town_hall[0] - 7, town_hall[1] - 6),
+            (union_place[0] + 5, union_place[1] - 6),
+            (nawaloka[0] + 6, nawaloka[1] - 6),
         )
         return self._water_area_svg_lines("beira-lake", points, None, None)
 
@@ -485,6 +598,11 @@ class HBDSvgMixin:
         return lines
 
     def _rounded_closed_path(self, points: tuple[Point, ...]) -> str:
+        points = tuple(
+            point
+            for index, point in enumerate(points)
+            if point != points[index - 1]
+        )
         corners = []
         for index, current in enumerate(points):
             previous = points[index - 1]
@@ -519,12 +637,6 @@ class HBDSvgMixin:
             )
         commands.append("Z")
         return " ".join(commands)
-
-    def _svg_dimensions(self) -> tuple[int, int]:
-        return super()._svg_dimensions()
-
-    def _content_offset(self) -> Point:
-        return super()._content_offset()
 
     @property
     def complexity_by_route(self) -> dict[str, int]:

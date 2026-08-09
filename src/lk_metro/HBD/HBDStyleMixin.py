@@ -29,10 +29,14 @@ class HBDStyleMixin:
         "'Johnston Sans', 'Johnston 100', Johnston100, "
         "'Gill Sans', sans-serif"
     )
-    SHOW_GRID = True
+    SHOW_GRID = False
     CIRCLE_MIN_STOP_GAP_DEGREES = 20.0
     ROUTE_STROKE_WIDTH = 1.0
+    ROUTE_CORNER_RADIUS = 1.5
     FEATURE_CORNER_RADIUS = 1.5
+    GITHUB_REPO_URL = "https://github.com/nuuuwan/lk_metro"
+    GITHUB_QR_SIZE = 14.0
+    GITHUB_QR_MARGIN = 2.0
     FORCE_45_DEGREE_LINES = True
     SHOW_PARALLEL_LINES = True
     PARALLEL_ROUTE_GAP = ROUTE_STROKE_WIDTH + 0.2
@@ -44,11 +48,15 @@ class HBDStyleMixin:
     WARN_LABEL_OVERLAPS = True
     LABEL_OFFSET = 0.95
     LABEL_HALO_WIDTH = 0.2
-    LABEL_COLLISION_PADDING = 0.3
+    LABEL_COLLISION_PADDING = 0.6
     STATION_RADIUS = 0.52
     STATION_TICK_LENGTH = LABEL_FONT_SIZE / 4
     STATION_TICK_STROKE_WIDTH = 0.42
     ROTATE_LABELS = False
+    ROUTE_LABEL_TARGET_STOPS: ClassVar[dict[str, str]] = {
+        "CM01": "Kalalgoda Junc.",
+        "CM08": "Kesbewa",
+    }
     DIRECTIONS: ClassVar[tuple[str, ...]] = (
         "E",
         "SE",

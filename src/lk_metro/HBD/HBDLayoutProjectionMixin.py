@@ -74,8 +74,8 @@ class HBDLayoutProjectionMixin:
         self,
         positions: dict[str, list[float]],
     ) -> None:
-        edges, errors = self._edge_geometry_errors(positions)
-        errors.extend(self._overlap_errors(positions))
+        edges, _ = self._edge_geometry_errors(positions)
+        errors = self._overlap_errors(positions)
         errors.extend(self._crossing_errors(positions, edges))
         for warning_type, stop_names, description in errors:
             names = ", ".join(stop_names)

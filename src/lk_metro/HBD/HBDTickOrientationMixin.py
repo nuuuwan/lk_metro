@@ -13,14 +13,84 @@ class HBDTickOrientationMixin:
         ticks: dict[str, Tick],
         positions: dict[str, Point],
     ) -> dict[str, Tick]:
+        if self._load_cached_stop_labels():
+            return self._station_ticks
         occupied: list[Bounds] = []
         self._place_interchange_labels(positions, occupied)
         oriented = self._select_tick_label_candidates(
             ticks, positions, occupied
         )
         self._station_ticks = oriented
+        self._refine_stop_labels(positions)
+        occupied = list(self._stop_label_bounds_by_name.values())
         self._finalize_stop_labels(occupied)
         return oriented
+
+    def _refine_stop_labels(self, positions: dict[str, Point]) -> None:
+        stop_names = [stop.name for stop in self.stops]
+        for pass_index in range(4):
+            names = (
+                stop_names if pass_index % 2 == 0 else reversed(stop_names)
+            )
+            for stop_name in names:
+                occupied = [
+                    bounds
+                    for name, bounds in self._stop_label_bounds_by_name.items()
+                    if name != stop_name
+                ]
+                if len(self._label_memberships[stop_name]) > 1:
+                    self._refine_interchange_label(
+                        stop_name, positions, occupied
+                    )
+                else:
+                    self._refine_station_label(stop_name, positions, occupied)
+
+    def _refine_interchange_label(
+        self,
+        stop_name: str,
+        positions: dict[str, Point],
+        occupied: list[Bounds],
+    ) -> None:
+        options = self._side_label_options(
+            stop_name,
+            positions[stop_name],
+            self._label_segments,
+            self._label_memberships[stop_name],
+            True,
+        )
+        selected = min(
+            options,
+            key=lambda option: self._label_option_score(
+                option,
+                positions[stop_name],
+                occupied,
+                self._label_segments,
+            ),
+        )
+        self._stop_label_bounds_by_name[stop_name] = selected[0]
+        self._stop_label_placements[stop_name] = (*selected[1], "middle")
+
+    def _refine_station_label(
+        self,
+        stop_name: str,
+        positions: dict[str, Point],
+        occupied: list[Bounds],
+    ) -> None:
+        candidates = self._tick_label_candidates(
+            stop_name,
+            self._station_ticks[stop_name],
+            positions[stop_name],
+            True,
+        )
+        selected = min(
+            candidates,
+            key=lambda candidate: self._tick_label_candidate_score(
+                candidate, positions[stop_name], occupied
+            ),
+        )
+        self._station_ticks[stop_name] = selected[0]
+        self._stop_label_bounds_by_name[stop_name] = selected[1]
+        self._stop_label_placements[stop_name] = selected[2]
 
     def _place_interchange_labels(
         self,
@@ -86,7 +156,9 @@ class HBDTickOrientationMixin:
             }
             scores = {
                 stop_name: [
-                    self._tick_label_candidate_score(candidate, occupied)
+                    self._tick_label_candidate_score(
+                        candidate, positions[stop_name], occupied
+                    )
                     for candidate in stop_candidates
                 ]
                 for stop_name, stop_candidates in candidates.items()
@@ -130,14 +202,15 @@ class HBDTickOrientationMixin:
         y_delta = tick[1][1] - position[1]
         length = math.hypot(x_delta, y_delta)
         direction = (x_delta / length, y_delta / length)
-        directions = (direction, (-direction[0], -direction[1]))
-        if not prefer_positive:
-            directions = tuple(reversed(directions))
+        directions = self._label_directions(direction, prefer_positive)
         return [
             self._tick_label_candidate(
-                stop_name, position, candidate_direction
+                stop_name, position, candidate_direction, extra_distance
             )
             for candidate_direction in directions
+            for extra_distance in (
+                index * self.LABEL_FONT_SIZE / 2 for index in range(8)
+            )
         ]
 
     def _tick_label_candidate(
@@ -145,6 +218,7 @@ class HBDTickOrientationMixin:
         stop_name: str,
         position: Point,
         direction: Point,
+        extra_distance: float,
     ) -> TickLabelCandidate:
         inner = (
             position[0] + direction[0] * self.ROUTE_STROKE_WIDTH / 2,
@@ -158,7 +232,7 @@ class HBDTickOrientationMixin:
         half_width = self._label_width(stop_name, font_size) / 2
         half_height = self._label_half_height(stop_name, font_size)
         label_radius = self._label_radius(direction, half_width, half_height)
-        label_distance = self.LABEL_HALO_WIDTH + label_radius
+        label_distance = self.LABEL_HALO_WIDTH + label_radius + extra_distance
         label_position = (
             tick[1][0] + direction[0] * label_distance,
             tick[1][1] + direction[1] * label_distance,
@@ -175,12 +249,14 @@ class HBDTickOrientationMixin:
     def _tick_label_candidate_score(
         self,
         candidate: TickLabelCandidate,
+        position: Point,
         occupied: list[Bounds],
     ) -> tuple[int, int, int, float, float]:
         placement = candidate[2]
         option = (candidate[1], (placement[0], placement[1]))
         return self._label_option_score(
             option,
+            position,
             occupied,
             self._label_segments,
         )

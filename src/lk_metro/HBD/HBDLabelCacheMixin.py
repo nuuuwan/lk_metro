@@ -5,18 +5,53 @@ import os
 import tempfile
 from pathlib import Path
 
+from lk_metro.GD.Point import Point
 from lk_metro.Render.Types import Bounds
 
 LabelPlacement = tuple[float, float, str]
-LabelState = tuple[dict[str, LabelPlacement], dict[str, Bounds]]
+Tick = tuple[Point, Point]
+LabelState = tuple[
+    dict[str, LabelPlacement],
+    dict[str, Bounds],
+    dict[str, Tick],
+]
 
 
 class HBDLabelCacheMixin:
-    LABEL_CACHE_VERSION = 2
+    LABEL_CACHE_VERSION = 10
     LABEL_CACHE_DIR = Path(tempfile.gettempdir()) / "lk_metro"
 
     def _label_cache_path(self) -> Path:
-        digest = hashlib.sha256(self.design_path.read_bytes()).hexdigest()
+        state = {
+            "version": self.LABEL_CACHE_VERSION,
+            "language": self.language,
+            "positions": self._label_positions,
+            "segments": self._label_segments,
+            "memberships": {
+                name: sorted(route_ids)
+                for name, route_ids in self._label_memberships.items()
+            },
+            "label_metrics": {
+                stop.name: (
+                    self._label_width(
+                        stop.name, self._label_font_size(stop.name)
+                    ),
+                    self._label_half_height(
+                        stop.name, self._label_font_size(stop.name)
+                    ),
+                )
+                for stop in self.stops
+            },
+            "style": {
+                "collision_padding": self.LABEL_COLLISION_PADDING,
+                "font_size": self.LABEL_FONT_SIZE,
+                "halo_width": self.LABEL_HALO_WIDTH,
+                "route_stroke_width": self.ROUTE_STROKE_WIDTH,
+                "tick_length": self.STATION_TICK_LENGTH,
+            },
+        }
+        encoded = json.dumps(state, sort_keys=True).encode()
+        digest = hashlib.sha256(encoded).hexdigest()
         return self.LABEL_CACHE_DIR / f"hbd_labels_{digest}.json"
 
     def _load_cached_stop_labels(self) -> bool:
@@ -28,7 +63,11 @@ class HBDLabelCacheMixin:
         state = self._parse_label_cache(payload)
         if state is None:
             return False
-        self._stop_label_placements, self._stop_label_bounds_by_name = state
+        (
+            self._stop_label_placements,
+            self._stop_label_bounds_by_name,
+            self._station_ticks,
+        ) = state
         self._stop_label_bounds = list(
             self._stop_label_bounds_by_name.values()
         )
@@ -41,15 +80,42 @@ class HBDLabelCacheMixin:
             return None
         placements = self._parse_cached_placements(payload.get("placements"))
         bounds = self._parse_cached_bounds(payload.get("bounds"))
+        ticks = self._parse_cached_ticks(payload.get("ticks"))
         expected = {stop.name for stop in self.stops}
+        expected_ticks = {
+            stop.name
+            for stop in self.stops
+            if len(self._label_memberships[stop.name]) == 1
+        }
         if (
             placements is None
             or bounds is None
+            or ticks is None
             or set(placements) != expected
             or set(bounds) != expected
+            or set(ticks) != expected_ticks
         ):
             return None
-        return placements, bounds
+        return placements, bounds, ticks
+
+    @classmethod
+    def _parse_cached_ticks(cls, records: object) -> dict[str, Tick] | None:
+        if not isinstance(records, dict):
+            return None
+        parsed = {}
+        for name, record in records.items():
+            if not (
+                isinstance(name, str)
+                and isinstance(record, list)
+                and len(record) == 2
+                and all(cls._valid_record(point, 2) for point in record)
+            ):
+                return None
+            parsed[name] = (
+                (float(record[0][0]), float(record[0][1])),
+                (float(record[1][0]), float(record[1][1])),
+            )
+        return parsed
 
     @classmethod
     def _parse_cached_placements(
@@ -99,6 +165,7 @@ class HBDLabelCacheMixin:
             "version": self.LABEL_CACHE_VERSION,
             "placements": self._stop_label_placements,
             "bounds": self._stop_label_bounds_by_name,
+            "ticks": self._station_ticks,
         }
         path.parent.mkdir(parents=True, exist_ok=True)
         file_descriptor, temporary_name = tempfile.mkstemp(
