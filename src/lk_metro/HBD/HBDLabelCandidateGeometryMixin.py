@@ -13,7 +13,7 @@ class HBDLabelCandidateGeometryMixin:
         if len(route_ids) == 1 and self._is_terminus(stop_name):
             distance /= 2
         return tuple(
-            distance + index * self.LABEL_FONT_SIZE / 2 for index in range(8)
+            distance + index * self.LABEL_FONT_SIZE / 4 for index in range(8)
         )
 
     @staticmethod

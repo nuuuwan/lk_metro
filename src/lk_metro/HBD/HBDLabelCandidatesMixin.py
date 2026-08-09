@@ -37,7 +37,7 @@ class HBDLabelCandidatesMixin(HBDLabelCandidateGeometryMixin):
                         stop_name, position, direction
                     )
                     edge_distances = tuple(
-                        distance + index * self.LABEL_FONT_SIZE / 2
+                        distance + index * self.LABEL_FONT_SIZE / 4
                         for index in range(8)
                     )
                 radius = self._label_radius(

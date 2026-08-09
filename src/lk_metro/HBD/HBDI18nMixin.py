@@ -40,7 +40,7 @@ class HBDI18nMixin:
             return translated or text
         if text not in self._missing_translation_warnings:
             language_name = self.LANGUAGE_NAMES[self.language]
-            log.warning(
+            log.error(
                 f"[missing translation][{text}] "
                 f"missing {language_name} translation"
             )

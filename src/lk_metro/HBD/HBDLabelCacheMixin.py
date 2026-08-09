@@ -18,7 +18,7 @@ LabelState = tuple[
 
 
 class HBDLabelCacheMixin:
-    LABEL_CACHE_VERSION = 10
+    LABEL_CACHE_VERSION = 11
     LABEL_CACHE_DIR = Path(tempfile.gettempdir()) / "lk_metro"
 
     def _label_cache_path(self) -> Path:
@@ -134,7 +134,9 @@ class HBDLabelCacheMixin:
         return parsed
 
     @classmethod
-    def _parse_cached_bounds(cls, records: object) -> dict[str, Bounds] | None:
+    def _parse_cached_bounds(
+        cls, records: object
+    ) -> dict[str, Bounds] | None:
         if not isinstance(records, dict):
             return None
         parsed = {}

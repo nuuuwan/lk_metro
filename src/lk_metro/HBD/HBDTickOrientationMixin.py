@@ -209,7 +209,7 @@ class HBDTickOrientationMixin:
             )
             for candidate_direction in directions
             for extra_distance in (
-                index * self.LABEL_FONT_SIZE / 2 for index in range(8)
+                index * self.LABEL_FONT_SIZE / 4 for index in range(8)
             )
         ]
 
