@@ -3,76 +3,146 @@ import math
 from lk_metro.GD.Point import Point
 from lk_metro.Render.Types import Bounds
 
+Tick = tuple[Point, Point]
+TickLabelCandidate = tuple[Tick, Bounds, tuple[float, float, str]]
+
 
 class HBDTickOrientationMixin:
     def _orient_station_ticks(
         self,
-        ticks: dict[str, tuple[Point, Point]],
+        ticks: dict[str, Tick],
         positions: dict[str, Point],
-    ) -> dict[str, tuple[Point, Point]]:
-        oriented = {
-            stop_name: self._one_sided_station_tick(
-                tick, positions[stop_name]
-            )
-            for stop_name, tick in ticks.items()
-        }
-        self._station_ticks = oriented
-        self._stop_label_angles = {}
-        for stop_name, tick in oriented.items():
-            self._place_label_along_tick(stop_name, tick)
-        self._finalize_stop_labels(
-            list(self._stop_label_bounds_by_name.values())
+    ) -> dict[str, Tick]:
+        occupied = [
+            bounds
+            for stop_name, bounds in self._stop_label_bounds_by_name.items()
+            if stop_name not in ticks
+        ]
+        oriented = self._select_tick_label_candidates(
+            ticks, positions, occupied
         )
+        self._station_ticks = oriented
+        self._finalize_stop_labels(occupied)
         return oriented
 
-    def _one_sided_station_tick(
+    def _select_tick_label_candidates(
         self,
-        tick: tuple[Point, Point],
+        ticks: dict[str, Tick],
+        positions: dict[str, Point],
+        occupied: list[Bounds],
+    ) -> dict[str, Tick]:
+        oriented = {}
+        pending = set(ticks)
+        prefer_positive = True
+        while pending:
+            candidates = {
+                stop_name: self._tick_label_candidates(
+                    stop_name,
+                    ticks[stop_name],
+                    positions[stop_name],
+                    prefer_positive,
+                )
+                for stop_name in pending
+            }
+            scores = {
+                stop_name: [
+                    self._tick_label_candidate_score(candidate, occupied)
+                    for candidate in stop_candidates
+                ]
+                for stop_name, stop_candidates in candidates.items()
+            }
+            stop_name = self._next_tick_label_name(pending, scores)
+            selected_index = min(
+                range(len(candidates[stop_name])),
+                key=scores[stop_name].__getitem__,
+            )
+            selected = candidates[stop_name][selected_index]
+            oriented[stop_name] = selected[0]
+            self._stop_label_bounds_by_name[stop_name] = selected[1]
+            self._stop_label_placements[stop_name] = selected[2]
+            occupied.append(selected[1])
+            pending.remove(stop_name)
+            prefer_positive = not prefer_positive
+        return oriented
+
+    def _next_tick_label_name(
+        self,
+        pending: set[str],
+        scores: dict[str, list[tuple[int, int, int, float, float]]],
+    ) -> str:
+        return min(
+            pending,
+            key=lambda name: self._label_priority(
+                name,
+                self._label_memberships,
+                sum(not any(score) for score in scores[name]),
+            ),
+        )
+
+    def _tick_label_candidates(
+        self,
+        stop_name: str,
+        tick: Tick,
         position: Point,
-    ) -> tuple[Point, Point]:
+        prefer_positive: bool,
+    ) -> list[TickLabelCandidate]:
         x_delta = tick[1][0] - position[0]
         y_delta = tick[1][1] - position[1]
         length = math.hypot(x_delta, y_delta)
         direction = (x_delta / length, y_delta / length)
+        directions = (direction, (-direction[0], -direction[1]))
+        if not prefer_positive:
+            directions = tuple(reversed(directions))
+        return [
+            self._tick_label_candidate(
+                stop_name, position, candidate_direction
+            )
+            for candidate_direction in directions
+        ]
+
+    def _tick_label_candidate(
+        self,
+        stop_name: str,
+        position: Point,
+        direction: Point,
+    ) -> TickLabelCandidate:
         inner = (
             position[0] + direction[0] * self.ROUTE_STROKE_WIDTH / 2,
             position[1] + direction[1] * self.ROUTE_STROKE_WIDTH / 2,
         )
-        return inner, (
+        tick = inner, (
             inner[0] + direction[0] * self.STATION_TICK_LENGTH,
             inner[1] + direction[1] * self.STATION_TICK_LENGTH,
         )
-
-    def _place_label_along_tick(
-        self,
-        stop_name: str,
-        tick: tuple[Point, Point],
-    ) -> None:
         font_size = self._label_font_size(stop_name)
-        label_width = self._label_width(stop_name, font_size)
+        half_width = self._label_width(stop_name, font_size) / 2
         half_height = self._label_half_height(stop_name, font_size)
-        x_delta = tick[1][0] - tick[0][0]
-        y_delta = tick[1][1] - tick[0][1]
-        length = math.hypot(x_delta, y_delta)
-        direction = (x_delta / length, y_delta / length)
+        label_radius = self._label_radius(direction, half_width, half_height)
+        label_distance = self.LABEL_HALO_WIDTH + label_radius
         label_position = (
-            tick[1][0] + direction[0] * self.LABEL_HALO_WIDTH,
-            tick[1][1] + direction[1] * self.LABEL_HALO_WIDTH,
+            tick[1][0] + direction[0] * label_distance,
+            tick[1][1] + direction[1] * label_distance,
         )
-        self._stop_label_placements[stop_name] = (
-            *label_position,
-            "start",
+        placement = (*label_position, "middle")
+        bounds = (
+            label_position[0] - half_width,
+            label_position[1] - half_height,
+            label_position[0] + half_width,
+            label_position[1] + half_height,
         )
-        self._stop_label_angles[stop_name] = math.degrees(
-            math.atan2(direction[1], direction[0])
-        )
-        self._stop_label_bounds_by_name[stop_name] = (
-            self._rotated_label_bounds(
-                label_position,
-                direction,
-                label_width,
-                half_height,
-            )
+        return tick, bounds, placement
+
+    def _tick_label_candidate_score(
+        self,
+        candidate: TickLabelCandidate,
+        occupied: list[Bounds],
+    ) -> tuple[int, int, int, float, float]:
+        placement = candidate[2]
+        option = (candidate[1], (placement[0], placement[1]))
+        return self._label_option_score(
+            option,
+            occupied,
+            self._label_segments,
         )
 
     def _tick_to_label(

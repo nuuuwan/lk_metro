@@ -6,7 +6,7 @@
 .route { fill: none; stroke-linecap: butt; stroke-linejoin: round; }
 .station { fill: white; stroke-width: 0.3; }
 .interchange { fill: white; stroke: #000000; stroke-width: 0.3; }
-.label { font: 0.8px sans-serif; fill: #000000; dominant-baseline: middle; }
+.label { font: 2px sans-serif; fill: #000000; dominant-baseline: middle; }
 .map-title { font: bold 10px sans-serif; fill: #991f1d; }
 .legend-label { font: 1.55px sans-serif; fill: #991f1d; dominant-baseline: middle; }
 .legend-route-label { font: 1.55px sans-serif; fill: #000000; dominant-baseline: middle; }
@@ -23,85 +23,85 @@
 <path class="route" d="M 95.90006839360179,146.71571890819249 L 97.36021038932222,146.30052173292785 L 102.1973145484398,146.142729621841 L 107.07795040454113,142.31560240050482 L 107.39917046136257,142.36502582709207 L 107.72039051818402,142.41444925367932 L 107.05910615607718,146.7123665580593 L 106.73788609925573,146.66294313147205 L 106.41666604243429,146.6135197048848 L 109.28942889002101,151.79686168765855 L 109.92042910579858,152.96416438666975 L 108.54359641098903,157.66095637918073 L 108.46367715267382,156.97318705025305 L 110.97064679283295,159.93061861138142 L 115.96668863812971,157.61685121403988 L 116.29160676623964,157.60955669379933 L 116.61652489434957,157.6022621735588 L 116.68784275870746,160.77895731235606 L 116.36292463059753,160.78625183259658 L 116.0380065024876,160.79354635283713 L 112.69754403143884,162.66458595845648 L 110.72945711185359,168.66387243632164 L 105.12078691388648,173.01533697147025 L 101.70709204525443,173.58172971185783 L 101.38227651641118,173.59267832922643 L 101.05746098756794,173.60362694659503 L 100.5374182562911,158.17538161716035 L 100.86223378513435,158.16443299979176 L 101.1870493139776,158.15348438242316 L 95.90006839360179,146.71571890819249" stroke="#72b043" stroke-width="0.65"/>
 <path class="route" d="M 186.39817880641192,200.1357741510713 L 162.98272744811382,232.33722875251357 L 151.37812066130851,227.6405058907201 L 145.44847186929286,221.40820024468547 L 142.46313398239556,213.90791855372706 L 137.1677858565901,209.15267456493956 L 134.2011968592209,198.7786946815328 L 131.280046347027,193.3458074564615 L 126.03895971325498,187.35572380971269 L 109.74264551812428,182.0110093889011 L 111.82810488513857,170.67107110650392 L 110.72945711185359,168.66387243632164 L 107.98819060944376,165.17202197456277 L 106.343512869815,162.25315059281212 L 103.94929931761394,156.00978114818216 L 106.41666604243429,146.6135197048848 L 107.05910615607718,146.71236655805927 L 107.70154626972008,146.81121341123378 L 108.36283063182692,142.5132961068538 L 107.72039051818402,142.41444925367932 L 107.07795040454113,142.31560240050482 L 104.88491853121585,135.06938531213018 L 93.9244572551156,131.712640562172 L 94.24322526712628,131.77598055363677 L 94.56199327913696,131.83932054510157 L 94.74787213623553,130.90385730328737 L 94.52072263077278,131.15233624847963 L 94.29357312531005,131.40081519367186 L 96.42896135398051,130.77339633801068 L 96.40178457907065,130.1430302883178 L 96.37460780416079,129.5126642386249 L 99.92711798028503,130.2313331514571" stroke="#006b3f" stroke-width="0.65"/>
 <circle class="station" cx="112.69754403143884" cy="162.66458595845648" r="0.38" stroke="#72b043"/>
-<text class="label" x="112.69754403143884" y="162.66458595845648" text-anchor="middle"><tspan x="112.69754403143884" dy="-0.42000000000000004">Anderson</tspan><tspan x="112.69754403143884" dy="0.8400000000000001">Flats</tspan></text>
+<text class="label" x="112.69754403143884" y="162.66458595845648" text-anchor="middle"><tspan x="112.69754403143884" dy="-1.05">Anderson</tspan><tspan x="112.69754403143884" dy="2.1">Flats</tspan></text>
 <circle class="station" cx="180.4612510337567" cy="161.92435679298595" r="0.38" stroke="#ffd400"/>
-<text class="label" x="180.4612510337567" y="161.92435679298595" text-anchor="middle"><tspan x="180.4612510337567" dy="-0.42000000000000004">Arangala</tspan><tspan x="180.4612510337567" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="180.4612510337567" y="161.92435679298595" text-anchor="middle"><tspan x="180.4612510337567" dy="-1.05">Arangala</tspan><tspan x="180.4612510337567" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="116.07903422462772" cy="155.11505105157957" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="116.07903422462772" y="155.11505105157957" text-anchor="middle"><tspan x="116.07903422462772" dy="-0.8400000000000001">Army</tspan><tspan x="116.07903422462772" dy="0.8400000000000001">Hosp.</tspan><tspan x="116.07903422462772" dy="0.8400000000000001">Borella</tspan></text>
+<text class="label" x="116.07903422462772" y="155.11505105157957" text-anchor="middle"><tspan x="116.07903422462772" dy="-2.1">Army</tspan><tspan x="116.07903422462772" dy="2.1">Hosp.</tspan><tspan x="116.07903422462772" dy="2.1">Borella</tspan></text>
 <circle class="station" cx="200.68890390775653" cy="169.05737970855353" r="0.38" stroke="#ffd400"/>
-<text class="label" x="200.68890390775653" y="169.05737970855353" text-anchor="middle"><tspan x="200.68890390775653" dy="-0.42000000000000004">Athurugiriya</tspan><tspan x="200.68890390775653" dy="0.8400000000000001">Hosp.</tspan></text>
+<text class="label" x="200.68890390775653" y="169.05737970855353" text-anchor="middle"><tspan x="200.68890390775653" dy="-1.05">Athurugiriya</tspan><tspan x="200.68890390775653" dy="2.1">Hosp.</tspan></text>
 <circle class="station" cx="199.06970769445715" cy="171.98067549413216" r="0.38" stroke="#ffd400"/>
-<text class="label" x="199.06970769445715" y="171.98067549413216" text-anchor="middle"><tspan x="199.06970769445715" dy="-0.42000000000000004">Athurugiriya</tspan><tspan x="199.06970769445715" dy="0.8400000000000001">Town</tspan></text>
+<text class="label" x="199.06970769445715" y="171.98067549413216" text-anchor="middle"><tspan x="199.06970769445715" dy="-1.05">Athurugiriya</tspan><tspan x="199.06970769445715" dy="2.1">Town</tspan></text>
 <circle class="interchange" cx="101.1870493139776" cy="158.15348438242316" r="0.78"/>
 <text class="label" x="101.1870493139776" y="158.15348438242316" text-anchor="middle"><tspan x="101.1870493139776" dy="0.0">Bambalapitiya</tspan></text>
 <circle class="interchange" cx="147.85347648177333" cy="153.0060093668019" r="0.78"/>
-<text class="label" x="147.85347648177333" y="153.0060093668019" text-anchor="middle"><tspan x="147.85347648177333" dy="-0.42000000000000004">Battaramulla</tspan><tspan x="147.85347648177333" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="147.85347648177333" y="153.0060093668019" text-anchor="middle"><tspan x="147.85347648177333" dy="-1.05">Battaramulla</tspan><tspan x="147.85347648177333" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="134.2011968592209" cy="198.7786946815328" r="0.38" stroke="#006b3f"/>
 <text class="label" x="134.2011968592209" y="198.7786946815328" text-anchor="middle"><tspan x="134.2011968592209" dy="0.0">Boralesgamuwa</tspan></text>
 <circle class="interchange" cx="116.47959943533255" cy="144.1434272414899" r="0.78"/>
 <text class="label" x="116.47959943533255" y="144.1434272414899" text-anchor="middle"><tspan x="116.47959943533255" dy="0.0">Borella</tspan></text>
 <circle class="station" cx="107.98819060944376" cy="165.17202197456277" r="0.38" stroke="#006b3f"/>
-<text class="label" x="107.98819060944376" y="165.17202197456277" text-anchor="middle"><tspan x="107.98819060944376" dy="-0.42000000000000004">BRC</tspan><tspan x="107.98819060944376" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="107.98819060944376" y="165.17202197456277" text-anchor="middle"><tspan x="107.98819060944376" dy="-1.05">BRC</tspan><tspan x="107.98819060944376" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="116.14175179869025" cy="140.300680890309" r="0.78"/>
-<text class="label" x="116.14175179869025" y="140.300680890309" text-anchor="middle"><tspan x="116.14175179869025" dy="-0.42000000000000004">Campbell</tspan><tspan x="116.14175179869025" dy="0.8400000000000001">Park</tspan></text>
+<text class="label" x="116.14175179869025" y="140.300680890309" text-anchor="middle"><tspan x="116.14175179869025" dy="-1.05">Campbell</tspan><tspan x="116.14175179869025" dy="2.1">Park</tspan></text>
 <circle class="station" cx="147.86435819020028" cy="201.5489796073245" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="147.86435819020028" y="201.5489796073245" text-anchor="middle"><tspan x="147.86435819020028" dy="-0.8400000000000001">Cancer</tspan><tspan x="147.86435819020028" dy="0.8400000000000001">Hosp.</tspan><tspan x="147.86435819020028" dy="0.8400000000000001">01</tspan></text>
+<text class="label" x="147.86435819020028" y="201.5489796073245" text-anchor="middle"><tspan x="147.86435819020028" dy="-2.1">Cancer</tspan><tspan x="147.86435819020028" dy="2.1">Hosp.</tspan><tspan x="147.86435819020028" dy="2.1">01</tspan></text>
 <circle class="interchange" cx="121.7278915246981" cy="147.84081981699933" r="0.78"/>
-<text class="label" x="121.7278915246981" y="147.84081981699933" text-anchor="middle"><tspan x="121.7278915246981" dy="-0.42000000000000004">Castle</tspan><tspan x="121.7278915246981" dy="0.8400000000000001">Hosp.</tspan></text>
+<text class="label" x="121.7278915246981" y="147.84081981699933" text-anchor="middle"><tspan x="121.7278915246981" dy="-1.05">Castle</tspan><tspan x="121.7278915246981" dy="2.1">Hosp.</tspan></text>
 <circle class="interchange" cx="96.24572434088464" cy="130.14975846469662" r="0.78"/>
-<text class="label" x="96.24572434088464" y="130.14975846469662" text-anchor="middle"><tspan x="96.24572434088464" dy="-0.42000000000000004">Colombo</tspan><tspan x="96.24572434088464" dy="0.8400000000000001">Fort</tspan></text>
+<text class="label" x="96.24572434088464" y="130.14975846469662" text-anchor="middle"><tspan x="96.24572434088464" dy="-1.05">Colombo</tspan><tspan x="96.24572434088464" dy="2.1">Fort</tspan></text>
 <circle class="station" cx="126.20261859186064" cy="21.065838199815467" r="0.38" stroke="#6f2dbd"/>
-<text class="label" x="126.20261859186064" y="21.065838199815467" text-anchor="middle"><tspan x="126.20261859186064" dy="-0.42000000000000004">CTB</tspan><tspan x="126.20261859186064" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="126.20261859186064" y="21.065838199815467" text-anchor="middle"><tspan x="126.20261859186064" dy="-1.05">CTB</tspan><tspan x="126.20261859186064" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="107.93370854225356" cy="191.21143340526055" r="0.38" stroke="#f57c00"/>
 <text class="label" x="107.93370854225356" y="191.21143340526055" text-anchor="middle"><tspan x="107.93370854225356" dy="0.0">Dehiwala</tspan></text>
 <circle class="station" cx="134.00687013372604" cy="182.54635833338318" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="134.00687013372604" y="182.54635833338318" text-anchor="middle"><tspan x="134.00687013372604" dy="-0.42000000000000004">Delkanda</tspan><tspan x="134.00687013372604" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="134.00687013372604" y="182.54635833338318" text-anchor="middle"><tspan x="134.00687013372604" dy="-1.05">Delkanda</tspan><tspan x="134.00687013372604" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="118.51734638839106" cy="130.87538963740974" r="0.78"/>
 <text class="label" x="118.51734638839106" y="130.87538963740974" text-anchor="middle"><tspan x="118.51734638839106" dy="0.0">Dematagoda</tspan></text>
 <circle class="station" cx="126.86993990676892" cy="271.4170746087336" r="0.38" stroke="#f57c00"/>
-<text class="label" x="126.86993990676892" y="271.4170746087336" text-anchor="middle"><tspan x="126.86993990676892" dy="-0.42000000000000004">Egoda</tspan><tspan x="126.86993990676892" dy="0.8400000000000001">Uyana</tspan></text>
+<text class="label" x="126.86993990676892" y="271.4170746087336" text-anchor="middle"><tspan x="126.86993990676892" dy="-1.05">Egoda</tspan><tspan x="126.86993990676892" dy="2.1">Uyana</tspan></text>
 <circle class="station" cx="140.5002355373013" cy="6.0" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="140.5002355373013" y="6.0" text-anchor="middle"><tspan x="140.5002355373013" dy="0.0">Ekala</tspan></text>
 <circle class="station" cx="104.88491853121585" cy="135.06938531213018" r="0.38" stroke="#006b3f"/>
-<text class="label" x="104.88491853121585" y="135.06938531213018" text-anchor="middle"><tspan x="104.88491853121585" dy="-0.42000000000000004">Gamini</tspan><tspan x="104.88491853121585" dy="0.8400000000000001">Hall</tspan></text>
+<text class="label" x="104.88491853121585" y="135.06938531213018" text-anchor="middle"><tspan x="104.88491853121585" dy="-1.05">Gamini</tspan><tspan x="104.88491853121585" dy="2.1">Hall</tspan></text>
 <circle class="station" cx="123.83298742991525" cy="227.07412564639748" r="0.38" stroke="#f57c00"/>
-<text class="label" x="123.83298742991525" y="227.07412564639748" text-anchor="middle"><tspan x="123.83298742991525" dy="-0.8400000000000001">German</tspan><tspan x="123.83298742991525" dy="0.8400000000000001">Tech</tspan><tspan x="123.83298742991525" dy="0.8400000000000001">Angulana</tspan></text>
+<text class="label" x="123.83298742991525" y="227.07412564639748" text-anchor="middle"><tspan x="123.83298742991525" dy="-2.1">German</tspan><tspan x="123.83298742991525" dy="2.1">Tech</tspan><tspan x="123.83298742991525" dy="2.1">Angulana</tspan></text>
 <circle class="station" cx="121.11336909880039" cy="223.2249522833319" r="0.38" stroke="#f57c00"/>
-<text class="label" x="121.11336909880039" y="223.2249522833319" text-anchor="middle"><tspan x="121.11336909880039" dy="-0.42000000000000004">Golumadama</tspan><tspan x="121.11336909880039" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="121.11336909880039" y="223.2249522833319" text-anchor="middle"><tspan x="121.11336909880039" dy="-1.05">Golumadama</tspan><tspan x="121.11336909880039" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="110.72945711185359" cy="168.66387243632164" r="0.78"/>
 <text class="label" x="110.72945711185359" y="168.66387243632164" text-anchor="middle"><tspan x="110.72945711185359" dy="0.0">Havelock</tspan></text>
 <circle class="station" cx="107.67115056392639" cy="138.90493080577482" r="0.38" stroke="#0070a8"/>
-<text class="label" x="107.67115056392639" y="138.90493080577482" text-anchor="middle"><tspan x="107.67115056392639" dy="-0.42000000000000004">Hedges</tspan><tspan x="107.67115056392639" dy="0.8400000000000001">Ct.</tspan></text>
+<text class="label" x="107.67115056392639" y="138.90493080577482" text-anchor="middle"><tspan x="107.67115056392639" dy="-1.05">Hedges</tspan><tspan x="107.67115056392639" dy="2.1">Ct.</tspan></text>
 <circle class="station" cx="121.32181263521414" cy="94.21005091619655" r="0.38" stroke="#6f2dbd"/>
-<text class="label" x="121.32181263521414" y="94.21005091619655" text-anchor="middle"><tspan x="121.32181263521414" dy="-0.42000000000000004">Hekitta</tspan><tspan x="121.32181263521414" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="121.32181263521414" y="94.21005091619655" text-anchor="middle"><tspan x="121.32181263521414" dy="-1.05">Hekitta</tspan><tspan x="121.32181263521414" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="125.41759945705924" cy="83.72221592843199" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="125.41759945705924" y="83.72221592843199" text-anchor="middle"><tspan x="125.41759945705924" dy="0.0">Hendala</tspan></text>
 <circle class="station" cx="110.97064679283295" cy="159.93061861138142" r="0.38" stroke="#72b043"/>
 <text class="label" x="110.97064679283295" y="159.93061861138142" text-anchor="middle"><tspan x="110.97064679283295" dy="0.0">Hirdaramani</tspan></text>
 <circle class="station" cx="183.5187170015045" cy="165.59993657928464" r="0.38" stroke="#ffd400"/>
-<text class="label" x="183.5187170015045" y="165.59993657928464" text-anchor="middle"><tspan x="183.5187170015045" dy="-0.42000000000000004">Hokandara</tspan><tspan x="183.5187170015045" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="183.5187170015045" y="165.59993657928464" text-anchor="middle"><tspan x="183.5187170015045" dy="-1.05">Hokandara</tspan><tspan x="183.5187170015045" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="109.92042910579858" cy="152.96416438666975" r="0.78"/>
-<text class="label" x="109.92042910579858" y="152.96416438666975" text-anchor="middle"><tspan x="109.92042910579858" dy="-0.42000000000000004">Independence</tspan><tspan x="109.92042910579858" dy="0.8400000000000001">Arcade</tspan></text>
+<text class="label" x="109.92042910579858" y="152.96416438666975" text-anchor="middle"><tspan x="109.92042910579858" dy="-1.05">Independence</tspan><tspan x="109.92042910579858" dy="2.1">Arcade</tspan></text>
 <circle class="interchange" cx="155.28546276221843" cy="162.01715399151811" r="0.78"/>
 <text class="label" x="155.28546276221843" y="162.01715399151811" text-anchor="middle"><tspan x="155.28546276221843" dy="0.0">Isurupaya</tspan></text>
 <circle class="station" cx="126.43555189449572" cy="23.60654277262514" r="0.38" stroke="#6f2dbd"/>
-<text class="label" x="126.43555189449572" y="23.60654277262514" text-anchor="middle"><tspan x="126.43555189449572" dy="-0.42000000000000004">Ja</tspan><tspan x="126.43555189449572" dy="0.8400000000000001">Ela</tspan></text>
+<text class="label" x="126.43555189449572" y="23.60654277262514" text-anchor="middle"><tspan x="126.43555189449572" dy="-1.05">Ja</tspan><tspan x="126.43555189449572" dy="2.1">Ela</tspan></text>
 <circle class="station" cx="108.46367715267382" cy="156.97318705025305" r="0.38" stroke="#72b043"/>
-<text class="label" x="108.46367715267382" y="156.97318705025305" text-anchor="middle"><tspan x="108.46367715267382" dy="-0.42000000000000004">Jawatta</tspan><tspan x="108.46367715267382" dy="0.8400000000000001">Rd.</tspan></text>
+<text class="label" x="108.46367715267382" y="156.97318705025305" text-anchor="middle"><tspan x="108.46367715267382" dy="-1.05">Jawatta</tspan><tspan x="108.46367715267382" dy="2.1">Rd.</tspan></text>
 <circle class="station" cx="128.92164583175736" cy="276.69886559326113" r="0.38" stroke="#f57c00"/>
-<text class="label" x="128.92164583175736" y="276.69886559326113" text-anchor="middle"><tspan x="128.92164583175736" dy="-0.42000000000000004">Jayanthi</tspan><tspan x="128.92164583175736" dy="0.8400000000000001">Mw.</tspan></text>
+<text class="label" x="128.92164583175736" y="276.69886559326113" text-anchor="middle"><tspan x="128.92164583175736" dy="-1.05">Jayanthi</tspan><tspan x="128.92164583175736" dy="2.1">Mw.</tspan></text>
 <circle class="station" cx="170.6141872080318" cy="79.47707946141801" r="0.38" stroke="#8a0f45"/>
 <text class="label" x="170.6141872080318" y="79.47707946141801" text-anchor="middle"><tspan x="170.6141872080318" dy="0.0">Kadawatha</tspan></text>
 <circle class="station" cx="155.9583640833339" cy="180.3837776220396" r="0.38" stroke="#0070a8"/>
-<text class="label" x="155.9583640833339" y="180.3837776220396" text-anchor="middle"><tspan x="155.9583640833339" dy="-0.42000000000000004">Kalalgoda</tspan><tspan x="155.9583640833339" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="155.9583640833339" y="180.3837776220396" text-anchor="middle"><tspan x="155.9583640833339" dy="-1.05">Kalalgoda</tspan><tspan x="155.9583640833339" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="109.74264551812428" cy="182.0110093889011" r="0.38" stroke="#006b3f"/>
-<text class="label" x="109.74264551812428" y="182.0110093889011" text-anchor="middle"><tspan x="109.74264551812428" dy="-0.42000000000000004">Kalubowila</tspan><tspan x="109.74264551812428" dy="0.8400000000000001">Hosp.</tspan></text>
+<text class="label" x="109.74264551812428" y="182.0110093889011" text-anchor="middle"><tspan x="109.74264551812428" dy="-1.05">Kalubowila</tspan><tspan x="109.74264551812428" dy="2.1">Hosp.</tspan></text>
 <circle class="station" cx="131.62590821488112" cy="44.393274944326464" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="131.62590821488112" y="44.393274944326464" text-anchor="middle"><tspan x="131.62590821488112" dy="0.0">Kandana</tspan></text>
 <circle class="station" cx="124.54750393324315" cy="231.0875644321255" r="0.38" stroke="#f57c00"/>
-<text class="label" x="124.54750393324315" y="231.0875644321255" text-anchor="middle"><tspan x="124.54750393324315" dy="-0.42000000000000004">Katubedda</tspan><tspan x="124.54750393324315" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="124.54750393324315" y="231.0875644321255" text-anchor="middle"><tspan x="124.54750393324315" dy="-1.05">Katubedda</tspan><tspan x="124.54750393324315" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="144.2630273762607" cy="100.15743370744373" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="144.2630273762607" y="100.15743370744373" text-anchor="middle"><tspan x="144.2630273762607" dy="-0.42000000000000004">Kelaniya</tspan><tspan x="144.2630273762607" dy="0.8400000000000001">Campus</tspan></text>
+<text class="label" x="144.2630273762607" y="100.15743370744373" text-anchor="middle"><tspan x="144.2630273762607" dy="-1.05">Kelaniya</tspan><tspan x="144.2630273762607" dy="2.1">Campus</tspan></text>
 <circle class="station" cx="162.98272744811382" cy="232.33722875251357" r="0.38" stroke="#006b3f"/>
 <text class="label" x="162.98272744811382" y="232.33722875251357" text-anchor="middle"><tspan x="162.98272744811382" dy="0.0">Kesbewa</tspan></text>
 <circle class="station" cx="152.79619843449132" cy="97.2448659158021" r="0.38" stroke="#8a0f45"/>
@@ -115,9 +115,9 @@
 <circle class="interchange" cx="181.13106430247225" cy="197.33163612830705" r="0.78"/>
 <text class="label" x="181.13106430247225" y="197.33163612830705" text-anchor="middle"><tspan x="181.13106430247225" dy="0.0">Kottawa</tspan></text>
 <circle class="interchange" cx="94.11033611221417" cy="130.7771773203578" r="0.78"/>
-<text class="label" x="94.11033611221417" y="130.7771773203578" text-anchor="middle"><tspan x="94.11033611221417" dy="-0.42000000000000004">Lake</tspan><tspan x="94.11033611221417" dy="0.8400000000000001">House</tspan></text>
+<text class="label" x="94.11033611221417" y="130.7771773203578" text-anchor="middle"><tspan x="94.11033611221417" dy="-1.05">Lake</tspan><tspan x="94.11033611221417" dy="2.1">House</tspan></text>
 <circle class="station" cx="145.44847186929286" cy="221.40820024468547" r="0.38" stroke="#006b3f"/>
-<text class="label" x="145.44847186929286" y="221.40820024468547" text-anchor="middle"><tspan x="145.44847186929286" dy="-0.42000000000000004">Lanka</tspan><tspan x="145.44847186929286" dy="0.8400000000000001">Fiber</tspan></text>
+<text class="label" x="145.44847186929286" y="221.40820024468547" text-anchor="middle"><tspan x="145.44847186929286" dy="-1.05">Lanka</tspan><tspan x="145.44847186929286" dy="2.1">Fiber</tspan></text>
 <circle class="station" cx="97.36021038932222" cy="146.30052173292785" r="0.38" stroke="#72b043"/>
 <text class="label" x="97.36021038932222" y="146.30052173292785" text-anchor="middle"><tspan x="97.36021038932222" dy="0.0">Liberty</tspan></text>
 <circle class="station" cx="131.37834934816522" cy="79.45107823809157" r="0.38" stroke="#6f2dbd"/>
@@ -125,11 +125,11 @@
 <circle class="station" cx="133.64189175108572" cy="64.27403001137247" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="133.64189175108572" y="64.27403001137247" text-anchor="middle"><tspan x="133.64189175108572" dy="0.0">Mahabage</tspan></text>
 <circle class="station" cx="137.8095109217981" cy="284.6519061266936" r="0.38" stroke="#f57c00"/>
-<text class="label" x="137.8095109217981" y="284.6519061266936" text-anchor="middle"><tspan x="137.8095109217981" dy="-0.42000000000000004">Mahanama</tspan><tspan x="137.8095109217981" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="137.8095109217981" y="284.6519061266936" text-anchor="middle"><tspan x="137.8095109217981" dy="-1.05">Mahanama</tspan><tspan x="137.8095109217981" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="161.93131913388203" cy="87.62773693897182" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="161.93131913388203" y="87.62773693897182" text-anchor="middle"><tspan x="161.93131913388203" dy="-0.42000000000000004">Mahara</tspan><tspan x="161.93131913388203" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="161.93131913388203" y="87.62773693897182" text-anchor="middle"><tspan x="161.93131913388203" dy="-1.05">Mahara</tspan><tspan x="161.93131913388203" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="152.30468342886564" cy="195.6561924795739" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="152.30468342886564" y="195.6561924795739" text-anchor="middle"><tspan x="152.30468342886564" dy="-1.2600000000000002">Maharagama</tspan><tspan x="152.30468342886564" dy="0.8400000000000001">Cargills</tspan><tspan x="152.30468342886564" dy="0.8400000000000001">Food</tspan><tspan x="152.30468342886564" dy="0.8400000000000001">City</tspan></text>
+<text class="label" x="152.30468342886564" y="195.6561924795739" text-anchor="middle"><tspan x="152.30468342886564" dy="-3.1500000000000004">Maharagama</tspan><tspan x="152.30468342886564" dy="2.1">Cargills</tspan><tspan x="152.30468342886564" dy="2.1">Food</tspan><tspan x="152.30468342886564" dy="2.1">City</tspan></text>
 <circle class="station" cx="152.5129063901133" cy="194.17372369549227" r="0.38" stroke="#8a0f45"/>
 <text class="label" x="152.5129063901133" y="194.17372369549227" text-anchor="middle"><tspan x="152.5129063901133" dy="0.0">Maharagama</tspan></text>
 <circle class="interchange" cx="186.39817880641192" cy="200.1357741510713" r="0.78"/>
@@ -137,17 +137,17 @@
 <circle class="station" cx="172.96669492985416" cy="152.22695129767857" r="0.38" stroke="#ffd400"/>
 <text class="label" x="172.96669492985416" y="152.22695129767857" text-anchor="middle"><tspan x="172.96669492985416" dy="0.0">Malabe</tspan></text>
 <circle class="station" cx="113.58624139466295" cy="214.7330468976776" r="0.38" stroke="#f57c00"/>
-<text class="label" x="113.58624139466295" y="214.7330468976776" text-anchor="middle"><tspan x="113.58624139466295" dy="-0.42000000000000004">Maliban</tspan><tspan x="113.58624139466295" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="113.58624139466295" y="214.7330468976776" text-anchor="middle"><tspan x="113.58624139466295" dy="-1.05">Maliban</tspan><tspan x="113.58624139466295" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="106.60213918104441" cy="133.70467060584883" r="0.38" stroke="#0070a8"/>
-<text class="label" x="106.60213918104441" y="133.70467060584883" text-anchor="middle"><tspan x="106.60213918104441" dy="-0.42000000000000004">Maradana</tspan><tspan x="106.60213918104441" dy="0.8400000000000001">Railway</tspan></text>
+<text class="label" x="106.60213918104441" y="133.70467060584883" text-anchor="middle"><tspan x="106.60213918104441" dy="-1.05">Maradana</tspan><tspan x="106.60213918104441" dy="2.1">Railway</tspan></text>
 <circle class="station" cx="121.31041625139031" cy="242.09189393428045" r="0.38" stroke="#f57c00"/>
-<text class="label" x="121.31041625139031" y="242.09189393428045" text-anchor="middle"><tspan x="121.31041625139031" dy="-0.8400000000000001">Mendis</tspan><tspan x="121.31041625139031" dy="0.8400000000000001">Ln.</tspan><tspan x="121.31041625139031" dy="0.8400000000000001">Rawathawatta</tspan></text>
+<text class="label" x="121.31041625139031" y="242.09189393428045" text-anchor="middle"><tspan x="121.31041625139031" dy="-2.1">Mendis</tspan><tspan x="121.31041625139031" dy="2.1">Ln.</tspan><tspan x="121.31041625139031" dy="2.1">Rawathawatta</tspan></text>
 <circle class="station" cx="206.0755427448844" cy="167.81948528039248" r="0.38" stroke="#ffd400"/>
-<text class="label" x="206.0755427448844" y="167.81948528039248" text-anchor="middle"><tspan x="206.0755427448844" dy="-0.42000000000000004">Millennium</tspan><tspan x="206.0755427448844" dy="0.8400000000000001">City</tspan></text>
+<text class="label" x="206.0755427448844" y="167.81948528039248" text-anchor="middle"><tspan x="206.0755427448844" dy="-1.05">Millennium</tspan><tspan x="206.0755427448844" dy="2.1">City</tspan></text>
 <circle class="station" cx="120.16283716269115" cy="247.92949000864382" r="0.38" stroke="#f57c00"/>
 <text class="label" x="120.16283716269115" y="247.92949000864382" text-anchor="middle"><tspan x="120.16283716269115" dy="0.0">Moratuwa</tspan></text>
 <circle class="station" cx="105.42540122477692" cy="205.72162017784578" r="0.38" stroke="#f57c00"/>
-<text class="label" x="105.42540122477692" y="205.72162017784578" text-anchor="middle"><tspan x="105.42540122477692" dy="-0.42000000000000004">Mount</tspan><tspan x="105.42540122477692" dy="0.8400000000000001">Lavinia</tspan></text>
+<text class="label" x="105.42540122477692" y="205.72162017784578" text-anchor="middle"><tspan x="105.42540122477692" dy="-1.05">Mount</tspan><tspan x="105.42540122477692" dy="2.1">Lavinia</tspan></text>
 <circle class="interchange" cx="132.931853381905" cy="149.56360780995237" r="0.78"/>
 <text class="label" x="132.931853381905" y="149.56360780995237" text-anchor="middle"><tspan x="132.931853381905" dy="0.0">NAITA</tspan></text>
 <circle class="interchange" cx="116.0380065024876" cy="160.79354635283713" r="0.78"/>
@@ -157,27 +157,27 @@
 <circle class="station" cx="146.01527653323367" cy="187.052543844194" r="0.38" stroke="#8a0f45"/>
 <text class="label" x="146.01527653323367" y="187.052543844194" text-anchor="middle"><tspan x="146.01527653323367" dy="0.0">Nawinna</tspan></text>
 <circle class="station" cx="111.99557399171606" cy="212.65912053736938" r="0.38" stroke="#f57c00"/>
-<text class="label" x="111.99557399171606" y="212.65912053736938" text-anchor="middle"><tspan x="111.99557399171606" dy="-0.42000000000000004">Lalanka</tspan><tspan x="111.99557399171606" dy="0.8400000000000001">Ratmalana</tspan></text>
+<text class="label" x="111.99557399171606" y="212.65912053736938" text-anchor="middle"><tspan x="111.99557399171606" dy="-1.05">Lalanka</tspan><tspan x="111.99557399171606" dy="2.1">Ratmalana</tspan></text>
 <circle class="interchange" cx="106.41666604243429" cy="146.6135197048848" r="0.78"/>
-<text class="label" x="106.41666604243429" y="146.6135197048848" text-anchor="middle"><tspan x="106.41666604243429" dy="-0.42000000000000004">Nelum</tspan><tspan x="106.41666604243429" dy="0.8400000000000001">Pokuna</tspan></text>
+<text class="label" x="106.41666604243429" y="146.6135197048848" text-anchor="middle"><tspan x="106.41666604243429" dy="-1.05">Nelum</tspan><tspan x="106.41666604243429" dy="2.1">Pokuna</tspan></text>
 <circle class="station" cx="194.6047515617227" cy="169.3981927890836" r="0.38" stroke="#ffd400"/>
-<text class="label" x="194.6047515617227" y="169.3981927890836" text-anchor="middle"><tspan x="194.6047515617227" dy="-0.42000000000000004">Nisaco</tspan><tspan x="194.6047515617227" dy="0.8400000000000001">Mall</tspan></text>
+<text class="label" x="194.6047515617227" y="169.3981927890836" text-anchor="middle"><tspan x="194.6047515617227" dy="-1.05">Nisaco</tspan><tspan x="194.6047515617227" dy="2.1">Mall</tspan></text>
 <circle class="station" cx="124.33464889340496" cy="177.37027236083347" r="0.38" stroke="#8a0f45"/>
 <text class="label" x="124.33464889340496" y="177.37027236083347" text-anchor="middle"><tspan x="124.33464889340496" dy="0.0">Nugegoda</tspan></text>
 <circle class="interchange" cx="124.66536459951843" cy="119.2755534220513" r="0.78"/>
 <text class="label" x="124.66536459951843" y="119.2755534220513" text-anchor="middle"><tspan x="124.66536459951843" dy="0.0">Orugodawatta</tspan></text>
 <circle class="station" cx="136.83814594908915" cy="283.462663964368" r="0.38" stroke="#f57c00"/>
-<text class="label" x="136.83814594908915" y="283.462663964368" text-anchor="middle"><tspan x="136.83814594908915" dy="-0.42000000000000004">Palam</tspan><tspan x="136.83814594908915" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="136.83814594908915" y="283.462663964368" text-anchor="middle"><tspan x="136.83814594908915" dy="-1.05">Palam</tspan><tspan x="136.83814594908915" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="150.8259474836928" cy="158.83300369571816" r="0.38" stroke="#0070a8"/>
-<text class="label" x="150.8259474836928" y="158.83300369571816" text-anchor="middle"><tspan x="150.8259474836928" dy="-0.8400000000000001">Palam</tspan><tspan x="150.8259474836928" dy="0.8400000000000001">Thuna</tspan><tspan x="150.8259474836928" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="150.8259474836928" y="158.83300369571816" text-anchor="middle"><tspan x="150.8259474836928" dy="-2.1">Palam</tspan><tspan x="150.8259474836928" dy="2.1">Thuna</tspan><tspan x="150.8259474836928" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="137.92163826539556" cy="287.0673050349063" r="0.38" stroke="#f57c00"/>
-<text class="label" x="137.92163826539556" y="287.0673050349063" text-anchor="middle"><tspan x="137.92163826539556" dy="-0.8400000000000001">Panadura</tspan><tspan x="137.92163826539556" dy="0.8400000000000001">Base</tspan><tspan x="137.92163826539556" dy="0.8400000000000001">Hosp.</tspan></text>
+<text class="label" x="137.92163826539556" y="287.0673050349063" text-anchor="middle"><tspan x="137.92163826539556" dy="-2.1">Panadura</tspan><tspan x="137.92163826539556" dy="2.1">Base</tspan><tspan x="137.92163826539556" dy="2.1">Hosp.</tspan></text>
 <circle class="station" cx="136.23806151160576" cy="294.0" r="0.38" stroke="#f57c00"/>
 <text class="label" x="136.23806151160576" y="294.0" text-anchor="middle"><tspan x="136.23806151160576" dy="0.0">Panadura</tspan></text>
 <circle class="interchange" cx="168.5877693376064" cy="194.5269035317224" r="0.78"/>
-<text class="label" x="168.5877693376064" y="194.5269035317224" text-anchor="middle"><tspan x="168.5877693376064" dy="-0.42000000000000004">Pannipitiya</tspan><tspan x="168.5877693376064" dy="0.8400000000000001">Railway</tspan></text>
+<text class="label" x="168.5877693376064" y="194.5269035317224" text-anchor="middle"><tspan x="168.5877693376064" dy="-1.05">Pannipitiya</tspan><tspan x="168.5877693376064" dy="2.1">Railway</tspan></text>
 <circle class="station" cx="120.38061838134126" cy="114.06157115982222" r="0.38" stroke="#6f2dbd"/>
-<text class="label" x="120.38061838134126" y="114.06157115982222" text-anchor="middle"><tspan x="120.38061838134126" dy="-0.8400000000000001">New</tspan><tspan x="120.38061838134126" dy="0.8400000000000001">Kelani</tspan><tspan x="120.38061838134126" dy="0.8400000000000001">Br.</tspan></text>
+<text class="label" x="120.38061838134126" y="114.06157115982222" text-anchor="middle"><tspan x="120.38061838134126" dy="-2.1">New</tspan><tspan x="120.38061838134126" dy="2.1">Kelani</tspan><tspan x="120.38061838134126" dy="2.1">Br.</tspan></text>
 <circle class="station" cx="119.63728005568596" cy="108.19716431426505" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="119.63728005568596" y="108.19716431426505" text-anchor="middle"><tspan x="119.63728005568596" dy="0.0">Peliyagoda</tspan></text>
 <circle class="station" cx="126.03895971325498" cy="187.35572380971269" r="0.38" stroke="#006b3f"/>
@@ -187,23 +187,23 @@
 <circle class="station" cx="151.37812066130851" cy="227.6405058907201" r="0.38" stroke="#006b3f"/>
 <text class="label" x="151.37812066130851" y="227.6405058907201" text-anchor="middle"><tspan x="151.37812066130851" dy="0.0">Piliyandala</tspan></text>
 <circle class="station" cx="102.1973145484398" cy="146.142729621841" r="0.38" stroke="#72b043"/>
-<text class="label" x="102.1973145484398" y="146.142729621841" text-anchor="middle"><tspan x="102.1973145484398" dy="-0.42000000000000004">Public</tspan><tspan x="102.1973145484398" dy="0.8400000000000001">Library</tspan></text>
+<text class="label" x="102.1973145484398" y="146.142729621841" text-anchor="middle"><tspan x="102.1973145484398" dy="-1.05">Public</tspan><tspan x="102.1973145484398" dy="2.1">Library</tspan></text>
 <circle class="interchange" cx="130.16820043600865" cy="148.0904860985812" r="0.78"/>
 <text class="label" x="130.16820043600865" y="148.0904860985812" text-anchor="middle"><tspan x="130.16820043600865" dy="0.0">Rajagiriya</tspan></text>
 <circle class="station" cx="117.64342459576152" cy="218.6725020457316" r="0.38" stroke="#f57c00"/>
-<text class="label" x="117.64342459576152" y="218.6725020457316" text-anchor="middle"><tspan x="117.64342459576152" dy="-0.42000000000000004">Rathmalana</tspan><tspan x="117.64342459576152" dy="0.8400000000000001">Tech</tspan></text>
+<text class="label" x="117.64342459576152" y="218.6725020457316" text-anchor="middle"><tspan x="117.64342459576152" dy="-1.05">Rathmalana</tspan><tspan x="117.64342459576152" dy="2.1">Tech</tspan></text>
 <circle class="station" cx="131.280046347027" cy="193.3458074564615" r="0.38" stroke="#006b3f"/>
 <text class="label" x="131.280046347027" y="193.3458074564615" text-anchor="middle"><tspan x="131.280046347027" dy="0.0">Raththanapitiya</tspan></text>
 <circle class="interchange" cx="93.9244572551156" cy="131.712640562172" r="0.78"/>
-<text class="label" x="93.9244572551156" y="131.712640562172" text-anchor="middle"><tspan x="93.9244572551156" dy="-0.42000000000000004">Regal</tspan><tspan x="93.9244572551156" dy="0.8400000000000001">Cinema</tspan></text>
+<text class="label" x="93.9244572551156" y="131.712640562172" text-anchor="middle"><tspan x="93.9244572551156" dy="-1.05">Regal</tspan><tspan x="93.9244572551156" dy="2.1">Cinema</tspan></text>
 <circle class="station" cx="111.82810488513857" cy="170.67107110650392" r="0.38" stroke="#006b3f"/>
-<text class="label" x="111.82810488513857" y="170.67107110650392" text-anchor="middle"><tspan x="111.82810488513857" dy="-0.42000000000000004">Royal</tspan><tspan x="111.82810488513857" dy="0.8400000000000001">Institute</tspan></text>
+<text class="label" x="111.82810488513857" y="170.67107110650392" text-anchor="middle"><tspan x="111.82810488513857" dy="-1.05">Royal</tspan><tspan x="111.82810488513857" dy="2.1">Institute</tspan></text>
 <circle class="interchange" cx="144.17788536033106" cy="152.58615216263414" r="0.78"/>
 <text class="label" x="144.17788536033106" y="152.58615216263414" text-anchor="middle"><tspan x="144.17788536033106" dy="0.0">Sethsiripaya</tspan></text>
 <circle class="interchange" cx="115.67413243656132" cy="147.0106466738877" r="0.78"/>
-<text class="label" x="115.67413243656132" y="147.0106466738877" text-anchor="middle"><tspan x="115.67413243656132" dy="-0.42000000000000004">Singer</tspan><tspan x="115.67413243656132" dy="0.8400000000000001">Mega</tspan></text>
+<text class="label" x="115.67413243656132" y="147.0106466738877" text-anchor="middle"><tspan x="115.67413243656132" dy="-1.05">Singer</tspan><tspan x="115.67413243656132" dy="2.1">Mega</tspan></text>
 <circle class="station" cx="166.13739354114142" cy="149.21942577205425" r="0.38" stroke="#ffd400"/>
-<text class="label" x="166.13739354114142" y="149.21942577205425" text-anchor="middle"><tspan x="166.13739354114142" dy="-0.42000000000000004">Thalahena</tspan><tspan x="166.13739354114142" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="166.13739354114142" y="149.21942577205425" text-anchor="middle"><tspan x="166.13739354114142" dy="-1.05">Thalahena</tspan><tspan x="166.13739354114142" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="152.1487367830913" cy="150.10788088722137" r="0.78"/>
 <text class="label" x="152.1487367830913" y="150.10788088722137" text-anchor="middle"><tspan x="152.1487367830913" dy="0.0">Thalangama</tspan></text>
 <circle class="station" cx="158.94862814903377" cy="172.666673204609" r="0.38" stroke="#0070a8"/>
@@ -211,21 +211,21 @@
 <circle class="station" cx="106.343512869815" cy="162.25315059281212" r="0.38" stroke="#006b3f"/>
 <text class="label" x="106.343512869815" y="162.25315059281212" text-anchor="middle"><tspan x="106.343512869815" dy="0.0">Thimbirigasyaya</tspan></text>
 <circle class="station" cx="134.15302266308288" cy="105.02421270889205" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="134.15302266308288" y="105.02421270889205" text-anchor="middle"><tspan x="134.15302266308288" dy="-0.42000000000000004">Thorana</tspan><tspan x="134.15302266308288" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="134.15302266308288" y="105.02421270889205" text-anchor="middle"><tspan x="134.15302266308288" dy="-1.05">Thorana</tspan><tspan x="134.15302266308288" dy="2.1">Junc.</tspan></text>
 <circle class="interchange" cx="103.94929931761394" cy="156.00978114818216" r="0.78"/>
 <text class="label" x="103.94929931761394" y="156.00978114818216" text-anchor="middle"><tspan x="103.94929931761394" dy="0.0">Thummulla</tspan></text>
 <circle class="interchange" cx="107.07795040454113" cy="142.31560240050482" r="0.78"/>
-<text class="label" x="107.07795040454113" y="142.31560240050482" text-anchor="middle"><tspan x="107.07795040454113" dy="-0.42000000000000004">Town</tspan><tspan x="107.07795040454113" dy="0.8400000000000001">Hall</tspan></text>
+<text class="label" x="107.07795040454113" y="142.31560240050482" text-anchor="middle"><tspan x="107.07795040454113" dy="-1.05">Town</tspan><tspan x="107.07795040454113" dy="2.1">Hall</tspan></text>
 <circle class="station" cx="103.08145861965198" cy="140.626063586026" r="0.38" stroke="#ffd400"/>
-<text class="label" x="103.08145861965198" y="140.626063586026" text-anchor="middle"><tspan x="103.08145861965198" dy="-0.42000000000000004">Union</tspan><tspan x="103.08145861965198" dy="0.8400000000000001">Place</tspan></text>
+<text class="label" x="103.08145861965198" y="140.626063586026" text-anchor="middle"><tspan x="103.08145861965198" dy="-1.05">Union</tspan><tspan x="103.08145861965198" dy="2.1">Place</tspan></text>
 <circle class="interchange" cx="115.96668863812971" cy="157.61685121403988" r="0.78"/>
-<text class="label" x="115.96668863812971" y="157.61685121403988" text-anchor="middle"><tspan x="115.96668863812971" dy="-0.8400000000000001">VTA</tspan><tspan x="115.96668863812971" dy="0.8400000000000001">/</tspan><tspan x="115.96668863812971" dy="0.8400000000000001">AAT</tspan></text>
+<text class="label" x="115.96668863812971" y="157.61685121403988" text-anchor="middle"><tspan x="115.96668863812971" dy="-2.1">VTA</tspan><tspan x="115.96668863812971" dy="2.1">/</tspan><tspan x="115.96668863812971" dy="2.1">AAT</tspan></text>
 <circle class="station" cx="105.12078691388648" cy="173.01533697147025" r="0.38" stroke="#72b043"/>
-<text class="label" x="105.12078691388648" y="173.01533697147025" text-anchor="middle"><tspan x="105.12078691388648" dy="-0.8400000000000001">W.A.</tspan><tspan x="105.12078691388648" dy="0.8400000000000001">Silva</tspan><tspan x="105.12078691388648" dy="0.8400000000000001">Mw.</tspan></text>
+<text class="label" x="105.12078691388648" y="173.01533697147025" text-anchor="middle"><tspan x="105.12078691388648" dy="-2.1">W.A.</tspan><tspan x="105.12078691388648" dy="2.1">Silva</tspan><tspan x="105.12078691388648" dy="2.1">Mw.</tspan></text>
 <circle class="station" cx="127.58879438847524" cy="88.56368354232015" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="127.58879438847524" y="88.56368354232015" text-anchor="middle"><tspan x="127.58879438847524" dy="0.0">Wattala</tspan></text>
 <circle class="station" cx="142.46313398239556" cy="213.90791855372706" r="0.38" stroke="#006b3f"/>
-<text class="label" x="142.46313398239556" y="213.90791855372706" text-anchor="middle"><tspan x="142.46313398239556" dy="-0.42000000000000004">Weerasinghe</tspan><tspan x="142.46313398239556" dy="0.8400000000000001">Mw.</tspan></text>
+<text class="label" x="142.46313398239556" y="213.90791855372706" text-anchor="middle"><tspan x="142.46313398239556" dy="-1.05">Weerasinghe</tspan><tspan x="142.46313398239556" dy="2.1">Mw.</tspan></text>
 <circle class="station" cx="129.10833674023283" cy="29.758191415869877" r="0.38" stroke="#6f2dbd"/>
 <text class="label" x="129.10833674023283" y="29.758191415869877" text-anchor="middle"><tspan x="129.10833674023283" dy="0.0">Weligampitiya</tspan></text>
 <circle class="interchange" cx="101.70709204525443" cy="173.58172971185783" r="0.78"/>
@@ -233,13 +233,13 @@
 <circle class="station" cx="137.1677858565901" cy="209.15267456493956" r="0.38" stroke="#006b3f"/>
 <text class="label" x="137.1677858565901" y="209.15267456493956" text-anchor="middle"><tspan x="137.1677858565901" dy="0.0">Werahera</tspan></text>
 <circle class="station" cx="139.14597751353574" cy="186.40597133772934" r="0.38" stroke="#8a0f45"/>
-<text class="label" x="139.14597751353574" y="186.40597133772934" text-anchor="middle"><tspan x="139.14597751353574" dy="-0.42000000000000004">Wijerama</tspan><tspan x="139.14597751353574" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="139.14597751353574" y="186.40597133772934" text-anchor="middle"><tspan x="139.14597751353574" dy="-1.05">Wijerama</tspan><tspan x="139.14597751353574" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="111.58474286822377" cy="146.64630111300946" r="0.38" stroke="#0070a8"/>
 <text class="label" x="111.58474286822377" y="146.64630111300946" text-anchor="middle"><tspan x="111.58474286822377" dy="0.0">Wijerama</tspan></text>
 <circle class="station" cx="106.16815134998001" cy="181.8096516214426" r="0.38" stroke="#f57c00"/>
-<text class="label" x="106.16815134998001" y="181.8096516214426" text-anchor="middle"><tspan x="106.16815134998001" dy="-0.42000000000000004">Williams</tspan><tspan x="106.16815134998001" dy="0.8400000000000001">Junc.</tspan></text>
+<text class="label" x="106.16815134998001" y="181.8096516214426" text-anchor="middle"><tspan x="106.16815134998001" dy="-1.05">Williams</tspan><tspan x="106.16815134998001" dy="2.1">Junc.</tspan></text>
 <circle class="station" cx="109.28942889002101" cy="151.79686168765855" r="0.38" stroke="#72b043"/>
-<text class="label" x="109.28942889002101" y="151.79686168765855" text-anchor="middle"><tspan x="109.28942889002101" dy="-0.42000000000000004">Independence</tspan><tspan x="109.28942889002101" dy="0.8400000000000001">Square</tspan></text>
+<text class="label" x="109.28942889002101" y="151.79686168765855" text-anchor="middle"><tspan x="109.28942889002101" dy="-1.05">Independence</tspan><tspan x="109.28942889002101" dy="2.1">Square</tspan></text>
 <circle class="station" cx="108.54359641098903" cy="157.66095637918073" r="0.38" stroke="#72b043"/>
 <text class="label" x="108.54359641098903" y="157.66095637918073" text-anchor="middle"><tspan x="108.54359641098903" dy="0.0">Jawatta</tspan></text>
 </g>
@@ -261,6 +261,6 @@
 <text class="legend-route-label" x="312" y="39.0">CM08: Kesbewa to Pettah</text>
 <text class="legend-route-label" x="304" y="44.5">Routes follow the geographic positions of their stops,</text>
 <text class="legend-route-label" x="304" y="46.9">with shared corridors separated for clarity.</text>
-<text class="footer-label" x="179.0" y="310" text-anchor="middle">Data from https://lankametro.lk · Design and Visualisation by https://github.com/nuuuwan · v2026-08-09 08:11</text>
+<text class="footer-label" x="179.0" y="310" text-anchor="middle">Data from https://lankametro.lk · Design and Visualisation by @nuuuwan · v2026-08-09 09:02</text>
 </g>
 </svg>
